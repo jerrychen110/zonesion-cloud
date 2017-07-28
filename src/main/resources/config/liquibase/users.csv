@@ -1,4 +1,4 @@
-id;login;password_hash;name;email;avatar;activated;created_by;last_modified_by
-1;system;$2a$10$mE.qmcV0mFU5NcKh73TZx.z4ueI/.bDWbj0T1BYyqP481kGGarKLG;System;system@localhost;;true;system;system
-2;admin;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Administrator;admin@localhost;;true;system;system
-3;user;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;User;user@localhost;;true;system;system
+id;login;password_hash;name;email;avatar;mobile;sex;staff_no;major;school;activated;created_by;last_modified_by
+1;admin;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Administrator;admin@localhost;;15102711111;男;;;武汉大学;true;system;system
+2;user1;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;张老师;user1@localhost;;15102722222;女;JS00023;软件技术;武汉大学;true;system;system
+3;user2;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;李同学;user2@localhost;;15102733333;男;XS00024;软件技术;武汉大学;true;system;system
