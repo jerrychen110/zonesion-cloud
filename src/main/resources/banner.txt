@@ -1,0 +1,2 @@
+${AnsiColor.BRIGHT_BLUE}:: Zonesion 🤓  :: Running Spring Boot ${spring-boot.version} ::
+:: http://www.zonesion.com.cn ::${AnsiColor.DEFAULT}

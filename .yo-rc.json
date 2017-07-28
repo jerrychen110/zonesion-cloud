@@ -1,0 +1,35 @@
+{
+  "generator-jhipster": {
+    "baseName": "zonesionCloudApplication",
+    "packageName": "com.zonesion.cloud",
+    "packageFolder": "com/zonesion/cloud",
+    "authenticationType": "oauth2",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "useCompass": false,
+    "buildTool": "maven",
+    "enableTranslation": true,
+    "applicationType": "monolith",
+    "testFrameworks": [
+      "gatling",
+      "protractor"
+    ],
+    "languages": [
+      "en"
+    ],
+    "serverPort": 8080,
+    "jhipsterVersion": "4.6.2",
+    "enableSocialSignIn": false,
+    "useSass": false,
+    "jhiPrefix": "jhi",
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "clientPackageManager": "yarn",
+    "clientFramework": "angular1"
+  }
+}
