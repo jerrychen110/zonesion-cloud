@@ -1,8 +1,6 @@
 #zonesion-cloud
 中智讯教学云系统
 
-项目使用 JHipster, [https://jhipster.github.io](https://jhipster.github.io).
-
 请按照以下步骤配置你的开发环境:
 
 1. [Node.js][]: 我们使用NodeJS运行开发服务，并构建前端代码。你可以通过NodeJS的官方网站进行安装。
@@ -20,7 +18,14 @@ npm --registry=https://registry.npm.taobao.org --disturl=https://npm.taobao.org/
 mvn
 gulp
 ```
-5. 配置你的Eclipse IDE, 参考此连接[http://jhipster.github.io/configuring-ide-eclipse/](http://jhipster.github.io/configuring-ide-eclipse/)
+5. 配置你的Eclipse IDE:
+工程名右键 -> Properties -> Resource -> Resource Filters -> Add Fiter...
+![Exclude the 'node_modules' folder](https://git.oschina.net/uploads/images/2017/0728/141119_61abf3c3_620988.png)
+
+工程名右键 -> Properties -> Javascript -> Include path -> source -> zonesion-cloud/src/main/webapp -> Excluded -> Edit... -> Add multiple
+![Edit Excluded](https://git.oschina.net/uploads/images/2017/0728/141601_fab3ce74_620988.png)
+![Add multiple](https://git.oschina.net/uploads/images/2017/0728/141712_58f33ed9_620988.png)
+![Add app](https://git.oschina.net/uploads/images/2017/0728/141913_3a6761be_620988.png)
 
 6. Eclipse中开发调试启动方法：
 工程名上右键-> Run As -> Run Configurations
