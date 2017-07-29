@@ -1,0 +1,176 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "lesson_id_fk",
+            "otherEntityName": "CourseLessonAttachment",
+            "relationshipType": "one-to-many",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "CourseLesson",
+            "otherEntityRelationshipName": "lesson_id_pk"
+        },
+        {
+            "relationshipName": "lesson_learn_fk",
+            "otherEntityName": "CourseLessonLearn",
+            "relationshipType": "one-to-many",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "CourseLesson",
+            "otherEntityRelationshipName": "lesson_learn_pk"
+        },
+        {
+            "relationshipName": "course_lesson_pk",
+            "otherEntityName": "Chapter",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "CourseLesson",
+            "otherEntityRelationshipName": "course_lesson_fk"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "chapterId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "userId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "number",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "seq",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "title",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldName": "summary",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "1"
+        },
+        {
+            "fieldName": "content",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "credit",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "mediaId",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "mediaSource",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "1"
+        },
+        {
+            "fieldName": "mediaName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldName": "mediaUri",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "learnedNum",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "viewedNum",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "50"
+        },
+        {
+            "fieldName": "createdTime",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "updatedBy",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "50"
+        },
+        {
+            "fieldName": "updatedTime",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170729021222",
+    "dto": "",
+    "service": "serviceClass",
+    "entityTableName": "t_course_lesson",
+    "pagination": "pagination"
+}
