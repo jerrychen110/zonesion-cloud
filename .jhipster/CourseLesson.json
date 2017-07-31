@@ -2,44 +2,37 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "lesson_id_fk",
+            "relationshipName": "courseLessonAttachment",
             "otherEntityName": "CourseLessonAttachment",
             "relationshipType": "one-to-many",
             "relationshipValidateRules": [
                 "required"
             ],
             "otherEntityField": "CourseLesson",
-            "otherEntityRelationshipName": "lesson_id_pk"
+            "otherEntityRelationshipName": "courseLessonAttachment"
         },
         {
-            "relationshipName": "lesson_learn_fk",
+            "relationshipName": "courseLessonLearn",
             "otherEntityName": "CourseLessonLearn",
             "relationshipType": "one-to-many",
             "relationshipValidateRules": [
                 "required"
             ],
             "otherEntityField": "CourseLesson",
-            "otherEntityRelationshipName": "lesson_learn_pk"
+            "otherEntityRelationshipName": "courseLessonLearn"
         },
         {
-            "relationshipName": "course_lesson_pk",
+            "relationshipName": "chapter",
             "otherEntityName": "Chapter",
             "relationshipType": "many-to-one",
             "relationshipValidateRules": [
                 "required"
             ],
             "otherEntityField": "CourseLesson",
-            "otherEntityRelationshipName": "course_lesson_fk"
+            "otherEntityRelationshipName": "chapter"
         }
     ],
     "fields": [
-        {
-            "fieldName": "chapterId",
-            "fieldType": "Long",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
         {
             "fieldName": "userId",
             "fieldType": "Long",
@@ -75,7 +68,7 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "type",
+            "fieldName": "courseLessonType",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required",
@@ -134,42 +127,10 @@
             "fieldValidateRules": [
                 "required"
             ]
-        },
-        {
-            "fieldName": "createdBy",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "maxlength"
-            ],
-            "fieldValidateRulesMaxlength": "50"
-        },
-        {
-            "fieldName": "createdTime",
-            "fieldType": "Instant",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "updatedBy",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "maxlength"
-            ],
-            "fieldValidateRulesMaxlength": "50"
-        },
-        {
-            "fieldName": "updatedTime",
-            "fieldType": "Instant",
-            "fieldValidateRules": [
-                "required"
-            ]
         }
     ],
     "changelogDate": "20170729021222",
-    "dto": "",
+    "dto": "no",
     "service": "serviceClass",
     "entityTableName": "t_course_lesson",
     "pagination": "pagination"

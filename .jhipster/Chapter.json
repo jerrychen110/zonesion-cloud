@@ -2,34 +2,27 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "course_lesson_fk",
+            "relationshipName": "courseLesson",
             "otherEntityName": "CourseLesson",
             "relationshipType": "one-to-many",
             "relationshipValidateRules": [
                 "required"
             ],
             "otherEntityField": "Chapter",
-            "otherEntityRelationshipName": "course_lesson_pk"
+            "otherEntityRelationshipName": "courseLesson"
         },
         {
-            "relationshipName": "chapter_id_pk",
+            "relationshipName": "course",
             "otherEntityName": "Course",
             "relationshipType": "many-to-one",
             "relationshipValidateRules": [
                 "required"
             ],
             "otherEntityField": "Chapter",
-            "otherEntityRelationshipName": "chapter_id_fk"
+            "otherEntityRelationshipName": "course"
         }
     ],
     "fields": [
-        {
-            "fieldName": "courseId",
-            "fieldType": "Long",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
         {
             "fieldName": "userId",
             "fieldType": "Long",
@@ -72,42 +65,10 @@
                 "maxlength"
             ],
             "fieldValidateRulesMaxlength": "255"
-        },        
-        {
-            "fieldName": "createdBy",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "maxlength"
-            ],
-            "fieldValidateRulesMaxlength": "50"
-        },
-        {
-            "fieldName": "createdTime",
-            "fieldType": "Instant",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "updatedBy",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "maxlength"
-            ],
-            "fieldValidateRulesMaxlength": "50"
-        },
-        {
-            "fieldName": "updatedTime",
-            "fieldType": "Instant",
-            "fieldValidateRules": [
-                "required"
-            ]
         }
     ],
     "changelogDate": "20170729021222",
-    "dto": "",
+    "dto": "no",
     "service": "serviceClass",
     "entityTableName": "t_chapter",
     "pagination": "pagination"

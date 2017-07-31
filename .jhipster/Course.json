@@ -2,34 +2,34 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "couse_id_fk",
+            "relationshipName": "courseFavorite",
             "otherEntityName": "CourseFavorite",
             "relationshipType": "one-to-many",
             "relationshipValidateRules": [
                 "required"
             ],
             "otherEntityField": "Course",
-            "otherEntityRelationshipName": "course_id_pk"
+            "otherEntityRelationshipName": "courseFavorite"
         },
         {
-            "relationshipName": "chapter_id_fk",
+            "relationshipName": "chapter",
             "otherEntityName": "Chapter",
             "relationshipType": "one-to-many",
             "relationshipValidateRules": [
                 "required"
             ],
             "otherEntityField": "Course",
-            "otherEntityRelationshipName": "chapter_id_pk"
+            "otherEntityRelationshipName": "chapter"
         },
         {
-            "relationshipName": "course_review_fk",
+            "relationshipName": "courseReview",
             "otherEntityName": "CourseReview",
             "relationshipType": "one-to-many",
             "relationshipValidateRules": [
                 "required"
             ],
             "otherEntityField": "Course",
-            "otherEntityRelationshipName": "course_review_pk"
+            "otherEntityRelationshipName": "courseReview"
         }
     ],
     "fields": [
@@ -67,7 +67,7 @@
             "fieldValidateRulesMaxlength": "1"
         },
         {
-            "fieldName": "type",
+            "fieldName": "courseType",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required",
@@ -127,42 +127,10 @@
                 "maxlength"
             ],
             "fieldValidateRulesMaxlength": "1"
-        },
-        {
-            "fieldName": "createdBy",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "maxlength"
-            ],
-            "fieldValidateRulesMaxlength": "50"
-        },
-        {
-            "fieldName": "createdTime",
-            "fieldType": "Instant",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "updatedBy",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "maxlength"
-            ],
-            "fieldValidateRulesMaxlength": "50"
-        },
-        {
-            "fieldName": "updatedTime",
-            "fieldType": "Instant",
-            "fieldValidateRules": [
-                "required"
-            ]
         }
     ],
     "changelogDate": "20170729021222",
-    "dto": "",
+    "dto": "no",
     "service": "serviceClass",
     "entityTableName": "t_course",
     "pagination": "pagination"

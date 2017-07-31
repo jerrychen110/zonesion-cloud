@@ -2,26 +2,19 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "lesson_id_pk",
+            "relationshipName": "courseLesson",
             "otherEntityName": "CourseLesson",
             "relationshipType": "many-to-one",
             "relationshipValidateRules": [
                 "required"
             ],
             "otherEntityField": "CourseLessonAttachment",
-            "otherEntityRelationshipName": "lesson_id_fk"
+            "otherEntityRelationshipName": "courseLesson"
         }
     ],
     "fields": [
         {
             "fieldName": "courseId",
-            "fieldType": "Long",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "lessonId",
             "fieldType": "Long",
             "fieldValidateRules": [
                 "required"
@@ -74,42 +67,10 @@
             "fieldValidateRules": [
                 "required"
             ]
-        },
-        {
-            "fieldName": "createdBy",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "maxlength"
-            ],
-            "fieldValidateRulesMaxlength": "50"
-        },
-        {
-            "fieldName": "createdTime",
-            "fieldType": "Instant",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "updatedBy",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "maxlength"
-            ],
-            "fieldValidateRulesMaxlength": "50"
-        },
-        {
-            "fieldName": "updatedTime",
-            "fieldType": "Instant",
-            "fieldValidateRules": [
-                "required"
-            ]
         }
     ],
     "changelogDate": "20170729021222",
-    "dto": "",
+    "dto": "no",
     "service": "serviceClass",
     "entityTableName": "t_course_lesson_attachment",
     "pagination": "pagination"

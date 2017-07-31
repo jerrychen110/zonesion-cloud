@@ -13,7 +13,7 @@
         }
     ],
     "changelogDate": "20170729021222",
-    "dto": "",
+    "dto": "no",
     "service": "serviceClass",
     "entityTableName": "t_major",
     "pagination": "pagination"
