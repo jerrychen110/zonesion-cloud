@@ -47,6 +47,6 @@
     "changelogDate": "20170729021222",
     "dto": "no",
     "service": "serviceClass",
-    "entityTableName": "t_course_lesson",
+    "entityTableName": "t_course_lesson_learn",
     "pagination": "pagination"
 }
