@@ -5,6 +5,25 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170729021222_added_entity_Course.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170729021222_added_entity_CourseFavorite.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170729021222_added_entity_CourseReview.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170729021222_added_entity_Chapter.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170729021222_added_entity_CourseLesson.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170729021222_added_entity_CourseLessonAttachment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170729021222_added_entity_CourseLessonLearn.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170731021222_added_entity_CourseLessonNote.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170731021232_added_entity_CourseLessonNoteLike.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170729021222_added_entity_File.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170729021222_added_entity_Major.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20170729021222_added_entity_constraints_CourseFavorite.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170729021222_added_entity_constraints_CourseReview.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170729021222_added_entity_constraints_Chapter.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170729021222_added_entity_constraints_CourseLesson.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170729021222_added_entity_constraints_CourseLessonAttachment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170729021222_added_entity_constraints_CourseLessonLearn.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170731021222_added_entity_constraints_CourseLessonNote.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170731021232_added_entity_constraints_CourseLessonNoteLike.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

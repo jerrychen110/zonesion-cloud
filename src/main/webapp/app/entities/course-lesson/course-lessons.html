@@ -1,0 +1,90 @@
+<div>
+    <h2 data-translate="zonesionCloudApplicationApp.courseLesson.home.title">Course Lessons</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="course-lesson.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="zonesionCloudApplicationApp.courseLesson.home.createLabel">
+                        Create new Course Lesson
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="userId"><span data-translate="zonesionCloudApplicationApp.courseLesson.userId">User Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="number"><span data-translate="zonesionCloudApplicationApp.courseLesson.number">Number</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="seq"><span data-translate="zonesionCloudApplicationApp.courseLesson.seq">Seq</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="title"><span data-translate="zonesionCloudApplicationApp.courseLesson.title">Title</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="summary"><span data-translate="zonesionCloudApplicationApp.courseLesson.summary">Summary</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="courseLessonType"><span data-translate="zonesionCloudApplicationApp.courseLesson.courseLessonType">Course Lesson Type</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="content"><span data-translate="zonesionCloudApplicationApp.courseLesson.content">Content</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="credit"><span data-translate="zonesionCloudApplicationApp.courseLesson.credit">Credit</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="mediaId"><span data-translate="zonesionCloudApplicationApp.courseLesson.mediaId">Media Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="mediaSource"><span data-translate="zonesionCloudApplicationApp.courseLesson.mediaSource">Media Source</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="mediaName"><span data-translate="zonesionCloudApplicationApp.courseLesson.mediaName">Media Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="mediaUri"><span data-translate="zonesionCloudApplicationApp.courseLesson.mediaUri">Media Uri</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="learnedNum"><span data-translate="zonesionCloudApplicationApp.courseLesson.learnedNum">Learned Num</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="viewedNum"><span data-translate="zonesionCloudApplicationApp.courseLesson.viewedNum">Viewed Num</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="chapter.CourseLesson"><span data-translate="zonesionCloudApplicationApp.courseLesson.chapter">Chapter</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="courseLesson in vm.courseLessons track by courseLesson.id">
+                    <td><a ui-sref="course-lesson-detail({id:courseLesson.id})">{{courseLesson.id}}</a></td>
+                    <td>{{courseLesson.userId}}</td>
+                    <td>{{courseLesson.number}}</td>
+                    <td>{{courseLesson.seq}}</td>
+                    <td>{{courseLesson.title}}</td>
+                    <td>{{courseLesson.summary}}</td>
+                    <td>{{courseLesson.courseLessonType}}</td>
+                    <td>{{courseLesson.content}}</td>
+                    <td>{{courseLesson.credit}}</td>
+                    <td>{{courseLesson.mediaId}}</td>
+                    <td>{{courseLesson.mediaSource}}</td>
+                    <td>{{courseLesson.mediaName}}</td>
+                    <td>{{courseLesson.mediaUri}}</td>
+                    <td>{{courseLesson.learnedNum}}</td>
+                    <td>{{courseLesson.viewedNum}}</td>
+                    <td>
+                        <a ui-sref="chapter-detail({id:courseLesson.chapter.id})">{{courseLesson.chapter.CourseLesson}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="course-lesson-detail({id:courseLesson.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="course-lesson.edit({id:courseLesson.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="course-lesson.delete({id:courseLesson.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

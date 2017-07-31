@@ -1,0 +1,216 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myCourseLabel" data-translate="zonesionCloudApplicationApp.course.home.createOrEditLabel">Create or edit a Course</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.course.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.course.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.course.userId" for="field_userId">User Id</label>
+            <input type="number" class="form-control" name="userId" id="field_userId"
+                    ng-model="vm.course.userId"
+                    required/>
+            <div ng-show="editForm.userId.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.userId.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.userId.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.course.title" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                    ng-model="vm.course.title"
+                    required ng-maxlength="1024"/>
+            <div ng-show="editForm.title.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.title.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.title.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="1024">
+                    This field cannot be longer than 1024 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.course.subTitle" for="field_subTitle">Sub Title</label>
+            <input type="text" class="form-control" name="subTitle" id="field_subTitle"
+                    ng-model="vm.course.subTitle"
+                    ng-maxlength="1024"/>
+            <div ng-show="editForm.subTitle.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.subTitle.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="1024">
+                    This field cannot be longer than 1024 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.course.status" for="field_status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status"
+                    ng-model="vm.course.status"
+                    required ng-maxlength="1"/>
+            <div ng-show="editForm.status.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.status.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.status.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="1">
+                    This field cannot be longer than 1 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.course.courseType" for="field_courseType">Course Type</label>
+            <input type="text" class="form-control" name="courseType" id="field_courseType"
+                    ng-model="vm.course.courseType"
+                    required ng-maxlength="1"/>
+            <div ng-show="editForm.courseType.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.courseType.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.courseType.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="1">
+                    This field cannot be longer than 1 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.course.lessonNum" for="field_lessonNum">Lesson Num</label>
+            <input type="number" class="form-control" name="lessonNum" id="field_lessonNum"
+                    ng-model="vm.course.lessonNum"
+                    required ng-maxlength="10"/>
+            <div ng-show="editForm.lessonNum.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.lessonNum.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.lessonNum.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="10">
+                    This field cannot be longer than 10 characters.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.lessonNum.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.course.credit" for="field_credit">Credit</label>
+            <input type="text" class="form-control" name="credit" id="field_credit"
+                    ng-model="vm.course.credit"
+                    required ng-maxlength="10"/>
+            <div ng-show="editForm.credit.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.credit.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.credit.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="10">
+                    This field cannot be longer than 10 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.course.coverPicture" for="field_coverPicture">Cover Picture</label>
+            <input type="text" class="form-control" name="coverPicture" id="field_coverPicture"
+                    ng-model="vm.course.coverPicture"
+                    required ng-maxlength="255"/>
+            <div ng-show="editForm.coverPicture.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.coverPicture.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.coverPicture.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.course.introduction" for="field_introduction">Introduction</label>
+            <input type="text" class="form-control" name="introduction" id="field_introduction"
+                    ng-model="vm.course.introduction"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.course.goals" for="field_goals">Goals</label>
+            <input type="text" class="form-control" name="goals" id="field_goals"
+                    ng-model="vm.course.goals"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.course.recommended" for="field_recommended">Recommended</label>
+            <input type="text" class="form-control" name="recommended" id="field_recommended"
+                    ng-model="vm.course.recommended"
+                    required ng-maxlength="1"/>
+            <div ng-show="editForm.recommended.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.recommended.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.recommended.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="1">
+                    This field cannot be longer than 1 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.course.recommendedSort" for="field_recommendedSort">Recommended Sort</label>
+            <input type="text" class="form-control" name="recommendedSort" id="field_recommendedSort"
+                    ng-model="vm.course.recommendedSort"
+                    required ng-maxlength="1"/>
+            <div ng-show="editForm.recommendedSort.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.recommendedSort.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.recommendedSort.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="1">
+                    This field cannot be longer than 1 characters.
+                </p>
+            </div>
+        </div>
+
+        <div ng-show="editForm.courseFavorite.$invalid">
+            <p class="help-block"
+                ng-show="editForm.courseFavorite.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+        <div ng-show="editForm.chapter.$invalid">
+            <p class="help-block"
+                ng-show="editForm.chapter.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+        <div ng-show="editForm.courseReview.$invalid">
+            <p class="help-block"
+                ng-show="editForm.courseReview.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

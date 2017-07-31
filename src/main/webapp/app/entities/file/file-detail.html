@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span data-translate="zonesionCloudApplicationApp.file.detail.title">File</span> {{vm.file.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="zonesionCloudApplicationApp.file.userId">User Id</span></dt>
+        <dd>
+            <span>{{vm.file.userId}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.file.uri">Uri</span></dt>
+        <dd>
+            <span>{{vm.file.uri}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.file.name">Name</span></dt>
+        <dd>
+            <span>{{vm.file.name}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.file.mime">Mime</span></dt>
+        <dd>
+            <span>{{vm.file.mime}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.file.size">Size</span></dt>
+        <dd>
+            <span>{{vm.file.size}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.file.status">Status</span></dt>
+        <dd>
+            <span>{{vm.file.status}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="file-detail.edit({id:vm.file.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -40,6 +40,25 @@ public class CacheConfiguration {
             cm.createCache(com.zonesion.cloud.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.zonesion.cloud.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.zonesion.cloud.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.Course.class.getName(), jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.Course.class.getName() + ".courseFavorites", jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.Course.class.getName() + ".chapters", jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.Course.class.getName() + ".courseReviews", jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.CourseFavorite.class.getName(), jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.CourseReview.class.getName(), jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.Chapter.class.getName(), jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.Chapter.class.getName() + ".courseLessons", jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.CourseLesson.class.getName(), jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.CourseLesson.class.getName() + ".courseLessonAttachments", jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.CourseLesson.class.getName() + ".courseLessonLearns", jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.CourseLesson.class.getName() + ".courseLessonNotes", jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.CourseLessonAttachment.class.getName(), jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.CourseLessonLearn.class.getName(), jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.CourseLessonNote.class.getName(), jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.CourseLessonNote.class.getName() + ".courseLessonNoteLikes", jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.CourseLessonNoteLike.class.getName(), jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.File.class.getName(), jcacheConfiguration);
+            cm.createCache(com.zonesion.cloud.domain.Major.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -1,0 +1,27 @@
+
+<div>
+    <h2><span data-translate="zonesionCloudApplicationApp.courseFavorite.detail.title">Course Favorite</span> {{vm.courseFavorite.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="zonesionCloudApplicationApp.courseFavorite.userId">User Id</span></dt>
+        <dd>
+            <span>{{vm.courseFavorite.userId}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseFavorite.course">Course</span></dt>
+        <dd>
+            <a ui-sref="course-detail({id:vm.courseFavorite.course.id})">{{vm.courseFavorite.course.CourseFavorite}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="course-favorite-detail.edit({id:vm.courseFavorite.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -7,6 +7,17 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
+                "course": "Course",
+                "courseFavorite": "Course Favorite",
+                "courseReview": "Course Review",
+                "chapter": "Chapter",
+                "courseLesson": "Course Lesson",
+                "courseLessonAttachment": "Course Lesson Attachment",
+                "courseLessonLearn": "Course Lesson Learn",
+                "courseLessonNote": "Course Lesson Note",
+                "courseLessonNoteLike": "Course Lesson Note Like",
+                "file": "File",
+                "major": "Major",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -1,0 +1,67 @@
+
+<div>
+    <h2><span data-translate="zonesionCloudApplicationApp.course.detail.title">Course</span> {{vm.course.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="zonesionCloudApplicationApp.course.userId">User Id</span></dt>
+        <dd>
+            <span>{{vm.course.userId}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.course.title">Title</span></dt>
+        <dd>
+            <span>{{vm.course.title}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.course.subTitle">Sub Title</span></dt>
+        <dd>
+            <span>{{vm.course.subTitle}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.course.status">Status</span></dt>
+        <dd>
+            <span>{{vm.course.status}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.course.courseType">Course Type</span></dt>
+        <dd>
+            <span>{{vm.course.courseType}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.course.lessonNum">Lesson Num</span></dt>
+        <dd>
+            <span>{{vm.course.lessonNum}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.course.credit">Credit</span></dt>
+        <dd>
+            <span>{{vm.course.credit}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.course.coverPicture">Cover Picture</span></dt>
+        <dd>
+            <span>{{vm.course.coverPicture}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.course.introduction">Introduction</span></dt>
+        <dd>
+            <span>{{vm.course.introduction}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.course.goals">Goals</span></dt>
+        <dd>
+            <span>{{vm.course.goals}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.course.recommended">Recommended</span></dt>
+        <dd>
+            <span>{{vm.course.recommended}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.course.recommendedSort">Recommended Sort</span></dt>
+        <dd>
+            <span>{{vm.course.recommendedSort}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="course-detail.edit({id:vm.course.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

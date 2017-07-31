@@ -1,0 +1,79 @@
+
+<div>
+    <h2><span data-translate="zonesionCloudApplicationApp.courseLesson.detail.title">Course Lesson</span> {{vm.courseLesson.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLesson.userId">User Id</span></dt>
+        <dd>
+            <span>{{vm.courseLesson.userId}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLesson.number">Number</span></dt>
+        <dd>
+            <span>{{vm.courseLesson.number}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLesson.seq">Seq</span></dt>
+        <dd>
+            <span>{{vm.courseLesson.seq}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLesson.title">Title</span></dt>
+        <dd>
+            <span>{{vm.courseLesson.title}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLesson.summary">Summary</span></dt>
+        <dd>
+            <span>{{vm.courseLesson.summary}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLesson.courseLessonType">Course Lesson Type</span></dt>
+        <dd>
+            <span>{{vm.courseLesson.courseLessonType}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLesson.content">Content</span></dt>
+        <dd>
+            <span>{{vm.courseLesson.content}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLesson.credit">Credit</span></dt>
+        <dd>
+            <span>{{vm.courseLesson.credit}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLesson.mediaId">Media Id</span></dt>
+        <dd>
+            <span>{{vm.courseLesson.mediaId}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLesson.mediaSource">Media Source</span></dt>
+        <dd>
+            <span>{{vm.courseLesson.mediaSource}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLesson.mediaName">Media Name</span></dt>
+        <dd>
+            <span>{{vm.courseLesson.mediaName}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLesson.mediaUri">Media Uri</span></dt>
+        <dd>
+            <span>{{vm.courseLesson.mediaUri}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLesson.learnedNum">Learned Num</span></dt>
+        <dd>
+            <span>{{vm.courseLesson.learnedNum}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLesson.viewedNum">Viewed Num</span></dt>
+        <dd>
+            <span>{{vm.courseLesson.viewedNum}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLesson.chapter">Chapter</span></dt>
+        <dd>
+            <a ui-sref="chapter-detail({id:vm.courseLesson.chapter.id})">{{vm.courseLesson.chapter.CourseLesson}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="course-lesson-detail.edit({id:vm.courseLesson.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="zonesionCloudApplicationApp.courseLessonNote.detail.title">Course Lesson Note</span> {{vm.courseLessonNote.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLessonNote.courseId">Course Id</span></dt>
+        <dd>
+            <span>{{vm.courseLessonNote.courseId}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLessonNote.userId">User Id</span></dt>
+        <dd>
+            <span>{{vm.courseLessonNote.userId}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLessonNote.content">Content</span></dt>
+        <dd>
+            <span>{{vm.courseLessonNote.content}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLessonNote.length">Length</span></dt>
+        <dd>
+            <span>{{vm.courseLessonNote.length}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLessonNote.likeNum">Like Num</span></dt>
+        <dd>
+            <span>{{vm.courseLessonNote.likeNum}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLessonNote.isPrivate">Is Private</span></dt>
+        <dd>
+            <span>{{vm.courseLessonNote.isPrivate}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLessonNote.courseLesson">Course Lesson</span></dt>
+        <dd>
+            <a ui-sref="course-lesson-detail({id:vm.courseLessonNote.courseLesson.id})">{{vm.courseLessonNote.courseLesson.CourseLessonNote}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="course-lesson-note-detail.edit({id:vm.courseLessonNote.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

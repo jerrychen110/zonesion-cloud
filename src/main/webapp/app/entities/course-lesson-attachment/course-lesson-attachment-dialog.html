@@ -1,0 +1,149 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myCourseLessonAttachmentLabel" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.home.createOrEditLabel">Create or edit a Course Lesson Attachment</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.courseLessonAttachment.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.courseLessonAttachment.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.courseId" for="field_courseId">Course Id</label>
+            <input type="number" class="form-control" name="courseId" id="field_courseId"
+                    ng-model="vm.courseLessonAttachment.courseId"
+                    required/>
+            <div ng-show="editForm.courseId.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.courseId.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.courseId.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.userId" for="field_userId">User Id</label>
+            <input type="number" class="form-control" name="userId" id="field_userId"
+                    ng-model="vm.courseLessonAttachment.userId"
+                    required/>
+            <div ng-show="editForm.userId.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.userId.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.userId.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.title" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                    ng-model="vm.courseLessonAttachment.title"
+                    required ng-maxlength="255"/>
+            <div ng-show="editForm.title.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.title.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.title.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                    ng-model="vm.courseLessonAttachment.description"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.link" for="field_link">Link</label>
+            <input type="text" class="form-control" name="link" id="field_link"
+                    ng-model="vm.courseLessonAttachment.link"
+                    ng-maxlength="1024"/>
+            <div ng-show="editForm.link.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.link.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="1024">
+                    This field cannot be longer than 1024 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileId" for="field_fileId">File Id</label>
+            <input type="number" class="form-control" name="fileId" id="field_fileId"
+                    ng-model="vm.courseLessonAttachment.fileId"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileUri" for="field_fileUri">File Uri</label>
+            <input type="text" class="form-control" name="fileUri" id="field_fileUri"
+                    ng-model="vm.courseLessonAttachment.fileUri"
+                    ng-maxlength="1024"/>
+            <div ng-show="editForm.fileUri.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.fileUri.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="1024">
+                    This field cannot be longer than 1024 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileMime" for="field_fileMime">File Mime</label>
+            <input type="text" class="form-control" name="fileMime" id="field_fileMime"
+                    ng-model="vm.courseLessonAttachment.fileMime"
+                    ng-maxlength="255"/>
+            <div ng-show="editForm.fileMime.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.fileMime.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="255">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileSize" for="field_fileSize">File Size</label>
+            <input type="number" class="form-control" name="fileSize" id="field_fileSize"
+                    ng-model="vm.courseLessonAttachment.fileSize"
+                    required/>
+            <div ng-show="editForm.fileSize.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.fileSize.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.fileSize.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="zonesionCloudApplicationApp.courseLessonAttachment.courseLesson" for="field_courseLesson">Course Lesson</label>
+            <select class="form-control" id="field_courseLesson" name="courseLesson" ng-model="vm.courseLessonAttachment.courseLesson" ng-options="CourseLesson as CourseLesson.CourseLessonAttachment for CourseLesson in vm.courselessons track by CourseLesson.id" required>
+            </select>
+        </div>
+        <div ng-show="editForm.courseLesson.$invalid">
+            <p class="help-block"
+                ng-show="editForm.courseLesson.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
