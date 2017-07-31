@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [        
+        {
+            "relationshipName": "courseLessonNote",
+            "otherEntityName": "CourseLessonNote",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "CourseLessonNoteLike",
+            "otherEntityRelationshipName": "courseLessonNote"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "userId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "createdTime",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170731021232",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "t_course_lesson_note_like",
+    "pagination": "pagination"
+}

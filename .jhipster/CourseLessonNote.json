@@ -1,0 +1,76 @@
+{
+    "fluentMethods": true,
+    "relationships": [        
+        {
+            "relationshipName": "courseLesson",
+            "otherEntityName": "CourseLesson",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "CourseLessonNote",
+            "otherEntityRelationshipName": "courseLesson"
+        },
+        {
+            "relationshipName": "courseLessonNoteLike",
+            "otherEntityName": "CourseLessonNoteLike",
+            "relationshipType": "one-to-many",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "CourseLessonNote",
+            "otherEntityRelationshipName": "courseLessonNoteLike"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "courseId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "userId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "content",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "length",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "likeNum",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isPrivate",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "1"
+        }
+    ],
+    "changelogDate": "20170731021222",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "t_course_lesson_note",
+    "pagination": "pagination"
+}

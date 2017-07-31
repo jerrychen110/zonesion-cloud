@@ -22,6 +22,16 @@
             "otherEntityRelationshipName": "courseLessonLearn"
         },
         {
+            "relationshipName": "courseLessonNote",
+            "otherEntityName": "CourseLessonNote",
+            "relationshipType": "one-to-many",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "CourseLesson",
+            "otherEntityRelationshipName": "courseLessonNote"
+        },
+        {
             "relationshipName": "chapter",
             "otherEntityName": "Chapter",
             "relationshipType": "many-to-one",
