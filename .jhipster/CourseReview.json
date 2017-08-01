@@ -54,7 +54,7 @@
         }
     ],
     "changelogDate": "20170729021222",
-    "dto": "no",
+    "dto": "mapstruct",
     "service": "serviceClass",
     "entityTableName": "t_course_review",
     "pagination": "pagination"

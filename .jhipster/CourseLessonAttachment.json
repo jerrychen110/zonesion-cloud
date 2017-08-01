@@ -20,7 +20,7 @@
                 "required"
             ]
         },
-	{
+    {
             "fieldName": "userId",
             "fieldType": "Long",
             "fieldValidateRules": [
@@ -77,7 +77,7 @@
         }
     ],
     "changelogDate": "20170729021222",
-    "dto": "no",
+    "dto": "mapstruct",
     "service": "serviceClass",
     "entityTableName": "t_course_lesson_attachment",
     "pagination": "pagination"

@@ -69,7 +69,7 @@
         }
     ],
     "changelogDate": "20170731021222",
-    "dto": "no",
+    "dto": "mapstruct",
     "service": "serviceClass",
     "entityTableName": "t_course_lesson_note",
     "pagination": "pagination"
