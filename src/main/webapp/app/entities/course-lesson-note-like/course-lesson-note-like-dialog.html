@@ -52,7 +52,7 @@
 
         <div class="form-group">
             <label data-translate="zonesionCloudApplicationApp.courseLessonNoteLike.courseLessonNote" for="field_courseLessonNote">Course Lesson Note</label>
-            <select class="form-control" id="field_courseLessonNote" name="courseLessonNote" ng-model="vm.courseLessonNoteLike.courseLessonNote" ng-options="CourseLessonNote as CourseLessonNote.CourseLessonNoteLike for CourseLessonNote in vm.courselessonnotes track by CourseLessonNote.id" required>
+            <select class="form-control" id="field_courseLessonNote" name="courseLessonNote" ng-model="vm.courseLessonNoteLike.courseLessonNote" ng-options="CourseLessonNote as CourseLessonNote.id for CourseLessonNote in vm.courselessonnotes track by CourseLessonNote.id" required>
             </select>
         </div>
         <div ng-show="editForm.courseLessonNote.$invalid">

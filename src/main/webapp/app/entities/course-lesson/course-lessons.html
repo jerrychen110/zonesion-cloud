@@ -33,7 +33,7 @@
                     <th jh-sort-by="mediaUri"><span data-translate="zonesionCloudApplicationApp.courseLesson.mediaUri">Media Uri</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="learnedNum"><span data-translate="zonesionCloudApplicationApp.courseLesson.learnedNum">Learned Num</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="viewedNum"><span data-translate="zonesionCloudApplicationApp.courseLesson.viewedNum">Viewed Num</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="chapter.CourseLesson"><span data-translate="zonesionCloudApplicationApp.courseLesson.chapter">Chapter</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="chapter.title"><span data-translate="zonesionCloudApplicationApp.courseLesson.chapter">Chapter</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -55,7 +55,7 @@
                     <td>{{courseLesson.learnedNum}}</td>
                     <td>{{courseLesson.viewedNum}}</td>
                     <td>
-                        <a ui-sref="chapter-detail({id:courseLesson.chapter.id})">{{courseLesson.chapter.CourseLesson}}</a>
+                        <a ui-sref="chapter-detail({id:courseLesson.chapter.id})">{{courseLesson.chapter.title}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

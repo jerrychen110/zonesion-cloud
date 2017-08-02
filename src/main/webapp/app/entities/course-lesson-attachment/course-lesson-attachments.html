@@ -28,7 +28,7 @@
                     <th jh-sort-by="fileUri"><span data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileUri">File Uri</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="fileMime"><span data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileMime">File Mime</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="fileSize"><span data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileSize">File Size</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="courseLesson.CourseLessonAttachment"><span data-translate="zonesionCloudApplicationApp.courseLessonAttachment.courseLesson">Course Lesson</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="courseLesson.title"><span data-translate="zonesionCloudApplicationApp.courseLessonAttachment.courseLesson">Course Lesson</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -45,7 +45,7 @@
                     <td>{{courseLessonAttachment.fileMime}}</td>
                     <td>{{courseLessonAttachment.fileSize}}</td>
                     <td>
-                        <a ui-sref="course-lesson-detail({id:courseLessonAttachment.courseLesson.id})">{{courseLessonAttachment.courseLesson.CourseLessonAttachment}}</a>
+                        <a ui-sref="course-lesson-detail({id:courseLessonAttachment.courseLesson.id})">{{courseLessonAttachment.courseLesson.title}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

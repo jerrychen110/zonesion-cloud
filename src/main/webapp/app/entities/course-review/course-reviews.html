@@ -24,7 +24,7 @@
                     <th jh-sort-by="content"><span data-translate="zonesionCloudApplicationApp.courseReview.content">Content</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="rating"><span data-translate="zonesionCloudApplicationApp.courseReview.rating">Rating</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="privacy"><span data-translate="zonesionCloudApplicationApp.courseReview.privacy">Privacy</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="course.CourseReview"><span data-translate="zonesionCloudApplicationApp.courseReview.course">Course</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="course.title"><span data-translate="zonesionCloudApplicationApp.courseReview.course">Course</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -37,7 +37,7 @@
                     <td>{{courseReview.rating}}</td>
                     <td>{{courseReview.privacy}}</td>
                     <td>
-                        <a ui-sref="course-detail({id:courseReview.course.id})">{{courseReview.course.CourseReview}}</a>
+                        <a ui-sref="course-detail({id:courseReview.course.id})">{{courseReview.course.title}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

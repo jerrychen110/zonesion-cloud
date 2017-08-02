@@ -32,7 +32,7 @@
 
         <div class="form-group">
             <label data-translate="zonesionCloudApplicationApp.courseFavorite.course" for="field_course">Course</label>
-            <select class="form-control" id="field_course" name="course" ng-model="vm.courseFavorite.course" ng-options="Course as Course.CourseFavorite for Course in vm.courses track by Course.id" required>
+            <select class="form-control" id="field_course" name="course" ng-model="vm.courseFavorite.course" ng-options="Course as Course.title for Course in vm.courses track by Course.id" required>
             </select>
         </div>
         <div ng-show="editForm.course.$invalid">

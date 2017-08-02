@@ -24,7 +24,7 @@
                     <th jh-sort-by="number"><span data-translate="zonesionCloudApplicationApp.chapter.number">Number</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="seq"><span data-translate="zonesionCloudApplicationApp.chapter.seq">Seq</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="title"><span data-translate="zonesionCloudApplicationApp.chapter.title">Title</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="course.Chapter"><span data-translate="zonesionCloudApplicationApp.chapter.course">Course</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="course.title"><span data-translate="zonesionCloudApplicationApp.chapter.course">Course</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -37,7 +37,7 @@
                     <td>{{chapter.seq}}</td>
                     <td>{{chapter.title}}</td>
                     <td>
-                        <a ui-sref="course-detail({id:chapter.course.id})">{{chapter.course.Chapter}}</a>
+                        <a ui-sref="course-detail({id:chapter.course.id})">{{chapter.course.title}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

@@ -25,7 +25,7 @@
                     <th jh-sort-by="length"><span data-translate="zonesionCloudApplicationApp.courseLessonNote.length">Length</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="likeNum"><span data-translate="zonesionCloudApplicationApp.courseLessonNote.likeNum">Like Num</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="isPrivate"><span data-translate="zonesionCloudApplicationApp.courseLessonNote.isPrivate">Is Private</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="courseLesson.CourseLessonNote"><span data-translate="zonesionCloudApplicationApp.courseLessonNote.courseLesson">Course Lesson</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="courseLesson.title"><span data-translate="zonesionCloudApplicationApp.courseLessonNote.courseLesson">Course Lesson</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -39,7 +39,7 @@
                     <td>{{courseLessonNote.likeNum}}</td>
                     <td>{{courseLessonNote.isPrivate}}</td>
                     <td>
-                        <a ui-sref="course-lesson-detail({id:courseLessonNote.courseLesson.id})">{{courseLessonNote.courseLesson.CourseLessonNote}}</a>
+                        <a ui-sref="course-lesson-detail({id:courseLessonNote.courseLesson.id})">{{courseLessonNote.courseLesson.title}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

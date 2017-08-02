@@ -20,7 +20,7 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="userId"><span data-translate="zonesionCloudApplicationApp.courseFavorite.userId">User Id</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="course.CourseFavorite"><span data-translate="zonesionCloudApplicationApp.courseFavorite.course">Course</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="course.title"><span data-translate="zonesionCloudApplicationApp.courseFavorite.course">Course</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -29,7 +29,7 @@
                     <td><a ui-sref="course-favorite-detail({id:courseFavorite.id})">{{courseFavorite.id}}</a></td>
                     <td>{{courseFavorite.userId}}</td>
                     <td>
-                        <a ui-sref="course-detail({id:courseFavorite.course.id})">{{courseFavorite.course.CourseFavorite}}</a>
+                        <a ui-sref="course-detail({id:courseFavorite.course.id})">{{courseFavorite.course.title}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
