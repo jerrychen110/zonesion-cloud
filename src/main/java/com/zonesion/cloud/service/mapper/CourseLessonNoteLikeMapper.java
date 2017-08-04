@@ -1,28 +1,60 @@
 package com.zonesion.cloud.service.mapper;
 
-import com.zonesion.cloud.domain.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.zonesion.cloud.domain.CourseLessonNoteLike;
 import com.zonesion.cloud.service.dto.CourseLessonNoteLikeDTO;
 
-import org.mapstruct.*;
-
-/**
- * Mapper for the entity CourseLessonNoteLike and its DTO CourseLessonNoteLikeDTO.
+/**   
+ * @Title: CourseFavoriteMapper.java 
+ * @Package com.zonesion.cloud.service.mapper 
+ * @Description: TODO 
+ * @author: cc  
+ * @date: 2017年8月4日 下午2:53:25 
  */
-@Mapper(componentModel = "spring", uses = {CourseLessonNoteMapper.class, })
-public interface CourseLessonNoteLikeMapper extends EntityMapper <CourseLessonNoteLikeDTO, CourseLessonNoteLike> {
+@Service
+public class CourseLessonNoteLikeMapper {
+	
+	public CourseLessonNoteLikeDTO courseLessonNoteLikeDTO(CourseLessonNoteLike courseLessonNoteLike) {
+        return new CourseLessonNoteLikeDTO(courseLessonNoteLike);
+    }
 
-    @Mapping(source = "courseLessonNote.id", target = "courseLessonNoteId")
-    @Mapping(source = "courseLessonNote.CourseLessonNoteLike", target = "courseLessonNoteCourseLessonNoteLike")
-    CourseLessonNoteLikeDTO toDto(CourseLessonNoteLike courseLessonNoteLike); 
-
-    @Mapping(source = "courseLessonNoteId", target = "courseLessonNote")
-    CourseLessonNoteLike toEntity(CourseLessonNoteLikeDTO courseLessonNoteLikeDTO); 
-    default CourseLessonNoteLike fromId(Long id) {
-        if (id == null) {
-            return null;
-        }
-        CourseLessonNoteLike courseLessonNoteLike = new CourseLessonNoteLike();
-        courseLessonNoteLike.setId(id);
-        return courseLessonNoteLike;
+    public List<CourseLessonNoteLikeDTO> CourseLessonNoteLikesToCourseLessonNoteLikeDTOs(List<CourseLessonNoteLike> courseLessonNoteLikes) {
+        return courseLessonNoteLikes.stream()
+            .filter(Objects::nonNull)
+            .map(this::courseLessonNoteLikeDTO)
+            .collect(Collectors.toList());
+    }
+    
+    public CourseLessonNoteLike courseLessonNoteLikeDTOToCourseLessonNoteLike(CourseLessonNoteLikeDTO courseLessonNoteLikeDTO){
+    	if (courseLessonNoteLikeDTO == null){
+    		return null;
+    	} else {
+    		CourseLessonNoteLike courseLessonNoteLike = new CourseLessonNoteLike();
+    		courseLessonNoteLike.setId(courseLessonNoteLikeDTO.getId());
+    		courseLessonNoteLike.setUserId(courseLessonNoteLikeDTO.getUserId());
+    		courseLessonNoteLike.setCreatedTime(courseLessonNoteLikeDTO.getCreatedTime());
+    		return courseLessonNoteLike;
+    	}
+    }
+    
+    public List<CourseLessonNoteLike> courseLessonNoteLikeDTOToCourseLessonNoteLikes(List<CourseLessonNoteLikeDTO> courseLessonNoteLikeDTOs) {
+        return courseLessonNoteLikeDTOs.stream()
+            .filter(Objects::nonNull)
+            .map(this::courseLessonNoteLikeDTOToCourseLessonNoteLike)
+            .collect(Collectors.toList());
+    } 
+    
+    public CourseLessonNoteLike courseLessonNoteLikeFromId(Long id) {
+    	if (id == null) {
+    		return null;
+    	}
+    	CourseLessonNoteLike courseLessonNoteLike = new CourseLessonNoteLike();
+    	courseLessonNoteLike.setId(id);
+    	return courseLessonNoteLike;
     }
 }

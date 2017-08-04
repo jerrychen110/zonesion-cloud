@@ -1,28 +1,57 @@
 package com.zonesion.cloud.service.mapper;
 
-import com.zonesion.cloud.domain.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import com.zonesion.cloud.domain.CourseReview;
 import com.zonesion.cloud.service.dto.CourseReviewDTO;
 
-import org.mapstruct.*;
-
-/**
- * Mapper for the entity CourseReview and its DTO CourseReviewDTO.
+/**   
+ * @Title: CourseFavoriteMapper.java 
+ * @Package com.zonesion.cloud.service.mapper 
+ * @Description: TODO 
+ * @author: cc  
+ * @date: 2017年8月4日 下午2:53:25 
  */
-@Mapper(componentModel = "spring", uses = {CourseMapper.class, })
-public interface CourseReviewMapper extends EntityMapper <CourseReviewDTO, CourseReview> {
+public class CourseReviewMapper {
+	
+	public CourseReviewDTO courseReviewDTO(CourseReview courseReview) {
+        return new CourseReviewDTO(courseReview);
+    }
 
-    @Mapping(source = "course.id", target = "courseId")
-    @Mapping(source = "course.CourseReview", target = "courseCourseReview")
-    CourseReviewDTO toDto(CourseReview courseReview); 
+    public List<CourseReviewDTO> courseReviewsToCourseReviewDTOs(List<CourseReview> courseReviews) {
+        return courseReviews.stream()
+            .filter(Objects::nonNull)
+            .map(this::courseReviewDTO)
+            .collect(Collectors.toList());
+    }
+    
+    public CourseReview courseReviewDTOToCourseReview(CourseReviewDTO courseReviewDTO){
+    	if (courseReviewDTO == null){
+    		return null;
+    	} else {
+    		CourseReview courseReview = new CourseReview();
+    		courseReview.setId(courseReviewDTO.getId());
+    		courseReview.setUserId(courseReviewDTO.getUserId());
 
-    @Mapping(source = "courseId", target = "course")
-    CourseReview toEntity(CourseReviewDTO courseReviewDTO); 
-    default CourseReview fromId(Long id) {
-        if (id == null) {
-            return null;
-        }
-        CourseReview courseReview = new CourseReview();
-        courseReview.setId(id);
-        return courseReview;
+    		return courseReview;
+    	}
+    }
+    
+    public List<CourseReview> courseReviewDTOToCourseReviews(List<CourseReviewDTO> courseReviewDTOs) {
+        return courseReviewDTOs.stream()
+            .filter(Objects::nonNull)
+            .map(this::courseReviewDTOToCourseReview)
+            .collect(Collectors.toList());
+    } 
+    
+    public CourseReview courseReviewFromId(Long id) {
+    	if (id == null) {
+    		return null;
+    	}
+    	CourseReview courseReview = new CourseReview();
+    	courseReview.setId(id);
+    	return courseReview;
     }
 }

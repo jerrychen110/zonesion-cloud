@@ -1,28 +1,59 @@
 package com.zonesion.cloud.service.mapper;
 
-import com.zonesion.cloud.domain.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import com.zonesion.cloud.domain.CourseLessonLearn;
 import com.zonesion.cloud.service.dto.CourseLessonLearnDTO;
 
-import org.mapstruct.*;
-
-/**
- * Mapper for the entity CourseLessonLearn and its DTO CourseLessonLearnDTO.
+/**   
+ * @Title: CourseFavoriteMapper.java 
+ * @Package com.zonesion.cloud.service.mapper 
+ * @Description: TODO 
+ * @author: cc  
+ * @date: 2017年8月4日 下午2:53:25 
  */
-@Mapper(componentModel = "spring", uses = {CourseLessonMapper.class, })
-public interface CourseLessonLearnMapper extends EntityMapper <CourseLessonLearnDTO, CourseLessonLearn> {
+public class CourseLessonLearnMapper {
+	
+	public CourseLessonLearnDTO courseLessonLearnDTO(CourseLessonLearn courseLessonLearn) {
+        return new CourseLessonLearnDTO(courseLessonLearn);
+    }
 
-    @Mapping(source = "courseLesson.id", target = "courseLessonId")
-    @Mapping(source = "courseLesson.CourseLessonLearn", target = "courseLessonCourseLessonLearn")
-    CourseLessonLearnDTO toDto(CourseLessonLearn courseLessonLearn); 
-
-    @Mapping(source = "courseLessonId", target = "courseLesson")
-    CourseLessonLearn toEntity(CourseLessonLearnDTO courseLessonLearnDTO); 
-    default CourseLessonLearn fromId(Long id) {
-        if (id == null) {
-            return null;
-        }
-        CourseLessonLearn courseLessonLearn = new CourseLessonLearn();
-        courseLessonLearn.setId(id);
-        return courseLessonLearn;
+    public List<CourseLessonLearnDTO> courseLessonLearnsToCourseLessonLearnDTOs(List<CourseLessonLearn> courseLessonLearns) {
+        return courseLessonLearns.stream()
+            .filter(Objects::nonNull)
+            .map(this::courseLessonLearnDTO)
+            .collect(Collectors.toList());
+    }
+    
+    public CourseLessonLearn courseLessonLearnDTOToCourseLessonLearn(CourseLessonLearnDTO courseLessonLearnDTO){
+    	if (courseLessonLearnDTO == null){
+    		return null;
+    	} else {
+    		CourseLessonLearn courseLessonLearn = new CourseLessonLearn();
+    		courseLessonLearn.setId(courseLessonLearnDTO.getId());
+    		courseLessonLearn.setCourseId(courseLessonLearnDTO.getCourseId());
+    		courseLessonLearn.setUserId(courseLessonLearnDTO.getUserId());
+    		courseLessonLearn.setDurationId(courseLessonLearnDTO.getDurationId());
+    		courseLessonLearn.setIsComplete(courseLessonLearnDTO.getIsComplete());
+    		return courseLessonLearn;
+    	}
+    }
+    
+    public List<CourseLessonLearn> courseLessonLearnDTOToCourseLessonLearns(List<CourseLessonLearnDTO> courseLessonLearnDTOs) {
+        return courseLessonLearnDTOs.stream()
+            .filter(Objects::nonNull)
+            .map(this::courseLessonLearnDTOToCourseLessonLearn)
+            .collect(Collectors.toList());
+    } 
+    
+    public CourseLessonLearn courseLessonLearnFromId(Long id) {
+    	if (id == null) {
+    		return null;
+    	}
+    	CourseLessonLearn courseLessonLearn = new CourseLessonLearn();
+    	courseLessonLearn.setId(id);
+    	return courseLessonLearn;
     }
 }
