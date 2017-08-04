@@ -9,7 +9,6 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Objects;
 
 /**
  * A Chapter.
@@ -24,7 +23,7 @@ public class Chapter extends AbstractAuditingEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     @NotNull
     @Column(name = "user_id", nullable = false)
     private Long userId;
@@ -53,7 +52,7 @@ public class Chapter extends AbstractAuditingEntity implements Serializable {
     private Set<CourseLesson> courseLessons = new HashSet<>();
 
     @ManyToOne
-    private Course course;
+    private Course courseId;
 
     public Long getId() {
         return id;
@@ -62,6 +61,14 @@ public class Chapter extends AbstractAuditingEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+	public Course getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(Course courseId) {
+		this.courseId = courseId;
+	}
 
     public Long getUserId() {
         return userId;
@@ -153,38 +160,7 @@ public class Chapter extends AbstractAuditingEntity implements Serializable {
         this.courseLessons = CourseLessons;
     }
 
-    public Course getCourse() {
-        return course;
-    }
 
-    public Chapter course(Course Course) {
-        this.course = Course;
-        return this;
-    }
-
-    public void setCourse(Course Course) {
-        this.course = Course;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Chapter chapter = (Chapter) o;
-        if (chapter.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), chapter.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
 
     @Override
     public String toString() {
@@ -197,4 +173,6 @@ public class Chapter extends AbstractAuditingEntity implements Serializable {
             ", title='" + getTitle() + "'" +
             "}";
     }
+
+
 }

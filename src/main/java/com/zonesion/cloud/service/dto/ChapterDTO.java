@@ -4,6 +4,7 @@ package com.zonesion.cloud.service.dto;
 import javax.validation.constraints.*;
 
 import com.zonesion.cloud.domain.Chapter;
+import com.zonesion.cloud.domain.Course;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -21,7 +22,7 @@ public class ChapterDTO implements Serializable {
 	private Long id;
     
     @NotNull
-    private Long courseId;
+    private Course courseId;
     
     @NotNull
     private Long userId;
@@ -59,7 +60,7 @@ public class ChapterDTO implements Serializable {
 			 chapter.getCreatedDate(), chapter.getLastModifiedBy(), chapter.getLastModifiedDate());
 	}
     
-	public ChapterDTO(Long id, Long courseId, Long userId, String chapterType, Integer number, Integer seq,
+	public ChapterDTO(Long id, Course courseId, Long userId, String chapterType, Integer number, Integer seq,
 			String title, String createdBy, Instant createdDate,String lastModifiedBy, Instant lastModifiedDate ) {
 		super();
 		this.id = id;
@@ -82,6 +83,14 @@ public class ChapterDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+	public Course getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(Course courseId) {
+		this.courseId = courseId;
+	}
     
     public Long getUserId() {
         return userId;
@@ -123,13 +132,6 @@ public class ChapterDTO implements Serializable {
         this.title = title;
     }
 
-    public Long getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(Long CourseId) {
-        this.courseId = CourseId;
-    }
     public String getCreatedBy() {
         return createdBy;
     }
@@ -151,19 +153,10 @@ public class ChapterDTO implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "ChapterDTO{" +
-            "id=" + getId() +
-            ", courseId='" + getCourseId() + "'" +
-            ", userId='" + getUserId() + "'" +
-            ", chapterType='" + getChapterType() + "'" +
-            ", number='" + getNumber() + "'" +
-            ", seq='" + getSeq() + "'" +
-            ", title='" + getTitle() + "'" +
-            ", createdBy=" + createdBy +
-            ", createdDate=" + createdDate +
-            ", lastModifiedBy='" + lastModifiedBy + '\'' +
-            ", lastModifiedDate=" + lastModifiedDate +
-            "}";
-    }
+	public String toString() {
+		return "ChapterDTO [id=" + id + ", courseId=" + courseId + ", userId=" + userId + ", chapterType=" + chapterType
+				+ ", number=" + number + ", seq=" + seq + ", title=" + title + ", createdBy=" + createdBy
+				+ ", createdDate=" + createdDate + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate="
+				+ lastModifiedDate + "]";
+	}
 }
