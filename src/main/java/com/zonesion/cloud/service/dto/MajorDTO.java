@@ -2,21 +2,37 @@ package com.zonesion.cloud.service.dto;
 
 
 import javax.validation.constraints.*;
+
+import com.zonesion.cloud.domain.Major;
+
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * A DTO for the Major entity.
  */
 public class MajorDTO implements Serializable {
 
-    private Long id;
+    /**
+	 * @Fields serialVersionUID : TODO
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
 
     @NotNull
     @Size(max = 255)
     private String major;
 
-    public Long getId() {
+    public MajorDTO(Major major) {
+		this(major.getId(), major.getMajor());
+	}
+    
+    public MajorDTO(Long id, String major){
+    	this.id = id;
+    	this.major = major;
+    }
+
+	public Long getId() {
         return id;
     }
 
@@ -32,32 +48,9 @@ public class MajorDTO implements Serializable {
         this.major = major;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        MajorDTO majorDTO = (MajorDTO) o;
-        if(majorDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), majorDTO.getId());
-    }
 
     @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
-
-    @Override
-    public String toString() {
-        return "MajorDTO{" +
-            "id=" + getId() +
-            ", major='" + getMajor() + "'" +
-            "}";
-    }
+	public String toString() {
+		return "MajorDTO [id=" + id + ", major=" + major + "]";
+	}
 }

@@ -2,17 +2,23 @@ package com.zonesion.cloud.service.dto;
 
 
 import javax.validation.constraints.*;
+
+import com.zonesion.cloud.domain.Course;
+
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
+import java.time.Instant;
 
 /**
  * A DTO for the Course entity.
  */
 public class CourseDTO implements Serializable {
 
-    private Long id;
+    /**
+	 * @Fields serialVersionUID : TODO
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
 
     @NotNull
     private Long userId;
@@ -55,8 +61,44 @@ public class CourseDTO implements Serializable {
     @NotNull
     @Size(max = 1)
     private String recommendedSort;
+    
+    private String createdBy;
 
-    public Long getId() {
+    private Instant createdDate;
+
+    private String lastModifiedBy;
+
+    private Instant lastModifiedDate;
+
+    public CourseDTO() {
+		// TODO Auto-generated constructor stub
+	}
+    public CourseDTO(Course course){
+    	this(course.getId(), course.getUserId(), course.getTitle(),course.getSubTitle(), 
+    		 course.getStatus(), course.getCourseType(), course.getLessonNum(),
+    		 course.getCredit(), course.getCoverPicture(), course.getIntroduction(),course.getGoals(),
+    		 course.getRecommended(), course.getRecommendedSort());
+    }
+	public CourseDTO(Long id, Long userId, String title, String subTitle, String status, String courseType,
+			Integer lessonNum, String credit, String coverPicture, String introduction, String goals,
+			String recommended, String recommendedSort) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.title = title;
+		this.subTitle = subTitle;
+		this.status = status;
+		this.courseType = courseType;
+		this.lessonNum = lessonNum;
+		this.credit = credit;
+		this.coverPicture = coverPicture;
+		this.introduction = introduction;
+		this.goals = goals;
+		this.recommended = recommended;
+		this.recommendedSort = recommendedSort;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -159,44 +201,38 @@ public class CourseDTO implements Serializable {
     public void setRecommendedSort(String recommendedSort) {
         this.recommendedSort = recommendedSort;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        CourseDTO courseDTO = (CourseDTO) o;
-        if(courseDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), courseDTO.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
-
-    @Override
-    public String toString() {
-        return "CourseDTO{" +
-            "id=" + getId() +
-            ", userId='" + getUserId() + "'" +
-            ", title='" + getTitle() + "'" +
-            ", subTitle='" + getSubTitle() + "'" +
-            ", status='" + getStatus() + "'" +
-            ", courseType='" + getCourseType() + "'" +
-            ", lessonNum='" + getLessonNum() + "'" +
-            ", credit='" + getCredit() + "'" +
-            ", coverPicture='" + getCoverPicture() + "'" +
-            ", introduction='" + getIntroduction() + "'" +
-            ", goals='" + getGoals() + "'" +
-            ", recommended='" + getRecommended() + "'" +
-            ", recommendedSort='" + getRecommendedSort() + "'" +
-            "}";
-    }
+    
+    public String getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+	public Instant getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(Instant createdDate) {
+		this.createdDate = createdDate;
+	}
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+	public Instant getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+	public void setLastModifiedDate(Instant lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
+	@Override
+	public String toString() {
+		return "CourseDTO [id=" + id + ", userId=" + userId + ", title=" + title + ", subTitle=" + subTitle
+				+ ", status=" + status + ", courseType=" + courseType + ", lessonNum=" + lessonNum + ", credit="
+				+ credit + ", coverPicture=" + coverPicture + ", introduction=" + introduction + ", goals=" + goals
+				+ ", recommended=" + recommended + ", recommendedSort=" + recommendedSort + ", createdBy=" + createdBy
+				+ ", createdDate=" + createdDate + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate="
+				+ lastModifiedDate + "]";
+	}
 }

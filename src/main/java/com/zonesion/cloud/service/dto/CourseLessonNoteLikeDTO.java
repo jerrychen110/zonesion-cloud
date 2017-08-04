@@ -3,9 +3,11 @@ package com.zonesion.cloud.service.dto;
 
 import java.time.Instant;
 import javax.validation.constraints.*;
+
+import com.zonesion.cloud.domain.CourseLessonNote;
+import com.zonesion.cloud.domain.CourseLessonNoteLike;
+
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -13,7 +15,12 @@ import java.util.Objects;
  */
 public class CourseLessonNoteLikeDTO implements Serializable {
 
-    private Long id;
+    /**
+	 * @Fields serialVersionUID : TODO
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
 
     @NotNull
     private Long userId;
@@ -21,11 +28,34 @@ public class CourseLessonNoteLikeDTO implements Serializable {
     @NotNull
     private Instant createdTime;
 
-    private Long courseLessonNoteId;
+    private CourseLessonNote courseLessonNote;
+    
+    public CourseLessonNoteLikeDTO(){
+    	
+    }
+    
+    public CourseLessonNoteLikeDTO(CourseLessonNoteLike courseLessonNoteLike) {
+    	this(courseLessonNoteLike.getId(), courseLessonNoteLike.getUserId(), courseLessonNoteLike.getCreatedTime(), courseLessonNoteLike.getCourseLessonNote());
+	}
+    
 
-    private String courseLessonNoteCourseLessonNoteLike;
+	public CourseLessonNoteLikeDTO(Long id, Long userId, Instant createdTime, CourseLessonNote courseLessonNote) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.createdTime = createdTime;
+		this.courseLessonNote = courseLessonNote;
+	}
 
-    public Long getId() {
+	public CourseLessonNote getCourseLessonNote() {
+		return courseLessonNote;
+	}
+
+	public void setCourseLessonNote(CourseLessonNote courseLessonNote) {
+		this.courseLessonNote = courseLessonNote;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -49,21 +79,6 @@ public class CourseLessonNoteLikeDTO implements Serializable {
         this.createdTime = createdTime;
     }
 
-    public Long getCourseLessonNoteId() {
-        return courseLessonNoteId;
-    }
-
-    public void setCourseLessonNoteId(Long CourseLessonNoteId) {
-        this.courseLessonNoteId = CourseLessonNoteId;
-    }
-
-    public String getCourseLessonNoteCourseLessonNoteLike() {
-        return courseLessonNoteCourseLessonNoteLike;
-    }
-
-    public void setCourseLessonNoteCourseLessonNoteLike(String CourseLessonNoteCourseLessonNoteLike) {
-        this.courseLessonNoteCourseLessonNoteLike = CourseLessonNoteCourseLessonNoteLike;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -87,11 +102,8 @@ public class CourseLessonNoteLikeDTO implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "CourseLessonNoteLikeDTO{" +
-            "id=" + getId() +
-            ", userId='" + getUserId() + "'" +
-            ", createdTime='" + getCreatedTime() + "'" +
-            "}";
-    }
+	public String toString() {
+		return "CourseLessonNoteLikeDTO [id=" + id + ", userId=" + userId + ", createdTime=" + createdTime
+				+ ", courseLessonNote=" + courseLessonNote + "]";
+	}
 }

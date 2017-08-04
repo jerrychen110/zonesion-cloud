@@ -2,17 +2,23 @@ package com.zonesion.cloud.service.dto;
 
 
 import javax.validation.constraints.*;
+
+import com.zonesion.cloud.domain.CourseReview;
+
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
+import java.time.Instant;
 
 /**
  * A DTO for the CourseReview entity.
  */
 public class CourseReviewDTO implements Serializable {
 
-    private Long id;
+    /**
+	 * @Fields serialVersionUID : TODO
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
 
     @NotNull
     private Long userId;
@@ -30,12 +36,43 @@ public class CourseReviewDTO implements Serializable {
     @NotNull
     @Size(max = 1)
     private String privacy;
+    
+    private String createdBy;
 
-    private Long courseId;
+    private Instant createdDate;
 
-    private String courseCourseReview;
+    private String lastModifiedBy;
 
-    public Long getId() {
+    private Instant lastModifiedDate;
+
+    public CourseReviewDTO(){
+    	
+    }
+    
+    public CourseReviewDTO(CourseReview courseReview) {
+		this(courseReview.getId(), courseReview.getUserId(), courseReview.getTitle(), courseReview.getContent(),
+			 courseReview.getRating(), courseReview.getPrivacy(), courseReview.getCreatedBy(), courseReview.getCreatedDate(),
+			 courseReview.getLastModifiedBy(),courseReview.getLastModifiedDate());
+	}
+    
+    
+
+	public CourseReviewDTO(Long id, Long userId, String title, String content, Integer rating, String privacy,
+			String createdBy, Instant createdDate, String lastModifiedBy, Instant lastModifiedDate) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.title = title;
+		this.content = content;
+		this.rating = rating;
+		this.privacy = privacy;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -82,53 +119,46 @@ public class CourseReviewDTO implements Serializable {
     public void setPrivacy(String privacy) {
         this.privacy = privacy;
     }
+    
 
-    public Long getCourseId() {
-        return courseId;
-    }
 
-    public void setCourseId(Long CourseId) {
-        this.courseId = CourseId;
-    }
 
-    public String getCourseCourseReview() {
-        return courseCourseReview;
-    }
+    public String getCreatedBy() {
+		return createdBy;
+	}
 
-    public void setCourseCourseReview(String CourseCourseReview) {
-        this.courseCourseReview = CourseCourseReview;
-    }
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+	public Instant getCreatedDate() {
+		return createdDate;
+	}
 
-        CourseReviewDTO courseReviewDTO = (CourseReviewDTO) o;
-        if(courseReviewDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), courseReviewDTO.getId());
-    }
+	public void setCreatedDate(Instant createdDate) {
+		this.createdDate = createdDate;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public Instant getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Instant lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
 
     @Override
-    public String toString() {
-        return "CourseReviewDTO{" +
-            "id=" + getId() +
-            ", userId='" + getUserId() + "'" +
-            ", title='" + getTitle() + "'" +
-            ", content='" + getContent() + "'" +
-            ", rating='" + getRating() + "'" +
-            ", privacy='" + getPrivacy() + "'" +
-            "}";
-    }
+	public String toString() {
+		return "CourseReviewDTO [id=" + id + ", userId=" + userId + ", title=" + title + ", content=" + content
+				+ ", rating=" + rating + ", privacy=" + privacy + ", createdBy=" + createdBy + ", createdDate="
+				+ createdDate + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate=" + lastModifiedDate + "]";
+	}
 }

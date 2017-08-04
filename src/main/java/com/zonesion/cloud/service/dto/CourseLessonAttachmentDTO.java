@@ -2,17 +2,23 @@ package com.zonesion.cloud.service.dto;
 
 
 import javax.validation.constraints.*;
+
+import com.zonesion.cloud.domain.CourseLessonAttachment;
+
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
+import java.time.Instant;
 
 /**
  * A DTO for the CourseLessonAttachment entity.
  */
 public class CourseLessonAttachmentDTO implements Serializable {
 
-    private Long id;
+    /**
+	 * @Fields serialVersionUID : TODO
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
 
     @NotNull
     private Long courseId;
@@ -39,12 +45,101 @@ public class CourseLessonAttachmentDTO implements Serializable {
 
     @NotNull
     private Integer fileSize;
+    
+    private String createdBy;
 
-    private Long courseLessonId;
+    private Instant createdDate;
+
+    private String lastModifiedBy;
+
+    private Instant lastModifiedDate;
+
+    public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Instant getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Instant createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public Instant getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Instant lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	private Long courseLessonId;
 
     private String courseLessonCourseLessonAttachment;
+    
+    public CourseLessonAttachmentDTO(){
+    	
+    }
+    
+    public CourseLessonAttachmentDTO(CourseLessonAttachment courseLessonAttachment) {
+    	this(courseLessonAttachment.getId(), courseLessonAttachment.getCourseId(),courseLessonAttachment.getUserId(), courseLessonAttachment.getTitle(),
+    		 courseLessonAttachment.getDescription(), courseLessonAttachment.getLink(), courseLessonAttachment.getFileId(),
+    		 courseLessonAttachment.getFileUri(), courseLessonAttachment.getFileMime(),courseLessonAttachment.getFileSize(), 
+    		 courseLessonAttachment.getCreatedBy(),courseLessonAttachment.getCreatedDate(),
+    		 courseLessonAttachment.getLastModifiedBy(),courseLessonAttachment.getLastModifiedDate());
+	}
+    
+    
 
-    public Long getId() {
+	public CourseLessonAttachmentDTO(Long id, Long courseId, Long userId, String title, String description, String link,
+			Long fileId, String fileUri, String fileMime, Integer fileSize, String createdBy, Instant createdDate,
+			String lastModifiedBy, Instant lastModifiedDate) {
+		super();
+		this.id = id;
+		this.courseId = courseId;
+		this.userId = userId;
+		this.title = title;
+		this.description = description;
+		this.link = link;
+		this.fileId = fileId;
+		this.fileUri = fileUri;
+		this.fileMime = fileMime;
+		this.fileSize = fileSize;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public CourseLessonAttachmentDTO(Long id, Long courseId, Long userId, String title, String description, String link,
+			Long fileId, String fileUri, String fileMime, Integer fileSize) {
+		super();
+		this.id = id;
+		this.courseId = courseId;
+		this.userId = userId;
+		this.title = title;
+		this.description = description;
+		this.link = link;
+		this.fileId = fileId;
+		this.fileUri = fileUri;
+		this.fileMime = fileMime;
+		this.fileSize = fileSize;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -141,39 +236,11 @@ public class CourseLessonAttachmentDTO implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        CourseLessonAttachmentDTO courseLessonAttachmentDTO = (CourseLessonAttachmentDTO) o;
-        if(courseLessonAttachmentDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), courseLessonAttachmentDTO.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
-
-    @Override
-    public String toString() {
-        return "CourseLessonAttachmentDTO{" +
-            "id=" + getId() +
-            ", courseId='" + getCourseId() + "'" +
-            ", userId='" + getUserId() + "'" +
-            ", title='" + getTitle() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", link='" + getLink() + "'" +
-            ", fileId='" + getFileId() + "'" +
-            ", fileUri='" + getFileUri() + "'" +
-            ", fileMime='" + getFileMime() + "'" +
-            ", fileSize='" + getFileSize() + "'" +
-            "}";
-    }
+	public String toString() {
+		return "CourseLessonAttachmentDTO [id=" + id + ", courseId=" + courseId + ", userId=" + userId + ", title="
+				+ title + ", description=" + description + ", link=" + link + ", fileId=" + fileId + ", fileUri="
+				+ fileUri + ", fileMime=" + fileMime + ", fileSize=" + fileSize + ", createdBy=" + createdBy
+				+ ", createdDate=" + createdDate + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate="
+				+ lastModifiedDate + "]";
+	}
 }

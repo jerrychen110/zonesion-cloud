@@ -2,26 +2,47 @@ package com.zonesion.cloud.service.dto;
 
 
 import javax.validation.constraints.*;
+
+import com.zonesion.cloud.domain.Course;
+import com.zonesion.cloud.domain.CourseFavorite;
+
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
 
 /**
  * A DTO for the CourseFavorite entity.
  */
 public class CourseFavoriteDTO implements Serializable {
 
-    private Long id;
+    /**
+	 * @Fields serialVersionUID : TODO
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
 
     @NotNull
     private Long userId;
 
-    private Long courseId;
+    private Course course;
+    
+    public CourseFavoriteDTO(){
+    	
+    }
+    
+    public CourseFavoriteDTO(CourseFavorite courseFavorite) {
+		this(courseFavorite.getId(), courseFavorite.getUserId(), courseFavorite.getCourse());
+	}
+    
+    
 
-    private String courseCourseFavorite;
+	public CourseFavoriteDTO(Long id, Long userId, Course course) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.course = course;
+	}
 
-    public Long getId() {
+	public Long getId() {
         return id;
     }
 
@@ -37,48 +58,21 @@ public class CourseFavoriteDTO implements Serializable {
         this.userId = userId;
     }
 
-    public Long getCourseId() {
-        return courseId;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCourseId(Long CourseId) {
-        this.courseId = CourseId;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
-    public String getCourseCourseFavorite() {
-        return courseCourseFavorite;
-    }
-
-    public void setCourseCourseFavorite(String CourseCourseFavorite) {
-        this.courseCourseFavorite = CourseCourseFavorite;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        CourseFavoriteDTO courseFavoriteDTO = (CourseFavoriteDTO) o;
-        if(courseFavoriteDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), courseFavoriteDTO.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
 
     @Override
     public String toString() {
         return "CourseFavoriteDTO{" +
             "id=" + getId() +
             ", userId='" + getUserId() + "'" +
+            ", course='" + getCourse() + "'" +
             "}";
     }
 }

@@ -2,18 +2,27 @@ package com.zonesion.cloud.service.dto;
 
 
 import javax.validation.constraints.*;
+
+import com.zonesion.cloud.domain.Chapter;
+
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
+import java.time.Instant;
 
 /**
  * A DTO for the Chapter entity.
  */
 public class ChapterDTO implements Serializable {
 
-    private Long id;
+    /**
+	 * @Fields serialVersionUID : TODO
+	 */
+	private static final long serialVersionUID = 1L;
 
+	private Long id;
+    
+    @NotNull
+    private Long courseId;
+    
     @NotNull
     private Long userId;
 
@@ -32,19 +41,48 @@ public class ChapterDTO implements Serializable {
     @NotNull
     @Size(max = 255)
     private String title;
+    
+    private String createdBy;
 
-    private Long courseId;
+    private Instant createdDate;
 
-    private String courseChapter;
+    private String lastModifiedBy;
 
-    public Long getId() {
+    private Instant lastModifiedDate;
+    
+    public ChapterDTO(){
+    	
+    }
+    public ChapterDTO(Chapter chapter) {
+		this(chapter.getId(), chapter.getCourseId(), chapter.getUserId(), chapter.getChapterType(),
+			 chapter.getNumber(), chapter.getSeq(), chapter.getTitle(), chapter.getCreatedBy(),
+			 chapter.getCreatedDate(), chapter.getLastModifiedBy(), chapter.getLastModifiedDate());
+	}
+    
+	public ChapterDTO(Long id, Long courseId, Long userId, String chapterType, Integer number, Integer seq,
+			String title, String createdBy, Instant createdDate,String lastModifiedBy, Instant lastModifiedDate ) {
+		super();
+		this.id = id;
+		this.courseId = courseId;
+		this.userId = userId;
+		this.chapterType = chapterType;
+		this.number = number;
+		this.seq = seq;
+		this.title = title;
+		this.createdBy = createdBy;
+        this.createdDate = createdDate;
+        this.lastModifiedBy = lastModifiedBy;
+        this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
-
+    
     public Long getUserId() {
         return userId;
     }
@@ -92,45 +130,40 @@ public class ChapterDTO implements Serializable {
     public void setCourseId(Long CourseId) {
         this.courseId = CourseId;
     }
-
-    public String getCourseChapter() {
-        return courseChapter;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCourseChapter(String CourseChapter) {
-        this.courseChapter = CourseChapter;
+    public Instant getCreatedDate() {
+        return createdDate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        ChapterDTO chapterDTO = (ChapterDTO) o;
-        if(chapterDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), chapterDTO.getId());
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
+    public Instant getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Instant lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 
     @Override
     public String toString() {
         return "ChapterDTO{" +
             "id=" + getId() +
+            ", courseId='" + getCourseId() + "'" +
             ", userId='" + getUserId() + "'" +
             ", chapterType='" + getChapterType() + "'" +
             ", number='" + getNumber() + "'" +
             ", seq='" + getSeq() + "'" +
             ", title='" + getTitle() + "'" +
+            ", createdBy=" + createdBy +
+            ", createdDate=" + createdDate +
+            ", lastModifiedBy='" + lastModifiedBy + '\'' +
+            ", lastModifiedDate=" + lastModifiedDate +
             "}";
     }
 }

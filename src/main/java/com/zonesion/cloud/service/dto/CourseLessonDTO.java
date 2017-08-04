@@ -2,17 +2,23 @@ package com.zonesion.cloud.service.dto;
 
 
 import javax.validation.constraints.*;
+
+import com.zonesion.cloud.domain.CourseLesson;
+
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
+import java.time.Instant;
 
 /**
  * A DTO for the CourseLesson entity.
  */
 public class CourseLessonDTO implements Serializable {
 
-    private Long id;
+    /**
+	 * @Fields serialVersionUID : TODO
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
 
     @NotNull
     private Long userId;
@@ -54,12 +60,86 @@ public class CourseLessonDTO implements Serializable {
 
     @NotNull
     private Integer viewedNum;
+    
+    private String createdBy;
 
-    private Long courseLesson_FKId;
+    private Instant createdDate;
 
-    private String courseLesson_FKCourseLesson;
+    private String lastModifiedBy;
 
-    public Long getId() {
+    private Instant lastModifiedDate;
+    
+    public CourseLessonDTO(){
+    	
+    }
+    
+    public CourseLessonDTO(CourseLesson courseLesson) {
+		this(courseLesson.getId(), courseLesson.getUserId(), courseLesson.getNumber(), courseLesson.getSeq(),
+			 courseLesson.getTitle(), courseLesson.getSummary(), courseLesson.getCourseLessonType(),
+			 courseLesson.getContent(), courseLesson.getCredit(), courseLesson.getMediaId(),courseLesson.getMediaSource(),
+			 courseLesson.getMediaName(), courseLesson.getMediaUri(), courseLesson.getLearnedNum(), courseLesson.getViewedNum(),
+			 courseLesson.getCreatedBy(), courseLesson.getCreatedDate(), courseLesson.getLastModifiedBy(), courseLesson.getLastModifiedDate());
+	}
+    
+	public CourseLessonDTO(Long id, Long userId, Integer number, Integer seq, String title, String summary,
+			String courseLessonType, String content, Integer credit, Integer mediaId, String mediaSource,
+			String mediaName, String mediaUri, Integer learnedNum, Integer viewedNum, String createdBy,
+			Instant createdDate, String lastModifiedBy, Instant lastModifiedDate) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.number = number;
+		this.seq = seq;
+		this.title = title;
+		this.summary = summary;
+		this.courseLessonType = courseLessonType;
+		this.content = content;
+		this.credit = credit;
+		this.mediaId = mediaId;
+		this.mediaSource = mediaSource;
+		this.mediaName = mediaName;
+		this.mediaUri = mediaUri;
+		this.learnedNum = learnedNum;
+		this.viewedNum = viewedNum;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Instant getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Instant createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public Instant getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Instant lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -179,61 +259,13 @@ public class CourseLessonDTO implements Serializable {
         this.viewedNum = viewedNum;
     }
 
-    public Long getCourseLesson_FKId() {
-        return courseLesson_FKId;
-    }
-
-    public void setCourseLesson_FKId(Long ChapterId) {
-        this.courseLesson_FKId = ChapterId;
-    }
-
-    public String getCourseLesson_FKCourseLesson() {
-        return courseLesson_FKCourseLesson;
-    }
-
-    public void setCourseLesson_FKCourseLesson(String ChapterCourseLesson) {
-        this.courseLesson_FKCourseLesson = ChapterCourseLesson;
-    }
-
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        CourseLessonDTO courseLessonDTO = (CourseLessonDTO) o;
-        if(courseLessonDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), courseLessonDTO.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
-
-    @Override
-    public String toString() {
-        return "CourseLessonDTO{" +
-            "id=" + getId() +
-            ", userId='" + getUserId() + "'" +
-            ", number='" + getNumber() + "'" +
-            ", seq='" + getSeq() + "'" +
-            ", title='" + getTitle() + "'" +
-            ", summary='" + getSummary() + "'" +
-            ", courseLessonType='" + getCourseLessonType() + "'" +
-            ", content='" + getContent() + "'" +
-            ", credit='" + getCredit() + "'" +
-            ", mediaId='" + getMediaId() + "'" +
-            ", mediaSource='" + getMediaSource() + "'" +
-            ", mediaName='" + getMediaName() + "'" +
-            ", mediaUri='" + getMediaUri() + "'" +
-            ", learnedNum='" + getLearnedNum() + "'" +
-            ", viewedNum='" + getViewedNum() + "'" +
-            "}";
-    }
+	public String toString() {
+		return "CourseLessonDTO [id=" + id + ", userId=" + userId + ", number=" + number + ", seq=" + seq + ", title="
+				+ title + ", summary=" + summary + ", courseLessonType=" + courseLessonType + ", content=" + content
+				+ ", credit=" + credit + ", mediaId=" + mediaId + ", mediaSource=" + mediaSource + ", mediaName="
+				+ mediaName + ", mediaUri=" + mediaUri + ", learnedNum=" + learnedNum + ", viewedNum=" + viewedNum
+				+ ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", lastModifiedBy=" + lastModifiedBy
+				+ ", lastModifiedDate=" + lastModifiedDate + "]";
+	}
 }

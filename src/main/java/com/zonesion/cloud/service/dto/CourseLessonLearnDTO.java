@@ -2,17 +2,23 @@ package com.zonesion.cloud.service.dto;
 
 
 import javax.validation.constraints.*;
+
+import com.zonesion.cloud.domain.CourseLessonLearn;
+
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
+import java.time.Instant;
 
 /**
  * A DTO for the CourseLessonLearn entity.
  */
 public class CourseLessonLearnDTO implements Serializable {
 
-    private Long id;
+    /**
+	 * @Fields serialVersionUID : TODO
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
 
     @NotNull
     private Long courseId;
@@ -26,12 +32,73 @@ public class CourseLessonLearnDTO implements Serializable {
     @NotNull
     @Size(max = 1)
     private String isComplete;
+    
+    private String createdBy;
 
-    private Long courseLessonId;
+    private Instant createdDate;
 
-    private String courseLessonCourseLessonLearn;
+    private String lastModifiedBy;
 
-    public Long getId() {
+    private Instant lastModifiedDate;
+
+    public CourseLessonLearnDTO(){
+    	
+    }
+    
+    public CourseLessonLearnDTO(CourseLessonLearn courseLessonLearn) {
+		this(courseLessonLearn.getId(), courseLessonLearn.getCourseId(), courseLessonLearn.getUserId(),
+			 courseLessonLearn.getDurationId(), courseLessonLearn.getIsComplete(), courseLessonLearn.getCreatedBy(),
+			 courseLessonLearn.getCreatedDate(), courseLessonLearn.getLastModifiedBy(), courseLessonLearn.getLastModifiedDate());
+	}
+    
+
+	public CourseLessonLearnDTO(Long id, Long courseId, Long userId, Long durationId, String isComplete,
+			String createdBy, Instant createdDate, String lastModifiedBy, Instant lastModifiedDate) {
+		super();
+		this.id = id;
+		this.courseId = courseId;
+		this.userId = userId;
+		this.durationId = durationId;
+		this.isComplete = isComplete;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Instant getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Instant createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public Instant getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Instant lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -71,51 +138,10 @@ public class CourseLessonLearnDTO implements Serializable {
         this.isComplete = isComplete;
     }
 
-    public Long getCourseLessonId() {
-        return courseLessonId;
-    }
-
-    public void setCourseLessonId(Long CourseLessonId) {
-        this.courseLessonId = CourseLessonId;
-    }
-
-    public String getCourseLessonCourseLessonLearn() {
-        return courseLessonCourseLessonLearn;
-    }
-
-    public void setCourseLessonCourseLessonLearn(String CourseLessonCourseLessonLearn) {
-        this.courseLessonCourseLessonLearn = CourseLessonCourseLessonLearn;
-    }
-
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        CourseLessonLearnDTO courseLessonLearnDTO = (CourseLessonLearnDTO) o;
-        if(courseLessonLearnDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), courseLessonLearnDTO.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
-
-    @Override
-    public String toString() {
-        return "CourseLessonLearnDTO{" +
-            "id=" + getId() +
-            ", courseId='" + getCourseId() + "'" +
-            ", userId='" + getUserId() + "'" +
-            ", durationId='" + getDurationId() + "'" +
-            ", isComplete='" + getIsComplete() + "'" +
-            "}";
-    }
+	public String toString() {
+		return "CourseLessonLearnDTO [id=" + id + ", courseId=" + courseId + ", userId=" + userId + ", durationId="
+				+ durationId + ", isComplete=" + isComplete + ", createdBy=" + createdBy + ", createdDate="
+				+ createdDate + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate=" + lastModifiedDate + "]";
+	}
 }

@@ -2,17 +2,23 @@ package com.zonesion.cloud.service.dto;
 
 
 import javax.validation.constraints.*;
+
+import com.zonesion.cloud.domain.CourseLessonNote;
+
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
+import java.time.Instant;
 
 /**
  * A DTO for the CourseLessonNote entity.
  */
 public class CourseLessonNoteDTO implements Serializable {
 
-    private Long id;
+    /**
+	 * @Fields serialVersionUID : TODO
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
 
     @NotNull
     private Long courseId;
@@ -32,12 +38,77 @@ public class CourseLessonNoteDTO implements Serializable {
     @NotNull
     @Size(max = 1)
     private String isPrivate;
+    
+    private String createdBy;
 
-    private Long courseLessonId;
+    private Instant createdDate;
 
-    private String courseLessonCourseLessonNote;
+    private String lastModifiedBy;
 
-    public Long getId() {
+    private Instant lastModifiedDate;
+    
+   
+    public CourseLessonNoteDTO(){
+    	
+    }
+    
+    public CourseLessonNoteDTO(CourseLessonNote courseLessonNote) {
+    	this(courseLessonNote.getId(), courseLessonNote.getCourseId(), courseLessonNote.getUserId(),
+    		 courseLessonNote.getContent(), courseLessonNote.getLength(), courseLessonNote.getLikeNum(),
+    		 courseLessonNote.getIsPrivate(), courseLessonNote.getCreatedBy(), courseLessonNote.getCreatedDate(),
+    		 courseLessonNote.getLastModifiedBy(), courseLessonNote.getLastModifiedDate());
+	}
+    
+
+	public CourseLessonNoteDTO(Long id, Long courseId, Long userId, String content, Integer length, Integer likeNum,
+			String isPrivate, String createdBy, Instant createdDate, String lastModifiedBy, Instant lastModifiedDate) {
+		super();
+		this.id = id;
+		this.courseId = courseId;
+		this.userId = userId;
+		this.content = content;
+		this.length = length;
+		this.likeNum = likeNum;
+		this.isPrivate = isPrivate;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Instant getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Instant createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public Instant getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Instant lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -93,53 +164,11 @@ public class CourseLessonNoteDTO implements Serializable {
         this.isPrivate = isPrivate;
     }
 
-    public Long getCourseLessonId() {
-        return courseLessonId;
-    }
-
-    public void setCourseLessonId(Long CourseLessonId) {
-        this.courseLessonId = CourseLessonId;
-    }
-
-    public String getCourseLessonCourseLessonNote() {
-        return courseLessonCourseLessonNote;
-    }
-
-    public void setCourseLessonCourseLessonNote(String CourseLessonCourseLessonNote) {
-        this.courseLessonCourseLessonNote = CourseLessonCourseLessonNote;
-    }
-
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        CourseLessonNoteDTO courseLessonNoteDTO = (CourseLessonNoteDTO) o;
-        if(courseLessonNoteDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), courseLessonNoteDTO.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
-
-    @Override
-    public String toString() {
-        return "CourseLessonNoteDTO{" +
-            "id=" + getId() +
-            ", courseId='" + getCourseId() + "'" +
-            ", userId='" + getUserId() + "'" +
-            ", content='" + getContent() + "'" +
-            ", length='" + getLength() + "'" +
-            ", likeNum='" + getLikeNum() + "'" +
-            ", isPrivate='" + getIsPrivate() + "'" +
-            "}";
-    }
+	public String toString() {
+		return "CourseLessonNoteDTO [id=" + id + ", courseId=" + courseId + ", userId=" + userId + ", content="
+				+ content + ", length=" + length + ", likeNum=" + likeNum + ", isPrivate=" + isPrivate + ", createdBy="
+				+ createdBy + ", createdDate=" + createdDate + ", lastModifiedBy=" + lastModifiedBy
+				+ ", lastModifiedDate=" + lastModifiedDate + "]";
+	}
 }
