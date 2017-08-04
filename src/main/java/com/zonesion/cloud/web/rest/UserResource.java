@@ -5,15 +5,20 @@ import com.codahale.metrics.annotation.Timed;
 import com.zonesion.cloud.domain.User;
 import com.zonesion.cloud.repository.UserRepository;
 import com.zonesion.cloud.security.AuthoritiesConstants;
+import com.zonesion.cloud.security.SecurityUtils;
+import com.zonesion.cloud.service.FileManageMentService;
 import com.zonesion.cloud.service.MailService;
 import com.zonesion.cloud.service.UserService;
 import com.zonesion.cloud.service.dto.UserDTO;
+import com.zonesion.cloud.service.util.AvatarSize;
+import com.zonesion.cloud.service.util.FileUtil;
 import com.zonesion.cloud.web.rest.vm.ManagedUserVM;
 import com.zonesion.cloud.web.rest.util.HeaderUtil;
 import com.zonesion.cloud.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -22,9 +27,15 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.inject.Inject;
 import javax.validation.Valid;
+
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
@@ -74,6 +85,9 @@ public class UserResource {
         this.mailService = mailService;
         this.userService = userService;
     }
+    
+    @Inject
+	private FileManageMentService fileManageMentService;
 
     /**
      * POST  /users  : Creates a new user.
@@ -89,7 +103,7 @@ public class UserResource {
     @PostMapping("/users")
     @Timed
     @Secured(AuthoritiesConstants.ADMIN)
-    public ResponseEntity createUser(@Valid @RequestBody ManagedUserVM managedUserVM) throws URISyntaxException {
+    public ResponseEntity<?> createUser(@Valid @RequestBody ManagedUserVM managedUserVM) throws URISyntaxException {
         log.debug("REST request to save User : {}", managedUserVM);
 
         if (managedUserVM.getId() != null) {
@@ -193,4 +207,28 @@ public class UserResource {
         userService.deleteUser(login);
         return ResponseEntity.ok().headers(HeaderUtil.createAlert( "userManagement.deleted", login)).build();
     }
+    
+    @RequestMapping(value = "/users/user-avatar", method = RequestMethod.POST)
+	@Transactional
+	public ResponseEntity<?> saveUserAvatar(MultipartHttpServletRequest request)
+			throws NumberFormatException, IOException {
+		log.debug("Saving user avatar...");
+		String avatarUrl = null;
+		String[] crops = StringUtils.split(request.getParameter("cropSelection"), ",");// [x,y,x2,y2,w,h]
+		String resizeTo = request.getParameter("resizeTo");
+		Iterator<String> itr = request.getFileNames();
+		if (itr.hasNext()) {
+			MultipartFile mpf = request.getFile(itr.next());
+			avatarUrl = fileManageMentService.saveAvatar(mpf, FileUtil.LOCAL_USER_AVATAR_FOLDER, new AvatarSize(Integer.parseInt(crops[0]),
+					Integer.parseInt(crops[1]), Integer.parseInt(crops[4]), Integer.parseInt(crops[5]),
+					Integer.parseInt(resizeTo), Integer.parseInt(resizeTo)));
+
+		}
+		User currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+		currentUser.setAvatar(avatarUrl);
+		userRepository.save(currentUser);
+		Map<String, String> ret = new HashMap<>();
+		ret.put("avatarUrl", avatarUrl);
+		return new ResponseEntity<>(ret, HttpStatus.OK);
+	}
 }
