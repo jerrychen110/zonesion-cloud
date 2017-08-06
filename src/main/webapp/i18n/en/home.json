@@ -1,7 +1,7 @@
 {
     "home": {
-        "title": "Welcome, Zonesion!",
-        "subtitle": "This is your homepage",
+        "title": "欢迎, Zonesion!",
+        "subtitle": "这是您的主页",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
         }
