@@ -109,7 +109,7 @@ public class ChapterResourceIntTest {
         Course course = CourseResourceIntTest.createEntity(em);
         em.persist(course);
         em.flush();
-        chapter.setCourse(course);
+        chapter.setCourseId(course);
         return chapter;
     }
 

@@ -1,0 +1,17 @@
+/*example*/
+
+.swiper-container{}
+.swiper-container ol{position: absolute;
+    bottom: 30px;
+    z-index: 100;
+    width: 100%;
+    text-align: center;}
+.swiper-container ol li{font-size: 0;
+    margin: 0 10px;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 50%;
+    border: 2px solid #fff;}
+.swiper-container ol li.seleted{    background: #fff;
+    opacity: 1;}
