@@ -9,7 +9,7 @@
 
     function HomeController ($scope, Principal, LoginService, $state) {
     	
-        $(".swiper-container").luara({width:"1349",height:"500",interval:3000,selected:"seleted",deriction:"left"});
+        $(".swiper-container").luara({width:"1519.2",height:"500",interval:3000,selected:"seleted",deriction:"left"});
     	
         var vm = this;
 
