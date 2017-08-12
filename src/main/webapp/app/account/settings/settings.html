@@ -10,7 +10,45 @@
            <jhi-alert-error></jhi-alert-error>
 
             <form name="form" role="form" novalidate ng-submit="vm.save()" show-validation>
-
+				<div class="form-group media">
+					<div class="media-body media-right setting-body" >
+		              <span user-avatar user-account="settingsAccount" avatar-size="3x"></span>
+		            </div>
+					<div><button ng-disabled="saveAvatarState==1" type="button"
+				                 class="btn btn-link pll prl mrl dart-default-btn mlsm text-center"
+				                 ngf-select ng-model="avatarPicked" name="file" ngf-pattern="IMAGE_TYPES.pattern"
+				                 ngf-accept="IMAGE_TYPES.mime" ngf-max-size="1MB" ngf-change="onAvatarPicked($file)"><span
+				            translate="settings.pictures.update_photo">Set Profile Photo</span></button>
+				        <button ng-if="false&&account.avatar" type="button" ng-click="clearAvatar()" class="btn btn-danger media-middle dart-default-btn mll">
+				            <span translate="settings.pictures.clear">Clear</span></button>
+				    </button></div>
+				    <div ng-if="avatarPicked" class="media-body media-heading avatar-jcrop pick-img" ng-jcrop="avatarImgContent"
+				         selection="avatarSelection" thumbnail="true"></div>
+				    <div ng-if="avatarPicked" class="avatar-buttons">
+				        <button ng-disabled="saveAvatarState==1" type="button" class="btn btn-default mrl mlm dart-default-btn"
+				                ngf-select ng-model="avatarPicked" name="repickfile" ngf-pattern="IMAGE_TYPES.pattern"
+				                ngf-accept="IMAGE_TYPES.mime" ngf-max-size="1MB" ngf-change="onAvatarPicked($file)"><span
+				                translate="settings.pictures.reselect">Reselect</span></button>
+				        <button ng-disabled="saveAvatarState==1" type="button" class="btn btn-success pll prl mrl dart-default-btn"
+				                ng-click="saveAvatar()">
+				            {{saveAvatarState==0?'settings.form.button':'buttons.saving'|translate}}
+				        </button>
+				        <button ng-disabled="saveAvatarState==1" type="button" class="btn btn-default  white-btn pll prl mrl dart-default-btn"
+				                ng-click="cancelAvatar()">
+				            <span translate="buttons.cancel">Cancel</span>
+				        </button>
+				    </div>
+				    <div ng-if="form.file.$error.pattern||form.repickfile.$error.pattern">
+				        <label class="avatar-desc">&nbsp;</label><label class="text-danger"><i class="fa fa-ban"></i> <span
+				            translate="settings.pictures.wrongType">The file type you selected is incorrect, supported by type:</span>
+				        {{IMAGE_TYPES.description}}.</label>
+				    </div>
+				    <div ng-if="form.file.$error.maxSize||form.repickfile.$error.maxSize">
+				        <label class="avatar-desc">&nbsp;</label><label class="text-danger"><i class="fa fa-ban"></i> <span
+				            translate="settings.pictures.tooLarge">You choose the file is too large, more than 1MB.</span></label>
+				    </div>
+				</div>
+				
                 <div class="form-group">
                     <label class="control-label" for="name" data-translate="settings.form.name">Name</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="{{'settings.form.name.placeholder' | translate}}"

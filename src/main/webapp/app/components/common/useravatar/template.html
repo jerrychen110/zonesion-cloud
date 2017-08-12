@@ -1,0 +1,5 @@
+<span ng-if="!account.avatar" class="fa-stack user-word-icon {{avatarSize?'fa-'+avatarSize:''}}" title="{{showName}}">
+  <i class="fa fa-circle fa-stack-2x"></i>
+  <i class="fa fa-inverse fa-stack-1x">{{account.iconWord}}</i>
+</span>
+<img ng-if="account.avatar" ng-src="{{account.avatar}}" class="fa-stack user-image-icon{{avatarSize?'-'+avatarSize:''}}" title="{{showName}}"></img>
