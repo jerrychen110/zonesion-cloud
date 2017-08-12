@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="content/css/style.css">
     <link rel="stylesheet" href="content/css/luara.left.css">
     <link rel="stylesheet" href="bower_components/jcrop/css/jquery.Jcrop.css" />
+    <link rel="stylesheet" href="content/css/font_380622_ztb8w7rro58w7b9/iconfont.css">
     <!-- endbuild -->
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.webapp" />
@@ -32,12 +33,12 @@
     <page-ribbon></page-ribbon>
     <div ui-view="navbar" ng-cloak></div>
     <div class="ng-scope">
-        <div class="well" ui-view="content">
+        <div class="well" ui-view="content" ng-cloak>
             <!-- Angular views -->
         </div>
 
-        <div class="footer" ng-cloak>
-            <p data-translate="footer">This is your footer</p>
+        <div class="footer" ui-view="footer" >
+            <p data-translate="footer">This is your footer</p> 
         </div>
     </div>
     <noscript>
@@ -65,6 +66,7 @@
     <!-- build:js app/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery/dist/jquery-1.12.0.min.js"></script>
     <script src="bower_components/messageformat/messageformat.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -86,6 +88,7 @@
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
     <script src="bower_components/jcrop/js/jquery.Jcrop.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
 	<!-- mybuild -->
@@ -114,6 +117,8 @@
     <script src="app/layouts/error/error.state.js"></script>
     <script src="app/home/home.state.js"></script>
     <script src="app/home/home.controller.js"></script>
+    <script src="app/footer/footer.state.js"></script>
+    <script src="app/footer/footer.controller.js"></script>
     <script src="app/entities/major/major-dialog.controller.js"></script>
     <script src="app/entities/major/major-detail.controller.js"></script>
     <script src="app/entities/major/major-delete-dialog.controller.js"></script>

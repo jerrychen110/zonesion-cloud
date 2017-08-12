@@ -1,11 +1,23 @@
 package com.zonesion.cloud.service;
 
+import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.CourseLesson;
 import com.zonesion.cloud.repository.CourseLessonRepository;
+
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,4 +81,25 @@ public class CourseLessonService {
         log.debug("Request to delete CourseLesson : {}", id);
         courseLessonRepository.delete(id);
     }
+
+
+	public List<CourseLesson> findAllCourseLesson(Long id) {
+		// TODO Auto-generated method stub
+		return courseLessonRepository.findAllCourseLesson(id);
+	}
+    
+    /*public List<CourseLesson> findAllCourseLesson(Long id){
+		List<CourseLesson> courseLessonList = courseLessonRepository.findAll(new Specification<CourseLesson>() {
+
+			@Override
+			public Predicate toPredicate(Root<CourseLesson> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				// TODO Auto-generated method stub
+				Join<CourseLesson, Chapter> courseLessonJoin = root.join("courseLessons", JoinType.LEFT);
+                return cb.equal(courseLessonJoin.get("chapter_id"), id);
+			}
+			
+		});
+		return courseLessonList;
+		
+	}*/
 }

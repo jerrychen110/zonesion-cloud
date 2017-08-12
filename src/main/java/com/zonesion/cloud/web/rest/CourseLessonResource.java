@@ -124,4 +124,12 @@ public class CourseLessonResource {
         courseLessonService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+    
+    @GetMapping("/course-lessons/info/{id}")
+    @Timed
+    public ResponseEntity<List<CourseLesson>> getAllCourse(@PathVariable Long id) {
+        log.debug("REST request to get Course : {}", id);
+        List<CourseLesson> course = courseLessonService.findAllCourseLesson(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(course));
+    }
 }
