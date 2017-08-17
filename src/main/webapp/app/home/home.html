@@ -73,25 +73,25 @@
         <p class="course-bar">推荐课程</p>
         <div class="course-sort">
             <a href="#" class="newest">最新</a>
-            <a href="#/hot" >最热</a>
-            <a href="#/recommended" class="hottest">推荐</a>
+            <a href="#" >最热</a>
+            <a href="#" class="hottest">推荐</a>
         </div>
     </div>
 
     <div class="row neirong">
       <div class="col-sm-8 col-md-12 col-xs-6">
-        <div class="thumbnail wenben" ng-repeat="course in vm.courses">
-          <a href="#" class="course_img"  ui-sref="activate"><img ng-src="{{course.coverPicture}}" alt=""/></a>
+        <div class="thumbnail wenben" ng-repeat="coursebar in course">
+          <a href="#" class="course_img"  ui-sref="activate"><img ng-src="{{coursebar.url}}" alt=""/></a>
           <div class="caption">
-            <h4><a href="#"  ui-sref="activate">{{course.title}}</a></h4>
+            <h4><a href="#"  ui-sref="activate">{{coursebar.text}}</a></h4>
             <p>
                 <span>
                     <i class="es-icon iconfont">&#xe600;</i>
-                    {{course.courseFavoriteID}}
+                    0
                 </span>
                 <span class="teacher-name ">
                     <i class="iconfont">&#xe738;</i>
-                    {{course.courseReviewID}}
+                    0
                 </span>
                 <a href="#" class="Gratiss">免费</a>
             </p>

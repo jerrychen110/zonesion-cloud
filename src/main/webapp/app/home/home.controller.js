@@ -5,9 +5,9 @@
         .module('zonesionCloudApplicationApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'HomeService'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
 
-    function HomeController ($scope, Principal, LoginService, $state, HomeService) {
+    function HomeController ($scope, Principal, LoginService, $state) {
         
         $(".swiper-container").luara({interval:3000,selected:"seleted",deriction:"left"});
         
@@ -22,30 +22,6 @@
         });
 
         getAccount();
-        loadAll();
-
-        function loadAll () {
-            HomeService.query({
-                //size: vm.itemsPerPage
-                //sort: sort()
-            }, onSuccess, onError);
-            /*function sort() {
-                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
-                if (vm.predicate !== 'id') {
-                    result.push('id');
-                }
-                return result;
-            }*/
-            function onSuccess(data, headers) {
-                //vm.links = ParseLinks.parse(headers('link'));
-                vm.totalItems = headers('X-Total-Count');
-                vm.queryCount = vm.totalItems;
-                vm.courses = data;
-            }
-            function onError(error) {
-                //AlertService.error(error.data.message);
-            }
-        }
 
         function getAccount() {
             Principal.identity().then(function(account) {
