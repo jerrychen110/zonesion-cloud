@@ -102,6 +102,11 @@ public class CourseService {
 		return courseRepository.findRecommendedCourseByUserId(pageable);
 	}
 	
+	public List<Course> countCourseComment(Long courseId){
+		return courseRepository.countCourseComment(courseId);
+	}
+	
+	
     /*public List<Course> findAllCourse(Long id){
 		List<Course> courseList = courseRepository.findAll(new Specification<Course>() {
 
