@@ -3,11 +3,11 @@
 
     angular
         .module('zonesionCloudApplicationApp')
-        .controller('HomeController', HomeController);
+        .controller('CoursesController', CoursesController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'HomeService'];
+    CoursesController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'CoursesService'];
 
-    function HomeController ($scope, Principal, LoginService, $state, HomeService) {
+    function CoursesController ($scope, Principal, LoginService, $state, CoursesService) {
         
         $(".swiper-container").luara({interval:3000,selected:"seleted",deriction:"left"});
         
@@ -25,7 +25,7 @@
         loadAll();
 
         function loadAll () {
-            HomeService.query({
+        	CoursesService.query({
                 //size: vm.itemsPerPage
                 //sort: sort()
             }, onSuccess, onError);
