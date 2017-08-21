@@ -24,6 +24,7 @@
                 email: account.email,
                 name: account.name,
                 login: account.login,
+                avatar: account.avatar,
                 mobile: account.mobile,
                 sex: account.sex,
                 staffNo: account.staffNo,
