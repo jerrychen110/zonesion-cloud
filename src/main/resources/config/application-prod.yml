@@ -123,3 +123,4 @@ jhipster:
 # ===================================================================
 
 application:
+    serverHostName: "localhost:8080"
