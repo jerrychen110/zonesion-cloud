@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.Course;
+import com.zonesion.cloud.domain.CourseLesson;
 import com.zonesion.cloud.service.dto.CourseDTO;
 
 /**   
@@ -19,11 +21,11 @@ import com.zonesion.cloud.service.dto.CourseDTO;
 @Service
 public class CourseMapper {
 	
-	public CourseDTO courseToCourseDTO(Course course){
-		return new CourseDTO(course);
+	public CourseDTO courseToCourseDTO(Course course, Chapter chapter, CourseLesson courseLesson){
+		return new CourseDTO();
 	}
 	
-	public List<CourseDTO> courseToCourseDTOs(List<Course> courses){
+/*	public List<CourseDTO> courseToCourseDTOs(List<Course> courses){
 		return courses.stream()
 				.filter(Objects::nonNull)
 				.map(this::courseToCourseDTO)
@@ -35,6 +37,7 @@ public class CourseMapper {
 			return null;
 		} else {
 			Course course = new Course();
+			Chapter chapter = new Chapter();
 			course.setId(course.getId());
 			course.setUserId(course.getUserId());
 			course.setTitle(course.getTitle());
@@ -48,6 +51,7 @@ public class CourseMapper {
 			course.setGoals(course.getGoals());
 			course.setRecommended(course.getRecommended());
 			course.setRecommendedSort(course.getRecommendedSort());
+			chapter.setChapterType(chapter.getChapterType());
 			return course;
 		}
 		
@@ -67,7 +71,7 @@ public class CourseMapper {
 		Course course = new Course();
 		course.setId(id);
 		return course;
-	}
+	}*/
 	
 	
 	

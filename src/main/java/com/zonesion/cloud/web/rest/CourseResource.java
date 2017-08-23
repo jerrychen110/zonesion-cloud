@@ -124,39 +124,4 @@ public class CourseResource {
         courseService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-    
-    @GetMapping("/courses/newest")
-    @Timed
-    public ResponseEntity<List<Course>> getNewestCourses(@ApiParam Pageable pageable) {
-        log.debug("REST request to get a page of Courses");
-        Page<Course> page = courseService.findNewestCourseByUserId(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/courses/newest");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-    
-    @GetMapping("/courses/hot")
-    @Timed
-    public ResponseEntity<List<Course>> getHotCourses(@ApiParam Pageable pageable) {
-        log.debug("REST request to get a page of Courses");
-        Page<Course> page = courseService.findHotCourseByUserId(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/courses/hot");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-    
-    @GetMapping("/courses/recommended")
-    @Timed
-    public ResponseEntity<List<Course>> getRecommendedCourses(@ApiParam Pageable pageable) {
-        log.debug("REST request to get a page of Courses");
-        Page<Course> page = courseService.findRecommendedCourseByUserId(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/courses/recommended");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-    
-    /*@GetMapping("/courses/info/{id}")
-    @Timed
-    public ResponseEntity<List<Course>> getAllCourse(@PathVariable Long id) {
-        log.debug("REST request to get Course : {}", id);
-        List<Course> course = courseService.findAllCourse(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(course));
-    }*/
 }
