@@ -15,6 +15,8 @@ public final class FileUtil {
 	public static final String LOCAL_PRIVATE_FOLDER_PATH = "private";
 	public static final String LOCAL_USER_AVATAR_FOLDER = "user-avatar";
 	public static final String LOCAL_UPLOAD_IMAGE_FOLDER = "upload-image";
+	public static final String LOCAL_UPLOAD_FILE_FOLDER = "upload-file";
+	public static final String LOCAL_UPLOAD_COURSE_COVER_PICTURE_FOLDER = "course/upload-cover-picture";
 	
 	private FileUtil() {
 		super();

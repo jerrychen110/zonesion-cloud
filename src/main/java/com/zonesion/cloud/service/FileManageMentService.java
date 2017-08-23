@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.RandomAccessFile;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,6 +21,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.vfs2.FileObject;
 import org.apache.commons.vfs2.FileSystemException;
 import org.apache.commons.vfs2.impl.DefaultFileSystemManager;
@@ -34,7 +36,9 @@ import com.zonesion.cloud.config.ApplicationProperties;
 import com.zonesion.cloud.service.util.AvatarSize;
 import com.zonesion.cloud.service.util.FileUtil;
 import com.zonesion.cloud.service.util.ServiceConstants;
+import com.zonesion.cloud.web.rest.dto.ResumableInfo;
 import com.zonesion.cloud.web.rest.util.ResourceUtil;
+import com.zonesion.cloud.web.rest.util.ResumableInfoStorage;
 
 /**
  * 文件管理
@@ -59,6 +63,7 @@ public class FileManageMentService {
 	 * @param mpf
 	 * @param folder
 	 * @param avatarSize
+	 * @throws IOException
 	 * @return
 	 */
 	public String saveAvatar(MultipartFile mpf, String folder, AvatarSize avatarSize) throws IOException {
@@ -94,9 +99,9 @@ public class FileManageMentService {
 	 * 保存图片 并返回path
 	 * @param mpf
 	 * @param folder
-	 * @param avatarSize
-	 * @return
+	 * @param request
 	 * @throws IOException
+	 * @return
 	 */
 	public String saveImage(MultipartFile mpf, String folder, MultipartHttpServletRequest request) throws IOException {
 		String originalFileExtension = mpf.getOriginalFilename()
@@ -133,9 +138,9 @@ public class FileManageMentService {
 	 * 
 	 * @param fileName
 	 * @param folder
-	 * @param size
-	 * @return
+	 * @param dataFileType
 	 * @throws IOException
+	 * @return
 	 */
 	public String saveDataFile(String fileName, String folder, String dataFileType) throws IOException {
 		log.debug("upload datafile!");
@@ -212,4 +217,63 @@ public class FileManageMentService {
 		
 		return Files.createFile(filePath);
 	}
+	
+	/**
+	 * 组装临时信息
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	public ResumableInfo getResumableInfo(MultipartHttpServletRequest request) throws Exception {
+		int resumableChunkSize = NumberUtils.toInt(request.getParameter("flowChunkSize"), -1);
+		long resumableTotalSize = NumberUtils.toLong(request.getParameter("flowTotalSize"), -1);
+		String resumableIdentifier = request.getParameter("flowIdentifier");
+		String resumableFilename = request.getParameter("flowFilename");
+		String resumableRelativePath = request.getParameter("flowRelativePath");
+		// Here we add a ".temp" to every upload file to indicate NON-FINISHED
+		String originalFileExtension = resumableFilename.substring(resumableFilename.lastIndexOf(DOT) + 1);
+		
+		ResumableInfoStorage storage = ResumableInfoStorage.getInstance();
+		ResumableInfo info = storage.get(resumableChunkSize, resumableTotalSize,
+                resumableIdentifier, resumableFilename, resumableRelativePath);
+		synchronized (info) {
+			String resumableFilePath = getTempPath(FileUtil.LOCAL_UPLOAD_FILE_FOLDER, resumableIdentifier, originalFileExtension,false).toString();
+			info.setResumableFilePath(resumableFilePath);
+		}
+		
+        if (!info.vaild())         {
+            storage.remove(info.getResumableIdentifier());
+            throw new Exception("Invalid request params.");
+        }
+		return info;
+	}
+	
+	/**
+	 * 保存至临时文件
+	 * 
+	 * @param info
+	 * @param is
+	 * @param content_length
+	 * @throws IOException
+	 */
+	public void saveResumableFile(ResumableInfo info, InputStream is, long content_length,int resumableChunkNumber) throws IOException {
+		RandomAccessFile raf = new RandomAccessFile(info.getResumableFilePath(), "rw");
+
+		// Seek to position
+		raf.seek((resumableChunkNumber - 1L) * info.getResumableChunkSize());
+
+		// Save to file
+		long readed = 0;
+		byte[] bytes = new byte[1024*100];
+		while (readed < content_length) {
+			int r = is.read(bytes);
+			if (r < 0) {
+				break;
+			}
+			raf.write(bytes, 0, r);
+			readed += r;
+		}
+		raf.close();
+	}
+	
 }

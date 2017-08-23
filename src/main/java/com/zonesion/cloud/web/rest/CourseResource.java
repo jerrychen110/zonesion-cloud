@@ -3,10 +3,15 @@ package com.zonesion.cloud.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.zonesion.cloud.domain.Course;
 import com.zonesion.cloud.service.CourseService;
+import com.zonesion.cloud.service.FileManageMentService;
+import com.zonesion.cloud.service.util.AvatarSize;
+import com.zonesion.cloud.service.util.FileUtil;
 import com.zonesion.cloud.web.rest.util.HeaderUtil;
 import com.zonesion.cloud.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
+
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -14,13 +19,21 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.inject.Inject;
 import javax.validation.Valid;
+
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -39,6 +52,9 @@ public class CourseResource {
     public CourseResource(CourseService courseService) {
         this.courseService = courseService;
     }
+    
+    @Inject
+	private FileManageMentService fileManageMentService;
 
     /**
      * POST  /courses : Create a new course.
@@ -159,4 +175,36 @@ public class CourseResource {
         List<Course> course = courseService.findAllCourse(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(course));
     }*/
+    
+    /**
+     * 上传课程封面
+     * @param id
+     * @param request
+     * @return
+     * @throws NumberFormatException
+     * @throws IOException
+     */
+    @RequestMapping(value = "/courses/{id}/cover-picture", method = RequestMethod.POST)
+    @Transactional
+	public ResponseEntity<?> saveTeamLogo(@PathVariable Long id, MultipartHttpServletRequest request)
+			throws NumberFormatException, IOException {
+		log.debug("Saving course cover picture : {}", id);
+		String coverPicture = null;
+		String[] crops = StringUtils.split(request.getParameter("cropSelection"), ",");// [x,y,x2,y2,w,h]
+		String resizeTo = request.getParameter("resizeTo");
+		Iterator<String> itr = request.getFileNames();
+		if (itr.hasNext()) {
+			MultipartFile mpf = request.getFile(itr.next());
+			coverPicture = fileManageMentService.saveAvatar(mpf, FileUtil.LOCAL_UPLOAD_COURSE_COVER_PICTURE_FOLDER, new AvatarSize(Integer.parseInt(crops[0]),
+					Integer.parseInt(crops[1]), Integer.parseInt(crops[4]), Integer.parseInt(crops[5]),
+					Integer.parseInt(resizeTo), Integer.parseInt(resizeTo)));
+		}
+		
+		Course course = courseService.findOne(id);
+		course.setCoverPicture(coverPicture);
+		courseService.save(course);
+		Map<String, String> ret = new HashMap<>();
+		ret.put("coverPicture", coverPicture);
+		return new ResponseEntity<>(ret, HttpStatus.OK);
+    }
 }
