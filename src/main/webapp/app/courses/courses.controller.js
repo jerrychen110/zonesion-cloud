@@ -5,69 +5,45 @@
         .module('zonesionCloudApplicationApp')
         .controller('CoursesController', CoursesController);
 
-    CoursesController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'CoursesService'];
+    CoursesController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Course', 'CourseFavorite', 'Chapter', 'CourseReview'];
 
-    function CoursesController ($scope, Principal, LoginService, $state, CoursesService) {
-        
-        $(".swiper-container").luara({interval:3000,selected:"seleted",deriction:"left"});
-        
+    function CoursesController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Course, CourseFavorite, Chapter, CourseReview) {
         var vm = this;
 
-        vm.account = null;
-        vm.isAuthenticated = null;
-        vm.login = LoginService.open;
-        vm.register = register;
-        $scope.$on('authenticationSuccess', function() {
-            getAccount();
+        vm.course = entity;
+        vm.clear = clear;
+        vm.save = save;
+        vm.coursefavorites = CourseFavorite.query();
+        vm.chapters = Chapter.query();
+        vm.coursereviews = CourseReview.query();
+
+        $timeout(function (){
+            angular.element('.form-group:eq(1)>input').focus();
         });
 
-        getAccount();
-        loadAll();
+        function clear () {
+            $uibModalInstance.dismiss('cancel');
+        }
 
-        function loadAll () {
-        	CoursesService.query({
-                //size: vm.itemsPerPage
-                //sort: sort()
-            }, onSuccess, onError);
-            /*function sort() {
-                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
-                if (vm.predicate !== 'id') {
-                    result.push('id');
-                }
-                return result;
-            }*/
-            function onSuccess(data, headers) {
-                //vm.links = ParseLinks.parse(headers('link'));
-                vm.totalItems = headers('X-Total-Count');
-                vm.queryCount = vm.totalItems;
-                vm.courses = data;
-            }
-            function onError(error) {
-                //AlertService.error(error.data.message);
+        function save () {
+            vm.isSaving = true;
+            if (vm.course.id !== null) {
+                Course.update(vm.course, onSaveSuccess, onSaveError);
+            } else {
+                Course.save(vm.course, onSaveSuccess, onSaveError);
             }
         }
 
-        function getAccount() {
-            Principal.identity().then(function(account) {
-                vm.account = account;
-                vm.isAuthenticated = Principal.isAuthenticated;
-            });
-        }
-        function register () {
-            $state.go('register');
+        function onSaveSuccess (result) {
+            $scope.$emit('zonesionCloudApplicationApp:courseUpdate', result);
+            $uibModalInstance.close(result);
+            vm.isSaving = false;
         }
 
-         /*$("#indicators li").click(function(){
-             $(this).addClass("carouse_style");
-         })*/
- 
-         $scope.course=[
-             {url:"content/images/2.png",text:"EduSoho慕课版介绍"},
-             {url:"content/images/3.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/4.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/5.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/6.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/7.jpg",text:"EduSoho慕课版介绍"}
-         ]
+        function onSaveError () {
+            vm.isSaving = false;
+        }
+
+
     }
 })();

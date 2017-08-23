@@ -93,23 +93,6 @@ public class Course extends AbstractAuditingEntity implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CourseReview> courseReviews = new HashSet<>();
     
-    private long courseFavoriteID;
-    
-    private long courseReviewID;
-    public Long getCourseFavoriteID(){
-    	return courseFavoriteID;
-    }
-    public void setCourseFavoriteID(Long courseFavoriteID) {
-        this.courseFavoriteID = courseFavoriteID;
-    }
-    
-    public Long getCourseReviewID(){
-    	return courseReviewID;
-    }
-    public void setCourseReviewID(Long courseReviewID) {
-        this.courseReviewID = courseReviewID;
-    }
-    
     public Long getId() {
         return id;
     }
