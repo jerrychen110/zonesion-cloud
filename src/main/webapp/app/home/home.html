@@ -81,17 +81,17 @@
     <div class="row neirong">
       <div class="col-sm-8 col-md-12 col-xs-6">
         <div class="thumbnail wenben" ng-repeat="course in vm.courses">
-          <a href="#" class="course_img"  ui-sref="activate"><img ng-src="{{course.coverPicture}}" alt=""/></a>
+          <a class="course_img"  ui-sref="home-courses({id:course.id,countUser:course.countUserId})"><img ng-src="{{course.coverPicture}}" alt=""/></a>
           <div class="caption">
-            <h4><a href="#"  ui-sref="activate">{{course.title}}</a></h4>
+            <h4><a href="#"  ui-sref="{{course.id}}">{{course.title}}</a></h4>
             <p>
                 <span>
                     <i class="es-icon iconfont">&#xe600;</i>
-                    {{course.courseFavoriteID}}
+                    {{course.countUserId}}
                 </span>
                 <span class="teacher-name ">
                     <i class="iconfont">&#xe738;</i>
-                    {{course.courseReviewID}}
+                    {{course.courseReviewId}}
                 </span>
                 <a href="#" class="Gratiss">免费</a>
             </p>

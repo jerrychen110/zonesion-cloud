@@ -8,7 +8,7 @@
     HomeNewestService.$inject = ['$resource'];
     
     function HomeNewestService ($resource) {
-        var resourceUrl =  'api/courses/newest/:id';
+        var resourceUrl =  'api/home/newest/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

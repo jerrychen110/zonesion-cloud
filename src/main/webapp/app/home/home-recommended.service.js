@@ -8,7 +8,7 @@
     HomeRecommendedService.$inject = ['$resource'];
        
     function HomeRecommendedService ($resource) {
-        var resourceUrl =  'api/courses/recommended/:id';
+        var resourceUrl =  'api/home/recommended/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

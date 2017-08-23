@@ -61,13 +61,5 @@
              $(this).addClass("carouse_style");
          })*/
  
-         $scope.course=[
-             {url:"content/images/2.png",text:"EduSoho慕课版介绍"},
-             {url:"content/images/3.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/4.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/5.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/6.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/7.jpg",text:"EduSoho慕课版介绍"}
-         ]
     }
 })();
