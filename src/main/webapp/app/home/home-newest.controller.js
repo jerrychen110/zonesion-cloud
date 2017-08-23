@@ -5,9 +5,9 @@
         .module('zonesionCloudApplicationApp')
         .controller('HomeNewestController', HomeNewestController);
 
-    HomeNewestController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'HomeNewestService'];
+    HomeNewestController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'HomeNewestService', '$stateParams'];
 
-    function HomeNewestController ($scope, Principal, LoginService, $state, HomeNewestService) {
+    function HomeNewestController ($scope, Principal, LoginService, $state, HomeNewestService, $stateParams) {
         
         $(".swiper-container").luara({interval:3000,selected:"seleted",deriction:"left"});
         
@@ -60,14 +60,5 @@
          /*$("#indicators li").click(function(){
              $(this).addClass("carouse_style");
          })*/
- 
-         $scope.course=[
-             {url:"content/images/2.png",text:"EduSoho慕课版介绍"},
-             {url:"content/images/3.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/4.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/5.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/6.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/7.jpg",text:"EduSoho慕课版介绍"}
-         ]
     }
 })();

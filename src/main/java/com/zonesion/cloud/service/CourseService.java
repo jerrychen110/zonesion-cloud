@@ -1,23 +1,14 @@
 package com.zonesion.cloud.service;
 
-import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.Course;
 import com.zonesion.cloud.repository.CourseRepository;
 
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -90,35 +81,4 @@ public class CourseService {
 		return courseRepository.findByUserId(userId);
 	}
 
-	public Page<Course> findNewestCourseByUserId(Pageable pageable) {
-		return courseRepository.findNewestCourseByUserId(pageable);
-	}
-
-	public Page<Course> findHotCourseByUserId(Pageable pageable) {
-		return courseRepository.findHotCourseByUserId(pageable);
-	}
-
-	public Page<Course> findRecommendedCourseByUserId(Pageable pageable) {
-		return courseRepository.findRecommendedCourseByUserId(pageable);
-	}
-	
-	public List<Course> countCourseComment(Long courseId){
-		return courseRepository.countCourseComment(courseId);
-	}
-	
-	
-    /*public List<Course> findAllCourse(Long id){
-		List<Course> courseList = courseRepository.findAll(new Specification<Course>() {
-
-			@Override
-			public Predicate toPredicate(Root<Course> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				// TODO Auto-generated method stub
-				Join<Course, Chapter> chapterJoin = root.join("chapters", JoinType.LEFT);
-                return cb.equal(chapterJoin.get("courseId"), id);
-			}
-			
-		});
-		return courseList;
-		
-	}*/
 }

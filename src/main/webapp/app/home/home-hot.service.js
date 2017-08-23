@@ -8,7 +8,7 @@
     HomeHotService.$inject = ['$resource'];
     
     function HomeHotService ($resource) {
-        var resourceUrl =  'api/courses/hot/:id';
+        var resourceUrl =  'api/home/hot/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

@@ -207,4 +207,5 @@ public class CourseResource {
 		ret.put("coverPicture", coverPicture);
 		return new ResponseEntity<>(ret, HttpStatus.OK);
     }
+
 }

@@ -1,0 +1,35 @@
+.es-piece {
+  margin-bottom: 30px;
+  &.piece-lg {
+    .piece-header {
+      font-size: 22px;
+      font-weight: 500;
+      .more {
+        font-size: 14px;
+      }
+    }
+  }
+  .piece-header {
+    position: relative;
+    margin: 5px auto 20px auto;
+    padding-right: 30px;
+    color: @gray-darker;
+    font-size: 16px;
+    .more {
+      position: absolute;
+      right: 0;
+      top: 5px;
+    }
+  }
+  .piece-body {
+    .piece-body-list {
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 0;
+      >li {
+        padding: 15px 0;
+        border-bottom: 1px solid @gray-lighter;
+      }
+    }
+  }
+}
