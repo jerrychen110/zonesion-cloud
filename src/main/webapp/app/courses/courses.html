@@ -1,17 +1,195 @@
-<link href="/content/v2/bootstrap/css/bootstrap.css?1.4.8" rel="stylesheet" />
-<link rel="stylesheet" media="screen" href="/content/css/common.css?1.4.8" />
-<link rel="stylesheet" media="screen" href="/content/css/font-awesome.min.css?1.4.8" />
-<link rel="stylesheet" media="screen" href="/content/v2/css/es-icon.css?1.4.8" />
-<link rel="stylesheet" media="screen" href="/content/v2/css/main.css?1.4.8" />
-<link rel="stylesheet" media="screen" href="/content/themes/mooc/css/theme.css?1.4.8" />
-<link rel="stylesheet" media="screen" href="/content/themes/mooc/css/iconfont.css?1.4.8" />
-  <div class="es-wrap">                   
-      <div id="content-container" class="container" ng-repeat="course in vm.courses">
+  <div class="es-wrap">
+
+   <header class="mooc-header navbar">
+    <!-- <div class="container"> -->
+      <div class="navbar-header">
+         <div class="visible-xs  navbar-mobile">
+          <a href="javascript:;" class="navbar-more js-navbar-more">
+            <i class="es-icon es-icon-menu"></i>
+          </a>
+          <div class="html-mask"></div>
+          <div class="nav-mobile">
+            <form class="navbar-form" action="/search" method="get">
+              <div class="form-group">
+                <input class="form-control" placeholder="搜索" name="q">
+                <button class="button es-icon es-icon-search"></button>
+              </div>
+            </form>
+            <ul class="nav navbar-nav">
+                    
+      <li class="nav-hover">
+  <a href="/mooc/course/explore" >课程  <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu">
+              <li><a href="/mooc/course/explore/intro?sort=recommendedSeq"  >产品介绍</a></li>
+              <li><a href="/mooc/course/explore/fuction?sort=recommendedSeq"  >使用帮助</a></li>
+          </ul>
+  </li>        
+      <li class="">
+  <a href="/classroom/explore" >专业 </a>
+  </li>        
+      <li class="nav-hover">
+  <a href="/article" >资讯  <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu">
+              <li><a href="/article"  >全部资讯</a></li>
+              <li><a href="/article/category/news"  >EduSoho</a></li>
+              <li><a href="/article/category/news"  >行业资讯</a></li>
+              <li><a href="/article/category/default"  >默认分类</a></li>
+          </ul>
+  </li>        
+      <li class="nav-hover">
+  <a href="javascript:;" >帮助  <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu">
+              <li><a href="/page/help"  >服务</a></li>
+              <li><a href="http://www.qiqiuyu.com/course/explore/operation"  target="_blank">运营帮助</a></li>
+              <li><a href="/mobile"  >移动客户端</a></li>
+              <li><a href="/page/aboutus"  >关于我们</a></li>
+          </ul>
+  </li>        
+      <li class="">
+  <a href="/group" >小组 </a>
+  </li>        
+
+            </ul>
+          </div>
+        </div>
+                  <a class="navbar-brand" href="/">edusoho</a>
+                    </div>
+      <nav class="collapse navbar-collapse" role="navigation">
+         <ul class="nav navbar-nav clearfix hidden-xs ">
+              
+      <li class="nav-hover">
+  <a href="/mooc/course/explore" >课程  <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu">
+              <li><a href="/mooc/course/explore/intro?sort=recommendedSeq"  >产品介绍</a></li>
+              <li><a href="/mooc/course/explore/fuction?sort=recommendedSeq"  >使用帮助</a></li>
+          </ul>
+  </li>        
+      <li class="">
+  <a href="/classroom/explore" >专业 </a>
+  </li>        
+      <li class="nav-hover">
+  <a href="/article" >资讯  <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu">
+              <li><a href="/article"  >全部资讯</a></li>
+              <li><a href="/article/category/news"  >EduSoho</a></li>
+              <li><a href="/article/category/news"  >行业资讯</a></li>
+              <li><a href="/article/category/default"  >默认分类</a></li>
+          </ul>
+  </li>        
+      <li class="nav-hover">
+  <a href="javascript:;" >帮助  <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu">
+              <li><a href="/page/help"  >服务</a></li>
+              <li><a href="http://www.qiqiuyu.com/course/explore/operation"  target="_blank">运营帮助</a></li>
+              <li><a href="/mobile"  >移动客户端</a></li>
+              <li><a href="/page/aboutus"  >关于我们</a></li>
+          </ul>
+  </li>        
+      <li class="">
+  <a href="/group" >小组 </a>
+  </li>        
+
+         </ul>
+        <div class="nav-user clearfix">
+          <form class="navbar-form visible-lg" role="search" action="/search">
+            <div class="form-group">
+              <input type="text" class="form-control" name="q" placeholder="搜索课程">        
+              <button type="submit" class="button">
+                <span class="icon-search"></span>
+              </button>
+            </div>
+          </form>
+                      <div class="user">
+              <a href="/user/1">
+                <img src="/files/default/2017/07-24/093646ecbfa0124405.png?1.4.8" />            
+                <span class="name hidden-sm hidden-xs">admin</span>
+              </a>
+
+              <ul class="dropdown-menu">
+                <li role="presentation" class="dropdown-header visible-sm visible-xs">admin</li>
+                <li>
+                  <a href="/user/1">
+                    <span class="icons-user-1"></span>
+                    <span>我的主页</span>
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="/settings/">
+                    <span class="icons-user-2"></span>
+                    <span>账号设置</span>
+                  </a>
+                </li>
+                <li class="divider"></li>
+                                <li>
+                  <a href="/admin/">
+                    <span class="icons-user-3"></span>
+                    <span>管理后台</span>
+                  </a>
+                </li>
+                 <li class="divider "></li>
+                 <li>
+                  <a href="/my" class="hidden-lg">
+                    <span class="icons-user-5"></span>
+                    <span>课程</span>
+                  </a>
+                </li>
+
+              <li class="divider hidden-lg"></li>
+              <li>
+                <a href="/message/" class="hidden-lg">
+                  <span class="icons-user-6">
+                                      </span>
+                  <span>私信</span>
+                </a>
+              </li>
+              <li class="divider hidden-lg"></li>
+              <li>
+                <a href="/notification" class="hidden-lg">
+                  <span class="icons-user-7">
+                                      </span>
+                  <span>通知</span>
+                </a>
+              </li>
+                <li class="divider"></li>
+                                <li>
+                  <a href="/logout">
+                    <span class="icons-user-4"></span>
+                    <span>退出账户</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <ul class="visible-lg">
+                            <li>
+                <a class="tooltop" href="/my" data-toggle="tooltip" data-placement="bottom" title="课程">
+                  <span class="icons-user-5"></span>
+                </a>
+              </li>
+              <li>
+                <a class="tooltop" href="/message/" data-toggle="tooltip" data-placement="bottom" title="私信">
+                  <span class="icons-user-6">
+                                      </span>
+                </a>
+              </li>
+              <li>
+                <a class="tooltop" href="/notification" data-toggle="tooltip" data-placement="bottom" title="通知">
+                  <span class="icons-user-7">
+                                      </span>
+                </a>
+              </li>
+            </ul>
+                  </div>
+      </nav>
+    <!-- </div> -->
+  </header>        
+                
+      <div id="content-container" class="container">
           
   <div class="clearfix course-detail-header-join">
 	
   <div class="course-header-img ">
-    <a href="/course/6"><img class="img-responsive" src="{{course.coverPicture}}"></a>
+    <a href="/course/6"><img class="img-responsive" src="/files/default/2015/06-09/112013d1dd0e409854.png?1.4.8"></a>
   </div>
 
  <ul class="course-data clearfix">
@@ -52,7 +230,7 @@
         </ul>
      <div class="course-header-info">
     <div class="title clearfix">
-        <span><a href="">{{course.title}}</a></span>
+        <span><a href="/course/6">EduSoho慕课版介绍</a></span>
         <span class="es-qrcode top" data-url="/course/6/qrcode">
         <i class="es-icon es-icon-qrcode"></i>
         <span class="qrcode-popover">
@@ -636,25 +814,25 @@
 </div>
 
 <div class="col-md-4 footer-logos hidden-sm hidden-xs footer-logo">
-  <a class="" href="http://www.edusoho.com" target="_blank"><img src="/content/v2/img/bottom_logo.png?1.2.2" alt="建议图片大小为233*64"></a>
+  <a class="" href="http://www.edusoho.com" target="_blank"><img src="/assets/v2/img/bottom_logo.png?1.2.2" alt="建议图片大小为233*64"></a>
   <div class="footer-sns">
         <a href="http://weibo.com/edusoho" target="_blank"><i class="es-icon es-icon-weibo"></i></a>
             <a class="qrcode-popover top">
       <i class="es-icon es-icon-weixin"></i>
       <div class="qrcode-content">
-        <img src="/content/img/default/weixin.png?1.2.2" alt="">  
+        <img src="/assets/img/default/weixin.png?1.2.2" alt="">  
       </div>
     </a>
             <a class="qrcode-popover top">
       <i class="es-icon es-icon-apple"></i>
       <div class="qrcode-content">
-        <img src="/content/img/default/apple.png?1.2.2" alt=""> 
+        <img src="/assets/img/default/apple.png?1.2.2" alt=""> 
       </div>
     </a>
             <a class="qrcode-popover top">
       <i class="es-icon es-icon-android"></i>
       <div class="qrcode-content">
-        <img src="/content/img/default/android.png?1.2.2" alt=""> 
+        <img src="/assets/img/default/android.png?1.2.2" alt=""> 
       </div>
     </a>
       </div>
@@ -666,8 +844,8 @@
     </div>
     <div class="footer-by">
       <div class="container">
-          Powered by <a href="" target="_blank">中智讯（武汉）科技有限公司</a>
-  ©2014-2015 <a class="mlm" href="" target="_blank">好知网</a>
+          Powered by <a href="http://www.edusoho.com/" target="_blank">EduSoho v1.4.8</a>
+  ©2014-2015 <a class="mlm" href="http://www.howzhi.com/" target="_blank">好知网</a>
          
         <a class="mlm" href="/archive/course">课程存档</a>
         <div class="mts">
@@ -814,7 +992,7 @@
       <div class="row">
                   <div class="col-xs-6 mbm">
             <p class="text-overflow">
-              <img class="mrs" src="/content/v2/img/bar_qq_group.png?1.4.8" alt="">
+              <img class="mrs" src="/assets/v2/img/bar_qq_group.png?1.4.8" alt="">
               EduSoho-官方群
             </p>
             
@@ -826,7 +1004,7 @@
           </div>
                   <div class="col-xs-6 mbm">
             <p class="text-overflow">
-              <img class="mrs" src="/content/v2/img/bar_qq_group.png?1.4.8" alt="">
+              <img class="mrs" src="/assets/v2/img/bar_qq_group.png?1.4.8" alt="">
               在线教育运营干货群
             </p>
             
@@ -859,4 +1037,38 @@
         
   <div id="login-modal" class="modal" data-url="/login/ajax"></div>
   <div id="modal" class="modal"></div>
- 
+  
+
+<script>
+  var app = {};
+  app.debug = false;
+  app.version = '1.4.8';
+  app.httpHost = 'http://www.edusoho.com';
+  app.basePath = '';
+  app.theme = 'mooc';
+  app.themeGlobalScript = 'theme/global-script';
+  app.jsPaths = {"common":"common","theme":"\/themes\/mooc\/js","customwebbundle":"\/bundles\/customweb\/js","customadminbundle":"\/bundles\/customadmin\/js","topxiawebbundle":"\/bundles\/topxiaweb\/js","topxiaadminbundle":"\/bundles\/topxiaadmin\/js","classroombundle":"\/bundles\/classroom\/js"};
+
+  app.crontab = '/common/crontab';
+    
+  var CKEDITOR_BASEPATH = app.basePath + '/assets/libs/ckeditor/4.6.7/';
+
+  app.config = {"api":{"weibo":{"key":""},"qq":{"key":""},"douban":{"key":""},"renren":{"key":""}},"cloud":{"video_player":"http:\/\/cdn.staticfile.org\/GrindPlayerCN\/1.0.2\/GrindPlayer.swf","video_player_watermark_plugin":"http:\/\/cdn.staticfile.org\/GrindPlayerCN\/1.0.2\/Watermake-1.0.3.swf","video_player_fingerprint_plugin":"http:\/\/cdn.staticfile.org\/GrindPlayerCN\/1.0.2\/Fingerprint-1.0.1.swf"},"loading_img_path":"\/assets\/img\/default\/loading.gif?1.4.8"};
+
+  app.arguments = {};
+        app.arguments = {"course_uri":"\/course\/6"};
+    
+  app.scripts = ["theme\/course\/show","course\/common","common\/share-dropdown","theme\/course-lesson\/base","es-bar\/index","notification\/notification"];
+  
+  app.uploadUrl = '/file/upload';
+  app.imgCropUrl = '/file/img/crop';
+  app.lessonCopyEnabled = '0';
+
+  app.mainScript = '/bundles/topxiaweb/js/app.js?1.4.8';
+</script>
+  <script src="/assets/libs/seajs/seajs/2.2.1/sea.js?1.4.8"></script>
+<script src="/assets/libs/seajs/seajs-style/1.0.2/seajs-style.js?1.4.8"></script>
+<script src="/assets/libs/seajs-global-config.js?1.4.8"></script>
+<script>
+  seajs.use(app.mainScript);
+</script>

@@ -11,7 +11,7 @@
         var resourceUrl =  'api/courses/:id';
 
         return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', params:{courseId:'1'},isArray: false},
+            'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -23,4 +23,38 @@
             }
         });
     }
+
+    /*function HomeService ($hot) {
+        var resourceUrl =  'api/courses/hot/:id';
+
+        return $hot(resourceUrl, {}, {
+            'query': { method: 'GET', isArray: true},
+            'get': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    if (data) {
+                        data = angular.fromJson(data);
+                    }
+                    return data;
+                }
+            }
+        });
+    }
+    
+    function HomeService ($recommended) {
+        var resourceUrl =  'api/courses/recommended/:id';
+
+        return $recommended(resourceUrl, {}, {
+            'query': { method: 'GET', isArray: true},
+            'get': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    if (data) {
+                        data = angular.fromJson(data);
+                    }
+                    return data;
+                }
+            }
+        });
+    }*/
 })();
