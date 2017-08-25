@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>zonesionCloudApplication</title>
+    <title>云课堂</title>
     <meta name="description" content="">
     <meta name="google" value="notranslate">
     <meta name="theme-color" content="#000000">
@@ -12,6 +12,7 @@
     <!-- build:css content/css/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/jcrop/css/jquery.Jcrop.css">
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
     <!-- endinject -->
     <!-- endbuild -->
@@ -20,7 +21,6 @@
     <link rel="stylesheet" href="content/css/style.css">
     <link rel="stylesheet" href="content/css/luara.left.css">
     <link rel="stylesheet" href="bower_components/jcrop/css/jquery.Jcrop.css" />
-    <link rel="stylesheet" href="content/css/font_380622_ztb8w7rro58w7b9/iconfont.css">
     <!-- endbuild -->
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.webapp" />
@@ -32,15 +32,15 @@
     <!-- pageribbon属于angular自定义标签 -->
     <page-ribbon></page-ribbon>
     <div ui-view="navbar" ng-cloak></div>
-    <div class="ng-scope">
-        <div class="well" ui-view="content" ng-cloak>
+    <div class="container">
+        <div class="well" ui-view="content">
             <!-- Angular views -->
         </div>
 
-        <div class="footer" ui-view="footer" >
+    </div>
+        <div class="footer" ng-cloak>
             <p data-translate="footer">This is your footer</p> 
         </div>
-    </div>
     <noscript>
         <h1>You must enable javascript to view this page.</h1>
     </noscript>
@@ -66,9 +66,10 @@
     <!-- build:js app/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/jquery/dist/jquery-1.12.0.min.js"></script>
     <script src="bower_components/messageformat/messageformat.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
+    <script src="bower_components/jcrop/js/jquery.Jcrop.js"></script>
+    <script src="bower_components/ckeditor/ckeditor.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
@@ -87,14 +88,8 @@
     <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
-    <script src="bower_components/jcrop/js/jquery.Jcrop.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
-	<!-- mybuild -->
-	<script src="content/js/jquery-1.8.3.min.js"></script>
-	<script src="content/js/jquery.luara.0.0.1.min.js"></script>
-	<!-- endmybuild -->
     <!-- build:js app/app.js  -->
     <!-- inject:js -->
     <script src="app/app.module.js"></script>
@@ -115,23 +110,15 @@
     <script src="app/layouts/navbar/navbar.controller.js"></script>
     <script src="app/layouts/navbar/active-menu.directive.js"></script>
     <script src="app/layouts/error/error.state.js"></script>
-    <!-- <script src="app/home/home.state.js"></script>
-    <script src="app/home/home.service.js"></script>
-    <script src="app/home/home.controller.js"></script> -->
-    <script src="app/home/home.state.js"></script>
+    <script src="app/home/home-recommended.service.js"></script>
+    <script src="app/home/home-recommended.controller.js"></script>
     <script src="app/home/home-newest.service.js"></script>
     <script src="app/home/home-newest.controller.js"></script>
     <script src="app/home/home-hot.service.js"></script>
     <script src="app/home/home-hot.controller.js"></script>
-    <script src="app/home/home-recommended.service.js"></script>
-    <script src="app/home/home-recommended.controller.js"></script>
-    
-    <!-- <script src="app/home/home-courses.state.js"></script> -->
-    <script src="app/courses/home-courses.service.js"></script>
-    <script src="app/courses/home-courses.controller.js"></script>
-    
-    <script src="app/footer/footer.state.js"></script>
-    <script src="app/footer/footer.controller.js"></script>
+    <script src="app/home/home.state.js"></script>
+    <script src="app/home/home.service.js"></script>
+    <script src="app/home/home.controller.js"></script>
     <script src="app/entities/major/major-dialog.controller.js"></script>
     <script src="app/entities/major/major-detail.controller.js"></script>
     <script src="app/entities/major/major-delete-dialog.controller.js"></script>
@@ -199,6 +186,11 @@
     <script src="app/entities/chapter/chapter.state.js"></script>
     <script src="app/entities/chapter/chapter.service.js"></script>
     <script src="app/entities/chapter/chapter.controller.js"></script>
+    <script src="app/courses/home-courses.service.js"></script>
+    <script src="app/courses/home-courses.controller.js"></script>
+    <script src="app/courses/courses.state.js"></script>
+    <script src="app/courses/courses.service.js"></script>
+    <script src="app/courses/courses.controller.js"></script>
     <script src="app/components/util/truncate-words.filter.js"></script>
     <script src="app/components/util/truncate-characters.filter.js"></script>
     <script src="app/components/util/sort-by.directive.js"></script>
@@ -220,11 +212,12 @@
     <script src="app/components/form/pagination.constants.js"></script>
     <script src="app/components/form/minbytes.directive.js"></script>
     <script src="app/components/form/maxbytes.directive.js"></script>
+    <script src="app/components/common/useravatar/directive.js"></script>
+    <script src="app/components/common/jquery-luara/jquery.luara.0.0.1.min.js"></script>
+    <script src="app/components/common/avatar-crop/ng-jcrop.js"></script>
     <script src="app/components/alert/alert-error.directive.js"></script>
     <script src="app/components/alert/alert.service.js"></script>
     <script src="app/components/alert/alert.directive.js"></script>
-    <script src="app/components/common/avatar-crop/ng-jcrop.js"></script>
-    <script src="app/components/common/useravatar/directive.js"></script>
     <script src="app/blocks/interceptor/notification.interceptor.js"></script>
     <script src="app/blocks/interceptor/errorhandler.interceptor.js"></script>
     <script src="app/blocks/interceptor/auth-expired.interceptor.js"></script>

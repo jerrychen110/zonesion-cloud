@@ -318,3 +318,15 @@ ui bootstrap tweaks
 
 
 /* jhipster-needle-css-add-main JHipster will add new css style */
+.footer {
+    background: #333;
+    color: #e7e7e7;
+    font-size: 18px;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.navbar-default {
+    background-color: #333;
+    border-color: #e7e7e7;
+}
