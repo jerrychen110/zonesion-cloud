@@ -101,8 +101,8 @@ function swagger() {
 }
 
 function images() {
-    return gulp.src(bowerFiles({filter: ['**/*.{gif,jpg,png}']}), { base: config.bower })
+    return gulp.src(config.app + 'content/images/*.{gif,jpg,png}')
         .pipe(plumber({errorHandler: handleErrors}))
-        .pipe(changed(config.dist +  'bower_components'))
-        .pipe(gulp.dest(config.dist +  'bower_components'));
+        .pipe(changed(config.dist +  'content/images/'))
+        .pipe(gulp.dest(config.dist +  'content/images/'));
 }

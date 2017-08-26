@@ -33,7 +33,7 @@ gulp.task('clean', function () {
     return del([config.dist], { dot: true });
 });
 
-gulp.task('copy', ['copy:i18n', 'copy:fonts', 'copy:common']);
+gulp.task('copy', ['copy:i18n', 'copy:languages', 'copy:fonts', 'copy:common', 'copy:swagger', 'copy:images']);
 
 gulp.task('copy:i18n', copy.i18n);
 
@@ -47,6 +47,7 @@ gulp.task('copy:swagger', copy.swagger);
 
 gulp.task('copy:images', copy.images);
 
+/*
 gulp.task('images', function () {
     return gulp.src(config.app + 'content/images/**')
         .pipe(plumber({errorHandler: handleErrors}))
@@ -58,10 +59,10 @@ gulp.task('images', function () {
             base: config.dist,
             merge: true
         }))
-        .pipe(gulp.dest(config.dist))
+        .pipe(gulp.dest(config.dist + 'content/images'))
         .pipe(browserSync.reload({stream: true}));
 });
-
+*/
 
 gulp.task('styles', [], function () {
     return gulp.src(config.app + 'content/css')
@@ -82,7 +83,7 @@ gulp.task('inject:test', inject.test);
 
 gulp.task('inject:troubleshoot', inject.troubleshoot);
 
-gulp.task('assets:prod', ['images', 'styles', 'html', 'copy:swagger', 'copy:images'], build);
+gulp.task('assets:prod', ['styles', 'html'], build);
 
 gulp.task('html', function () {
     return gulp.src(config.app + 'app/**/*.html')
@@ -175,19 +176,19 @@ gulp.task('watch', function () {
     gulp.watch('bower.json', ['install']);
     gulp.watch(['gulpfile.js', 'pom.xml'], ['ngconstant:dev']);
     gulp.watch(config.app + 'content/css/**/*.css', ['styles']);
-    gulp.watch(config.app + 'content/images/**', ['images']);
+    //gulp.watch(config.app + 'content/images/**', ['images']);
     gulp.watch(config.app + 'app/**/*.js', ['inject:app']);
     gulp.watch([config.app + '*.html', config.app + 'app/**', config.app + 'i18n/**']).on('change', browserSync.reload);
 });
 
 gulp.task('install', function () {
-    runSequence(['inject:dep', 'ngconstant:dev'], 'copy:languages', 'inject:app', 'inject:troubleshoot');
+    runSequence(['inject:dep', 'ngconstant:dev'], 'inject:app', 'inject:troubleshoot');
 });
 
 gulp.task('serve', ['install'], serve);
 
 gulp.task('build', ['clean'], function (cb) {
-    runSequence(['copy', 'inject:vendor', 'ngconstant:prod', 'copy:languages'], 'inject:app', 'inject:troubleshoot', 'assets:prod', cb);
+    runSequence(['copy', 'inject:vendor', 'ngconstant:prod'], 'inject:app', 'inject:troubleshoot', 'assets:prod', cb);
 });
 
 gulp.task('default', ['serve']);

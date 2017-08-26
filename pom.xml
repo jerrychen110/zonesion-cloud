@@ -773,6 +773,7 @@
                         <artifactId>frontend-maven-plugin</artifactId>
                         <version>${frontend-maven-plugin.version}</version>
                         <executions>
+                        	<!--
                             <execution>
                                 <id>install node and npm</id>
                                 <goals>
@@ -792,6 +793,7 @@
                                     <arguments>install</arguments>
                                 </configuration>
                             </execution>
+                            -->
                             <execution>
                                 <id>bower install</id>
                                 <goals>
@@ -808,16 +810,6 @@
                                 </goals>
                                 <configuration>
                                     <arguments>build --no-notification</arguments>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>gulp test</id>
-                                <goals>
-                                    <goal>gulp</goal>
-                                </goals>
-                                <phase>test</phase>
-                                <configuration>
-                                    <arguments>test --no-notification</arguments>
                                 </configuration>
                             </execution>
                         </executions>
