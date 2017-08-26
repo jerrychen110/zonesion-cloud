@@ -1,0 +1,153 @@
+<link href="/content/base/v2/bootstrap/css/bootstrap.css?1.4.8"
+	rel="stylesheet" />
+<link rel="stylesheet" media="screen"
+	href="/content/base/css/common.css?1.4.8" />
+<link rel="stylesheet" media="screen"
+	href="/content/base/css/font-awesome.min.css?1.4.8" />
+<link rel="stylesheet" media="screen"
+	href="/content/base/v2/css/es-icon.css?1.4.8" />
+<link rel="stylesheet" media="screen"
+	href="/content/base/v2/css/main.css?1.4.8" />
+<link rel="stylesheet" media="screen"
+	href="/content/base/themes/css/theme.css?1.4.8" />
+<link rel="stylesheet" media="screen"
+	href="/content/base/themes/css/iconfont.css?1.4.8" />
+<div class="es-wrap">
+
+	<div id="content-container" class="container">
+
+		<div class="es-section userpage-header">
+			<div class="media">
+				<div class="media-left">
+					<div class="avatar-bg">
+						<img class="avatar-lg"
+							src="{{vm.userInfo.avatar}}">
+						<span class="icon-user-status icon-md"><i
+							class="es-icon es-icon-school"></i></span>
+					</div>
+				</div>
+				<div class="media-body">
+					<div class="actions">
+						<a class="btn btn-primary btn-sm follow-btn" href="javascript:;"
+							data-url="/user/5/follow">关注</a> <a
+							class="btn btn-default btn-sm unfollow-btn" href="javascript:;"
+							data-url="/user/5/unfollow" style="display: none;">已关注</a>
+						<button class="btn btn-default btn-sm" data-toggle="modal"
+							data-backdrop="static" data-target="#modal"
+							data-url="/message/create/5">私信</button>
+					</div>
+					<h2>
+						{{vm.userInfo.name}} <small>{{vm.userInfo.school}}</small>
+					</h2>
+					<div class="about">
+						<p>负责好知网和EduSoho的产品设计和规划。曾经就职于恒生电子、19楼网络传媒等中大型公司，担任了项目经理、高级产品经理、运营经理等职务，有过不算怎么成功的自主创业经历。主导设计了19楼商业系统、某建筑行业垂直门户与B2B平台、中小社区联盟平台等产品，具有丰富的产品规划和管理经验、网络社区和O2O的运营经验，以及公司管理和运营的经验。</p>
+					</div>
+					<div class="links">
+						<a href="http://weibo.com/edusoho" target="_blank" class="mrm"><img
+							src="/assets/img/user/link-weibo.png?1.4.8"> 微博</a> <a
+							href="http://www.edusoho.com/" target="_blank" class="mrm"><img
+							src="/assets/img/user/link-site.png?1.4.8"> 网站</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="es-section">
+			<ul class="nav nav-tabs clearfix">
+				<li><a ng-click='activeTab=1'>在学课程</a></li>
+				<li><a ng-click='activeTab=2'>收藏的课程</a></li>
+				<li><a ng-click='activeTab=4'>加入的小组</a></li>
+				<li><a ng-click='activeTab=5'>关注/粉丝</a></li>
+
+				<li><a href="#/user/{{vm.userInfo.id}}/teaching/classrooms">在教专业</a></li>
+
+				<li><a href="#/user/{{vm.userInfo.id}}/learning/classrooms">在学专业</a></li>
+			</ul>
+
+			<div ng-show='activeTab==1'>
+			<ul class="course-wide-list" ng-repeat="userInfo in vm.userInfos">
+				<li class="course-item clearfix "><a
+					class="course-picture-link" href="/course/1"> <img
+						class="course-picture"
+						src="{{userInfo.courseCoverPicture}}"
+						alt="{{userInfo.course_title}}">
+				</a>
+
+					<div class="course-body">
+
+						<div style="float: right;" class="text-muted mrm mls"></div>
+
+						<h4 class="course-title">
+							<a href="/course/1">{{userInfo.courseTitle}}</a>
+						</h4>
+
+						<div class="course-about ellipsis">{{userInfo.courseSubTitle}}</div>
+
+						<div class="course-footer clearfix">
+							<div class="teacher">
+								<a href="/user/1">
+								<img src="{{userInfo.avatar}}" class="teacher-avatar"></a> 
+									<a class="teacher-nickname ellipsis" href="/user/1">{{userInfo.name}}</a> 
+									<span class="teacher-title ellipsis">{{userInfo.school}}</span>
+							</div>
+
+							<div class="course-metas">
+
+								<span class="stars-{{userInfo.courseRecommendedSort}}">&nbsp;</span> <span class="divider"></span>
+								<span class="text-muted mrm mls"><strong>{{userInfo.countUserId}}</strong>学员</span>
+
+							</div>
+						</div>
+					</div></li>
+			</ul>
+			</div>
+			<div ng-show='activeTab==2'>
+			<ul class="course-wide-list" ng-repeat="userfavorited in vm.userFavorites">
+				<li class="course-item clearfix "><a
+					class="course-picture-link" href="/course/1"> <img
+						class="course-picture"
+						src="{{userfavorited.courseCoverPicture}}"
+						alt="{{userfavorited.course_title}}">
+				</a>
+
+					<div class="course-body">
+
+						<div style="float: right;" class="text-muted mrm mls"></div>
+
+						<h4 class="course-title">
+							<a href="/course/1">{{userfavorited.courseTitle}}</a>
+						</h4>
+
+						<div class="course-about ellipsis">{{userfavorited.courseSubTitle}}</div>
+
+						<div class="course-footer clearfix">
+							<div class="teacher">
+								<a href="/user/1">
+								<img src="{{userfavorited.avatar}}" class="teacher-avatar"></a> 
+									<a class="teacher-nickname ellipsis" href="/user/1">{{userfavorited.name}}</a> 
+									<span class="teacher-title ellipsis">{{userfavorited.school}}</span>
+							</div>
+
+							<div class="course-metas">
+
+								<span class="stars-{{userfavorited.courseRecommendedSort}}">&nbsp;</span> <span class="divider"></span>
+								<span class="text-muted mrm mls"><strong>{{userfavorited.countUserId}}</strong>学员</span>
+
+							</div>
+						</div>
+					</div></li>
+			</ul>
+			</div>
+			<div ng-show='activeTab==4'>
+			<ul class="course-wide-list">
+				<div class="empty">无在教的课程</div>
+			</ul>
+	
+
+		</div>
+
+	</div>
+
+
+</div>
+
