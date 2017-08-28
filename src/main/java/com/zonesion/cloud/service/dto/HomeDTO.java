@@ -82,6 +82,15 @@ public class HomeDTO implements Serializable {
     
     private Integer courseReviewId;
     
+    private String userName;
+    private String userAvatar;
+    private String userEmail;
+    private String userMobile;
+    private String userSex;
+    private String staffNo;
+    private String userMajor;
+    private String userSchool;
+    
 	public Long getId() {
 		return id;
 	}
@@ -198,6 +207,55 @@ public class HomeDTO implements Serializable {
 	public void setCourseReviewId(Integer courseReviewId) {
 		this.courseReviewId = courseReviewId;
 	}
+	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getUserAvatar() {
+		return userAvatar;
+	}
+	public void setUserAvatar(String userAvatar) {
+		this.userAvatar = userAvatar;
+	}
+	public String getUserEmail() {
+		return userEmail;
+	}
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+	public String getUserMobile() {
+		return userMobile;
+	}
+	public void setUserMobile(String userMobile) {
+		this.userMobile = userMobile;
+	}
+	public String getUserSex() {
+		return userSex;
+	}
+	public void setUserSex(String userSex) {
+		this.userSex = userSex;
+	}
+	public String getStaffNo() {
+		return staffNo;
+	}
+	public void setStaffNo(String staffNo) {
+		this.staffNo = staffNo;
+	}
+	public String getUserMajor() {
+		return userMajor;
+	}
+	public void setUserMajor(String userMajor) {
+		this.userMajor = userMajor;
+	}
+	public String getUserSchool() {
+		return userSchool;
+	}
+	public void setUserSchool(String userSchool) {
+		this.userSchool = userSchool;
+	}
 	@Override
 	public String toString() {
 		return "HomeDTO [id=" + id + ", userId=" + userId + ", title=" + title + ", subTitle=" + subTitle + ", status="
@@ -206,6 +264,8 @@ public class HomeDTO implements Serializable {
 				+ ", recommended=" + recommended + ", recommendedSort=" + recommendedSort + ", createdBy=" + createdBy
 				+ ", createdDate=" + createdDate + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate="
 				+ lastModifiedDate + ", countUserId=" + countUserId + ", courseReviewId=" + courseReviewId
-				+ "]";
+				+ ", userName=" + userName + ", userAvatar=" + userAvatar + ", userEmail=" + userEmail + ", userMobile="
+				+ userMobile + ", userSex=" + userSex + ", staffNo=" + staffNo + ", userMajor=" + userMajor
+				+ ", userSchool=" + userSchool + "]";
 	}
 }

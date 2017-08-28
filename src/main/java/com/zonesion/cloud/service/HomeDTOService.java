@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +13,7 @@ import com.zonesion.cloud.domain.Course;
 import com.zonesion.cloud.repository.HomeDTORepository;
 import com.zonesion.cloud.service.dto.CourseDTO;
 import com.zonesion.cloud.service.dto.HomeDTO;
+import com.zonesion.cloud.web.rest.util.Page;
 
 /**   
  * @Title: CourseJDBCService.java 
@@ -47,4 +48,10 @@ public class HomeDTOService {
         log.debug("Request to get all Courses");
         return homeDTORepository.findRecommendedCourse();
     }
+    
+    public Page<HomeDTO> findPageNewestCourse(Integer pageNo, Integer pageSize, String filter) {
+        log.debug("Request to get all Courses");
+        return homeDTORepository.findPageNewestCourse(pageNo, pageSize, filter);
+    }
+
 }
