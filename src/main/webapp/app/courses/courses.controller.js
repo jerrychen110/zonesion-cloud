@@ -5,69 +5,44 @@
         .module('zonesionCloudApplicationApp')
         .controller('CoursesController', CoursesController);
 
-    CoursesController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'CoursesService'];
+    CoursesController.$inject = ['$scope', '$rootScope', '$stateParams', 'CoursesService', 'UsersService'];
 
-    function CoursesController ($scope, Principal, LoginService, $state, CoursesService) {
-        
-        $(".swiper-container").luara({interval:3000,selected:"seleted",deriction:"left"});
-        
+    function CoursesController($scope, $rootScope, $stateParams, CoursesService, UsersService) {
         var vm = this;
-
-        vm.account = null;
-        vm.isAuthenticated = null;
-        vm.login = LoginService.open;
-        vm.register = register;
-        $scope.$on('authenticationSuccess', function() {
-            getAccount();
-        });
-
-        getAccount();
         loadAll();
-
+        loadUserInfo();
+        
         function loadAll () {
         	CoursesService.query({
-                //size: vm.itemsPerPage
-                //sort: sort()
+        		id: $stateParams.id
             }, onSuccess, onError);
-            /*function sort() {
-                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
-                if (vm.predicate !== 'id') {
-                    result.push('id');
-                }
-                return result;
-            }*/
+
             function onSuccess(data, headers) {
-                //vm.links = ParseLinks.parse(headers('link'));
-                vm.totalItems = headers('X-Total-Count');
-                vm.queryCount = vm.totalItems;
-                vm.courses = data;
+
+                vm.courses = data[0];
+                vm.allcourses = data;               
+                console.log(data);
+ 
             }
             function onError(error) {
                 //AlertService.error(error.data.message);
             }
         }
+        
+        function loadUserInfo () {
+        	UsersService.query({
+        		id: $stateParams.id
+            }, onSuccess, onError);
 
-        function getAccount() {
-            Principal.identity().then(function(account) {
-                vm.account = account;
-                vm.isAuthenticated = Principal.isAuthenticated;
-            });
+            function onSuccess(data, headers) {
+            	
+                vm.allusers = data;
+                console.log(data);
+                vm.countUsers = eval(data).length                
+            }
+            function onError(error) {
+                //AlertService.error(error.data.message);
+            }
         }
-        function register () {
-            $state.go('register');
-        }
-
-         /*$("#indicators li").click(function(){
-             $(this).addClass("carouse_style");
-         })*/
- 
-         $scope.course=[
-             {url:"content/images/2.png",text:"EduSoho慕课版介绍"},
-             {url:"content/images/3.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/4.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/5.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/6.jpg",text:"EduSoho慕课版介绍"},
-             {url:"content/images/7.jpg",text:"EduSoho慕课版介绍"}
-         ]
     }
 })();
