@@ -1,0 +1,101 @@
+<link href="/content/base/v2/bootstrap/css/bootstrap.css?1.4.8"
+	rel="stylesheet" />
+<link rel="stylesheet" media="screen"
+	href="/content/base/css/common.css?1.4.8" />
+<link rel="stylesheet" media="screen"
+	href="/content/base/css/font-awesome.min.css?1.4.8" />
+<link rel="stylesheet" media="screen"
+	href="/content/base/v2/css/es-icon.css?1.4.8" />
+<link rel="stylesheet" media="screen"
+	href="/content/base/v2/css/main.css?1.4.8" />
+<link rel="stylesheet" media="screen"
+	href="/content/base/themes/css/theme.css?1.4.8" />
+<link rel="stylesheet" media="screen"
+	href="/content/base/themes/css/iconfont.css?1.4.8" />
+
+<div class="es-wrap">
+
+	<div class="es-banner">
+		<div class="container">
+			<div class="title">
+				<i class="es-icon es-icon-viewcomfy"></i> 课程列表
+			</div>
+			<a class="btn btn-primary btn-lg more" href="/classroom/explore">
+				查看专业 </a>
+		</div>
+	</div>
+
+
+	<div id="content-container" class="container">
+		<div class="es-tab">
+			<div class="course-screening clearfix">
+				<div class="class-tab">
+					<div class="options clearfix">
+						<a class="active"
+							href="/mooc/course/explore?fliter=all&amp;orderBy=latest">全部</a>
+						<a class=" clearfix"
+							href="/mooc/course/explore/intro?fliter=all&amp;orderBy=latest">
+							产品介绍 </a> <a class=" clearfix"
+							href="/mooc/course/explore/fuction?fliter=all&amp;orderBy=latest">
+							使用教程 </a> <a class=" clearfix"
+							href="/mooc/course/explore/default?fliter=all&amp;orderBy=latest">
+							默认分类 </a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="category-filters">
+			<a ng-href="#/course/explore?pageNo=1&pageSize={{vm.size}}&filter={{filter.value}}" ng-repeat="filter in vm.allFilters">{{filter.name}}</a>
+<!--  			<a ng-href="#/course/explore?pageNo=1&pageSize={{vm.size}}&filter=newest"
+				class=" " ng-click="getFilters('newest')">最近更新</a> 
+ 			<a ng-href="#/course/explore?pageNo=1&pageSize={{vm.size}}&filter=hot"
+				class=" " ng-click="getFilters('hot')">最热课程</a> 
+			<a ng-href="#/course/explore?pageNo=1&pageSize={{vm.size}}&filter=recommended"
+				class=" " ng-click="getFilters('recommended')">推荐课程</a> -->
+		</div>
+
+		<div class="course-list  explore" ng-repeat="course in vm.allcourses">
+
+			<div class="course-item clearfix">
+				<div class="course-img">
+					<a href="/course/22"><img src="{{course.coverPicture}}"></a>
+
+				</div>
+				<div class="course-info ">
+					<div class="title">
+						<a href="/course/22"> {{course.title}} </a>
+					</div>
+					<div class="content">{{course.introduction}}</div>
+					<div class="metas">
+						<span class="student-mun">已有<span>{{course.countUserId}}</span>人学习
+						</span> <span class="star-5"></span>
+
+					</div>
+				</div>
+				<div class="course-teacher">
+					<div class="avatar">
+						<img src="{{course.userAvatar}}">
+
+					</div>
+					<div class="teacher-name">
+						<a href="/user/16">{{course.userName}}</a>
+					</div>
+					<div class="teacher-position hidden-sm">{{course.userSchool}}</div>
+				</div>
+			</div>
+		</div>
+		<nav class="text-center">
+			<ul class="pagination" ng-repeat="pageNo in vm.totalPages">
+				<li class="">
+				<a href="#/course/explore?pageNo={{pageNo}}&pageSize={{vm.size}}&filter={{vm.filter}}" >{{pageNo}}</a></li>
+<!-- 				<li><a href="/mooc/course/explore?page=2">2</a></li>
+
+				<li><a href="/mooc/course/explore?page=2"><i
+						class="es-icon es-icon-chevronright"></i></a></li>
+				<li><a href="/mooc/course/explore?page=2">尾</a></li> -->
+			</ul>
+
+		</nav>
+	</div>
+
+</div>

@@ -3,11 +3,11 @@
 
     angular
         .module('zonesionCloudApplicationApp')
-        .controller('CoursesController', CoursesController);
+        .controller('JoinController', JoinController);
 
-    CoursesController.$inject = ['$scope', '$rootScope', '$stateParams', 'CoursesService', 'UsersService'];
+    JoinController.$inject = ['$scope', '$rootScope', '$stateParams', 'CoursesService', 'UsersService'];
 
-    function CoursesController($scope, $rootScope, $stateParams, CoursesService, UsersService) {
+    function JoinController($scope, $rootScope, $stateParams, CoursesService, UsersService) {
         var vm = this;
         loadAll();
         loadUserInfo();
@@ -20,7 +20,7 @@
             function onSuccess(data, headers) {
 
                 vm.courses = data[0];
-                vm.allcourses = data;               
+                vm.allcourses = data;
                 console.log(data);
  
             }
@@ -37,7 +37,6 @@
             function onSuccess(data, headers) {
             	
                 vm.allusers = data;
-                console.log(data);
                 vm.countUsers = eval(data).length                
             }
             function onError(error) {

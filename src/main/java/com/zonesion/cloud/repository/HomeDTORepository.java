@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 
 import com.zonesion.cloud.service.dto.CourseDTO;
 import com.zonesion.cloud.service.dto.HomeDTO;
+import com.zonesion.cloud.web.rest.util.JdbcPaginationHelper;
+import com.zonesion.cloud.web.rest.util.Page;
 
 /**   
  * @Title: CourseJDBCRepository.java 
@@ -23,24 +25,62 @@ import com.zonesion.cloud.service.dto.HomeDTO;
  */
 @Repository
 public class HomeDTORepository {
-	@Autowired
 	
-    private JdbcTemplate jdbcTemplate;
+	private String baseSql = "SELECT c.*, u.name user_name, u.avatar user_avatar, u.email user_email, u.mobile user_mobile, u.sex user_sex, u.staff_no, u.major user_major, u.school user_school, count(DISTINCT(cll.user_id)) count_user_id, count(DISTINCT(cr.id)) course_review_id FROM t_course c LEFT JOIN t_chapter ch ON ch.course_id = c.id LEFT JOIN t_course_lesson cl ON cl.chapter_id = ch.id LEFT JOIN t_course_lesson_learn cll ON cll.course_id = c.id LEFT JOIN t_course_review cr ON cr.course_id = c.id LEFT JOIN t_user u ON u.id = c.user_id";
+    private String findNewestSql = baseSql+" GROUP BY c.id, cll.course_id ORDER BY last_modified_date DESC";
+    private String findHotSql = baseSql+" WHERE c.recommended='是' GROUP BY c.id, cll.course_id ORDER BY recommended_sort DESC";
+    private String findRecommendSql = baseSql+ " WHERE c.recommended='是' GROUP BY c.id, cll.course_id";
+    private String countCourseSql = "SELECT count(1) couse_total FROM t_course c";
+    
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 	@Transactional
     public List<HomeDTO> findNewestCourse() {
-        return jdbcTemplate.query("SELECT c.*, count(DISTINCT(cll.user_id)) count_user_id, count(DISTINCT(cr.id)) course_review_id FROM t_course c LEFT JOIN t_chapter ch ON ch.course_id = c.id LEFT JOIN t_course_lesson cl ON cl.chapter_id = ch.id LEFT JOIN t_course_lesson_learn cll ON cll.course_id = c.id LEFT JOIN t_course_review cr ON cr.course_id = c.id GROUP BY c.id, cll.course_id, cr.user_id ORDER BY last_modified_date DESC", new Object[]{}, new HomeRowMapper());
+        return jdbcTemplate.query(findNewestSql, new Object[]{}, new HomeRowMapper());
     }
 	
 	@Transactional
     public List<HomeDTO> findHotCourse() {
-        return jdbcTemplate.query("SELECT c.*, count(DISTINCT(cll.user_id)) count_user_id, count(DISTINCT(cr.id)) course_review_id FROM t_course c LEFT JOIN t_chapter ch ON ch.course_id = c.id LEFT JOIN t_course_lesson cl ON cl.chapter_id = ch.id LEFT JOIN t_course_lesson_learn cll ON cll.course_id = c.id LEFT JOIN t_course_review cr ON cr.course_id = c.id GROUP BY c.id, cll.course_id, cr.user_id ORDER BY count_user_id DESC", new Object[]{}, new HomeRowMapper());
+        return jdbcTemplate.query(findHotSql, new Object[]{}, new HomeRowMapper());
     }
 	
 	@Transactional
     public List<HomeDTO> findRecommendedCourse() {
-        return jdbcTemplate.query("SELECT c.*, count(DISTINCT(cll.user_id)) count_user_id, count(DISTINCT(cr.id)) course_review_id FROM t_course c LEFT JOIN t_chapter ch ON ch.course_id = c.id LEFT JOIN t_course_lesson cl ON cl.chapter_id = ch.id LEFT JOIN t_course_lesson_learn cll ON cll.course_id = c.id LEFT JOIN t_course_review cr ON cr.course_id = c.id WHERE c.recommended='是' GROUP BY c.id, cll.course_id, cr.user_id ORDER BY recommended_sort DESC", new Object[]{}, new HomeRowMapper());
+        return jdbcTemplate.query(findRecommendSql, new Object[]{}, new HomeRowMapper());
     }
+	
+	public Page<HomeDTO> findPageNewestCourse(Integer pageNo, Integer pageSize, String filter) {  
+        /*Object[] args = null;  
+        if (month != 0) {  
+            QUERY_TRANS_COUNT_SQL += "where month=?";  
+            QUERY_TRANS_DATA_SQL += "where month=?";  
+            args = new Object[] { month };  
+        } */ 
+		Object[] args = null;
+		String filterSql = null;
+/*		if("null".equals(String.valueOf(pageNo))&&"null".equals(String.valueOf(pageSize))&&"null".equals(String.valueOf(filter))){
+			pageNo = 1;
+			pageSize = 1;
+			filter = "newest";
+			filterSql = findNewestSql;
+			JdbcPaginationHelper<HomeDTO> JdbcPaginationHelper = new JdbcPaginationHelper<HomeDTO>();  
+	        return JdbcPaginationHelper.fetchPage(jdbcTemplate, countCourseSql, filterSql, args, pageNo, pageSize, 
+	                new HomeRowMapper());
+		}*/
 
+		if (filter.equals("newest")){
+			filterSql = findNewestSql;
+		}
+		if (filter.equals("hot")){
+			filterSql = findHotSql;
+		}
+		if (filter.equals("recommended")){
+			filterSql = findRecommendSql;
+		}
+		JdbcPaginationHelper<HomeDTO> JdbcPaginationHelper = new JdbcPaginationHelper<HomeDTO>();  
+        return JdbcPaginationHelper.fetchPage(jdbcTemplate, countCourseSql, filterSql, args, pageNo, pageSize, 
+                new HomeRowMapper());
+    }
 }
 
 class HomeRowMapper implements RowMapper<HomeDTO> {
@@ -84,6 +124,15 @@ class HomeRowMapper implements RowMapper<HomeDTO> {
 		homeDTO.setCourseReviewRating(rs.getInt("chapter_review_rating"));
 		homeDTO.setCourseReviewPrivacy(rs.getString("chapter_review_privacy"));		
 		*/
+		homeDTO.setUserName(rs.getString("user_name"));
+		homeDTO.setUserAvatar(rs.getString("user_avatar"));
+		homeDTO.setUserEmail(rs.getString("user_email"));
+		homeDTO.setUserMobile(rs.getString("user_mobile"));
+		homeDTO.setUserSex(rs.getString("user_sex"));
+		homeDTO.setStaffNo(rs.getString("staff_no"));
+		homeDTO.setUserMajor(rs.getString("user_major"));
+		homeDTO.setUserSchool(rs.getString("user_school"));
+		
 		return homeDTO;
 	}
 

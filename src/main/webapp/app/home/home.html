@@ -53,7 +53,7 @@
     <div class="row neirong">
       <div class="col-sm-8 col-md-12 col-xs-6">
         <div class="thumbnail wenben" ng-repeat="course in vm.courses">
-          <a class="course_img"  ui-sref="home-courses({id:course.id,countUser:course.countUserId})"><img ng-src="{{course.coverPicture}}" alt=""/></a>
+          <a class="course_img"  ui-sref="courses({id:course.id,countUser:course.countUserId})"><img ng-src="{{course.coverPicture}}" alt=""/></a>
           <div class="caption">
             <h4><a href="#"  ui-sref="{{course.id}}">{{course.title}}</a></h4>
             <p>

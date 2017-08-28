@@ -12,240 +12,8 @@
 	href="/content/base/themes/css/theme.css?1.4.8" />
 <link rel="stylesheet" media="screen"
 	href="/content/base/themes/css/iconfont.css?1.4.8" />
-<div class="es-wrap">
-	<div id="content-container" class="container">
 
-		<div class="clearfix course-detail-header">
-
-			<div class="course-header-img ">
-				<a href="/course/6"><img class="img-responsive"
-					src="{{vm.courses.coverPicture}}"></a>
-			</div>
-
-			<ul class="course-data clearfix">
-				<li id="unfavorite-btn" data-toggle="tooltip" data-placement="top"
-					data-original-title="取消收藏" data-url="/course/6/unfavorite"
-					style="display: none;"><a href="javascript:;"
-					class="color-primary">
-						<p>
-							<i class="es-icon es-icon-bookmark"></i>
-						</p>
-
-				</a></li>
-
-				<li id="favorite-btn" data-toggle="tooltip" data-placement="top"
-					data-original-title="收藏课程" data-url="/course/6/favorite"><a
-					href="javascript:;">
-						<p>
-							<i class="es-icon es-icon-bookmarkoutline"></i>
-						</p>
-
-				</a></li>
-
-				<li><span class="es-share top"> <a
-						class="dropdown-toggle" href="" data-toggle="dropdown">
-							<p>
-								<i class="es-icon es-icon-share"></i>
-							</p>
-
-					</a>
-
-						<div class="dropdown-menu  js-social-share-params"
-							data-title="EduSoho慕课版介绍" data-summary=""
-							data-message="我正在学习《EduSoho慕课版介绍》，收获巨大哦，一起来学习吧！"
-							data-url="http://182.61.50.153/course/6"
-							data-picture="/files/default/2015/06-09/112013d1dd0e409854.png?1.4.8">
-
-							<a href="javascript:;" class="js-social-share" data-cmd="weixin"
-								title="分享到微信" data-share="weixin"
-								data-qrcode-url="/common/qrcode?text=http%3A%2F%2F182.61.50.153%2Fcourse%2F6"><i
-								class="es-icon es-icon-weixin"></i></a> <a href="javascript:;"
-								class="js-social-share" data-cmd="tsina" title="分享到新浪微博"
-								data-share="weibo"><i class="es-icon es-icon-weibo"></i></a> <a
-								href="javascript:;" class="js-social-share" data-cmd="qq"
-								title="分享到QQ好友" data-share="qq"><i
-								class="es-icon es-icon-qq"></i></a> <a href="javascript:;"
-								class="js-social-share" data-cmd="qzone" title="分享到QQ空间"
-								data-share="qzone"><i class="es-icon es-icon-qzone"></i></a>
-
-						</div>
-
-
-				</span></li>
-
-			</ul>
-			<div class="course-header-info">
-				<div class="title clearfix">
-					<span><a href="/course/6">{{vm.courses.title}}</a></span> <span
-						class="es-qrcode top" data-url="/course/6/qrcode"> <i
-						class="es-icon es-icon-qrcode"></i> <span class="qrcode-popover">
-							<img src="" alt=""> 扫二维码继续学习
-					</span>
-					</span>
-				</div>
-
-				<div class="metas hidden-xs hidden-sm">
-					<p class="student-num ">
-						<label for="">学员人数：</label><span class="text-primary">{{vm.countUser}}人</span>
-					</p>
-
-				</div>
-				<div class="content"></div>
-			</div>
-
-			<div class="pull-rights">
-				<div class="score">
-
-
-
-					<i class="es-icon es-icon-staroutline"></i> <i
-						class="es-icon es-icon-staroutline"></i> <i
-						class="es-icon es-icon-staroutline"></i> <i
-						class="es-icon es-icon-staroutline"></i> <i
-						class="es-icon es-icon-staroutline"></i> <span>( 0人 )</span>
-				</div>
-				<div class="study clearfix">
-
-					<a class="btn btn-study"
-						href="/order/show?targetId={{vm.courses.id}}&amp;targetType=course"> 加入学习 </a>
-
-				</div>
-			</div>
-
-		</div>
-
-
-
-
-
-		<div class="course-about clearfix">
-			<div class="course-about-main">
-
-
-
-
-
-
-
-
-				<div class="course-detail">
-
-					<div class="nav-btn-tab">
-						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active"><a href="/course/6">课程概览</a></li>
-							<li role="presentation"><a href="/course/6/reviews/">评价</a>
-							</li>
-							<li role="presentation"><a href="/course/6/notes"> 笔记</a></li>
-
-						</ul>
-
-					</div>
-					<div class="course-detail-content" data-widget-cid="widget-1">
-
-						<div class="es-piece">
-							<div class="piece-header">课程介绍</div>
-							<div class="piece-body p-lg">
-								<div class="text-muted">{{vm.courses.introduction}}暂无课程简介</div>
-							</div>
-						</div>
-
-
-
-						<div class="es-piece">
-							<div class="piece-header">课时列表</div>
-							<div class="piece-body" ng-repeat="courses in vm.allcourses">
-								<ul class="period-list" id="course-item-list">
-								<li class="chapter clearfix" ng-if="courses.chapterType == 0">
-										<i class="es-icon es-icon-toc"></i> <span class="title">第{{courses.chapterNumber}}章：{{courses.chapterTitle}}</span>
-										<span class="period-show"><i
-											class="es-icon es-icon-remove"></i></span>
-									</li>
-									<li class="section" ng-if="courses.chapterType == 1"><span
-										class="title"> 第{{courses.chapterSeq}}节：
-											{{courses.chapterTitle}} </span></li>
-									<li class="period lesson-item lesson-item-63"
-										ng-if="courses.courseLessonTitle != null"><a
-										href="/course/6/learn#lesson/63"> <i
-											class="es-icon es-icon-done1 color-primary status-icon"></i>
-											{{courses.courseLessonTitle}} <span class="date"
-											title="视频时长01:19">01:19</span> <span class="course-type">
-												<i class="es-icon es-icon-videoclass" data-toggle="tooltip"
-												data-placement="top" title="视频课程"></i>
-										</span>
-									</a></li>
-								</ul>
-							</div>
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-			<div class="course-about-sidebar">
-				<div class="es-panel teacher-column">
-					<div class="panel-heading clearfix">
-						任课老师<span class="teacher-icon"></span>
-					</div>
-					<div class="panel-body">
-						<ul>
-							<li>
-								<div class="teacher-top clearfix">
-									<div class="avatar">
-										<a href="/user/1"><img src="{{vm.courses.userAvatar}}"></a>
-									</div>
-									<div class="teacher-name">
-										<a href="/user/1">{{vm.courses.userName}}</a>
-									</div>
-									<div class="teacher-position">{{vm.courses.userSex}}</div>
-								</div>
-								<div class="teacher-about">
-									<p>{{vm.courses.userEmail}}</p>
-
-								</div>
-							</li>
-
-						</ul>
-					</div>
-				</div>
-
-				<div class="es-panel student-column">
-					<div class="panel-heading clearfix">
-						最新学员<span class="student-icon"></span>
-					</div>
-					<div class="panel-body">
-						<ul>
-							<li><a class=" js-user-card" href="/user/5"
-								data-card-url="/user/5/card/show" data-user-id="5"> 
-								<img class="avatar-sm" src="/files/default/2015/05-22/161605518140577661.JPG?1.4.8">
-							</a></li>
-							<li><a class=" js-user-card" href="/user/8"
-								data-card-url="/user/8/card/show" data-user-id="8"> <img
-									class="avatar-sm"
-									src="/files/default/2015/10-10/13524080bee6731185.jpg?1.4.8">
-							</a></li>
-							<li><a class=" js-user-card" href="/user/9"
-								data-card-url="/user/9/card/show" data-user-id="9"> <img
-									class="avatar-sm"
-									src="/files/default/2015/05-26/09291395e01e087438.jpg?1.4.8">
-							</a></li>
-							<li><a class=" js-user-card" href="/user/17"
-								data-card-url="/user/17/card/show" data-user-id="17"> <img
-									class="avatar-sm" src="/assets/img/default/avatar.png?1.4.8">
-							</a></li>
-						</ul>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	<!--   <section class="footer-by">
-    <p>Powered by EduSoho v6.6.4 ©2014-2015 课程存档</p>
-    <p>课程内容版权均归 杭州阔知网络科技有限公司 所有 浙ICP备13006852号-1</p>
-  </section> -->
-</div>
-<!-- <div class="es-wrap">
+ <div class="es-wrap">
 	<div id="content-container" class="container">
 
 		<div class="clearfix course-detail-header-join">
@@ -317,7 +85,7 @@
 				<div class="metas hidden-xs hidden-sm">
 					<p class="student-num ">
 						<label for="">学员人数：</label><span class="text-primary">
-							{{vm.courseFavoriteId}}人</span>
+							{{vm.countUsers}}人</span>
 					</p>
 				</div>
 				<div class="content"></div>
@@ -427,21 +195,10 @@
 						最新学员<span class="student-icon"></span>
 					</div>
 					<div class="panel-body">
-						<ul>
-							<li><a class=" js-user-card" href="/user/5"
-								data-card-url="/user/5/card/show" data-user-id="5"> <img
-									class="avatar-sm"
-									src="/files/default/2015/05-22/161605518140577661.JPG?1.4.8">
-							</a></li>
-							<li><a class=" js-user-card" href="/user/8"
-								data-card-url="/user/8/card/show" data-user-id="8"> <img
-									class="avatar-sm"
-									src="/files/default/2015/10-10/13524080bee6731185.jpg?1.4.8">
-							</a></li>
-							<li><a class=" js-user-card" href="/user/9"
-								data-card-url="/user/9/card/show" data-user-id="9"> <img
-									class="avatar-sm"
-									src="/files/default/2015/05-26/09291395e01e087438.jpg?1.4.8">
+						<ul  ng-repeat="user in vm.allusers" >
+							<li><a class=" js-user-card" href="#/user/{{user.countUserId}}"
+								data-card-url="/user/5/card/show" data-user-id="5"> 
+								<img class="avatar-sm" src="{{user.avatar}}">
 							</a></li>
 						</ul>
 					</div>
@@ -451,113 +208,8 @@
 		</div>
 	</div>
 
-
-	<section class="friendlink">
-		<div class="container">
-			<h4>友情链接 :</h4>
-			<ul>
-				<li><a href="http://www.edusoho.com/" target="_blank">EduSoho</a></li>
-				<li><a href="http://www.qiqiuyu.com/" target="_blank">气球鱼学院</a></li>
-				<li><a href="http://www.howzhi.com/" target="_blank">好知网</a></li>
-			</ul>
-		</div>
-	</section>
-	<footer>
-		<div class="container">
-			<div class="row">
-
-				<div class="col-md-5 footer-link clearfix">
-					<div class="link-item ">
-						<h4>我是老师</h4>
-						<ul>
-							<li><a href="http://www.qiqiuyu.com/course/22"
-								target="_blank">发布课程</a></li>
-							<li><a href="http://www.qiqiuyu.com/course/147"
-								target="_blank">使用题库</a></li>
-							<li><a href="http://www.qiqiuyu.com/course/372"
-								target="_blank">教学资料库</a></li>
-						</ul>
-					</div>
-
-					<div class="link-item ">
-						<h4>我是管理员</h4>
-						<ul>
-							<li><a href="http://www.qiqiuyu.com/course/340"
-								target="_blank">系统设置</a></li>
-							<li><a href="http://www.qiqiuyu.com/course/341"
-								target="_blank">课程设置</a></li>
-							<li><a href="http://www.qiqiuyu.com/course/343"
-								target="_blank">用户管理</a></li>
-						</ul>
-					</div>
-
-					<div class="link-item ">
-						<h4>关于我们</h4>
-						<ul>
-							<li><a href="http://www.edusoho.com/" target="_blank">ES官网</a>
-							</li>
-							<li><a
-								href="http://weibo.com/qiqiuyu/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo"
-								target="_blank">官方微博</a></li>
-							<li><a href="http://www.edusoho.com/abouts/joinus"
-								target="_blank">加入我们</a></li>
-						</ul>
-					</div>
-
-				</div>
-
-				<div class="col-md-3 footer-attr hidden-sm hidden-xs">
-					<p>
-						<i class="glyphicon glyphicon-map-marker"></i> 浙江省杭州市滨江区南环路
-					</p>
-					<p>
-						<i class="es-icon es-icon-phone"></i> 0571-8681-9929
-					</p>
-					<p>
-						<i class="es-icon es-icon-mail"></i> support@edusoho.com
-					</p>
-				</div>
-
-				<div class="col-md-4 footer-logos hidden-sm hidden-xs footer-logo">
-					<a class="" href="http://www.edusoho.com" target="_blank"><img
-						src="/content/v2/img/bottom_logo.png?1.2.2" alt="建议图片大小为233*64"></a>
-					<div class="footer-sns">
-						<a href="http://weibo.com/edusoho" target="_blank"><i
-							class="es-icon es-icon-weibo"></i></a> <a class="qrcode-popover top">
-							<i class="es-icon es-icon-weixin"></i>
-							<div class="qrcode-content">
-								<img src="/content/img/default/weixin.png?1.2.2" alt="">
-							</div>
-						</a> <a class="qrcode-popover top"> <i
-							class="es-icon es-icon-apple"></i>
-							<div class="qrcode-content">
-								<img src="/content/img/default/apple.png?1.2.2" alt="">
-							</div>
-						</a> <a class="qrcode-popover top"> <i
-							class="es-icon es-icon-android"></i>
-							<div class="qrcode-content">
-								<img src="/content/img/default/android.png?1.2.2" alt="">
-							</div>
-						</a>
-					</div>
-				</div>
-
-
-
-			</div>
-		</div>
-		<div class="footer-by">
-			<div class="container">
-				Powered by <a href="" target="_blank">中智讯（武汉）科技有限公司</a> ©2014-2015 <a
-					class="mlm" href="" target="_blank">好知网</a> <a class="mlm"
-					href="/archive/course">课程存档</a>
-				<div class="mts"></div>
-			</div>
-			</section>
-	</footer>
 </div>
 
-侧边栏快捷操作
 <div class="es-bar hidden-xs">
 
 	左侧列表
@@ -744,7 +396,7 @@
 		</div>
 	</div>
 
-</div> -->
+</div>
 
 
 
