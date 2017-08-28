@@ -17,9 +17,16 @@
     <!-- endinject -->
     <!-- endbuild -->
     <!-- build:css content/css/main.css -->
-    <link rel="stylesheet" href="content/css/main.css">
-    <link rel="stylesheet" href="content/css/style.css">
     <link rel="stylesheet" href="content/css/luara.left.css">
+    <link rel="stylesheet" href="/content/base/v2/bootstrap/css/bootstrap.css?1.4.8"/>
+	<link rel="stylesheet" media="screen" href="/content/base/css/common.css?1.4.8" />
+	<link rel="stylesheet" media="screen" href="/content/base/css/font-awesome.min.css?1.4.8" />
+	<link rel="stylesheet" media="screen" href="/content/base/v2/css/es-icon.css?1.4.8" />
+	<link rel="stylesheet" media="screen" href="/content/base/v2/css/main.css?1.4.8" />
+	<link rel="stylesheet" media="screen" href="/content/base/themes/css/theme.css?1.4.8" />
+	<link rel="stylesheet" media="screen" href="/content/base/themes/css/iconfont.css?1.4.8" />
+	<link rel="stylesheet" href="content/css/main.css">
+	<link rel="stylesheet" href="content/css/style.css">
     <!-- endbuild -->
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.webapp" />
@@ -91,6 +98,10 @@
     <!-- build:js app/app.js  -->
     <!-- inject:js -->
     <script src="app/app.module.js"></script>
+    <script src="app/users/users-favorited.service.js"></script>
+    <script src="app/users/users.state.js"></script>
+    <script src="app/users/users.service.js"></script>
+    <script src="app/users/users.controller.js"></script>
     <script src="app/services/user/user.service.js"></script>
     <script src="app/services/profiles/profile.service.js"></script>
     <script src="app/services/profiles/page-ribbon.directive.js"></script>
@@ -237,6 +248,12 @@
     <script src="app/admin/user-management/user-management-delete-dialog.controller.js"></script>
     <script src="app/admin/user-management/user-management.state.js"></script>
     <script src="app/admin/user-management/user-management.controller.js"></script>
+    <script src="app/admin/course-management/course-management-dialog.controller.js"></script>
+    <script src="app/admin/course-management/course-management-detail.controller.js"></script>
+    <script src="app/admin/course-management/course-management-delete-dialog.controller.js"></script>
+    <script src="app/admin/course-management/course-management.state.js"></script>
+    <script src="app/admin/course-management/course-management.controller.js"></script>
+    <script src="app/admin/course-management/course-management.service.js"></script>
     <script src="app/admin/metrics/metrics.state.js"></script>
     <script src="app/admin/metrics/metrics.service.js"></script>
     <script src="app/admin/metrics/metrics.modal.controller.js"></script>

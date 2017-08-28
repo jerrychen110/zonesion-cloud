@@ -32,6 +32,7 @@
             "admin": {
                 "main": "管理",
                 "userManagement": "用户管理",
+                "courseManagement": "课程管理",
                 "tracker": "追踪使用者",
                 "metrics": "资源监控",
                 "health": "服务状态",
