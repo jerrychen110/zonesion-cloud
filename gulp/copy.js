@@ -18,7 +18,8 @@ module.exports = {
     fonts: fonts,
     common: common,
     swagger: swagger,
-    images: images
+    images: images,
+    img: img
 }
 
 var yorc = require('../.yo-rc.json')['generator-jhipster'];
@@ -53,10 +54,10 @@ function fonts() {
         .pipe(gulp.dest(config.dist)),
         gulp.src(config.app + 'content/**/*.{woff,woff2,svg,ttf,eot,otf}')
         .pipe(plumber({errorHandler: handleErrors}))
-        .pipe(changed(config.dist + 'content/fonts/'))
+        .pipe(changed(config.dist + 'content/css/fonts/'))
         .pipe(flatten())
         .pipe(rev())
-        .pipe(gulp.dest(config.dist + 'content/fonts/'))
+        .pipe(gulp.dest(config.dist + 'content/css/fonts/'))
         .pipe(rev.manifest(config.revManifest, {
             base: config.dist,
             merge: true
@@ -105,4 +106,11 @@ function images() {
         .pipe(plumber({errorHandler: handleErrors}))
         .pipe(changed(config.dist +  'content/images/'))
         .pipe(gulp.dest(config.dist +  'content/images/'));
+}
+
+function img() {
+    return gulp.src(config.app + 'content/img/*.{gif,jpg,png}')
+        .pipe(plumber({errorHandler: handleErrors}))
+        .pipe(changed(config.dist +  'content/img/'))
+        .pipe(gulp.dest(config.dist +  'content/img/'));
 }

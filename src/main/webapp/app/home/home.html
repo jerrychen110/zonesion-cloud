@@ -23,8 +23,8 @@
         </div>
     </div>
 </div> -->
-<section>
-    <div class="swiper-container">
+<section class="es-poster swiper-container">
+    <div>
         <ul>
             <li><img src="content/images/01.jpg" width="100%" height="500" alt="1"/></li>
             <li><img src="content/images/02.png" width="100%" height="500" alt="2"/></li>
@@ -40,10 +40,55 @@
     </div>
 </section>
 
+<section class="es-section section-gray" id="course-list">
+	<div class="container" style="width:94%;">
+		<div class="course-filter section-header" id="course-filter">
+			推荐课程
+			<div class="course-sort btn-group">
+				<a href="#" class="btn btn-default js-course-filter">最新</a>
+            	<a href="#/hot" class="btn btn-default js-course-filter">最热</a>
+            	<a href="#/recommended" class="btn btn-default js-course-filter">推荐</a>
+			</div>
+		</div>
+		
+		<div class="section-bodyer">
+			<div class="home-course-list row">
+				<div class="col-md-4 col-sm-6" ng-repeat="course in vm.courses">
+					<div class="course-item">
+						<div class="course-img">
+		          			<a ui-sref="courses({id:course.id,countUser:course.countUserId})"><img class="img-responsive" ng-src="{{course.coverPicture}}" alt=""/></a>
+						</div>
+			          	<div class="course-caption">
+			            	<div class="title">
+			            		<a href="#" ui-sref="{{course.id}}">{{course.title}}</a>
+			            	</div>
+			            	<div class="metas clearfix">
+				                <span class="teacher-name">
+				                    <i class="es-icon iconfont"></i>
+				                    {{vm.account.login}}
+				                </span>
+				                <span class="student-mun">
+				                    <i class="es-icon es-icon-people mrm"></i>
+				                    {{course.courseReviewId}}
+				                </span>
+				                <!--<a href="#" class="Gratiss">免费</a>-->
+			            	</div>
+			          	</div>
+					</div>
+		        </div>
+			</div>
+			<div class="text-center mvl">
+				<a href="#" class="btn btn-gylight btn-md">更多 ></a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!--
 <div class="course">
-    <div class="course-filter section-header">
+    <div class="course-filter section-header" id="course-filter">
         <p class="course-bar">推荐课程</p>
-        <div class="course-sort">
+        <div class="course-sort btn-group">
             <a href="#" class="newest">最新</a>
             <a href="#/hot" >最热</a>
             <a href="#/recommended" class="hottest">推荐</a>
@@ -77,3 +122,4 @@
         </a>
     </div>
 </div>
+-->

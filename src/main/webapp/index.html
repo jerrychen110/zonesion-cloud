@@ -18,13 +18,13 @@
     <!-- endbuild -->
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/luara.left.css">
-    <link rel="stylesheet" href="/content/base/v2/bootstrap/css/bootstrap.css?1.4.8"/>
-	<link rel="stylesheet" media="screen" href="/content/base/css/common.css?1.4.8" />
-	<link rel="stylesheet" media="screen" href="/content/base/css/font-awesome.min.css?1.4.8" />
-	<link rel="stylesheet" media="screen" href="/content/base/v2/css/es-icon.css?1.4.8" />
-	<link rel="stylesheet" media="screen" href="/content/base/v2/css/main.css?1.4.8" />
-	<link rel="stylesheet" media="screen" href="/content/base/themes/css/theme.css?1.4.8" />
-	<link rel="stylesheet" media="screen" href="/content/base/themes/css/iconfont.css?1.4.8" />
+    <link rel="stylesheet" href="content/base/v2/bootstrap/css/bootstrap.css"/>
+	<link rel="stylesheet" media="screen" href="content/base/css/common.css" />
+	<link rel="stylesheet" media="screen" href="content/base/css/font-awesome.min.css" />
+	<link rel="stylesheet" media="screen" href="content/base/v2/css/es-icon.css" />
+	<link rel="stylesheet" media="screen" href="content/base/v2/css/main.css" />
+	<link rel="stylesheet" media="screen" href="content/base/themes/css/theme.css" />
+	<link rel="stylesheet" media="screen" href="content/base/themes/css/iconfont.css" />
 	<link rel="stylesheet" href="content/css/main.css">
 	<link rel="stylesheet" href="content/css/style.css">
     <!-- endbuild -->
@@ -38,13 +38,13 @@
     <!-- pageribbon属于angular自定义标签 -->
     <page-ribbon></page-ribbon>
     <div ui-view="navbar" ng-cloak></div>
-    <div class="container">
+    <div class="es-wrap">
         <div class="well" ui-view="content">
             <!-- Angular views -->
         </div>
     </div>
     <div class="footer" ng-cloak>
-        <p data-translate="footer">This is your footer</p> 
+        <p data-translate="footer">中智讯（武汉）科技有限公司</p>
     </div>
     <noscript>
         <h1>You must enable javascript to view this page.</h1>
@@ -98,6 +98,10 @@
     <!-- build:js app/app.js  -->
     <!-- inject:js -->
     <script src="app/app.module.js"></script>
+    <script src="app/users/users-favorited.service.js"></script>
+    <script src="app/users/users.state.js"></script>
+    <script src="app/users/users.service.js"></script>
+    <script src="app/users/users.controller.js"></script>
     <script src="app/services/user/user.service.js"></script>
     <script src="app/services/profiles/profile.service.js"></script>
     <script src="app/services/profiles/page-ribbon.directive.js"></script>
@@ -115,36 +119,15 @@
     <script src="app/layouts/navbar/navbar.controller.js"></script>
     <script src="app/layouts/navbar/active-menu.directive.js"></script>
     <script src="app/layouts/error/error.state.js"></script>
-    <!-- HOME -->
-    <script src="app/home/home.state.js"></script>
-    <script src="app/home/home.service.js"></script>
-    <script src="app/home/home.controller.js"></script>
+    <script src="app/home/home-recommended.service.js"></script>
+    <script src="app/home/home-recommended.controller.js"></script>
     <script src="app/home/home-newest.service.js"></script>
     <script src="app/home/home-newest.controller.js"></script>
     <script src="app/home/home-hot.service.js"></script>
     <script src="app/home/home-hot.controller.js"></script>
-    <script src="app/home/home-recommended.service.js"></script>
-    <script src="app/home/home-recommended.controller.js"></script>
-    
-    <!-- HOME COURSES -->
-    <script src="app/courses/courses.state.js"></script>
-    <script src="app/courses/courses.service.js"></script>
-    <script src="app/courses/courses.controller.js"></script>
-    
-    <!-- JOIN COURSES -->
-    <script src="app/courses/join/join.state.js"></script>
-    <!--<script src="app/courses/join/join.service.js"></script>-->
-    <script src="app/courses/join/join.controller.js"></script>
-    
-    <!-- EXPLORE COURSE -->
-    <script src="app/courses/explore/explore.state.js"></script>
-    <script src="app/courses/explore/explore.service.js"></script>
-    <script src="app/courses/explore/explore.controller.js"></script>
-    
-    <script src="app/users/users.state.js"></script>
-    <script src="app/users/users.service.js"></script>
-    <script src="app/users/users.controller.js"></script>
-    <script src="app/users/users-favorited.service.js"></script>
+    <script src="app/home/home.state.js"></script>
+    <script src="app/home/home.service.js"></script>
+    <script src="app/home/home.controller.js"></script>
     <script src="app/entities/major/major-dialog.controller.js"></script>
     <script src="app/entities/major/major-detail.controller.js"></script>
     <script src="app/entities/major/major-delete-dialog.controller.js"></script>
@@ -212,7 +195,14 @@
     <script src="app/entities/chapter/chapter.state.js"></script>
     <script src="app/entities/chapter/chapter.service.js"></script>
     <script src="app/entities/chapter/chapter.controller.js"></script>
-
+    <script src="app/courses/join/join.state.js"></script>
+    <script src="app/courses/join/join.controller.js"></script>
+    <script src="app/courses/explore/explore.state.js"></script>
+    <script src="app/courses/explore/explore.service.js"></script>
+    <script src="app/courses/explore/explore.controller.js"></script>
+    <script src="app/courses/courses.state.js"></script>
+    <script src="app/courses/courses.service.js"></script>
+    <script src="app/courses/courses.controller.js"></script>
     <script src="app/components/util/truncate-words.filter.js"></script>
     <script src="app/components/util/truncate-characters.filter.js"></script>
     <script src="app/components/util/sort-by.directive.js"></script>
@@ -261,12 +251,6 @@
     <script src="app/admin/user-management/user-management-delete-dialog.controller.js"></script>
     <script src="app/admin/user-management/user-management.state.js"></script>
     <script src="app/admin/user-management/user-management.controller.js"></script>
-    <!--<script src="app/admin/course-management/course-management-dialog.controller.js"></script>-->
-    <!--<script src="app/admin/course-management/course-management-detail.controller.js"></script>-->
-    <!--<script src="app/admin/course-management/course-management-delete-dialog.controller.js"></script>-->
-    <script src="app/admin/course-management/course-management.state.js"></script>
-    <script src="app/admin/course-management/course-management.controller.js"></script>
-    <script src="app/admin/course-management/course-management.service.js"></script>
     <script src="app/admin/metrics/metrics.state.js"></script>
     <script src="app/admin/metrics/metrics.service.js"></script>
     <script src="app/admin/metrics/metrics.modal.controller.js"></script>
@@ -279,6 +263,9 @@
     <script src="app/admin/health/health.modal.controller.js"></script>
     <script src="app/admin/health/health.controller.js"></script>
     <script src="app/admin/docs/docs.state.js"></script>
+    <script src="app/admin/course-management/course-management.state.js"></script>
+    <script src="app/admin/course-management/course-management.service.js"></script>
+    <script src="app/admin/course-management/course-management.controller.js"></script>
     <script src="app/admin/configuration/configuration.state.js"></script>
     <script src="app/admin/configuration/configuration.service.js"></script>
     <script src="app/admin/configuration/configuration.controller.js"></script>
