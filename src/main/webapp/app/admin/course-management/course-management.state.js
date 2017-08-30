@@ -22,7 +22,8 @@
                     controller: 'CourseManagementController',
                     controllerAs: 'vm'
                 }
-            },            params: {
+            },
+            params: {
                 page: {
                     value: '1',
                     squash: true
@@ -31,22 +32,9 @@
                     value: 'id,asc',
                     squash: true
                 }
-            },
-            resolve: {
-                pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
-                    return {
-                        page: PaginationUtil.parsePage($stateParams.page),
-                        sort: $stateParams.sort,
-                        predicate: PaginationUtil.parsePredicate($stateParams.sort),
-                        ascending: PaginationUtil.parseAscending($stateParams.sort)
-                    };
-                }],
-                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('course-management');
-                    return $translate.refresh();
-                }]
-
-            }        })
+            }
+        })
+        /*
         .state('course-management.new', {
             url: '/new',
             data: {
@@ -76,6 +64,91 @@
                 });
             }]
         })
+        */
+        
+        
+        .state('course-management-self-list', {
+            parent: 'course-management',
+            url: '/course-management-self-list?page&sort',
+            data: {
+                authorities: ['ROLE_ADMIN'],
+                pageTitle: 'courseManagement.home.title'
+            },
+            views: {
+                'course-management-sub@': {
+                    templateUrl: 'app/admin/course-management/course-management-self-list.html',
+                    controller: 'CourseManagementSelfListController',
+                    controllerAs: 'vm'
+                }
+            },
+            params: {
+                page: {
+                    value: '1',
+                    squash: true
+                },
+                sort: {
+                    value: 'id,asc',
+                    squash: true
+                }
+            },
+            resolve: {
+                pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
+                    return {
+                        page: PaginationUtil.parsePage($stateParams.page),
+                        sort: $stateParams.sort,
+                        predicate: PaginationUtil.parsePredicate($stateParams.sort),
+                        ascending: PaginationUtil.parseAscending($stateParams.sort)
+                    };
+                }],
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('course-management');
+                    return $translate.refresh();
+                }]
+            }
+        })
+        
+        .state('course-management-other-list', {
+            parent: 'course-management',
+            url: '/course-management-other-list?page&sort',
+            data: {
+                authorities: ['ROLE_ADMIN'],
+                pageTitle: 'courseManagement.home.title'
+            },
+            views: {
+                'course-management-sub@': {
+                    templateUrl: 'app/admin/course-management/course-management-other-list.html',
+                    controller: 'CourseManagementOtherListController',
+                    controllerAs: 'vm'
+                }
+            },
+            params: {
+                page: {
+                    value: '1',
+                    squash: true
+                },
+                sort: {
+                    value: 'id,asc',
+                    squash: true
+                }
+            },
+            resolve: {
+                pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
+                    return {
+                        page: PaginationUtil.parsePage($stateParams.page),
+                        sort: $stateParams.sort,
+                        predicate: PaginationUtil.parsePredicate($stateParams.sort),
+                        ascending: PaginationUtil.parseAscending($stateParams.sort)
+                    };
+                }],
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('course-management');
+                    return $translate.refresh();
+                }]
+            }
+        })
+        
+        
+        /*
         .state('course-management.edit', {
             url: '/{login}/edit',
             data: {
@@ -143,6 +216,6 @@
                     $state.go('^');
                 });
             }]
-        });
+        });*/
     }
 })();

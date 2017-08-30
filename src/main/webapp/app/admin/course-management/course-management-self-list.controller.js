@@ -3,30 +3,30 @@
 
     angular
         .module('zonesionCloudApplicationApp')
-        .controller('CourseManagementController', CourseManagementController);
+        .controller('CourseManagementSelfListController', CourseManagementSelfListController);
 
-    CourseManagementController.$inject = ['Principal', 'User', 'ParseLinks', 'AlertService', '$state', 'JhiLanguageService', 'CourseManagementService'];
+    CourseManagementSelfListController.$inject = ['Principal', 'User', 'ParseLinks', 'AlertService', '$state', 'pagingParams', 'paginationConstants', 'JhiLanguageService'];
 
-    function CourseManagementController(Principal, User, ParseLinks, AlertService, $state, JhiLanguageService, CourseManagementService) {
+    function CourseManagementSelfListController(Principal, User, ParseLinks, AlertService, $state, pagingParams, paginationConstants, JhiLanguageService) {
         var vm = this;
 
         vm.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         vm.currentAccount = null;
         vm.languages = null;
-        //vm.loadAll = loadAll;
-        //vm.setActive = setActive;
+        vm.loadAll = loadAll;
+        vm.setActive = setActive;
         vm.users = [];
         vm.page = 1;
         vm.totalItems = null;
         vm.clear = clear;
         vm.links = null;
-        //vm.loadPage = loadPage;
-        //vm.predicate = pagingParams.predicate;
-        //vm.reverse = pagingParams.ascending;
-        //vm.itemsPerPage = paginationConstants.itemsPerPage;
+        vm.loadPage = loadPage;
+        vm.predicate = pagingParams.predicate;
+        vm.reverse = pagingParams.ascending;
+        vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.transition = transition;
 
-        //vm.loadAll();
+        vm.loadAll();
         JhiLanguageService.getAll().then(function (languages) {
             vm.languages = languages;
         });
