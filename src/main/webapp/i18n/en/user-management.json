@@ -29,6 +29,7 @@
         "createdBy": "创建者",
         "createdDate": "创建时间",
         "lastModifiedBy": "修改者",
-        "lastModifiedDate": "修改时间"
+        "lastModifiedDate": "修改时间",
+        "operate": "操作"
     }
 }

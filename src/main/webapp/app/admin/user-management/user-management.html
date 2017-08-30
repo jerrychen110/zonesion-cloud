@@ -15,12 +15,12 @@
                 <th jh-sort-by="id"><span data-translate="global.field.id">ID</span><span class="glyphicon glyphicon-sort"></span></th>
                 <th jh-sort-by="login"><span data-translate="userManagement.login">Login</span> <span class="glyphicon glyphicon-sort"></span></th>
                 <th jh-sort-by="email"><span data-translate="userManagement.email">Email</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="name"><span data-translate="userManagement.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                 <th></th>
                 <th></th>
+                <th jh-sort-by="createdBy"><span data-translate="userManagement.createdBy">Created By</span> <span class="glyphicon glyphicon-sort"></span></th>
                 <th jh-sort-by="createdDate"><span data-translate="userManagement.createdDate">Created Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                <th jh-sort-by="lastModifiedBy"><span data-translate="userManagement.lastModifiedBy">Last Modified By</span> <span class="glyphicon glyphicon-sort"></span></th>
-                <th jh-sort-by="lastModifiedDate"><span data-translate="userManagement.lastModifiedDate">Last Modified Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                <th></th>
+                <th style="text-align:center"><span data-translate="userManagement.operate">Operate</span></th>
             </tr>
             </thead>
             <tbody>
@@ -28,6 +28,7 @@
                 <td><a ui-sref="user-management-detail({login:user.login})">{{user.id}}</a></td>
                 <td>{{user.login}}</td>
                 <td>{{user.email}}</td>
+                <td>{{user.name}}</td>
                 <td>
                     <button class="btn btn-danger btn-xs" ng-click="vm.setActive(user, true)" ng-show="!user.activated"
                             data-translate="userManagement.deactivated">Deactivated</button>
@@ -39,9 +40,8 @@
                         <span class="label label-info">{{ authority }}</span>
                     </div>
                 </td>
+                <td>{{user.createdBy}}</td>
                 <td>{{user.createdDate | date:'dd/MM/yy HH:mm'}}</td>
-                <td>{{user.lastModifiedBy}}</td>
-                <td>{{user.lastModifiedDate | date:'dd/MM/yy HH:mm'}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
