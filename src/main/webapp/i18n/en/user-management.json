@@ -1,34 +1,34 @@
 {
     "userManagement": {
         "home": {
-            "title": "Users",
-            "createLabel": "Create a new user",
-            "createOrEditLabel": "Create or edit a user"
+            "title": "用户",
+            "createLabel": "新增用户",
+            "createOrEditLabel": "新增或编辑用户"
         },
-        "created": "A new user is created with identifier {{ param }}",
-        "updated": "An user is updated with identifier {{ param }}",
-        "deleted": "An user is deleted with identifier {{ param }}",
+        "created": "{{ param }} 用户已创建",
+        "updated": "{{ param }} 用户信息已更新",
+        "deleted": "{{ param }} 用户已删除",
         "delete": {
-            "question": "Are you sure you want to delete user {{ login }}?"
+            "question": "确定要删除用户 {{ login }}?"
         },
         "detail": {
-            "title": "User"
+            "title": "用户"
         },
-        "login": "Login",
-        "name": "Name",
-        "avatar": "Avatar",
-        "email": "Email",
-        "mobile": "Mobile",
-        "sex": "Sex",
-        "staffNo": "StaffNo",
-        "major": "Major",
-        "school": "School",
-        "activated": "Activated",
-        "deactivated": "Deactivated",
-        "profiles": "Profiles",
-        "createdBy": "Created by",
-        "createdDate": "Created date",
-        "lastModifiedBy": "Modified by",
-        "lastModifiedDate": "Modified date"
+        "login": "用户名",
+        "name": "姓名",
+        "avatar": "头像",
+        "email": "电子邮箱",
+        "mobile": "手机号码",
+        "sex": "性别",
+        "staffNo": "教职工工号或学生学号",
+        "major": "专业",
+        "school": "学校",
+        "activated": "已激活",
+        "deactivated": "未激活",
+        "profiles": "角色",
+        "createdBy": "创建者",
+        "createdDate": "创建时间",
+        "lastModifiedBy": "修改者",
+        "lastModifiedDate": "修改时间"
     }
 }

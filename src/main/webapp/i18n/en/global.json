@@ -74,21 +74,21 @@
             },
             "validate": {
                 "newpassword": {
-                    "required": "Your password is required.",
-                    "minlength": "Your password is required to be at least 4 characters.",
-                    "maxlength": "Your password cannot be longer than 50 characters.",
-                    "strength": "Password strength:"
+                    "required": "密码不能为空。",
+                    "minlength": "密码至少为4个字符。",
+                    "maxlength": "密码不能超过50个字符。",
+                    "strength": "密码安全级别:"
                 },
                 "confirmpassword": {
-                    "required": "Your confirmation password is required.",
-                    "minlength": "Your confirmation password is required to be at least 4 characters.",
-                    "maxlength": "Your confirmation password cannot be longer than 50 characters."
+                    "required": "确认密码不能为空。",
+                    "minlength": "确认密码至少为4个字符。",
+                    "maxlength": "确认密码不能超过50个字符。"
                 },
                 "email": {
-                    "required": "Your email is required.",
-                    "invalid": "Your email is invalid.",
-                    "minlength": "Your email is required to be at least 5 characters.",
-                    "maxlength": "Your email cannot be longer than 50 characters."
+                    "required": "邮箱不能为空。",
+                    "invalid": "邮箱格式不对。",
+                    "minlength": "邮箱至少为4个字符。",
+                    "maxlength": "邮箱不能超过50个字符。"
                 }
             }
         },
@@ -103,7 +103,7 @@
     "entity": {
         "action": {
             "addblob": "Add blob",
-            "addimage": "Add image",
+            "addimage": "添加图片",
             "back": "返回",
             "cancel": "取消",
             "delete": "删除",
