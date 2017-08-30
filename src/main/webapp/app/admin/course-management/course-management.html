@@ -3,13 +3,22 @@
 		<div class="row row-3-9">
 			<div class="col-md-3">
 				<div class="sidenav">
-					<ul class="list-group">
+					<ul class="list-group" has-authority="ROLE_ADMIN">
+						<li class="list-group-heading">课程管理</li>
+						<li class="list-group-item active">
+							<a href="/course-management-self-list">自有课程</a>
+						</li>
+						<li class="list-group-item">
+							<a href="/course-management-other-list">其他课程</a>
+						</li>
+					</ul>
+					<ul class="list-group" has-authority="ROLE_TEACHER">
 						<li class="list-group-heading">我的教学</li>
 						<li class="list-group-item active">
 							<a href="/my/courses/teaching">在教课程</a>
 						</li>
 					</ul>
-					<ul class="list-group">
+					<ul class="list-group" has-authority="ROLE_STUDENT">
 						<li class="list-group-heading">我的学习</li>
 						<li class="list-group-item">
 							<a href="/my/courses/learning">我的课程</a>
@@ -34,7 +43,9 @@
 						</span>
 						在教课程
 					</div>
-					<div class="panel-body"></div>
+					<div class="panel-body" ui-view="">
+						<!-- Angular views -->
+					</div>
 				</div>
 			</div>
 		</div>
