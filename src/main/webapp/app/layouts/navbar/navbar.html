@@ -112,28 +112,34 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
+                    	<li ui-sref-active="active" ng-switch-when="true">
+                            <a ui-sref="user" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-wrench"></span>&nbsp;
+                                <span data-translate="global.menu.account.myhome">我的主页</span>
+                            </a>
+                        </li>
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="settings" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-wrench"></span>&nbsp;
-                                <span data-translate="global.menu.account.settings">Settings</span>
+                                <span data-translate="global.menu.account.settings">个人设置</span>
                             </a>
                         </li>
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="password" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-lock"></span>&nbsp;
-                                <span data-translate="global.menu.account.password">Password</span>
+                                <span data-translate="global.menu.account.password">修改密码</span>
                             </a>
                         </li>
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a href="" ng-click="vm.logout()" id="logout">
                                 <span class="glyphicon glyphicon-log-out"></span>&nbsp;
-                                <span data-translate="global.menu.account.logout">Sign out</span>
+                                <span data-translate="global.menu.account.logout">退出</span>
                             </a>
                         </li>
                         <li ui-sref-active="active" ng-switch-when="false">
                             <a href="" ng-click="vm.login()" id="login">
                                 <span class="glyphicon glyphicon-log-in"></span>&nbsp;
-                                <span data-translate="global.menu.account.login">Sign in</span>
+                                <span data-translate="global.menu.account.login">登录</span>
                             </a>
                         </li>
                         <!--

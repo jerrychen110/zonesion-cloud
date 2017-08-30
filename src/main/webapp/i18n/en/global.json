@@ -22,6 +22,7 @@
             },
             "account": {
                 "main": "账号",
+                "myhome": "我的主页",
                 "settings": "个人设置",
                 "password": "修改密码",
                 "sessions": "会话",
