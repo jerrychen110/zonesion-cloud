@@ -15,6 +15,10 @@
                     templateUrl: 'app/layouts/navbar/navbar.html',
                     controller: 'NavbarController',
                     controllerAs: 'vm'
+                },
+                'sidenav@': {
+                    templateUrl: 'app/layouts/sidenav/sidenav.html',
+                    controller: 'SidenavController'
                 }
             },
             resolve: {

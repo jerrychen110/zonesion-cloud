@@ -18,7 +18,8 @@ var gulp = require('gulp'),
     KarmaServer = require('karma').Server,
     plumber = require('gulp-plumber'),
     changed = require('gulp-changed'),
-    gulpIf = require('gulp-if');
+    gulpIf = require('gulp-if'),
+    sass = require('gulp-sass');
 
 var handleErrors = require('./gulp/handle-errors'),
     serve = require('./gulp/serve'),
@@ -66,7 +67,18 @@ gulp.task('images', function () {
 });
 */
 
-gulp.task('styles', [], function () {
+gulp.task('sass', function(){
+    //sass()方法用于转换sass到css
+  return gulp.src(config.sassSrc)
+    .pipe(sass()) // Converts Sass to CSS with gulp-sass
+    .on("error", function(error) {
+      console.log(error.toString());
+      this.emit("end");
+    })
+    .pipe(gulp.dest(config.cssDir))
+});
+
+gulp.task('styles', ['sass'], function () {
     return gulp.src(config.app + 'content/css')
         .pipe(browserSync.reload({stream: true}));
 });
@@ -177,8 +189,9 @@ gulp.task('itest', ['protractor']);
 gulp.task('watch', function () {
     gulp.watch('bower.json', ['install']);
     gulp.watch(['gulpfile.js', 'pom.xml'], ['ngconstant:dev']);
-    gulp.watch(config.app + 'content/css/**/*.css', ['styles']);
+    // gulp.watch(config.app + 'content/css/**/*.css', ['styles']);
     //gulp.watch(config.app + 'content/images/**', ['images']);
+    gulp.watch(config.sassSrc, ['styles']);
     gulp.watch(config.app + 'app/**/*.js', ['inject:app']);
     gulp.watch([config.app + '*.html', config.app + 'app/**', config.app + 'i18n/**']).on('change', browserSync.reload);
 });

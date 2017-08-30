@@ -70,5 +70,8 @@
   "scripts": {
     "test": "gulp test",
     "postinstall": "webdriver-manager update"
+  },
+  "dependencies": {
+    "gulp-sass": "^3.1.0"
   }
 }
