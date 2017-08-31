@@ -18,7 +18,8 @@
                 },
                 'sidenav@': {
                     templateUrl: 'app/layouts/sidenav/sidenav.html',
-                    controller: 'SidenavController'
+                    controller: 'SidenavController',
+                    controllerAs: 'vm'
                 }
             },
             resolve: {

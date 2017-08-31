@@ -1,0 +1,179 @@
+.last-col {
+  overflow: hidden; }
+
+.ptn, .pvn, .pan {
+  padding-top: 0; }
+
+.ptxs {
+  padding-top: 7px; }
+
+.ptx, .pvx, .pax {
+  padding-top: 3px; }
+
+.pts, .pvs, .pas {
+  padding-top: 5px; }
+
+.ptm, .pvm, .pam {
+  padding-top: 10px; }
+
+.ptl, .pvl, .pal {
+  padding-top: 20px; }
+
+.prn, .phn, .pan {
+  padding-right: 0; }
+
+.prx, .phx, .pax {
+  padding-right: 3px; }
+
+.prs, .phs, .pas {
+  padding-right: 5px; }
+
+.prxs {
+  padding-right: 8px; }
+
+.prm, .phm, .pam {
+  padding-right: 10px; }
+
+.prl, .phl, .pal {
+  padding-right: 20px; }
+
+.pbn, .pvn, .pan {
+  padding-bottom: 0; }
+
+.pbx, .pvx, .pax {
+  padding-bottom: 3px; }
+
+.pbs, .pvs, .pas {
+  padding-bottom: 5px; }
+
+.pbm, .pvm, .pam {
+  padding-bottom: 10px; }
+
+.pbl, .pvl, .pal {
+  padding-bottom: 20px; }
+
+.pln, .phn, .pan {
+  padding-left: 0; }
+
+.plx, .phx, .pax {
+  padding-left: 3px; }
+
+.pls, .phs, .pas {
+  padding-left: 5px; }
+
+.plxs {
+  padding-left: 8px; }
+
+.plm, .phm, .pam {
+  padding-left: 10px; }
+
+.pll, .phl, .pal {
+  padding-left: 20px; }
+
+.plxxl {
+  padding-left: 50px; }
+
+.mtn, .mvn, .man {
+  margin-top: 0px; }
+
+.mtx, .mvx, .max {
+  margin-top: 3px; }
+
+.mts, .mvs, .mas {
+  margin-top: 5px; }
+
+.mtm, .mvm, .mam {
+  margin-top: 10px; }
+
+.mtxm {
+  margin-top: 12px; }
+
+.mtl, .mvl, .mal {
+  margin-top: 20px; }
+
+.mtsv, .mvsv, .masv {
+  margin-top: 70px; }
+
+.mrn, .mhn, .man {
+  margin-right: 0px; }
+
+.mrx, .mhx, .max {
+  margin-right: 3px; }
+
+.mrs, .mhs, .mas {
+  margin-right: 5px; }
+
+.mrm, .mhm, .mam {
+  margin-right: 10px; }
+
+.mrl, .mhl, .mal {
+  margin-right: 20px; }
+
+.mrsl {
+  margin-right: 15px; }
+
+.mbn, .mvn, .man {
+  margin-bottom: 0px; }
+
+.mbx, .mvx, .max {
+  margin-bottom: 3px; }
+
+.mbs, .mvs, .mas {
+  margin-bottom: 5px; }
+
+.mbm, .mvm, .mam {
+  margin-bottom: 10px; }
+
+.mbl, .mvl, .mal {
+  margin-bottom: 20px; }
+
+.mbsl {
+  margin-bottom: 15px; }
+
+.mbxl {
+  margin-bottom: 30px; }
+
+.mln, .mhn, .man {
+  margin-left: 0px; }
+
+.mlx, .mhx, .max {
+  margin-left: 3px; }
+
+.mls, .mhs, .mas {
+  margin-left: 5px; }
+
+.mlm, .mhm, .mam {
+  margin-left: 10px; }
+
+.mll, .mhl, .mal {
+  margin-left: 20px; }
+
+.ptb, .pvb, .pab {
+  padding-top: 15px; }
+
+.prb, .phb, .pab {
+  padding-right: 15px; }
+
+.pbb, .pvb, .pab {
+  padding-bottom: 15px; }
+
+.plb, .phb, .pab {
+  padding-left: 15px; }
+
+.mtb, .mvb, .mab {
+  margin-top: 15px; }
+
+.mrb, .mhb, .mab {
+  margin-right: 15px; }
+
+.mbb, .mvb, .mab {
+  margin-bottom: 15px; }
+
+.mlb, .mhb, .mab {
+  margin-left: 15px; }
+
+.mre, .mhe, .mae {
+  margin-right: 18px; }
+
+.pre, .phe, .pae {
+  padding-right: 18px; }
