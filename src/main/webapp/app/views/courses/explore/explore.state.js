@@ -9,20 +9,21 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('join', {
+        .state('explore', {
             parent: 'app',
-            url: '/join/{id}',
+            url: '/course/explore?pageNo={number}&pageSize={size}&filters={filter}',
+            /*params: {"number":null,"size":null,"filter":null},*/
             data: {
-                authorities: ['ROLE_USER']
+                authorities: []
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/courses/join/join.html',
-                    controller: 'JoinController',
+                    templateUrl: 'app/views/courses/explore/explore.html',
+                    controller: 'ExploreController',
                     controllerAs: 'vm'
                 }
             }
         });
-        
+
     }
 })();

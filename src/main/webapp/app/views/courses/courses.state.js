@@ -8,7 +8,7 @@
     stateConfig.$inject = ['$stateProvider'];
 
     function stateConfig($stateProvider) {
-        $stateProvider      
+        $stateProvider
         .state('courses', {
             parent: 'app',
             url: '/courses/{id}',
@@ -17,7 +17,7 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/courses/courses.html',
+                    templateUrl: 'app/views/courses/courses.html',
                     controller: 'CoursesController',
                     controllerAs: 'vm'
                 }
