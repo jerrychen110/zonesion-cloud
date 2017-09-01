@@ -14,11 +14,11 @@
                 <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.authenticated" translate-compile>
                     If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user1" and password="user") <br/>- User (login="user2" and password="user").
                 </div>
-				
+
                 <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.register" translate-compile>
                     You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -45,22 +45,22 @@
 		<div class="course-filter section-header" id="course-filter">
 			推荐课程
 			<div class="course-sort btn-group">
-				<a href="#" class="btn btn-default js-course-filter">最新</a>
-            	<a href="#/hot" class="btn btn-default js-course-filter">最热</a>
-            	<a href="#/recommended" class="btn btn-default js-course-filter">推荐</a>
+				<a class="btn btn-default js-course-filter" ng-click="vm.getCourse('new')">最新</a>
+        <a class="btn btn-default js-course-filter" ng-click="vm.getCourse('hot')">最热</a>
+        <a class="btn btn-default js-course-filter" ng-click="vm.getCourse('recommend')">推荐</a>
 			</div>
 		</div>
-		
+
 		<div class="section-bodyer">
 			<div class="home-course-list row">
 				<div class="col-md-4 col-sm-6" ng-repeat="course in vm.courses">
-					<div class="course-item">
+					<div class="course-item" ui-sref="courses({id:course.id,countUser:course.countUserId})">
 						<div class="course-img">
-		          			<a ui-sref="courses({id:course.id,countUser:course.countUserId})"><img class="img-responsive" ng-src="{{course.coverPicture}}" alt=""/></a>
+		          			<a href="#" ><img class="img-responsive" ng-src="{{course.coverPicture}}" alt=""/></a>
 						</div>
 			          	<div class="course-caption">
 			            	<div class="title">
-			            		<a href="#" ui-sref="{{course.id}}">{{course.title}}</a>
+			            		<a href="#">{{course.title}}</a>
 			            	</div>
 			            	<div class="metas clearfix">
 				                <span class="teacher-name">

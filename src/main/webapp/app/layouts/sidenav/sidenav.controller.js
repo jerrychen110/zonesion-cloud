@@ -9,7 +9,6 @@
 
     function SidenavController ($state, Auth, Principal, ProfileService, LoginService,$sce,SERVICEHTML) {
         var vm = this;
-         $("[data-toggle='tooltip']").tooltip();
          vm.htmlTooltip = $sce.trustAsHtml(SERVICEHTML);
     }
 })();
