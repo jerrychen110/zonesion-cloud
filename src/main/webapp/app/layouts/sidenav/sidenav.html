@@ -7,26 +7,35 @@
     <a href="javascript:;">学<br>习<br>中<br>心
           </a>
   </li>
-    <li data-id="#bar-homework" data-toggle="tooltip" data-placement="left" title="" data-original-title="我的考试/作业"><a href="javascript:;" data-url="/esbar/my/practice/reviewing"><i class="es-icon es-icon-edit"></i></a></li>    <li data-id="#bar-course-list" data-toggle="tooltip" data-placement="left" title="" data-original-title="我的课程/专业"><a href="javascript:;" data-url="/esbar/my/course"><i class="es-icon es-icon-book"></i></a></li>      <li data-id="#bar-message" data-toggle="tooltip" data-placement="left" title="" data-original-title="通知">
+    <li data-id="#bar-homework" uib-tooltip="我的考试/作业" tooltip-placement="left" >
+      <a href="javascript:;" data-url="/esbar/my/practice/reviewing">
+        <i class="es-icon es-icon-edit"></i>
+      </a>
+    </li>
+    <li data-id="#bar-course-list" uib-tooltip="我的课程/专业" tooltip-placement="left" >
+      <a href="javascript:;" data-url="/esbar/my/course">
+        <i class="es-icon es-icon-book"></i>
+      </a>
+    </li>
+    <li data-id="#bar-message" uib-tooltip="通知" tooltip-placement="left" >
     <a href="javascript:;" data-url="/esbar/my/notify">
-              <i class="es-icon es-icon-notifications"></i>
-          </a>
+      <i class="es-icon es-icon-notifications"></i>
+    </a>
   </li>
   </ul>
   <ul class="bar-menu-sns">
-            <li class="popover-btn bar-qq-btn" data-container=".bar-qq-btn" data-title="QQ客服及QQ群" data-content-element="#bar-qq-content" data-original-title="" title="">
-    <a><i class="es-icon es-icon-qq"></i></a>
-  </li>
-        <li class="popover-btn bar-phone-btn" data-container=".bar-phone-btn" data-title="电话客服" data-content-element="#bar-phone-content" data-original-title="" title="">
-    <a><i class="es-icon es-icon-phone"></i></a>
-  </li>
-        <li class="popover-btn bar-weixin-btn" data-container=".bar-weixin-btn" data-content-element="#bar-weixin-content" data-original-title="" title="">
-    <a><i class="es-icon es-icon-weixin"></i></a>
-  </li>
-
-          <li data-toggle="tooltip" data-placement="left" title="" data-original-title="手机端">
-        <a href="/mobile/" target="_blank"><i class="es-icon es-icon-phone1"></i></a>
-      </li>
+    <li class="popover-btn bar-qq-btn" uib-tooltip-html="vm.htmlTooltip" tooltip-placement="left"  >
+      <a><i class="es-icon es-icon-qq"></i></a>
+    </li>
+    <li class="popover-btn bar-phone-btn" data-container=".bar-phone-btn" uib-tooltip="电话客服" tooltip-placement="left" data-title="电话客服" data-html="" data-content-element="#bar-phone-content" data-original-title="" title="">
+      <a><i class="es-icon es-icon-phone"></i></a>
+    </li>
+    <li class="popover-btn bar-weixin-btn" data-container=".bar-weixin-btn" data-content-element="#bar-weixin-content" data-original-title="" title="">
+      <a><i class="es-icon es-icon-weixin"></i></a>
+    </li>
+    <li data-toggle="tooltip" data-placement="left" title="" data-original-title="手机端">
+      <a href="/mobile/" target="_blank"><i class="es-icon es-icon-phone1"></i></a>
+    </li>
         <li class="go-top" style="margin:-10px auto 0 auto;" data-toggle="tooltip" data-placement="left" title="" data-original-title="回到顶端">
       <a href="javascript:;">
         <i class="es-icon es-icon-keyboardarrowup" style="margin-bottom:-8px"></i>
