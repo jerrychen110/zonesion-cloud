@@ -47,6 +47,11 @@ public class Course extends AbstractAuditingEntity implements Serializable {
     @Size(max = 1)
     @Column(name = "course_type", length = 1, nullable = false)
     private String courseType;
+    
+    @NotNull
+    @Size(max = 1)
+    @Column(name = "course_source", length = 1, nullable = false)
+    private String courseSource;
 
     @NotNull
     @Column(name = "lesson_num", length = 10, nullable = false)
@@ -164,6 +169,19 @@ public class Course extends AbstractAuditingEntity implements Serializable {
 
     public void setCourseType(String courseType) {
         this.courseType = courseType;
+    }
+    
+    public String getCourseSource() {
+        return courseSource;
+    }
+
+    public Course courseSource(String courseSource) {
+        this.courseSource = courseSource;
+        return this;
+    }
+
+    public void setCourseSource(String courseSource) {
+        this.courseSource = courseSource;
     }
 
     public Integer getLessonNum() {
@@ -361,6 +379,7 @@ public class Course extends AbstractAuditingEntity implements Serializable {
             ", subTitle='" + getSubTitle() + "'" +
             ", status='" + getStatus() + "'" +
             ", courseType='" + getCourseType() + "'" +
+            ", courseSource='" + getCourseSource() + "'" +
             ", lessonNum='" + getLessonNum() + "'" +
             ", credit='" + getCredit() + "'" +
             ", coverPicture='" + getCoverPicture() + "'" +

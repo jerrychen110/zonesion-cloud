@@ -69,13 +69,14 @@
         
         .state('course-management-self-list', {
             parent: 'course-management',
-            url: '/course-management-self-list?page&sort',
+            url: '/course-management-self-list?page&sort&courseType&courseSource',
             data: {
                 authorities: ['ROLE_ADMIN'],
                 pageTitle: 'courseManagement.home.title'
             },
             views: {
-                'course-management-sub@': {
+//                'courseManagementSub@': {
+                'content@': {
                     templateUrl: 'app/admin/course-management/course-management-self-list.html',
                     controller: 'CourseManagementSelfListController',
                     controllerAs: 'vm'
@@ -89,6 +90,14 @@
                 sort: {
                     value: 'id,asc',
                     squash: true
+                },
+                courseType: {
+                	value: '0',
+                	squash: true
+                },
+                courseSource: {
+                	value: '0',
+                	squash: true
                 }
             },
             resolve: {
@@ -100,6 +109,12 @@
                         ascending: PaginationUtil.parseAscending($stateParams.sort)
                     };
                 }],
+                custParams: ['$stateParams', function ($stateParams){
+                	return {
+                		courseType: $stateParams.courseType,
+                		courseSource: $stateParams.courseSource
+                	};
+                }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('course-management');
                     return $translate.refresh();
@@ -109,13 +124,14 @@
         
         .state('course-management-other-list', {
             parent: 'course-management',
-            url: '/course-management-other-list?page&sort',
+            url: '/course-management-other-list?page&sort&courseType&courseSource',
             data: {
                 authorities: ['ROLE_ADMIN'],
                 pageTitle: 'courseManagement.home.title'
             },
             views: {
-                'course-management-sub@': {
+//              'courseManagementSub@': {
+                'content@': {
                     templateUrl: 'app/admin/course-management/course-management-other-list.html',
                     controller: 'CourseManagementOtherListController',
                     controllerAs: 'vm'
@@ -129,6 +145,14 @@
                 sort: {
                     value: 'id,asc',
                     squash: true
+                },
+                courseType: {
+                	value: '0',
+                	squash: true
+                },
+                courseSource: {
+                	value: '1',
+                	squash: true
                 }
             },
             resolve: {
@@ -139,6 +163,12 @@
                         predicate: PaginationUtil.parsePredicate($stateParams.sort),
                         ascending: PaginationUtil.parseAscending($stateParams.sort)
                     };
+                }],
+                custParams: ['$stateParams', function ($stateParams){
+                	return {
+                		courseType: $stateParams.courseType,
+                		courseSource: $stateParams.courseSource
+                	};
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('course-management');

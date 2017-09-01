@@ -6,10 +6,10 @@
 					<ul class="list-group" has-authority="ROLE_ADMIN">
 						<li class="list-group-heading">课程管理</li>
 						<li class="list-group-item" ui-sref-active="active">
-							<a ui-sref="course-management-self-list" ng-click="vm.collapseNavbar()">自有课程</a>
+							<a ui-sref="course-management-self-list({courseType:0,courseSource:0})" ng-click="vm.collapseNavbar()">自有课程</a>
 						</li>
 						<li class="list-group-item" ui-sref-active="active">
-							<a ui-sref="course-management-other-list" ng-click="vm.collapseNavbar()">其他课程</a>
+							<a ui-sref="course-management-other-list({courseType:0,courseSource:1})" ng-click="vm.collapseNavbar()">其他课程</a>
 						</li>
 					</ul>
 					<ul class="list-group" has-authority="ROLE_TEACHER">
@@ -33,7 +33,7 @@
 				</div>
 			</div>
 			<div class="col-md-9">
-				<div class="panel panel-default panel-col lesson-manage-panel" ui-view="course-management-sub">
+				<div class="panel panel-default panel-col lesson-manage-panel" ui-view="courseManagementSub">
 					<!-- Angular views -->
 				</div>
 			</div>

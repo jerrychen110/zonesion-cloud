@@ -11,7 +11,7 @@
         $stateProvider
         .state('course', {
             parent: 'entity',
-            url: '/course?page&sort&search',
+            url: '/course?page&sort&search&courseType&courseSource',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'zonesionCloudApplicationApp.course.home.title'

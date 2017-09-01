@@ -46,6 +46,10 @@ public class CourseDTO implements Serializable {
     @NotNull
     @Size(max = 1)
     private String courseType;
+    
+    @NotNull
+    @Size(max = 1)
+    private String courseSource;
 
     @NotNull
     @Size(max = 10)
@@ -173,6 +177,14 @@ public class CourseDTO implements Serializable {
 
     public void setCourseType(String courseType) {
         this.courseType = courseType;
+    }
+    
+    public String getCourseSource() {
+        return courseSource;
+    }
+
+    public void setCourseSource(String courseSource) {
+        this.courseSource = courseSource;
     }
 
     public Integer getLessonNum() {
@@ -554,7 +566,7 @@ public class CourseDTO implements Serializable {
 	@Override
 	public String toString() {
 		return "CourseDTO [id=" + id + ", userId=" + userId + ", title=" + title + ", subTitle=" + subTitle
-				+ ", status=" + status + ", courseType=" + courseType + ", lessonNum=" + lessonNum + ", credit="
+				+ ", status=" + status + ", courseType=" + courseType + ", courseSource=" + courseSource + ", lessonNum=" + lessonNum + ", credit="
 				+ credit + ", coverPicture=" + coverPicture + ", introduction=" + introduction + ", goals=" + goals
 				+ ", recommended=" + recommended + ", recommendedSort=" + recommendedSort + ", createdBy=" + createdBy
 				+ ", createdDate=" + createdDate + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate="

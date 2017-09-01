@@ -82,4 +82,12 @@
         </createTable>
         
     </changeSet>
+    
+    <changeSet id="20170729021222-2" author="jhipster">
+    	<addColumn tableName="t_course">
+    		<column name="course_source" type="varchar(1)" defaultValue="0">
+                <constraints nullable="false" />
+            </column>
+    	</addColumn>
+    </changeSet>
 </databaseChangeLog>

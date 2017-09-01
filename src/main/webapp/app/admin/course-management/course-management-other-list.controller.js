@@ -5,20 +5,18 @@
         .module('zonesionCloudApplicationApp')
         .controller('CourseManagementOtherListController', CourseManagementOtherListController);
 
-    CourseManagementOtherListController.$inject = ['Principal', 'User', 'ParseLinks', 'AlertService', '$state', 'pagingParams', 'paginationConstants', 'JhiLanguageService'];
+    CourseManagementOtherListController.$inject = ['Principal', 'Course', 'ParseLinks', 'AlertService', '$state', 'pagingParams', 'custParams', 'paginationConstants', 'JhiLanguageService'];
 
-    function CourseManagementOtherListController(Principal, User, ParseLinks, AlertService, $state, pagingParams, paginationConstants, JhiLanguageService) {
+    function CourseManagementOtherListController(Principal, Course, ParseLinks, AlertService, $state, pagingParams, custParams, paginationConstants, JhiLanguageService) {
         var vm = this;
 
         vm.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         vm.currentAccount = null;
         vm.languages = null;
         vm.loadAll = loadAll;
-        vm.setActive = setActive;
-        vm.users = [];
         vm.page = 1;
         vm.totalItems = null;
-        vm.clear = clear;
+//        vm.clear = clear;
         vm.links = null;
         vm.loadPage = loadPage;
         vm.predicate = pagingParams.predicate;
@@ -34,42 +32,46 @@
             vm.currentAccount = account;
         });
 
-        function setActive (user, isActivated) {
-            user.activated = isActivated;
-            User.update(user, function () {
-                vm.loadAll();
-                vm.clear();
-            });
-        }
-
         function loadAll () {
-            User.query({
+            Course.query({
                 page: pagingParams.page - 1,
                 size: vm.itemsPerPage,
-                sort: sort()
+                sort: sort(),
+                courseType: custParams.courseType,
+                courseSource: custParams.courseSource
             }, onSuccess, onError);
+            function sort() {
+                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
+                if (vm.predicate !== 'id') {
+                    result.push('id');
+                }
+                return result;
+            }
+            function onSuccess(data, headers) {
+                vm.links = ParseLinks.parse(headers('link'));
+                vm.totalItems = headers('X-Total-Count');
+                vm.queryCount = vm.totalItems;
+                vm.courses = data;
+                vm.page = pagingParams.page;
+                vm.statesObj= {
+               		 0:"未发布",
+               		 1:"已发布",
+               		 2:"已关闭"
+               		};
+            }
+            function onError(error) {
+                AlertService.error(error.data.message);
+            }
         }
 
-        function onSuccess(data, headers) {
-            vm.links = ParseLinks.parse(headers('link'));
-            vm.totalItems = headers('X-Total-Count');
-            vm.queryCount = vm.totalItems;
-            vm.page = pagingParams.page;
-            vm.users = data;
-        }
-
-        function onError(error) {
-            AlertService.error(error.data.message);
-        }
-
-        function clear () {
-            vm.user = {
-                id: null, login: null, name: null, email: null,
-                activated: null, langKey: null, createdBy: null, createdDate: null,
-                lastModifiedBy: null, lastModifiedDate: null, resetDate: null,
-                resetKey: null, authorities: null
-            };
-        }
+//        function clear () {
+//            vm.user = {
+//                id: null, login: null, name: null, email: null,
+//                activated: null, langKey: null, createdBy: null, createdDate: null,
+//                lastModifiedBy: null, lastModifiedDate: null, resetDate: null,
+//                resetKey: null, authorities: null
+//            };
+//        }
 
         function sort () {
             var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];

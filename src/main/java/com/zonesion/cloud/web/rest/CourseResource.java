@@ -2,6 +2,7 @@ package com.zonesion.cloud.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.zonesion.cloud.domain.Course;
+import com.zonesion.cloud.repository.CourseRepository;
 import com.zonesion.cloud.service.CourseService;
 import com.zonesion.cloud.service.FileManageMentService;
 import com.zonesion.cloud.service.util.AvatarSize;
@@ -55,6 +56,9 @@ public class CourseResource {
     
     @Inject
 	private FileManageMentService fileManageMentService;
+    
+    @Inject
+	private CourseRepository courseRepository;
 
     /**
      * POST  /courses : Create a new course.
@@ -106,9 +110,20 @@ public class CourseResource {
      */
     @GetMapping("/courses")
     @Timed
-    public ResponseEntity<List<Course>> getAllCourses(@ApiParam Pageable pageable) {
+    public ResponseEntity<List<Course>> getAllCourses(@ApiParam Pageable pageable, String courseType, String courseSource) {
         log.debug("REST request to get a page of Courses");
-        Page<Course> page = courseService.findAll(pageable);
+        Page<Course> page = null;
+        if(StringUtils.isBlank(courseType)&&StringUtils.isBlank(courseSource)) {
+        	page = courseRepository.findAll(pageable);
+        }else {
+        	if(StringUtils.isBlank(courseType)&&StringUtils.isNotBlank(courseSource)) {
+        		page = courseRepository.findAllByCourseSource(courseSource, pageable);
+        	}else if(StringUtils.isNotBlank(courseType)&&StringUtils.isBlank(courseSource)) {
+        		page = courseRepository.findAllByCourseType(courseType, pageable);
+        	}else {
+        		page = courseRepository.findAllByCourseSourceAndCourseType(courseSource, courseType, pageable);
+        	}
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/courses");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

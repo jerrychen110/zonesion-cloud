@@ -22,7 +22,8 @@
                     controller: 'UserManagementController',
                     controllerAs: 'vm'
                 }
-            },            params: {
+            },
+            params: {
                 page: {
                     value: '1',
                     squash: true
@@ -46,7 +47,8 @@
                     return $translate.refresh();
                 }]
 
-            }        })
+            }
+        })
         .state('user-management.new', {
             url: '/new',
             data: {
