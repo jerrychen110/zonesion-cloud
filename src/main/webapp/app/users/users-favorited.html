@@ -70,7 +70,7 @@
 				<li class="course-item clearfix "><a
 					class="course-picture-link" href="/course/1"> <img
 						class="course-picture"
-						src="{{userInfo.courseCoverPicture}}"
+						ng-src="{{userInfo.courseCoverPicture}}"
 						alt="{{userInfo.course_title}}">
 				</a>
 
@@ -87,7 +87,7 @@
 						<div class="course-footer clearfix">
 							<div class="teacher">
 								<a href="/user/1">
-								<img src="{{userInfo.avatar}}" class="teacher-avatar"></a> 
+								<img ng-src="{{userInfo.avatar}}" class="teacher-avatar"></a> 
 									<a class="teacher-nickname ellipsis" href="/user/1">{{userInfo.name}}</a> 
 									<span class="teacher-title ellipsis">{{userInfo.school}}</span>
 							</div>

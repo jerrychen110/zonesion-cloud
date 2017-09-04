@@ -21,7 +21,7 @@
 				<div class="media-left">
 					<div class="avatar-bg">
 						<img class="avatar-lg"
-							src="{{vm.userInfo.avatar}}">
+							ng-src="{{vm.userInfo.avatar}}">
 						<span class="icon-user-status icon-md"><i
 							class="es-icon es-icon-school"></i></span>
 					</div>
@@ -69,7 +69,7 @@
 				<li class="course-item clearfix "><a
 					class="course-picture-link" href="/course/1"> <img
 						class="course-picture"
-						src="{{userInfo.courseCoverPicture}}"
+						ng-src="{{userInfo.courseCoverPicture}}"
 						alt="{{userInfo.course_title}}">
 				</a>
 
@@ -86,7 +86,7 @@
 						<div class="course-footer clearfix">
 							<div class="teacher">
 								<a href="/user/1">
-								<img src="{{userInfo.avatar}}" class="teacher-avatar"></a> 
+								<img ng-src="{{userInfo.avatar}}" class="teacher-avatar"></a> 
 									<a class="teacher-nickname ellipsis" href="/user/1">{{userInfo.name}}</a> 
 									<span class="teacher-title ellipsis">{{userInfo.school}}</span>
 							</div>
@@ -123,7 +123,7 @@
 						<div class="course-footer clearfix">
 							<div class="teacher">
 								<a href="/user/1">
-								<img src="{{userfavorited.avatar}}" class="teacher-avatar"></a> 
+								<img ng-src="{{userfavorited.avatar}}" class="teacher-avatar"></a> 
 									<a class="teacher-nickname ellipsis" href="/user/1">{{userfavorited.name}}</a> 
 									<span class="teacher-title ellipsis">{{userfavorited.school}}</span>
 							</div>

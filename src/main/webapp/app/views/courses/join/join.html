@@ -20,7 +20,7 @@
 
 			<div class="course-header-img ">
 				<a href="/course/6"><img class="img-responsive"
-					src="{{vm.courses.coverPicture}}"></a>
+					ng-src="{{vm.courses.coverPicture}}"></a>
 			</div>
 
 			<ul class="course-data clearfix">
@@ -77,7 +77,7 @@
 					<span><a href="">{{vm.courses.title}}</a></span> <span
 						class="es-qrcode top" data-url="/course/6/qrcode"> <i
 						class="es-icon es-icon-qrcode"></i> <span class="qrcode-popover">
-							<img src="" alt=""> 扫二维码继续学习
+							<img ng-src="" alt=""> 扫二维码继续学习
 					</span>
 					</span>
 				</div>
@@ -173,7 +173,7 @@
 							<li>
 								<div class="teacher-top clearfix">
 									<div class="avatar">
-										<a href="/user/1"><img src="{{vm.courses.userAvatar}}"></a>
+										<a href="/user/1"><img ng-src="{{vm.courses.userAvatar}}"></a>
 									</div>
 									<div class="teacher-name">
 										<a href="/user/1">{{vm.courses.userName}}</a>
@@ -198,7 +198,7 @@
 						<ul  ng-repeat="user in vm.allusers" >
 							<li><a class=" js-user-card" href="#/user/{{user.countUserId}}"
 								data-card-url="/user/5/card/show" data-user-id="5"> 
-								<img class="avatar-sm" src="{{user.avatar}}">
+								<img class="avatar-sm" ng-src="{{user.avatar}}">
 							</a></li>
 						</ul>
 					</div>
@@ -350,7 +350,7 @@
 			<div class="row">
 				<div class="col-xs-6 mbm">
 					<p class="text-overflow">
-						<img class="mrs" src="/content/v2/img/bar_qq_group.png?1.4.8"
+						<img class="mrs" ng-src="/content/v2/img/bar_qq_group.png?1.4.8"
 							alt=""> EduSoho-官方群
 					</p>
 
@@ -360,7 +360,7 @@
 				</div>
 				<div class="col-xs-6 mbm">
 					<p class="text-overflow">
-						<img class="mrs" src="/content/v2/img/bar_qq_group.png?1.4.8"
+						<img class="mrs" ng-src="/content/v2/img/bar_qq_group.png?1.4.8"
 							alt=""> 在线教育运营干货群
 					</p>
 
@@ -392,7 +392,7 @@
 
 		<div id="bar-weixin-content">
 			<img width="110" class="img-responsive"
-				src="/files/system/webchat.jpg?1.4.8" alt="">
+				ng-src="/files/system/webchat.jpg?1.4.8" alt="">
 		</div>
 	</div>
 
