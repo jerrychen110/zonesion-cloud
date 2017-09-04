@@ -17,10 +17,10 @@ import com.zonesion.cloud.service.dto.CourseReviewDTO;
 public class CourseReviewMapper {
 	
 	public CourseReviewDTO courseReviewDTO(CourseReview courseReview) {
-        return new CourseReviewDTO(courseReview);
+        return new CourseReviewDTO();
     }
 
-    public List<CourseReviewDTO> courseReviewsToCourseReviewDTOs(List<CourseReview> courseReviews) {
+    /*public List<CourseReviewDTO> courseReviewsToCourseReviewDTOs(List<CourseReview> courseReviews) {
         return courseReviews.stream()
             .filter(Objects::nonNull)
             .map(this::courseReviewDTO)
@@ -53,5 +53,5 @@ public class CourseReviewMapper {
     	CourseReview courseReview = new CourseReview();
     	courseReview.setId(id);
     	return courseReview;
-    }
+    }*/
 }
