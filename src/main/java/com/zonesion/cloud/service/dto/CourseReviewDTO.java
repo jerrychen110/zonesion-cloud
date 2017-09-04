@@ -37,6 +37,8 @@ public class CourseReviewDTO implements Serializable {
     @Size(max = 1)
     private String privacy;
     
+    private Long courseId;
+    
     private String createdBy;
 
     private Instant createdDate;
@@ -44,34 +46,12 @@ public class CourseReviewDTO implements Serializable {
     private String lastModifiedBy;
 
     private Instant lastModifiedDate;
-
+    private String avatar;
+    
     public CourseReviewDTO(){
     	
     }
     
-    public CourseReviewDTO(CourseReview courseReview) {
-		this(courseReview.getId(), courseReview.getUserId(), courseReview.getTitle(), courseReview.getContent(),
-			 courseReview.getRating(), courseReview.getPrivacy(), courseReview.getCreatedBy(), courseReview.getCreatedDate(),
-			 courseReview.getLastModifiedBy(),courseReview.getLastModifiedDate());
-	}
-    
-    
-
-	public CourseReviewDTO(Long id, Long userId, String title, String content, Integer rating, String privacy,
-			String createdBy, Instant createdDate, String lastModifiedBy, Instant lastModifiedDate) {
-		super();
-		this.id = id;
-		this.userId = userId;
-		this.title = title;
-		this.content = content;
-		this.rating = rating;
-		this.privacy = privacy;
-		this.createdBy = createdBy;
-		this.createdDate = createdDate;
-		this.lastModifiedBy = lastModifiedBy;
-		this.lastModifiedDate = lastModifiedDate;
-	}
-
 	public Long getId() {
         return id;
     }
@@ -120,10 +100,15 @@ public class CourseReviewDTO implements Serializable {
         this.privacy = privacy;
     }
     
+    public Long getCourseId() {
+		return courseId;
+	}
 
+	public void setCourseId(Long courseId) {
+		this.courseId = courseId;
+	}
 
-
-    public String getCreatedBy() {
+	public String getCreatedBy() {
 		return createdBy;
 	}
 
@@ -155,10 +140,19 @@ public class CourseReviewDTO implements Serializable {
 		this.lastModifiedDate = lastModifiedDate;
 	}
 
-    @Override
+    public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	@Override
 	public String toString() {
 		return "CourseReviewDTO [id=" + id + ", userId=" + userId + ", title=" + title + ", content=" + content
-				+ ", rating=" + rating + ", privacy=" + privacy + ", createdBy=" + createdBy + ", createdDate="
-				+ createdDate + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate=" + lastModifiedDate + "]";
+				+ ", rating=" + rating + ", privacy=" + privacy + ", courseId=" + courseId + ", createdBy=" + createdBy
+				+ ", createdDate=" + createdDate + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate="
+				+ lastModifiedDate + "]";
 	}
 }
