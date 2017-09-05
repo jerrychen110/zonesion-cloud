@@ -6,7 +6,7 @@
 
 			<div class="course-header-img ">
 				<a href="#/course/{{vm.courses.id}}"><img class="img-responsive"
-					ng-src="{{vm.courses.coverPicture}}"></a>
+					src="{{vm.courses.coverPicture}}"></a>
 			</div>
 
 			<ul class="course-data clearfix">
@@ -121,14 +121,14 @@
 					<div class="nav-btn-tab">
 						<ul class="nav nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a href="#/courses/{{vm.courses.id}}">课程概览</a></li>
-							<li role="presentation"><a href="#/courses/{{vm.courses.id}}/reviews/">评价</a>
+							<li role="presentation"><a href="#/courses/{{vm.courses.id}}/reviews">评价</a>
 							</li>
 							<li role="presentation"><a href="#/courses/{{vm.courses.id}}/notes"> 笔记</a></li>
 
 						</ul>
 
 					</div>
-					<div class="course-detail-content" data-widget-cid="widget-1">
+					<div class="course-detail-content" data-widget-cid="widget-1" data-ui-view="">
 
 						<div class="es-piece">
 							<div class="piece-header">课程介绍</div>
@@ -205,7 +205,7 @@
 						<ul  ng-repeat="user in vm.allusers" >
 							<li><a class=" js-user-card" href="#/user/{{user.countUserId}}"
 								data-card-url="/user/5/card/show" data-user-id="5"> 
-								<img class="avatar-sm" ng-src="{{user.avatar}}">
+								<img class="avatar-sm" src="{{user.avatar}}">
 							</a></li>
 						</ul>
 					</div>

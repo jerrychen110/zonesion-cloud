@@ -5,9 +5,10 @@
         .module('zonesionCloudApplicationApp')
         .config(stateConfig);
 
-    stateConfig.$inject = ['$stateProvider'];
+    stateConfig.$inject = ['$stateProvider','$urlRouterProvider'];
 
-    function stateConfig($stateProvider) {
+    function stateConfig($stateProvider,$urlRouterProvider) {
+    	$urlRouterProvider.when("", "/courses");
         $stateProvider
         .state('courses', {
             parent: 'app',
@@ -40,6 +41,16 @@
                 }]
             }
 
+        })
+        
+        .state("courses.reviews", {
+            url:"/reviews",
+            data: {
+            	authorities: []
+            },
+            templateUrl: "app/views/courses/reviews/reviews.html",
+            controller: 'ReviewsController',
+            controllerAs: 'vm'
         });
     }
 })();
