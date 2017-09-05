@@ -66,7 +66,7 @@
 					<span><a href="/course/6">{{vm.courses.title}}</a></span> <span
 						class="es-qrcode top" data-url="/course/6/qrcode"> <i
 						class="es-icon es-icon-qrcode"></i> <span class="qrcode-popover">
-							<img src="" alt=""> 扫二维码继续学习
+							<img ng-src="" alt=""> 扫二维码继续学习
 					</span>
 					</span>
 				</div>
@@ -121,14 +121,14 @@
 					<div class="nav-btn-tab">
 						<ul class="nav nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a href="#/courses/{{vm.courses.id}}">课程概览</a></li>
-							<li role="presentation"><a href="#/courses/{{vm.courses.id}}/reviews/">评价</a>
+							<li role="presentation"><a href="#/courses/{{vm.courses.id}}/reviews">评价</a>
 							</li>
 							<li role="presentation"><a href="#/courses/{{vm.courses.id}}/notes"> 笔记</a></li>
 
 						</ul>
 
 					</div>
-					<div class="course-detail-content" data-widget-cid="widget-1">
+					<div class="course-detail-content" data-widget-cid="widget-1" data-ui-view="">
 
 						<div class="es-piece">
 							<div class="piece-header">课程介绍</div>
@@ -180,7 +180,7 @@
 								<div class="teacher-top clearfix">
 									<div class="avatar">
 										<a href="/user/{{vm.courses.id}}"><img
-											src="{{vm.courses.userAvatar}}"></a>
+											ng-src="{{vm.courses.userAvatar}}"></a>
 									</div>
 									<div class="teacher-name">
 										<a href="/user/{{vm.courses.id}}">{{vm.courses.userName}}</a>

@@ -1,0 +1,39 @@
+<div class="course-detail-content" data-widget-cid="widget-1"
+	ng-repeat="review in vm.allreviews">
+
+	<div class="js-reviews">
+		<div class="media media-evaluate">
+			<div class="media-left">
+				<a class=" js-user-card" href="#/user/{{review.userId}}"
+					data-card-url="/user/{{review.userId}}/card/show" data-user-id="1"> 
+					<img class="avatar-sm" src="{{review.avatar}}">
+				</a>
+
+			</div>
+			<div class="media-body">
+				<div class="title">
+					<a class="link-light " href="/user/{{review.userId}}">{{review.lastModifiedBy}}</a> {{review.lastModifiedDate}}
+				</div>
+				<div class="score">
+
+					<i class="es-icon es-icon-star"></i> <i
+						class="es-icon es-icon-star"></i> <i class="es-icon es-icon-star"></i>
+					<i class="es-icon es-icon-star"></i> <i
+						class="es-icon es-icon-star"></i>
+
+
+
+
+				</div>
+				<div class="content">
+					<div class="short-content">{{review.content}}</div>
+					<div class="full-content" style="display: none;">{{review.content}}</div>
+				</div>
+				<div class="actions">
+					<a href="javascript:;" class="show-full-btn">[展开全文]</a> <a
+						href="javascript:;" class="show-short-btn" style="display: none;">[收起全文]</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
