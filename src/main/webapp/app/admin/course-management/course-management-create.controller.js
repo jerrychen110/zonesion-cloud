@@ -39,7 +39,6 @@
             vm.isSaving = true;
             vm.course.courseType = custParams.courseType;
             vm.course.courseSource = custParams.courseSource;
-            console.log(vm.course);
             Course.save(vm.course, onSaveSuccess, onSaveError);
         }
         
@@ -49,7 +48,7 @@
         
         function onSaveSuccess (result) {
             vm.isSaving = false;
-            $state.go('/vm.course.id/course-management-edit', null, { reload: true });
+            $state.go('course-management-edit', {id:result.id}, { reload: true });
         }
     }
 })();
