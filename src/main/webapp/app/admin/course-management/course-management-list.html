@@ -1,16 +1,16 @@
 <div class="panel-heading">
 	<span class="pull-right">
-		<a ui-sref="course-management-create({courseType:0,courseSource:0})" class="btn btn-info btn-sm" ng-click="vm.collapseNavbar()">
+		<a ui-sref="course-management-create({courseType:vm.courseType,courseSource:vm.courseSource})" class="btn btn-info btn-sm" ng-click="vm.collapseNavbar()">
 			<span class="glyphicon glyphicon-plus"></span>
 			创建课程
 		</a>
 	</span>
-	自有课程
+	{{vm.headTitle}}
 </div>
 <div class="panel-body">
 	<ul class="nav nav-tabs">
-		<li ui-sref-active="active"><a ui-sref="course-management-self-list({courseType:0,courseSource:0})" ng-click="vm.collapseNavbar()">普通课程</a></li>
-		<li ui-sref-active="active"><a ui-sref="course-management-self-list({courseType:1,courseSource:0})" ng-click="vm.collapseNavbar()">专业课程</a></li>
+		<li ui-sref-active="active"><a ui-sref="course-management-list({courseType:0,courseSource:vm.courseSource})" ng-click="vm.collapseNavbar()">普通课程</a></li>
+		<li ui-sref-active="active"><a ui-sref="course-management-list({courseType:1,courseSource:vm.courseSource})" ng-click="vm.collapseNavbar()">专业课程</a></li>
 	</ul>
 	<br>
 	<table class="table table-striped table-hover" id="course-table" style="word-break:break-all;">

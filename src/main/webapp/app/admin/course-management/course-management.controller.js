@@ -5,9 +5,9 @@
         .module('zonesionCloudApplicationApp')
         .controller('CourseManagementController', CourseManagementController);
 
-    CourseManagementController.$inject = ['Principal', 'ParseLinks', 'AlertService', '$state', 'JhiLanguageService'];
+    CourseManagementController.$inject = ['Principal', 'AlertService', '$state', 'JhiLanguageService'];
 
-    function CourseManagementController(Principal, ParseLinks, AlertService, $state, JhiLanguageService) {
+    function CourseManagementController(Principal, AlertService, $state, JhiLanguageService) {
         var vm = this;
         
         vm.authorities = ['ROLE_USER', 'ROLE_ADMIN'];

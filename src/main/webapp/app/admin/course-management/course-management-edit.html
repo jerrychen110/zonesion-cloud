@@ -1,0 +1,72 @@
+<div style="margin-top:-30px">
+	<div id="content-container">
+		<div class="es-section course-manage-header clearfix">
+			<a href="/course/2"><img class="picture" src=""/></a>
+			<h1 class="title"><a href="">{{course.title}}</a><span class="label label-warning">{{course.status}}</span></h1>
+			<div class="teachers">教师<a href="">{{course.userName}}</a></div>
+			<div class="toolbar hidden-xs">
+				<div class="btn-group">
+					<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">预览<span class="caret"></span></button>
+					<ul class="dropdown-menu pull-right">
+						<li><a href="">作为 已加入用户</a></li>
+						<li><a href="">作为 未加入用户</a></li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<button class="btn btn-success btn-sm course-publish-btn" data-url="/course/22/manage/publish">发布课程</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="sidenav locked">
+					<ul class="list-group">
+						<li class="list-group-heading" ui-sref-active="active">课程信息</li>
+						<li class="list-group-item" ui-sref-active="active"><a href="">基本信息</a></li>
+						<li class="list-group-item" ui-sref-active="active"><a href="">详细信息</a></li>
+						<li class="list-group-item" ui-sref-active="active"><a href="">课程图片</a></li>
+						<li class="list-group-item" ui-sref-active="active"><a href="">课时管理</a></li>
+						<li class="list-group-item" ui-sref-active="active"><a href="">文件管理</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<!-- Angular view -->
+				
+				<div class="panel panel-default panel-col">
+					<div class="panel-heading">基本信息</div>
+					<div class="panel-body">
+						<form class="form-horizontal" id="course-form" method="post" novalidate="novalidate" data-widget-cid="widget-1">
+							<div class="form-group">
+								<label class="col-md-2 control-label">标题</label>
+								<div class="col-md-8 controls">
+									<input type="text" id="course_title" name="title" required="required" class="form-control" data-widget-cid="widget-2" data-explain>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label">副标题</label>
+								<div class="col-md-8 controls">
+									<input type="text" id="course_subtitle" name="subtitle" class="form-control" data-widget-cid="widget-3" data-explain>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label">标签</label>
+								<div class="col-md-8 controls">
+									<input type="text" id="course_tags" name="tags" class="width-full select2-offscreen" data-widget-cid="widget-3" data-explain>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-offset-2 col-md-8 controls">
+									<button class="btn btn-fat btn-primary" id="course-create-btn" type="submit">保存</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				
+				
+				
+			</div>
+		</div>
+	</div>
+</div>

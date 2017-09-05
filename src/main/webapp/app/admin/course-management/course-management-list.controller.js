@@ -3,11 +3,11 @@
 
     angular
         .module('zonesionCloudApplicationApp')
-        .controller('CourseManagementOtherListController', CourseManagementOtherListController);
+        .controller('CourseManagementListController', CourseManagementListController);
 
-    CourseManagementOtherListController.$inject = ['Principal', 'Course', 'ParseLinks', 'AlertService', '$state', 'pagingParams', 'custParams', 'paginationConstants', 'JhiLanguageService'];
+    CourseManagementListController.$inject = ['Principal', 'Course', 'ParseLinks', 'AlertService', '$state', 'pagingParams', 'custParams', 'paginationConstants', 'JhiLanguageService'];
 
-    function CourseManagementOtherListController(Principal, Course, ParseLinks, AlertService, $state, pagingParams, custParams, paginationConstants, JhiLanguageService) {
+    function CourseManagementListController(Principal, Course, ParseLinks, AlertService, $state, pagingParams, custParams, paginationConstants, JhiLanguageService) {
         var vm = this;
 
         vm.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
@@ -16,18 +16,22 @@
         vm.loadAll = loadAll;
         vm.page = 1;
         vm.totalItems = null;
-//        vm.clear = clear;
         vm.links = null;
         vm.loadPage = loadPage;
         vm.predicate = pagingParams.predicate;
         vm.reverse = pagingParams.ascending;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.transition = transition;
+        vm.headTitle = null;
+        vm.courseType = custParams.courseType;
+        vm.courseSource = custParams.courseSource;
 
         vm.loadAll();
+        
         JhiLanguageService.getAll().then(function (languages) {
             vm.languages = languages;
         });
+        
         Principal.identity().then(function(account) {
             vm.currentAccount = account;
         });
@@ -58,20 +62,16 @@
                		 1:"已发布",
                		 2:"已关闭"
                		};
+                if(custParams.courseSource=='0'){
+                	vm.headTitle = "自有课程";
+                }else if(custParams.courseSource=='1'){
+                	vm.headTitle = "第三方课程";
+                }
             }
             function onError(error) {
                 AlertService.error(error.data.message);
             }
         }
-
-//        function clear () {
-//            vm.user = {
-//                id: null, login: null, name: null, email: null,
-//                activated: null, langKey: null, createdBy: null, createdDate: null,
-//                lastModifiedBy: null, lastModifiedDate: null, resetDate: null,
-//                resetKey: null, authorities: null
-//            };
-//        }
 
         function sort () {
             var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
