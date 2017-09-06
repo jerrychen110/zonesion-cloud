@@ -34,4 +34,8 @@ public interface CourseRepository extends PagingAndSortingRepository<Course, Lon
 	//根据课程来源及课程类型查询课程列表
 	Page<Course> findAllByCourseSourceAndCourseType(String courseSource, String courseType, Pageable pageable);
 	
+	List<Course> findAll();
+	
+	void saveAndFlush(Course course);
+	
 }
