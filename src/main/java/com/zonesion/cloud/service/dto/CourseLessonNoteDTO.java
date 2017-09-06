@@ -1,9 +1,11 @@
 package com.zonesion.cloud.service.dto;
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.*;
-
-import com.zonesion.cloud.domain.CourseLessonNote;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -11,13 +13,16 @@ import java.time.Instant;
 /**
  * A DTO for the CourseLessonNote entity.
  */
+@Entity
 public class CourseLessonNoteDTO implements Serializable {
 
     /**
 	 * @Fields serialVersionUID : TODO
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
     @NotNull
@@ -39,6 +44,8 @@ public class CourseLessonNoteDTO implements Serializable {
     @Size(max = 1)
     private String isPrivate;
     
+    private Long courseLessonId;
+    
     private String createdBy;
 
     private Instant createdDate;
@@ -47,34 +54,17 @@ public class CourseLessonNoteDTO implements Serializable {
 
     private Instant lastModifiedDate;
     
-   
+    private Long courseLessonNoteLikeId;
+    private Long courseLessonNoteLikeUserId;
+    
+    private Instant courseLessonNoteLikeCreateTime;
+    private Long courseLessonNoteId;
+    
+    private String avatar;
+    
     public CourseLessonNoteDTO(){
     	
     }
-    
-    public CourseLessonNoteDTO(CourseLessonNote courseLessonNote) {
-    	this(courseLessonNote.getId(), courseLessonNote.getCourseId(), courseLessonNote.getUserId(),
-    		 courseLessonNote.getContent(), courseLessonNote.getLength(), courseLessonNote.getLikeNum(),
-    		 courseLessonNote.getIsPrivate(), courseLessonNote.getCreatedBy(), courseLessonNote.getCreatedDate(),
-    		 courseLessonNote.getLastModifiedBy(), courseLessonNote.getLastModifiedDate());
-	}
-    
-
-	public CourseLessonNoteDTO(Long id, Long courseId, Long userId, String content, Integer length, Integer likeNum,
-			String isPrivate, String createdBy, Instant createdDate, String lastModifiedBy, Instant lastModifiedDate) {
-		super();
-		this.id = id;
-		this.courseId = courseId;
-		this.userId = userId;
-		this.content = content;
-		this.length = length;
-		this.likeNum = likeNum;
-		this.isPrivate = isPrivate;
-		this.createdBy = createdBy;
-		this.createdDate = createdDate;
-		this.lastModifiedBy = lastModifiedBy;
-		this.lastModifiedDate = lastModifiedDate;
-	}
 
 	public String getCreatedBy() {
 		return createdBy;
@@ -164,11 +154,64 @@ public class CourseLessonNoteDTO implements Serializable {
         this.isPrivate = isPrivate;
     }
 
-    @Override
+    public Long getCourseLessonId() {
+		return courseLessonId;
+	}
+
+	public void setCourseLessonId(Long courseLessonId) {
+		this.courseLessonId = courseLessonId;
+	}
+	
+
+	public Long getCourseLessonNoteLikeId() {
+		return courseLessonNoteLikeId;
+	}
+
+	public void setCourseLessonNoteLikeId(Long courseLessonNoteLikeId) {
+		this.courseLessonNoteLikeId = courseLessonNoteLikeId;
+	}
+
+	public Long getCourseLessonNoteLikeUserId() {
+		return courseLessonNoteLikeUserId;
+	}
+
+	public void setCourseLessonNoteLikeUserId(Long courseLessonNoteLikeUserId) {
+		this.courseLessonNoteLikeUserId = courseLessonNoteLikeUserId;
+	}
+
+	public Instant getCourseLessonNoteLikeCreateTime() {
+		return courseLessonNoteLikeCreateTime;
+	}
+
+	public void setCourseLessonNoteLikeCreateTime(Instant courseLessonNoteLikeCreateTime) {
+		this.courseLessonNoteLikeCreateTime = courseLessonNoteLikeCreateTime;
+	}
+
+	public Long getCourseLessonNoteId() {
+		return courseLessonNoteId;
+	}
+
+	public void setCourseLessonNoteId(Long courseLessonNoteId) {
+		this.courseLessonNoteId = courseLessonNoteId;
+	}
+	
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	@Override
 	public String toString() {
 		return "CourseLessonNoteDTO [id=" + id + ", courseId=" + courseId + ", userId=" + userId + ", content="
-				+ content + ", length=" + length + ", likeNum=" + likeNum + ", isPrivate=" + isPrivate + ", createdBy="
-				+ createdBy + ", createdDate=" + createdDate + ", lastModifiedBy=" + lastModifiedBy
-				+ ", lastModifiedDate=" + lastModifiedDate + "]";
+				+ content + ", length=" + length + ", likeNum=" + likeNum + ", isPrivate=" + isPrivate
+				+ ", courseLessonId=" + courseLessonId + ", createdBy=" + createdBy + ", createdDate=" + createdDate
+				+ ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate=" + lastModifiedDate
+				+ ", courseLessonNoteLikeId=" + courseLessonNoteLikeId + ", courseLessonNoteLikeUserId="
+				+ courseLessonNoteLikeUserId + ", courseLessonNoteLikeCreateTime=" + courseLessonNoteLikeCreateTime
+				+ ", courseLessonNoteId=" + courseLessonNoteId + "]";
 	}
 }

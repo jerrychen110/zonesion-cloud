@@ -20,7 +20,7 @@ import com.zonesion.cloud.service.dto.CourseLessonNoteDTO;
 public class CourseLessonNoteMapper {
 	
 	public CourseLessonNoteDTO courseLessonNoteDTO(CourseLessonNote courseLessonNote) {
-        return new CourseLessonNoteDTO(courseLessonNote);
+        return new CourseLessonNoteDTO();
     }
 
     public List<CourseLessonNoteDTO> CourseLessonNotesToCourseLessonNoteDTOs(List<CourseLessonNote> courseLessonNotes) {
