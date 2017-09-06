@@ -39,6 +39,7 @@
             vm.isSaving = true;
             vm.course.courseType = custParams.courseType;
             vm.course.courseSource = custParams.courseSource;
+            vm.course.coverPicture = "/content/images/course.png";
             Course.save(vm.course, onSaveSuccess, onSaveError);
         }
         

@@ -39,6 +39,7 @@
             if (vm.user.id !== null) {
                 User.update(vm.user, onSaveSuccess, onSaveError);
             } else {
+            	vm.user.avatar="/content/images/user_avatar.png";
                 User.save(vm.user, onSaveSuccess, onSaveError);
             }
         }
