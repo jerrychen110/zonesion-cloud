@@ -5,15 +5,14 @@
         .module('zonesionCloudApplicationApp')
         .controller('CourseManagementEditController', CourseManagementEditController);
 
-    CourseManagementEditController.$inject = ['Principal', 'Course', 'entity', 'AlertService', '$state', 'JhiLanguageService'];
+    CourseManagementEditController.$inject = ['Principal', 'Course', 'entity', 'AlertService', '$state', '$scope', 'JhiLanguageService'];
 
-    function CourseManagementEditController(Principal, Course, entity, AlertService, $state, JhiLanguageService) {
+    function CourseManagementEditController(Principal, Course, entity, AlertService, $state, $scope, JhiLanguageService) {
         var vm = this;
 
         vm.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         vm.currentAccount = null;
         vm.languages = null;
-        vm.clear = clear;
         vm.save = save;
         vm.course = entity;
         
@@ -26,18 +25,46 @@
             vm.course.userId = account.id;
         });
         
-        function clear() {
-        	vm.course = {
-                    id: null, userId: null, title: null, subTitle: null,
-                    status: "0", courseType: null, courseSource: null, lessonNum: 0,
-                    credit: "0", coverPicture: "", introduction: null, goals: null,
-                    recommended: "0", recommendedSort: "0"
-                };
-        }
+        //富文本插件ckeditor相关设置
+        $scope.editorOptions = {
+	      language: 'zh-cn',
+	      // allowedContent:{
+	      //     $1: {
+	      //         elements: CKEDITOR.dtd,
+	      //         attributes: true,
+	      //         styles: true,
+	      //         classes: true
+	      //     }
+	      // },
+	      image_previewText:' ',
+	      allowedContent: true,
+	      extraPlugins : 'widget,filetools,notification,lineutils,notificationaggregator,uploadwidget,uploadimage',
+	      filebrowserImageUploadUrl: '/api/file/image-upload?type=Images',
+	      filebrowserWindowHeight: '240',
+	      disallowedContent:'script; *[on*];*{*javascript*}',
+	      toolbar :[
+	        { name: 'tools', items: [ 'Maximize'] },
+    		{ name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+    		{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
+    		{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent',  '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
+    		{ name: 'links', items: [ 'Link', 'Unlink' ] },
+    		{ name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak'] },
+    		{ name: 'colors', items: [  'TextColor', 'BGColor', 'Format'] },
+    		{ name: 'styles', items: [ 'Styles', 'Font', 'FontSize' ] },
+	        { name: 'document', items: [ 'Source'] }
+	      ],
+	      on: {
+	        instanceReady: function () {
+	          setTimeout(function () {
+	            $('.cke_reset iframe').contents().find('body').css('background-color','##fff');
+	            $('.cke_reset iframe').contents().find('body').css('margin','0px');
+	          }, 100);
+	        }
+	      }
+	    };
         
         function save () {
             vm.isSaving = true;
-            console.log(vm.course);
             Course.save(vm.course, onSaveSuccess, onSaveError);
         }
         
@@ -47,7 +74,7 @@
         
         function onSaveSuccess (result) {
             vm.isSaving = false;
-            $state.go('course-management-self-list', null, { reload: true });
+            $state.go('course-management-list', {courseType:result.courseType, courseSource: result.courseSource}, { reload: true });
         }
     }
 })();

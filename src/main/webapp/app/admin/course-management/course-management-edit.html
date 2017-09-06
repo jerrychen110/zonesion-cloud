@@ -1,19 +1,19 @@
 <div style="margin-top:-30px">
 	<div id="content-container">
 		<div class="es-section course-manage-header clearfix">
-			<a href="/course/2"><img class="picture" src=""/></a>
-			<h1 class="title"><a href="">{{course.title}}</a><span class="label label-warning">{{course.status}}</span></h1>
-			<div class="teachers">½ÌÊ¦<a href="">{{course.userName}}</a></div>
+			<a ui-sref="courses({id:vm.course.id,countUser:vm.course.countUserId})"><img class="picture" ng-src="{{vm.course.coverPicture}}"/></a>
+			<h1 class="title"><a ui-sref="courses({id:vm.course.id,countUser:vm.course.countUserId})">{{vm.course.title}}</a><span class="label label-warning">{{vm.course.status}}</span></h1>
+			<div class="teachers">æ•™å¸ˆ<a href="">{{vm.course.userName}}</a></div>
 			<div class="toolbar hidden-xs">
 				<div class="btn-group">
-					<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">Ô¤ÀÀ<span class="caret"></span></button>
+					<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">é¢„è§ˆ<span class="caret"></span></button>
 					<ul class="dropdown-menu pull-right">
-						<li><a href="">×÷Îª ÒÑ¼ÓÈëÓÃ»§</a></li>
-						<li><a href="">×÷Îª Î´¼ÓÈëÓÃ»§</a></li>
+						<li><a href="">ä½œä¸º å·²åŠ å…¥ç”¨æˆ·</a></li>
+						<li><a href="">ä½œä¸º æœªåŠ å…¥ç”¨æˆ·</a></li>
 					</ul>
 				</div>
 				<div class="btn-group">
-					<button class="btn btn-success btn-sm course-publish-btn" data-url="/course/22/manage/publish">·¢²¼¿Î³Ì</button>
+					<button class="btn btn-success btn-sm course-publish-btn" data-url="/course/22/manage/publish">å‘å¸ƒè¯¾ç¨‹</button>
 				</div>
 			</div>
 		</div>
@@ -21,51 +21,17 @@
 			<div class="col-md-3">
 				<div class="sidenav locked">
 					<ul class="list-group">
-						<li class="list-group-heading" ui-sref-active="active">¿Î³ÌĞÅÏ¢</li>
-						<li class="list-group-item" ui-sref-active="active"><a href="">»ù±¾ĞÅÏ¢</a></li>
-						<li class="list-group-item" ui-sref-active="active"><a href="">ÏêÏ¸ĞÅÏ¢</a></li>
-						<li class="list-group-item" ui-sref-active="active"><a href="">¿Î³ÌÍ¼Æ¬</a></li>
-						<li class="list-group-item" ui-sref-active="active"><a href="">¿ÎÊ±¹ÜÀí</a></li>
-						<li class="list-group-item" ui-sref-active="active"><a href="">ÎÄ¼ş¹ÜÀí</a></li>
+						<li class="list-group-heading" ui-sref-active="active">è¯¾ç¨‹ä¿¡æ¯</li>
+						<li class="list-group-item" ui-sref-active="active"><a ui-sref="course-management-edit-base({id:vm.course.id})" ng-click="vm.collapseNavbar()">åŸºæœ¬ä¿¡æ¯</a></li>
+						<li class="list-group-item" ui-sref-active="active"><a ui-sref="course-management-edit-detail({id:vm.course.id})" ng-click="vm.collapseNavbar()">è¯¦ç»†ä¿¡æ¯</a></li>
+						<li class="list-group-item" ui-sref-active="active"><a ui-sref="course-management-edit-picture({id:vm.course.id})" ng-click="vm.collapseNavbar()">è¯¾ç¨‹å›¾ç‰‡</a></li>
+						<li class="list-group-item" ui-sref-active="active"><a ui-sref="course-management-edit-lesson({id:vm.course.id})" ng-click="vm.collapseNavbar()">è¯¾æ—¶ç®¡ç†</a></li>
+						<li class="list-group-item" ui-sref-active="active"><a ui-sref="course-management-edit-files({id:vm.course.id})" ng-click="vm.collapseNavbar()">æ–‡ä»¶ç®¡ç†</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-9">
+			<div class="col-md-9" ui-view="courseEdit">
 				<!-- Angular view -->
-				
-				<div class="panel panel-default panel-col">
-					<div class="panel-heading">»ù±¾ĞÅÏ¢</div>
-					<div class="panel-body">
-						<form class="form-horizontal" id="course-form" method="post" novalidate="novalidate" data-widget-cid="widget-1">
-							<div class="form-group">
-								<label class="col-md-2 control-label">±êÌâ</label>
-								<div class="col-md-8 controls">
-									<input type="text" id="course_title" name="title" required="required" class="form-control" data-widget-cid="widget-2" data-explain>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-md-2 control-label">¸±±êÌâ</label>
-								<div class="col-md-8 controls">
-									<input type="text" id="course_subtitle" name="subtitle" class="form-control" data-widget-cid="widget-3" data-explain>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-md-2 control-label">±êÇ©</label>
-								<div class="col-md-8 controls">
-									<input type="text" id="course_tags" name="tags" class="width-full select2-offscreen" data-widget-cid="widget-3" data-explain>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-md-offset-2 col-md-8 controls">
-									<button class="btn btn-fat btn-primary" id="course-create-btn" type="submit">±£´æ</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				
-				
-				
 			</div>
 		</div>
 	</div>

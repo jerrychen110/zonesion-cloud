@@ -94,7 +94,7 @@
                 authorities: ['ROLE_ADMIN']
             },
             views: {
-            	'contet@': {
+            	'content@': {
             		templateUrl: 'app/admin/course-management/course-management-create.html',
                     controller: 'CourseManagementCreateController',
                     controllerAs: 'vm'
@@ -134,19 +134,149 @@
                 authorities: ['ROLE_ADMIN']
             },
             views: {
-            	'contet@': {
+            	'content@': {
             		templateUrl: 'app/admin/course-management/course-management-edit.html',
                     controller: 'CourseManagementEditController',
                     controllerAs: 'vm'
             	}
             },
+            params: {
+            	id: {
+                	value: '1',
+                	squash: true
+                }
+            },
             resolve: {
-                entity: ['Course', function (Course) {
+                entity: ['Course', '$stateParams', function (Course, $stateParams) {
                     return Course.get({id: $stateParams.id});
                 }]
             }
         })
-        
+        .state('course-management-edit-base', {
+        	parent: 'course-management-edit',
+        	url: '/base',
+        	data: {
+        		authorities: ['ROLE_ADMIN']
+        	},
+        	views: {
+        		'courseEdit': {
+        			templateUrl: 'app/admin/course-management/course-management-edit-base.html',
+                    controller: 'CourseManagementEditController',
+                    controllerAs: 'vm'
+        		}
+        	},
+            params: {
+            	id: {
+                	value: '1',
+                	squash: true
+                }
+            },
+            resolve: {
+                entity: ['Course', '$stateParams', function (Course, $stateParams) {
+                    return Course.get({id: $stateParams.id});
+                }]
+            }
+        })
+        .state('course-management-edit-detail', {
+        	parent: 'course-management-edit',
+        	url: '/detail',
+        	data: {
+        		authorities: ['ROLE_ADMIN']
+        	},
+        	views: {
+        		'courseEdit': {
+        			templateUrl: 'app/admin/course-management/course-management-edit-detail.html',
+                    controller: 'CourseManagementEditController',
+                    controllerAs: 'vm'
+        		}
+        	},
+            params: {
+            	id: {
+                	value: '1',
+                	squash: true
+                }
+            },
+            resolve: {
+                entity: ['Course', '$stateParams', function (Course, $stateParams) {
+                    return Course.get({id: $stateParams.id});
+                }]
+            }
+        })
+        .state('course-management-edit-picture', {
+        	parent: 'course-management-edit',
+        	url: '/picture',
+        	data: {
+        		authorities: ['ROLE_ADMIN']
+        	},
+        	views: {
+        		'courseEdit': {
+        			templateUrl: 'app/admin/course-management/course-management-edit-picture.html',
+                    controller: 'CourseManagementEditController',
+                    controllerAs: 'vm'
+        		}
+        	},
+            params: {
+            	id: {
+                	value: '1',
+                	squash: true
+                }
+            },
+            resolve: {
+                entity: ['Course', '$stateParams', function (Course, $stateParams) {
+                    return Course.get({id: $stateParams.id});
+                }]
+            }
+        })
+        .state('course-management-edit-lesson', {
+        	parent: 'course-management-edit',
+        	url: '/lesson',
+        	data: {
+        		authorities: ['ROLE_ADMIN']
+        	},
+        	views: {
+        		'courseEdit': {
+        			templateUrl: 'app/admin/course-management/course-management-edit-lesson.html',
+                    controller: 'CourseManagementEditController',
+                    controllerAs: 'vm'
+        		}
+        	},
+            params: {
+            	id: {
+                	value: '1',
+                	squash: true
+                }
+            },
+            resolve: {
+                entity: ['Course', '$stateParams', function (Course, $stateParams) {
+                    return Course.get({id: $stateParams.id});
+                }]
+            }
+        })
+        .state('course-management-edit-files', {
+        	parent: 'course-management-edit',
+        	url: '/files',
+        	data: {
+        		authorities: ['ROLE_ADMIN']
+        	},
+        	views: {
+        		'courseEdit': {
+        			templateUrl: 'app/admin/course-management/course-management-edit-files.html',
+                    controller: 'CourseManagementEditController',
+                    controllerAs: 'vm'
+        		}
+        	},
+            params: {
+            	id: {
+                	value: '1',
+                	squash: true
+                }
+            },
+            resolve: {
+                entity: ['Course', '$stateParams', function (Course, $stateParams) {
+                    return Course.get({id: $stateParams.id});
+                }]
+            }
+        })
         
         /*
         .state('course-management.new', {
