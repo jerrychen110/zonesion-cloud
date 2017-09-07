@@ -33,7 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.zonesion.cloud.config.ApplicationProperties;
-import com.zonesion.cloud.service.util.AvatarSize;
+import com.zonesion.cloud.service.util.JcropSize;
 import com.zonesion.cloud.service.util.FileUtil;
 import com.zonesion.cloud.service.util.ServiceConstants;
 import com.zonesion.cloud.web.rest.dto.ResumableInfo;
@@ -59,22 +59,22 @@ public class FileManageMentService {
 	private DefaultFileSystemManager fileManager;
 	
 	/**
-	 * 保存头像
+	 * 保存jcrop截取的图片
 	 * @param mpf
 	 * @param folder
 	 * @param avatarSize
 	 * @throws IOException
 	 * @return
 	 */
-	public String saveAvatar(MultipartFile mpf, String folder, AvatarSize avatarSize) throws IOException {
-		log.debug("save avatar!");
+	public String saveJcropPicture(MultipartFile mpf, String folder, JcropSize jcropSize) throws IOException {
+		log.debug("save JcropPicture!");
 		String originalFileExtension = mpf.getOriginalFilename()
 				.substring(mpf.getOriginalFilename().lastIndexOf(DOT) + 1);
 		File tempFile = getTempPath(folder, originalFileExtension).toFile();
 		Files.deleteIfExists(tempFile.toPath());
 		mpf.transferTo(tempFile);
-		BufferedImage avatarImgBuffer = Scalr.crop(ImageIO.read(tempFile), avatarSize.getCropX(), avatarSize.getCropY(), avatarSize.getCropWidth(), avatarSize.getCropHeight());
-		avatarImgBuffer = Scalr.resize(avatarImgBuffer, avatarSize.getResizeWidth(), avatarSize.getResizeHeight(), Scalr.OP_ANTIALIAS);
+		BufferedImage avatarImgBuffer = Scalr.crop(ImageIO.read(tempFile), jcropSize.getCropX(), jcropSize.getCropY(), jcropSize.getCropWidth(), jcropSize.getCropHeight());
+		avatarImgBuffer = Scalr.resize(avatarImgBuffer, jcropSize.getResizeWidth(), jcropSize.getResizeHeight(), Scalr.OP_ANTIALIAS);
 		ByteArrayOutputStream tempOutputStream = new ByteArrayOutputStream();
 		ImageIO.write(avatarImgBuffer, originalFileExtension, tempOutputStream);
 		

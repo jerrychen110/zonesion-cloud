@@ -1,6 +1,6 @@
 package com.zonesion.cloud.service.util;
 
-public class AvatarSize {
+public class JcropSize {
 
 	private int cropX;
 	
@@ -14,7 +14,7 @@ public class AvatarSize {
 	
 	private int resizeHeight;
 	
-	public AvatarSize(int cropX, int cropY, int cropWidth, int cropHeight, int resizeWidth, int resizeHeight) {
+	public JcropSize(int cropX, int cropY, int cropWidth, int cropHeight, int resizeWidth, int resizeHeight) {
 		super();
 		this.cropX = cropX;
 		this.cropY = cropY;

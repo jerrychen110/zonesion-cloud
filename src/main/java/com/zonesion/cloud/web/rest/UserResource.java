@@ -10,7 +10,7 @@ import com.zonesion.cloud.service.FileManageMentService;
 import com.zonesion.cloud.service.MailService;
 import com.zonesion.cloud.service.UserService;
 import com.zonesion.cloud.service.dto.UserDTO;
-import com.zonesion.cloud.service.util.AvatarSize;
+import com.zonesion.cloud.service.util.JcropSize;
 import com.zonesion.cloud.service.util.FileUtil;
 import com.zonesion.cloud.web.rest.vm.ManagedUserVM;
 import com.zonesion.cloud.web.rest.util.HeaderUtil;
@@ -213,18 +213,18 @@ public class UserResource {
 	public ResponseEntity<?> saveUserAvatar(MultipartHttpServletRequest request)
 			throws NumberFormatException, IOException {
 		log.debug("Saving user avatar...");
+		User currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
 		String avatarUrl = null;
 		String[] crops = StringUtils.split(request.getParameter("cropSelection"), ",");// [x,y,x2,y2,w,h]
 		String resizeTo = request.getParameter("resizeTo");
 		Iterator<String> itr = request.getFileNames();
 		if (itr.hasNext()) {
 			MultipartFile mpf = request.getFile(itr.next());
-			avatarUrl = fileManageMentService.saveAvatar(mpf, FileUtil.LOCAL_USER_AVATAR_FOLDER, new AvatarSize(Integer.parseInt(crops[0]),
+			avatarUrl = fileManageMentService.saveJcropPicture(mpf, FileUtil.LOCAL_USER_AVATAR_FOLDER+"/"+currentUser.getId(), new JcropSize(Integer.parseInt(crops[0]),
 					Integer.parseInt(crops[1]), Integer.parseInt(crops[4]), Integer.parseInt(crops[5]),
 					Integer.parseInt(resizeTo), Integer.parseInt(resizeTo)));
 
 		}
-		User currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
 		currentUser.setAvatar(avatarUrl);
 		userRepository.save(currentUser);
 		Map<String, String> ret = new HashMap<>();

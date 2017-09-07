@@ -5,7 +5,7 @@ import com.zonesion.cloud.domain.Course;
 import com.zonesion.cloud.repository.CourseRepository;
 import com.zonesion.cloud.service.CourseService;
 import com.zonesion.cloud.service.FileManageMentService;
-import com.zonesion.cloud.service.util.AvatarSize;
+import com.zonesion.cloud.service.util.JcropSize;
 import com.zonesion.cloud.service.util.FileUtil;
 import com.zonesion.cloud.web.rest.util.HeaderUtil;
 import com.zonesion.cloud.web.rest.util.PaginationUtil;
@@ -166,7 +166,7 @@ public class CourseResource {
      */
     @RequestMapping(value = "/courses/{id}/cover-picture", method = RequestMethod.POST)
     @Transactional
-	public ResponseEntity<?> saveTeamLogo(@PathVariable Long id, MultipartHttpServletRequest request)
+	public ResponseEntity<?> saveCourseCoverPicture(@PathVariable Long id, MultipartHttpServletRequest request)
 			throws NumberFormatException, IOException {
 		log.debug("Saving course cover picture : {}", id);
 		String coverPicture = null;
@@ -175,7 +175,7 @@ public class CourseResource {
 		Iterator<String> itr = request.getFileNames();
 		if (itr.hasNext()) {
 			MultipartFile mpf = request.getFile(itr.next());
-			coverPicture = fileManageMentService.saveAvatar(mpf, FileUtil.LOCAL_UPLOAD_COURSE_COVER_PICTURE_FOLDER, new AvatarSize(Integer.parseInt(crops[0]),
+			coverPicture = fileManageMentService.saveJcropPicture(mpf, FileUtil.LOCAL_UPLOAD_COURSE_COVER_PICTURE_FOLDER+"/"+id, new JcropSize(Integer.parseInt(crops[0]),
 					Integer.parseInt(crops[1]), Integer.parseInt(crops[4]), Integer.parseInt(crops[5]),
 					Integer.parseInt(resizeTo), Integer.parseInt(resizeTo)));
 		}
