@@ -26,9 +26,8 @@ var handleErrors = require('./gulp/handle-errors'),
     util = require('./gulp/utils'),
     copy = require('./gulp/copy'),
     inject = require('./gulp/inject'),
-    build = require('./gulp/build');
-
-var config = require('./gulp/config');
+    build = require('./gulp/build'),
+    config = require('./gulp/config');
 
 gulp.task('clean', function () {
     return del([config.dist], { dot: true });

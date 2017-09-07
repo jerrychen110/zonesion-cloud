@@ -1,7 +1,8 @@
+(function() {
 'use strict';
 
 angular.module('zonesionCloudApplicationApp')
-    .directive('userAvatar', ['Principal','$templateRequest','$compile', function(Principal,$templateRequest,$compile) {
+    .directive('userAvatar', ['Principal', '$templateRequest', '$compile', function(Principal, $templateRequest, $compile) {
         return {
             restrict: 'AE',
             scope: {
@@ -24,4 +25,5 @@ angular.module('zonesionCloudApplicationApp')
               });
             }
         };
-    }])
+    }]);
+})();
