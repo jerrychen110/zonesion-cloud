@@ -759,6 +759,9 @@
                         <artifactId>spring-boot-maven-plugin</artifactId>
                         <configuration>
                             <executable>true</executable>
+                            <arguments>
+                                <argument>--spring.profiles.active=prod</argument>
+                            </arguments>
                         </configuration>
                         <executions>
                             <execution>
@@ -773,7 +776,6 @@
                         <artifactId>frontend-maven-plugin</artifactId>
                         <version>${frontend-maven-plugin.version}</version>
                         <executions>
-                        	<!--
                             <execution>
                                 <id>install node and npm</id>
                                 <goals>
@@ -793,7 +795,6 @@
                                     <arguments>install</arguments>
                                 </configuration>
                             </execution>
-                            -->
                             <execution>
                                 <id>bower install</id>
                                 <goals>
