@@ -45,7 +45,7 @@ module.exports = function () {
             next();
         }
     ]
-    .concat([require('serve-static')('local-storage/public')])
+    .concat([require('serve-static')('target/local-storage/public')])
     .concat(
         // Build a list of proxies for routes: [route1_proxy, route2_proxy, ...]
         proxyRoutes.map(function (r) {

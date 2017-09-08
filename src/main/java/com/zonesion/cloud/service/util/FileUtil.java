@@ -10,7 +10,7 @@ public final class FileUtil {
 	public static final int PART_SIZE=5*1024*1024;
 	
 	public static final String BASE_TEMP_DIR = "com.zonesion.cloud";
-	public static final String KEY_FILE_BASE_PATH = "local-storage";
+	public static final String KEY_FILE_BASE_PATH = "target/local-storage";
 	public static final String LOCAL_PUBLIC_FOLDER_PATH = "public";
 	public static final String LOCAL_PRIVATE_FOLDER_PATH = "private";
 	public static final String LOCAL_USER_AVATAR_FOLDER = "user-avatar";
