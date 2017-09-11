@@ -66,6 +66,8 @@ public class CourseDTO implements Serializable {
     private String introduction;
 
     private String goals;
+    
+    private String tags;
 
     @NotNull
     @Size(max = 1)
@@ -225,6 +227,14 @@ public class CourseDTO implements Serializable {
 
     public void setGoals(String goals) {
         this.goals = goals;
+    }
+    
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
     public String getRecommended() {
@@ -567,7 +577,7 @@ public class CourseDTO implements Serializable {
 	public String toString() {
 		return "CourseDTO [id=" + id + ", userId=" + userId + ", title=" + title + ", subTitle=" + subTitle
 				+ ", status=" + status + ", courseType=" + courseType + ", courseSource=" + courseSource + ", lessonNum=" + lessonNum + ", credit="
-				+ credit + ", coverPicture=" + coverPicture + ", introduction=" + introduction + ", goals=" + goals
+				+ credit + ", coverPicture=" + coverPicture + ", introduction=" + introduction + ", goals=" + goals + ", tags=" + tags
 				+ ", recommended=" + recommended + ", recommendedSort=" + recommendedSort + ", createdBy=" + createdBy
 				+ ", createdDate=" + createdDate + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate="
 				+ lastModifiedDate + ", chapterId=" + chapterId + ", chapterType=" + chapterType + ", chapterNumber="

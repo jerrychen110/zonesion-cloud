@@ -90,4 +90,12 @@
             </column>
     	</addColumn>
     </changeSet>
+    
+    <changeSet id="20170729021222-3" author="jhipster">
+    	<addColumn tableName="t_course">
+    		<column name="tags" type="varchar(1024)">
+                <constraints nullable="true" />
+            </column>
+    	</addColumn>
+    </changeSet>
 </databaseChangeLog>

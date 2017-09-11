@@ -72,6 +72,9 @@ public class Course extends AbstractAuditingEntity implements Serializable {
 
     @Column(name = "goals")
     private String goals;
+    
+    @Column(name = "tags")
+    private String tags;
 
     @NotNull
     @Size(max = 1)
@@ -248,6 +251,19 @@ public class Course extends AbstractAuditingEntity implements Serializable {
     public void setGoals(String goals) {
         this.goals = goals;
     }
+    
+    public String getTags() {
+        return tags;
+    }
+
+    public Course tags(String tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
 
     public String getRecommended() {
         return recommended;
@@ -385,6 +401,7 @@ public class Course extends AbstractAuditingEntity implements Serializable {
             ", coverPicture='" + getCoverPicture() + "'" +
             ", introduction='" + getIntroduction() + "'" +
             ", goals='" + getGoals() + "'" +
+            ", tags='" + getTags() + "'" +
             ", recommended='" + getRecommended() + "'" +
             ", recommendedSort='" + getRecommendedSort() + "'" +
             "}";
