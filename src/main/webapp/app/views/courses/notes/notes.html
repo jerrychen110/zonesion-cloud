@@ -1,6 +1,6 @@
-<div class="course-detail-content" data-widget-cid="widget-1">
+<div class="course-detail" data-widget-cid="widget-1" ng-repeat="note in vm.allnotes">
 
-	<div class="note-list" id="note-list" ng-repeat="note in vm.allnotes">
+	<div class="note-list" id="note-list" ng-if="note.content !=null">
 		<div class="media note-item">
 			<div class="media-left">
 				<a class=" js-user-card" href="#/user/1"
@@ -29,4 +29,5 @@
 			</div>
 		</div>
 	</div>
+	<div class="empty ng-scope" ng-if="note.content ==null">暂无笔记</div>
 </div>
