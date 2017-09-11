@@ -5,10 +5,30 @@
         .module('zonesionCloudApplicationApp')
         .controller('CoursesController', CoursesController);
 
-    CoursesController.$inject = ['$scope', '$rootScope', '$stateParams', 'CoursesService', 'UsersService'];
+    CoursesController.$inject = ['$scope', '$rootScope', 'Principal', 'LoginService','$state','$stateParams', 'CoursesService', 'UsersService'];
 
-    function CoursesController($scope, $rootScope, $stateParams, CoursesService, UsersService) {
+    function CoursesController($scope, $rootScope, Principal, LoginService, $state, $stateParams, CoursesService, UsersService) {
         var vm = this;
+        vm.account = null;
+        vm.isAuthenticated = null;
+        vm.login = LoginService.open;
+        $scope.$on('authenticationSuccess', function() {
+            getAccount();
+        });
+
+        getAccount();
+
+        function getAccount() {
+            Principal.identity().then(function(account) {
+                vm.account = account;
+                vm.isAuthenticated = Principal.isAuthenticated;
+                if(vm.account != null && vm.isAuthenticated != null){
+                	$state.go('join',{id:$stateParams.id});
+                }else{
+                	$state.go('courses')
+                }
+            });
+        }
         loadAll();
         loadUserInfo();
         
