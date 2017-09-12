@@ -1,7 +1,6 @@
-<div class="es-bar hidden-xs" data-widget-cid="widget-0">
-
+<div class="es-bar hidden-xs" data-widget-cid="widget-0" ng-if="vm.stateName!='learn'">
   <!-- 左侧列表 -->
-  <div class="es-bar-menu">
+  <div class="es-bar-menu" >
   <ul class="bar-menu-top">
         <li data-id="#bar-user-center" class="bar-user">
     <a href="javascript:;">学<br>习<br>中<br>心
@@ -169,10 +168,262 @@
               <p class="mtm"><i class="es-icon es-icon-phone mrm"></i>阔知网络北京分公司： 18814881999</p>
                     <p class="mtm"><i class="es-icon es-icon-mail mrm"></i>邮箱： <a class="link-light" href="mailto:qiqiuyu@edusoho.com">qiqiuyu@edusoho.com</a></p>
           </div>
-
           <div id="bar-weixin-content">
         <img width="110" class="img-responsive" src="/content/images/webchat.jpg" alt="">
       </div>
       </div>
 
+</div>
+
+<!--  学习的left toolbar-->
+<div class="toolbar toolbar-open" id="lesson-dashboard-toolbar" data-widget-cid="widget-1" ng-if="vm.stateName=='learn'">
+  <div class="toolbar-nav">
+
+    <ul class="toolbar-nav-stacked" id="lesson-toolbar-primary"><li data-plugin="lesson" data-noactive="false" class="active"><a href="#"><span class="glyphicon glyphicon-th-list"> </span>目录</a></li><li data-plugin="question" data-noactive="false"><a href="#"><span class="glyphicon glyphicon-question-sign"> </span>问答</a></li><li data-plugin="note" data-noactive="false"><a href="#"><span class="glyphicon glyphicon-edit"> </span>笔记</a></li><li data-plugin="material" data-noactive="false"><a href="#"><span class="glyphicon glyphicon-download-alt"> </span>资料</a></li></ul>
+    <ul class="list-unstyled">
+      <li class="es-qrcode toolbar-qrcode open" data-url="/course/4">
+        <i class="es-icon es-icon-qrcode"></i><br>
+        扫一扫
+        <span class="qrcode-popover">
+          <img src="http://47.94.170.44:8090/common/qrcode?text=http%3A%2F%2F47.94.170.44%3A8090%2Fqrcode%2Fparse%2FxdubAQjAkrqouDZwpigpKsdqb4b05ppy" alt="">
+          扫二维码继续学习
+        </span>
+      </li>
+    </ul>
+    <ul class="toolbar-nav-stacked" id="lesson-toolbar-secondary">
+      <li class="hide-pane" style="display: list-item;">
+        <a href="javascript:"><span class="glyphicon glyphicon-chevron-right"></span></a>
+      </li>
+    </ul>
+
+  </div>
+  <div class="toolbar-pane-container" style="display: block;">
+  <div data-pane="lesson" class="lesson-pane" data-widget-cid="widget-2" style="display: block;"><div class="course-item-list-in-toolbar-pane ps-container">
+<ul class="period-list" id="course-item-list">
+                  <li class="chapter clearfix">
+<i class="es-icon es-icon-toc"></i>
+<span class="title">
+
+    第 1
+              章
+    ：
+          EduSoho系统操作帮助
+  </span>
+
+<span class="period-show"><i class="es-icon es-icon-remove"></i></span>
+</li>
+                   <li class="period lesson-item lesson-item-43" data-id="43" data-num="2" style="display: list-item;">
+  <a href="/course/4/learn#lesson/43">
+      <i class="es-icon es-icon-done1 color-primary status-icon"></i>
+
+登录EduSoho系统
+<!-- 紧跟标题 -->
+
+
+
+
+<!-- 右边图标 -->
+
+
+  <span class="course-type">
+  <i class="es-icon es-icon-graphicclass" data-toggle="tooltip" data-placement="top" title="" data-original-title="图文课程"></i>
+</span>
+
+
+
+
+
+
+</a>
+</li>                       <li class="period lesson-item lesson-item-44 item-active" data-id="44" data-num="3" style="display: list-item;">
+  <a href="/course/4/learn#lesson/44">
+      <i class="es-icon es-icon-doing color-primary status-icon"></i>
+
+网校基本信息设置
+<!-- 紧跟标题 -->
+
+
+
+
+<!-- 右边图标 -->
+
+
+  <span class="course-type">
+  <i class="es-icon es-icon-graphicclass" data-toggle="tooltip" data-placement="top" title="" data-original-title="图文课程"></i>
+</span>
+
+
+
+
+
+
+</a>
+</li>                       <li class="period lesson-item lesson-item-50" data-id="50" data-num="4" style="display: list-item;">
+  <a href="/course/4/learn#lesson/50">
+      <i class="es-icon es-icon-doing color-primary status-icon"></i>
+
+顶部导航设置
+<!-- 紧跟标题 -->
+
+
+
+
+<!-- 右边图标 -->
+
+
+  <span class="course-type">
+  <i class="es-icon es-icon-graphicclass" data-toggle="tooltip" data-placement="top" title="" data-original-title="图文课程"></i>
+</span>
+
+
+
+
+
+
+</a>
+</li>                       <li class="period lesson-item lesson-item-45" data-id="45" data-num="5" style="display: list-item;">
+  <a href="/course/4/learn#lesson/45">
+      <i class="es-icon es-icon-done1 color-primary status-icon"></i>
+
+网校系统邮箱配置
+<!-- 紧跟标题 -->
+
+
+
+
+<!-- 右边图标 -->
+
+
+  <span class="course-type">
+  <i class="es-icon es-icon-graphicclass" data-toggle="tooltip" data-placement="top" title="" data-original-title="图文课程"></i>
+</span>
+
+
+
+
+
+
+</a>
+</li>                       <li class="period lesson-item lesson-item-46" data-id="46" data-num="6" style="display: list-item;">
+  <a href="/course/4/learn#lesson/46">
+      <i class="es-icon es-icon-doing color-primary status-icon"></i>
+
+管理网站用户权限
+<!-- 紧跟标题 -->
+
+
+
+
+<!-- 右边图标 -->
+
+
+  <span class="course-type">
+  <i class="es-icon es-icon-graphicclass" data-toggle="tooltip" data-placement="top" title="" data-original-title="图文课程"></i>
+</span>
+
+
+
+
+
+
+</a>
+</li>                       <li class="period lesson-item lesson-item-47" data-id="47" data-num="7" style="display: list-item;">
+  <a href="/course/4/learn#lesson/47">
+  <i class="es-icon es-icon-undone status-icon"></i>
+
+支付方式配置
+<!-- 紧跟标题 -->
+
+
+
+
+<!-- 右边图标 -->
+
+
+  <span class="course-type">
+  <i class="es-icon es-icon-graphicclass" data-toggle="tooltip" data-placement="top" title="" data-original-title="图文课程"></i>
+</span>
+
+
+
+
+
+
+</a>
+</li>                       <li class="period lesson-item lesson-item-51" data-id="51" data-num="8" style="display: list-item;">
+  <a href="/course/4/learn#lesson/51">
+  <i class="es-icon es-icon-undone status-icon"></i>
+
+开启移动端
+<!-- 紧跟标题 -->
+
+
+
+
+<!-- 右边图标 -->
+
+
+  <span class="course-type">
+  <i class="es-icon es-icon-graphicclass" data-toggle="tooltip" data-placement="top" title="" data-original-title="图文课程"></i>
+</span>
+
+
+
+
+
+
+</a>
+</li>                       <li class="period lesson-item lesson-item-48" data-id="48" data-num="9" style="display: list-item;">
+  <a href="/course/4/learn#lesson/48">
+  <i class="es-icon es-icon-undone status-icon"></i>
+
+更多设置
+<!-- 紧跟标题 -->
+
+
+
+
+<!-- 右边图标 -->
+
+
+  <span class="course-type">
+  <i class="es-icon es-icon-graphicclass" data-toggle="tooltip" data-placement="top" title="" data-original-title="图文课程"></i>
+</span>
+
+
+
+
+
+
+</a>
+</li>                  <li class="chapter clearfix">
+<i class="es-icon es-icon-toc"></i>
+<span class="title">
+
+    第 2
+              章
+    ：
+          域名备案与上线域名
+  </span>
+
+<span class="period-show"><i class="es-icon es-icon-remove"></i></span>
+</li>
+                   <li class="period lesson-item lesson-item-49" data-id="49" data-num="11">
+  <a href="/course/4/learn#lesson/49">
+  <i class="es-icon es-icon-undone status-icon"></i>
+
+域名备案概览
+<!-- 紧跟标题 -->
+
+
+
+
+<!-- 右边图标 -->
+
+
+  <span class="course-type">
+  <i class="es-icon es-icon-graphicclass" data-toggle="tooltip" data-placement="top" title="" data-original-title="图文课程"></i>
+</span>
+</a>
+</li>      </ul><div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px; width: 359px; display: none;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px; height: 574px; display: none;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div></div></div></div>
 </div>
