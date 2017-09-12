@@ -1,0 +1,9 @@
+{
+    "home": {
+        "title": "欢迎, Zonesion!",
+        "subtitle": "这是您的主页",
+        "logged": {
+            "message": "You are logged in as user \"{{username}}\"."
+        }
+    }
+}

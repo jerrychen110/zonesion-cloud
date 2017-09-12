@@ -1,0 +1,25 @@
+{
+    "zonesionCloudApplicationApp": {
+        "courseLessonLearn" : {
+            "home": {
+                "title": "Course Lesson Learns",
+                "createLabel": "Create a new Course Lesson Learn",
+                "createOrEditLabel": "Create or edit a Course Lesson Learn"
+            },
+            "created": "A new Course Lesson Learn is created with identifier {{ param }}",
+            "updated": "A Course Lesson Learn is updated with identifier {{ param }}",
+            "deleted": "A Course Lesson Learn is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Course Lesson Learn {{ id }}?"
+            },
+            "detail": {
+                "title": "Course Lesson Learn"
+            },
+            "courseId": "Course Id",
+            "userId": "User Id",
+            "durationId": "Duration Id",
+            "isComplete": "Is Complete",
+            "courseLesson": "Course Lesson"
+        }
+    }
+}

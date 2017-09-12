@@ -22,7 +22,7 @@ public class ChapterDTO implements Serializable {
 	private Long id;
     
     @NotNull
-    private Course courseId;
+    private Course course;
     
     @NotNull
     private Long userId;
@@ -55,16 +55,16 @@ public class ChapterDTO implements Serializable {
     	
     }
     public ChapterDTO(Chapter chapter) {
-		this(chapter.getId(), chapter.getCourseId(), chapter.getUserId(), chapter.getChapterType(),
+		this(chapter.getId(), chapter.getCourse(), chapter.getUserId(), chapter.getChapterType(),
 			 chapter.getNumber(), chapter.getSeq(), chapter.getTitle(), chapter.getCreatedBy(),
 			 chapter.getCreatedDate(), chapter.getLastModifiedBy(), chapter.getLastModifiedDate());
 	}
     
-	public ChapterDTO(Long id, Course courseId, Long userId, String chapterType, Integer number, Integer seq,
+	public ChapterDTO(Long id, Course course, Long userId, String chapterType, Integer number, Integer seq,
 			String title, String createdBy, Instant createdDate,String lastModifiedBy, Instant lastModifiedDate ) {
 		super();
 		this.id = id;
-		this.courseId = courseId;
+		this.course = course;
 		this.userId = userId;
 		this.chapterType = chapterType;
 		this.number = number;
@@ -84,12 +84,12 @@ public class ChapterDTO implements Serializable {
         this.id = id;
     }
     
-	public Course getCourseId() {
-		return courseId;
+	public Course getCourse() {
+		return course;
 	}
 
-	public void setCourseId(Course courseId) {
-		this.courseId = courseId;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
     
     public Long getUserId() {
@@ -154,7 +154,7 @@ public class ChapterDTO implements Serializable {
 
     @Override
 	public String toString() {
-		return "ChapterDTO [id=" + id + ", courseId=" + courseId + ", userId=" + userId + ", chapterType=" + chapterType
+		return "ChapterDTO [id=" + id + ", course=" + course + ", userId=" + userId + ", chapterType=" + chapterType
 				+ ", number=" + number + ", seq=" + seq + ", title=" + title + ", createdBy=" + createdBy
 				+ ", createdDate=" + createdDate + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate="
 				+ lastModifiedDate + "]";

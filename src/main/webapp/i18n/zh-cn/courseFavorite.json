@@ -1,0 +1,22 @@
+{
+    "zonesionCloudApplicationApp": {
+        "courseFavorite" : {
+            "home": {
+                "title": "Course Favorites",
+                "createLabel": "Create a new Course Favorite",
+                "createOrEditLabel": "Create or edit a Course Favorite"
+            },
+            "created": "A new Course Favorite is created with identifier {{ param }}",
+            "updated": "A Course Favorite is updated with identifier {{ param }}",
+            "deleted": "A Course Favorite is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Course Favorite {{ id }}?"
+            },
+            "detail": {
+                "title": "Course Favorite"
+            },
+            "userId": "User Id",
+            "course": "Course"
+        }
+    }
+}

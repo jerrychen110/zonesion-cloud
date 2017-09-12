@@ -17,7 +17,39 @@
 			</div>
 			<div class="form-group clearfix">
 				<div class="col-md-offset-2 col-md-8 controls">
-					 <a id="upload-picture-btn" class="btn btn-fat btn-primary" data-upload-token="MXx0bXB8aW1hZ2V8MTUwNDY4NjMxOHw5NzMzNjZlYjAxNjEzZWNlZWNjZDljOTU2ZGM2MDBiNg" data-goto-url="/course/12/manage/picture/crop">选择要上传的图片</a>
+					 <div><button ng-disabled="saveCoverPictureState==1" type="button"
+						 class="btn btn-fat btn-primary"
+						 ngf-select ng-model="coverPicturePicked" name="file" ngf-pattern="IMAGE_TYPES.pattern"
+						 ngf-accept="IMAGE_TYPES.mime" ngf-max-size="1MB" ngf-change="onCoverPicturePicked($file)"><span
+					    translate="courseManagement.pictures.update_photo">选择要上传的图片</span></button>
+						<button ng-if="false&&account.avatar" type="button" ng-click="clearCoverPicture()" class="btn btn-danger media-middle dart-default-btn mll">
+					    <span translate="courseManagement.pictures.clear">Clear</span></button>
+				    </div>
+				    <div ng-if="coverPicturePicked" class="media-body media-heading avatar-jcrop pick-img" ng-jcrop="coverPictureImgContent"
+					 selection="coverPictureSelection" thumbnail="true"></div>
+				    <div ng-if="coverPicturePicked" class="avatar-buttons">
+					<button ng-disabled="saveCoverPictureState==1" type="button" class="btn btn-default mrl mlm dart-default-btn"
+						ngf-select ng-model="coverPicturePicked" name="repickfile" ngf-pattern="IMAGE_TYPES.pattern"
+						ngf-accept="IMAGE_TYPES.mime" ngf-max-size="2MB" ngf-change="onCoverPicturePicked($file)"><span
+						translate="courseManagement.pictures.reselect">Reselect</span></button>
+					<button ng-disabled="saveCoverPictureState==1" type="button" class="btn btn-success pll prl mrl dart-default-btn"
+						ng-click="saveCoverPicture()">
+					    {{saveCoverPictureState==0?'courseManagement.form.button':'buttons.saving'|translate}}
+					</button>
+					<button ng-disabled="saveCoverPictureState==1" type="button" class="btn btn-default  white-btn pll prl mrl dart-default-btn"
+						ng-click="cancelCoverPicture()">
+					    <span translate="buttons.cancel">Cancel</span>
+					</button>
+				    </div>
+				    <div ng-if="form.file.$error.pattern||form.repickfile.$error.pattern">
+					<label class="avatar-desc">&nbsp;</label><label class="text-danger"><i class="fa fa-ban"></i> <span
+					    translate="courseManagement.pictures.wrongType">The file type you selected is incorrect, supported by type:</span>
+					{{IMAGE_TYPES.description}}.</label>
+				    </div>
+				    <div ng-if="form.file.$error.maxSize||form.repickfile.$error.maxSize">
+					<label class="avatar-desc">&nbsp;</label><label class="text-danger"><i class="fa fa-ban"></i> <span
+					    translate="courseManagement.pictures.tooLarge">You choose the file is too large, more than 2MB.</span></label>
+				    </div>
 				</div>
 			</div>
 		</form>

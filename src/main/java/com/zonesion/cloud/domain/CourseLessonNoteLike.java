@@ -32,6 +32,7 @@ public class CourseLessonNoteLike implements Serializable {
     private Instant createdTime;
 
     @ManyToOne
+    @JoinColumn(name = "course_lesson_note_id", insertable = false, updatable = false)
     private CourseLessonNote courseLessonNote;
 
     public Long getId() {

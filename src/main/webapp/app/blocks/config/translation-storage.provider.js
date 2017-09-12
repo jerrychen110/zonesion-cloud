@@ -16,7 +16,7 @@
         function get(name) {
             if (LANGUAGES.indexOf($cookies.getObject(name)) === -1) {
                 $log.info('Resetting invalid cookie language "' + $cookies.getObject(name) + '" to preferred language "en"');
-                $cookies.putObject(name, 'en');
+                $cookies.putObject(name, 'zh-cn');
             }
             return $cookies.getObject(name);
         }

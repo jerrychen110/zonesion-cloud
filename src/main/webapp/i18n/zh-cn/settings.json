@@ -1,0 +1,56 @@
+{
+    "settings": {
+        "title": "[<b>{{username}}</b>] 个人设置",
+        "form": {
+            "name": "姓名",
+            "name.placeholder": "请输入您的姓名",
+            "language": "语言",
+            "button": "保存"
+        },
+        "pictures":{
+          "picture":"头像",
+          "photo":"您可以选择一张照片作为您的头像",
+          "profile_photo":"设置头像",
+          "update_photo":"修改头像",
+          "clear":"清除头像",
+          "reselect":"重新选择",
+          "wrongType":"您选择的文件类型有误，支持类型:",
+          "tooLarge":"您选择的文件过大，超过了1MB."
+        },
+        "avatar.preview":"头像预览",
+        "messages": {
+            "error": {
+                "fail": "<strong>An error has occurred!</strong> Settings could not be saved.",
+                "emailexists": "<strong>Email is already in use!</strong> Please choose another one."
+            },
+            "success": "<strong>Settings saved!</strong>",
+            "validate": {
+                "name": {
+                    "required": "Your name is required.",
+                    "minlength": "Your name is required to be at least 1 character",
+                    "maxlength": "Your name cannot be longer than 50 characters"
+                },
+                "mobile": {
+                    "required": "Your mobile is required.",
+                    "minlength": "Your mobile is required to be at least 1 character",
+                    "maxlength": "Your mobile cannot be longer than 11 characters"
+                },
+                "sex": {
+                    "required": "Your sex is required.",
+                    "minlength": "Your sex is required to be at least 1 character",
+                    "maxlength": "Your sex cannot be longer than 1 characters"
+                },
+                "staffNo": {
+                    "required": "Your staffNo is required.",
+                    "minlength": "Your staffNo is required to be at least 1 character",
+                    "maxlength": "Your staffNo cannot be longer than 12 characters"
+                },
+                "major": {
+                    "required": "Your major is required.",
+                    "minlength": "Your major is required to be at least 1 character",
+                    "maxlength": "Your major cannot be longer than 50 characters"
+                }
+            }
+        }
+    }
+}

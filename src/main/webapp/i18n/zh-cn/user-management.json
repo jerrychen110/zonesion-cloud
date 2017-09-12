@@ -1,0 +1,35 @@
+{
+    "userManagement": {
+        "home": {
+            "title": "用户",
+            "createLabel": "新增用户",
+            "createOrEditLabel": "新增或编辑用户"
+        },
+        "created": "{{ param }} 用户已创建",
+        "updated": "{{ param }} 用户信息已更新",
+        "deleted": "{{ param }} 用户已删除",
+        "delete": {
+            "question": "确定要删除用户 {{ login }}?"
+        },
+        "detail": {
+            "title": "用户"
+        },
+        "login": "用户名",
+        "name": "姓名",
+        "avatar": "头像",
+        "email": "电子邮箱",
+        "mobile": "手机号码",
+        "sex": "性别",
+        "staffNo": "教职工工号或学生学号",
+        "major": "专业",
+        "school": "学校",
+        "activated": "已激活",
+        "deactivated": "未激活",
+        "profiles": "角色",
+        "createdBy": "创建者",
+        "createdDate": "创建时间",
+        "lastModifiedBy": "修改者",
+        "lastModifiedDate": "修改时间",
+        "operate": "操作"
+    }
+}

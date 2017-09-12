@@ -1,0 +1,30 @@
+{
+    "zonesionCloudApplicationApp": {
+        "courseLessonAttachment" : {
+            "home": {
+                "title": "Course Lesson Attachments",
+                "createLabel": "Create a new Course Lesson Attachment",
+                "createOrEditLabel": "Create or edit a Course Lesson Attachment"
+            },
+            "created": "A new Course Lesson Attachment is created with identifier {{ param }}",
+            "updated": "A Course Lesson Attachment is updated with identifier {{ param }}",
+            "deleted": "A Course Lesson Attachment is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Course Lesson Attachment {{ id }}?"
+            },
+            "detail": {
+                "title": "Course Lesson Attachment"
+            },
+            "courseId": "Course Id",
+            "userId": "User Id",
+            "title": "Title",
+            "description": "Description",
+            "link": "Link",
+            "fileId": "File Id",
+            "fileUri": "File Uri",
+            "fileMime": "File Mime",
+            "fileSize": "File Size",
+            "courseLesson": "Course Lesson"
+        }
+    }
+}

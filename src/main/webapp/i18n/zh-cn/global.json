@@ -1,0 +1,166 @@
+{
+    "global": {
+        "title": "云课堂",
+        "browsehappy": "您目前使用<strong>过旧</strong>的浏览器, 建议您<a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a>升级浏览器</a>让您有更佳的上网体验.",
+        "menu": {
+            "home": "主页",
+            "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
+            "entities": {
+                "main": "表对象",
+                "course": "Course",
+                "courseFavorite": "Course Favorite",
+                "courseReview": "Course Review",
+                "chapter": "Chapter",
+                "courseLesson": "Course Lesson",
+                "courseLessonAttachment": "Course Lesson Attachment",
+                "courseLessonLearn": "Course Lesson Learn",
+                "courseLessonNote": "Course Lesson Note",
+                "courseLessonNoteLike": "Course Lesson Note Like",
+                "file": "File",
+                "major": "Major",
+                "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
+            },
+            "account": {
+                "main": "账号",
+                "myhome": "我的主页",
+                "settings": "个人设置",
+                "password": "修改密码",
+                "sessions": "会话",
+                "login": "登录",
+                "logout": "退出",
+                "register": "注册"
+            },
+            "admin": {
+                "main": "管理",
+                "userManagement": "用户管理",
+                "courseManagement": "课程管理",
+                "tracker": "追踪使用者",
+                "metrics": "资源监控",
+                "health": "服务状态",
+                "configuration": "配置",
+                "logs": "日志",
+                "audits": "审核",
+                "apidocs": "API",
+                "database": "数据库",
+                "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
+            },
+            "language": "语言"
+        },
+        "form": {
+            "username": "帐号",
+            "username.placeholder": "请输入您的帐号",
+            "newpassword": "密码",
+            "newpassword.placeholder": "请输入您的新密码",
+            "confirmpassword": "密码确认",
+            "confirmpassword.placeholder": "请输入您的新密码",
+            "email": "邮件",
+            "email.placeholder": "请输入您的邮件",
+            "mobile": "手机号码",
+            "mobile.placeholder": "请输入您的手机号码",
+            "sex": "性别",
+            "sex.placeholder": "确认您的性别",
+            "staffNo": "教职工工号或学生学号",
+            "staffNo.placeholder": "请输入您的教职工工号或学生学号",
+            "major": "专业",
+            "major.placeholder": "请输入您的专业"
+        },
+        "messages": {
+            "info": {
+                "authenticated": "如果您要<a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">登录</a>, 您可以使用默认账号:<br/>- 管理员 (帐号=\"admin\" 和密码=\"admin\") <br/>- 教师 (帐号=\"user1\" 和密码=\"user\") <br/>- 学生 (帐号=\"user2\" 和密码=\"user\").",
+                "register": "如果您还没有帐号? <a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">注册一个新帐号</a>"
+            },
+            "error": {
+                "dontmatch": "您输入的密码和确认密码不一致!"
+            },
+            "validate": {
+                "newpassword": {
+                    "required": "密码不能为空。",
+                    "minlength": "密码至少为4个字符。",
+                    "maxlength": "密码不能超过50个字符。",
+                    "strength": "密码安全级别:"
+                },
+                "confirmpassword": {
+                    "required": "确认密码不能为空。",
+                    "minlength": "确认密码至少为4个字符。",
+                    "maxlength": "确认密码不能超过50个字符。"
+                },
+                "email": {
+                    "required": "邮箱不能为空。",
+                    "invalid": "邮箱格式不对。",
+                    "minlength": "邮箱至少为4个字符。",
+                    "maxlength": "邮箱不能超过50个字符。"
+                }
+            }
+        },
+        "field": {
+            "id": "ID"
+        },
+        "ribbon": {
+            "dev":"Development"
+        },
+        "item-count": "显示 {{first}} - {{second}} 中 {{total}} 项."
+    },
+    "entity": {
+        "action": {
+            "addblob": "Add blob",
+            "addimage": "添加图片",
+            "back": "返回",
+            "cancel": "取消",
+            "delete": "删除",
+            "edit": "编辑",
+            "open": "打开",
+            "save": "保存",
+            "view": "查看"
+        },
+        "detail": {
+            "field": "字段",
+            "value": "值"
+        },
+        "delete": {
+            "title": "确认删除操作"
+        },
+        "validation": {
+            "required": "本字段不能为空.",
+            "minlength": "本字段最短长度为 {{ min }} 个字符.",
+            "maxlength": "本字段最大长度为 {{ max }} 个字符.",
+            "min": "最小值",
+            "max": "最大值",
+            "minbytes": "This field should be at least {{ min }} bytes.",
+            "maxbytes": "This field cannot be more than {{ max }} bytes.",
+            "pattern": "This field should follow pattern for {{ pattern }}.",
+            "number": "This field should be a number.",
+            "datetimelocal": "This field should be a date and time."
+        }
+    },
+    "error": {
+        "internalServerError": "Internal server error",
+        "server.not.reachable": "无法访问服务",
+        "url.not.found": "Not found",
+        "NotNull": "Field {{ fieldName }} cannot be empty!",
+        "Size": "Field {{ fieldName }} does not meet min/max size requirements!",
+        "userexists": "Login name already used!",
+        "emailexists": "Email is already in use!",
+        "idexists": "A new {{ entityName }} cannot already have an ID"
+    },
+    "buttons":{
+      "nextstep":"下一步",
+      "prevstep":"上一步",
+      "cancel":"取消",
+      "save":"保存",
+      "save_2":"保存",
+      "saving":"正在保存...",
+      "continueadd":"添加",
+      "ok":"确定",
+      "upload":"上传",
+      "delete":"删除",
+      "retry":"重试",
+      "continue":"继续",
+      "pause":"暂停",
+      "selectAll":"全选",
+      "today":"今天",
+      "clear":"清除",
+      "close":"关闭",
+      "update":"更新"
+    },
+    "footer": "中智讯（武汉）科技有限公司"
+}

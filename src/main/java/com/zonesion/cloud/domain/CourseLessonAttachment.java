@@ -58,7 +58,7 @@ public class CourseLessonAttachment extends AbstractAuditingEntity implements Se
     private Integer fileSize;
 
     @ManyToOne
-    @NotNull
+    @JoinColumn(name = "course_lesson_id", insertable = false, updatable = false)
     private CourseLesson courseLesson;
 
     public Long getId() {
