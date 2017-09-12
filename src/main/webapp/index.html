@@ -37,7 +37,7 @@
     <div ui-view="navbar" ng-cloak></div>
     <div ui-view="sidenav" ng-cloak></div>
     <div class="es-wrap">
-        <div class="well" ui-view="content">
+        <div class="well" ui-view="content" ng-cloak>
             <!-- Angular views -->
         </div>
     </div>
@@ -91,6 +91,7 @@
     <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
     <!-- build:js app/app.js  -->
@@ -98,6 +99,10 @@
     <script src="app/app.module.js"></script>
     <script src="app/views/home/home.state.js"></script>
     <script src="app/views/home/home.controller.js"></script>
+    <script src="app/views/courses/reviews/reviews.service.js"></script>
+    <script src="app/views/courses/reviews/reviews.controller.js"></script>
+    <script src="app/views/courses/notes/notes.service.js"></script>
+    <script src="app/views/courses/notes/notes.controller.js"></script>
     <script src="app/views/courses/join/join.state.js"></script>
     <script src="app/views/courses/join/join.controller.js"></script>
     <script src="app/views/courses/explore/explore.state.js"></script>
@@ -106,10 +111,6 @@
     <script src="app/views/courses/courses.state.js"></script>
     <script src="app/views/courses/courses.service.js"></script>
     <script src="app/views/courses/courses.controller.js"></script>
-    <script src="app/views/courses/reviews/reviews.service.js"></script>
-    <script src="app/views/courses/reviews/reviews.controller.js"></script>
-    <script src="app/views/courses/notes/notes.service.js"></script>
-    <script src="app/views/courses/notes/notes.controller.js"></script>
     <script src="app/users/users-favorited.service.js"></script>
     <script src="app/users/users.state.js"></script>
     <script src="app/users/users.service.js"></script>
@@ -222,9 +223,9 @@
     <script src="app/components/form/minbytes.directive.js"></script>
     <script src="app/components/form/maxbytes.directive.js"></script>
     <script src="app/components/common/useravatar/directive.js"></script>
+    <script src="app/components/common/ng-ckeditor/ng-ckeditor.js"></script>
     <script src="app/components/common/jquery-luara/jquery.luara.0.0.1.min.js"></script>
     <script src="app/components/common/avatar-crop/ng-jcrop.js"></script>
-    <script src="app/components/common/ng-ckeditor/ng-ckeditor.js"></script>
     <script src="app/components/alert/alert-error.directive.js"></script>
     <script src="app/components/alert/alert.service.js"></script>
     <script src="app/components/alert/alert.directive.js"></script>
@@ -261,12 +262,12 @@
     <script src="app/admin/health/health.modal.controller.js"></script>
     <script src="app/admin/health/health.controller.js"></script>
     <script src="app/admin/docs/docs.state.js"></script>
+    <script src="app/admin/course-management/course-management-list.controller.js"></script>
+    <script src="app/admin/course-management/course-management-edit.controller.js"></script>
+    <script src="app/admin/course-management/course-management-create.controller.js"></script>
     <script src="app/admin/course-management/course-management.state.js"></script>
     <script src="app/admin/course-management/course-management.service.js"></script>
     <script src="app/admin/course-management/course-management.controller.js"></script>
-    <script src="app/admin/course-management/course-management-list.controller.js"></script>
-    <script src="app/admin/course-management/course-management-create.controller.js"></script>
-    <script src="app/admin/course-management/course-management-edit.controller.js"></script>
     <script src="app/admin/configuration/configuration.state.js"></script>
     <script src="app/admin/configuration/configuration.service.js"></script>
     <script src="app/admin/configuration/configuration.controller.js"></script>

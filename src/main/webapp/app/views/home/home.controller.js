@@ -17,8 +17,9 @@
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
+        vm.courseType = 'recommend';
         vm.getCourse = getCourse;
-        vm.getCourse('new');
+        vm.getCourse(vm.courseType);
         $scope.$on('authenticationSuccess', function() {
             getAccount();
         });
@@ -36,6 +37,7 @@
         }
 
         function getCourse(type){
+          // $(".btn").button();
           switch (type) {
             case 'new':
             getNewCourse();

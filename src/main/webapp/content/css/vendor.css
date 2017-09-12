@@ -1,4 +1,28 @@
 @charset "UTF-8";
 /*
+定义的样式
+*/
+/*
 覆盖样式
 */
+html {
+  height: 100%; }
+
+body {
+  position: relative;
+  min-height: 100%; }
+  body .footer {
+    color: #333;
+    background-color: white;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 50px;
+    width: 100%; }
+
+.btn-group .btn {
+  outline: none !important; }
+
+.btn-group .active {
+  background-color: #0fbe8a !important;
+  color: white !important; }
