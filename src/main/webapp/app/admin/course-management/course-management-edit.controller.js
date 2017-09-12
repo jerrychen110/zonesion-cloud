@@ -5,9 +5,9 @@
         .module('zonesionCloudApplicationApp')
         .controller('CourseManagementEditController', CourseManagementEditController);
 
-    CourseManagementEditController.$inject = ['Principal', 'Course', 'entity', 'AlertService', '$state', '$scope', 'JhiLanguageService'];
+    CourseManagementEditController.$inject = ['Principal', 'Course', 'entity', 'AlertService', '$state', '$log', '$scope', '$rootScope', 'JhiLanguageService', 'Upload'];
 
-    function CourseManagementEditController(Principal, Course, entity, AlertService, $state, $scope, JhiLanguageService) {
+    function CourseManagementEditController(Principal, Course, entity, AlertService, $state, $log, $scope, $rootScope, JhiLanguageService, Upload) {
         var vm = this;
 
         vm.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
@@ -24,6 +24,69 @@
             vm.currentAccount = account;
             vm.course.userId = account.id;
         });
+        
+        //修改封面
+        $scope.IMAGE_TYPES = {
+      		  mime:'image/jpeg,image/png,image/bmp,image/x-jpeg,image/x-png,image/x-ms-bmp',
+      		  description:'JPG,PNG,BMP',
+      		  pattern:'.jpg,.jpeg,.png,.bmp'
+      		};
+      $scope.coverPicturePicked = false;
+      $scope.coverPictureImgContent=null;
+      $scope.saveCoverPictureState=0;//0:init 1:saving 2:success -1:fail
+      $scope.coverPictureSelection = [0, 0, 100, 100, 100, 100];
+      
+      $scope.cancelCoverPicture = function() {
+        $scope.coverPicturePicked=false;
+      };
+      
+      $scope.saveCoverPicture = function() {
+          $scope.saveCoverPictureState = 1;
+          $log.debug($scope.coverPictureSelection);
+          Upload.upload({
+            url:'api/courses/'+vm.course.id+'/cover-picture',
+            data:{
+              file:$scope.coverPicturePicked,
+              cropSelection:$scope.coverPictureSelection.join(','),
+              resizeTo:'120'
+            }
+          }).then(function success(res) {
+            $log.debug('success',res);
+            $scope.saveCoverPictureState = 0;
+            $scope.coverPicturePicked=false;
+            $scope.coverPictureSelection = [0, 0, 100, 100, 100, 100];
+            Principal.identity(true).then(function(account) {
+                $scope.settingsAccount = angular.copy(account);
+                $rootScope.account = angular.copy(account);
+            });
+          },function error(res){
+            $log.debug('error',res);
+            $scope.saveCoverPictureState = -1;
+          },function progress(evt){
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            $log.debug('progress:'+progressPercentage+'%',evt);
+          });
+        };
+
+        $scope.clearCoverPicture = function() {
+          $scope.coverPicturePicked=false;
+          $scope.saveCoverPicture();
+        };
+
+        var coverPictureFileReader = new FileReader();
+        coverPictureFileReader.onload = function(){
+          $scope.$apply(function(){
+            $scope.coverPictureImgContent=coverPictureFileReader.result;
+          });
+        };
+
+        $scope.onCoverPicturePicked = function(file) {
+          if (file) {
+            $scope.coverPictureSelection = [0, 0, 100, 100, 100, 100];
+            coverPictureFileReader.readAsDataURL(file);
+            $scope.coverPicturePicked=file;
+          }
+        };
         
         //富文本插件ckeditor相关设置
         $scope.editorOptions = {
@@ -65,7 +128,7 @@
         
         function save () {
             vm.isSaving = true;
-            Course.save(vm.course, onSaveSuccess, onSaveError);
+            Course.update(vm.course, onSaveSuccess, onSaveError);
         }
         
         function onSaveError () {
@@ -74,7 +137,7 @@
         
         function onSaveSuccess (result) {
             vm.isSaving = false;
-            $state.go('course-management-list', {courseType:result.courseType, courseSource: result.courseSource}, { reload: true });
+//            $state.go('course-management-list', {courseType:result.courseType, courseSource: result.courseSource}, { reload: true });
         }
     }
 })();
