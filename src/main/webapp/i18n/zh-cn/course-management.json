@@ -1,0 +1,50 @@
+{
+    "courseManagement": {
+        "home": {
+            "title": "课程",
+            "createLabel": "创建课程",
+            "createOrEditLabel": "创建或编辑课程"
+        },
+        "form": {
+            "name": "姓名",
+            "name.placeholder": "请输入您的姓名",
+            "language": "语言",
+            "button": "保存"
+        },
+        "pictures":{
+        	"picture":"封面",
+          	"photo":"您可以选择一张照片作为您的封面",
+          	"profile_photo":"设置封面",
+          	"update_photo":"修改封面",
+          	"clear":"清除封面",
+          	"reselect":"重新选择",
+          	"wrongType":"您选择的文件类型有误，支持类型:",
+          	"tooLarge":"您选择的文件过大，超过了1MB."
+        },
+        "created": "A new user is created with identifier {{ param }}",
+        "updated": "An user is updated with identifier {{ param }}",
+        "deleted": "An user is deleted with identifier {{ param }}",
+        "delete": {
+            "question": "Are you sure you want to delete user {{ login }}?"
+        },
+        "detail": {
+            "title": "User"
+        },
+        "login": "Login",
+        "name": "Name",
+        "avatar": "Avatar",
+        "email": "Email",
+        "mobile": "Mobile",
+        "sex": "Sex",
+        "staffNo": "StaffNo",
+        "major": "Major",
+        "school": "School",
+        "activated": "Activated",
+        "deactivated": "Deactivated",
+        "profiles": "Profiles",
+        "createdBy": "Created by",
+        "createdDate": "Created date",
+        "lastModifiedBy": "Modified by",
+        "lastModifiedDate": "Modified date"
+    }
+}

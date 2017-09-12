@@ -1,0 +1,23 @@
+{
+    "zonesionCloudApplicationApp": {
+        "courseLessonNoteLike" : {
+            "home": {
+                "title": "Course Lesson Note Likes",
+                "createLabel": "Create a new Course Lesson Note Like",
+                "createOrEditLabel": "Create or edit a Course Lesson Note Like"
+            },
+            "created": "A new Course Lesson Note Like is created with identifier {{ param }}",
+            "updated": "A Course Lesson Note Like is updated with identifier {{ param }}",
+            "deleted": "A Course Lesson Note Like is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Course Lesson Note Like {{ id }}?"
+            },
+            "detail": {
+                "title": "Course Lesson Note Like"
+            },
+            "userId": "User Id",
+            "createdTime": "Created Time",
+            "courseLessonNote": "Course Lesson Note"
+        }
+    }
+}

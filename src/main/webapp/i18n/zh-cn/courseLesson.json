@@ -1,0 +1,38 @@
+{
+    "zonesionCloudApplicationApp": {
+        "courseLesson" : {
+            "home": {
+                "title": "Course Lessons",
+                "createLabel": "Create a new Course Lesson",
+                "createOrEditLabel": "Create or edit a Course Lesson"
+            },
+            "created": "A new Course Lesson is created with identifier {{ param }}",
+            "updated": "A Course Lesson is updated with identifier {{ param }}",
+            "deleted": "A Course Lesson is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Course Lesson {{ id }}?"
+            },
+            "detail": {
+                "title": "Course Lesson"
+            },
+            "userId": "User Id",
+            "number": "Number",
+            "seq": "Seq",
+            "title": "Title",
+            "summary": "Summary",
+            "courseLessonType": "Course Lesson Type",
+            "content": "Content",
+            "credit": "Credit",
+            "mediaId": "Media Id",
+            "mediaSource": "Media Source",
+            "mediaName": "Media Name",
+            "mediaUri": "Media Uri",
+            "learnedNum": "Learned Num",
+            "viewedNum": "Viewed Num",
+            "courseLessonAttachment": "Course Lesson Attachment",
+            "courseLessonLearn": "Course Lesson Learn",
+            "courseLessonNote": "Course Lesson Note",
+            "chapter": "Chapter"
+        }
+    }
+}

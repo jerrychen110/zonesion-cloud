@@ -24,9 +24,13 @@
         function getCurrent () {
             var deferred = $q.defer();
             var language = $translate.storage().get('NG_TRANSLATE_LANG_KEY');
-
+            
+            if (angular.isUndefined(language)) {
+                language = 'zh-cn';
+            }
+            
             deferred.resolve(language);
-
+            
             return deferred.promise;
         }
     }

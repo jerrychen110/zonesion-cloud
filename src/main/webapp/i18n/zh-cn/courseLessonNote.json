@@ -1,0 +1,28 @@
+{
+    "zonesionCloudApplicationApp": {
+        "courseLessonNote" : {
+            "home": {
+                "title": "Course Lesson Notes",
+                "createLabel": "Create a new Course Lesson Note",
+                "createOrEditLabel": "Create or edit a Course Lesson Note"
+            },
+            "created": "A new Course Lesson Note is created with identifier {{ param }}",
+            "updated": "A Course Lesson Note is updated with identifier {{ param }}",
+            "deleted": "A Course Lesson Note is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Course Lesson Note {{ id }}?"
+            },
+            "detail": {
+                "title": "Course Lesson Note"
+            },
+            "courseId": "Course Id",
+            "userId": "User Id",
+            "content": "Content",
+            "length": "Length",
+            "likeNum": "Like Num",
+            "isPrivate": "Is Private",
+            "courseLesson": "Course Lesson",
+            "courseLessonNoteLike": "Course Lesson Note Like"
+        }
+    }
+}
