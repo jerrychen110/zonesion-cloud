@@ -65,7 +65,7 @@
 		<div class="section-bodyer">
 			<div class="home-course-list row">
 				<div class="col-md-4 col-sm-6" ng-repeat="course in vm.courses">
-					<div class="course-item" ui-sref="courses({id:course.id,countUser:course.countUserId})">
+					<div class="course-item" ng-click="vm.toCourse(course.id)">
 						<div class="course-img">
 		          			<a href="#" ><img class="img-responsive" ng-src="{{course.coverPicture}}" alt=""/></a>
 						</div>

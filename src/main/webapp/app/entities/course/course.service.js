@@ -23,7 +23,8 @@
             'update': { method:'PUT' },
             'getNewCourse':{method: 'GET', isArray: true,url:'api/home/newest/:id'},
             'getHotCourse':{method: 'GET', isArray: true,url:'api/home/hot/:id'},
-            'getRecommendCourse':{method: 'GET', isArray: true,url:'api/home/recommended/:id'}
+            'getRecommendCourse':{method: 'GET', isArray: true,url:'api/home/recommended/:id'},
+            'getCourseDTO':{method:'GET',isArray:true,params: {id:'@id'},url:'api/coursesdto/:id'}
         });
     }
 })();

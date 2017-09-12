@@ -5,9 +5,9 @@
         .module('zonesionCloudApplicationApp')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$state', 'Auth', 'Principal', 'ProfileService', 'LoginService','$scope'];
+    NavbarController.$inject = ['$state', 'Auth', 'Principal', 'ProfileService', 'LoginService','$scope','$rootScope'];
 
-    function NavbarController ($state, Auth, Principal, ProfileService, LoginService,$scope) {
+    function NavbarController ($state, Auth, Principal, ProfileService, LoginService,$scope,$rootScope) {
         var vm = this;
 
         vm.isNavbarCollapsed = true;
@@ -42,5 +42,18 @@
         function collapseNavbar() {
             vm.isNavbarCollapsed = true;
         }
+
+        $scope.$watch(function(){
+          return Principal.isAuthenticated()
+        },function(newValue,oldValue){
+          if(newValue){
+            Principal.identity().then(function(account) {
+              $rootScope.accountInfo = account;
+              vm.isAuthenticated = Principal.isAuthenticated;
+              $rootScope.$broadcast('authenticationSuccess');
+            });
+          }
+
+        })
     }
 })();

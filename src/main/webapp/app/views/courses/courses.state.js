@@ -42,7 +42,7 @@
             }
 
         })
-        
+
         .state("courses.reviews", {
             url:"/reviews",
             data: {
