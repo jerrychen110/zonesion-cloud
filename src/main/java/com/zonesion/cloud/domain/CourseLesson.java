@@ -80,22 +80,23 @@ public class CourseLesson extends AbstractAuditingEntity implements Serializable
     @Column(name = "viewed_num", nullable = false)
     private Integer viewedNum;
 
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "courseLesson")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CourseLessonAttachment> courseLessonAttachments = new HashSet<>();
 
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "courseLesson")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CourseLessonLearn> courseLessonLearns = new HashSet<>();
 
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "courseLesson")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CourseLessonNote> courseLessonNotes = new HashSet<>();
 
     @ManyToOne
+    @JoinColumn(name = "chapter_id", insertable = false, updatable = false)
     private Chapter chapter;
 
     public Long getId() {

@@ -27,6 +27,7 @@ public class CourseFavorite implements Serializable {
     private Long userId;
 
     @ManyToOne
+    @JoinColumn(name = "course_id", insertable = false,updatable = false)
     private Course course;
 
     public Long getId() {

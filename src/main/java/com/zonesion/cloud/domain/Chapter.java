@@ -46,13 +46,14 @@ public class Chapter extends AbstractAuditingEntity implements Serializable {
     @Column(name = "title", length = 255, nullable = false)
     private String title;
 
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "chapter")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CourseLesson> courseLessons = new HashSet<>();
 
     @ManyToOne
-    private Course courseId;
+    @JoinColumn(name = "course_id", insertable = false,updatable = false)
+    private Course course;
 
     public Long getId() {
         return id;
@@ -62,12 +63,12 @@ public class Chapter extends AbstractAuditingEntity implements Serializable {
         this.id = id;
     }
     
-	public Course getCourseId() {
-		return courseId;
+	public Course getCourse() {
+		return course;
 	}
 
-	public void setCourseId(Course courseId) {
-		this.courseId = courseId;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
     public Long getUserId() {

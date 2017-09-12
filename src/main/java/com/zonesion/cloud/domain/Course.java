@@ -66,38 +66,38 @@ public class Course extends AbstractAuditingEntity implements Serializable {
     @Size(max = 255)
     @Column(name = "cover_picture", length = 255, nullable = false)
     private String coverPicture;
-
+    
     @Column(name = "introduction")
     private String introduction;
-
+    
     @Column(name = "goals")
     private String goals;
     
     @Column(name = "tags")
     private String tags;
-
+    
     @NotNull
     @Size(max = 1)
     @Column(name = "recommended", length = 1, nullable = false)
     private String recommended;
-
+    
     @NotNull
     @Size(max = 1)
     @Column(name = "recommended_sort", length = 1, nullable = false)
     private String recommendedSort;
-
-    @OneToMany
+    
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<CourseFavorite> courseFavorites = new HashSet<>();
-
-    @OneToMany
-    @JsonIgnore
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "course")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Chapter> chapters = new HashSet<>();
-
-    @OneToMany
+    
     @JsonIgnore
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "course")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<CourseFavorite> courseFavorites = new HashSet<>();
+    
+    @JsonIgnore
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "course")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CourseReview> courseReviews = new HashSet<>();
     
@@ -302,13 +302,13 @@ public class Course extends AbstractAuditingEntity implements Serializable {
 
     public Course addCourseFavorite(CourseFavorite CourseFavorite) {
         this.courseFavorites.add(CourseFavorite);
-//        CourseFavorite.setCourseFavorite(this);
+        CourseFavorite.setCourse(this);
         return this;
     }
 
     public Course removeCourseFavorite(CourseFavorite CourseFavorite) {
         this.courseFavorites.remove(CourseFavorite);
-//        CourseFavorite.setCourseFavorite(null);
+        CourseFavorite.setCourse(null);
         return this;
     }
 
@@ -327,13 +327,13 @@ public class Course extends AbstractAuditingEntity implements Serializable {
 
     public Course addChapter(Chapter Chapter) {
         this.chapters.add(Chapter);
-//        Chapter.setChapter(this);
+        Chapter.setCourse(this);
         return this;
     }
 
     public Course removeChapter(Chapter Chapter) {
         this.chapters.remove(Chapter);
-//        Chapter.setChapter(null);
+        Chapter.setCourse(null);
         return this;
     }
 
@@ -352,13 +352,13 @@ public class Course extends AbstractAuditingEntity implements Serializable {
 
     public Course addCourseReview(CourseReview CourseReview) {
         this.courseReviews.add(CourseReview);
-//        CourseReview.setCourseReview(this);
+        CourseReview.setCourse(this);
         return this;
     }
 
     public Course removeCourseReview(CourseReview CourseReview) {
         this.courseReviews.remove(CourseReview);
-//        CourseReview.setCourseReview(null);
+        CourseReview.setCourse(null);
         return this;
     }
 

@@ -51,6 +51,7 @@ public class CourseLessonNote extends AbstractAuditingEntity implements Serializ
     private String isPrivate;
 
     @ManyToOne
+    @JoinColumn(name = "course_lesson_id", insertable = false, updatable = false)
     private CourseLesson courseLesson;
 
     @OneToMany(mappedBy = "courseLessonNote", cascade=CascadeType.ALL, fetch=FetchType.EAGER)

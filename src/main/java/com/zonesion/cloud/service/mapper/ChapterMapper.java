@@ -33,7 +33,7 @@ public class ChapterMapper {
 		} else{
 			Chapter chapter =new Chapter();
 			chapter.setId(chapterDTO.getId());
-			chapter.setCourseId(chapterDTO.getCourseId());
+			chapter.setCourse(chapterDTO.getCourse());
 			chapter.setUserId(chapterDTO.getUserId());
 			chapter.setChapterType(chapterDTO.getChapterType());
 			chapter.setNumber(chapterDTO.getNumber());

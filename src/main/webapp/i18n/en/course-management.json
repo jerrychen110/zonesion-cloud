@@ -1,9 +1,25 @@
 {
     "courseManagement": {
         "home": {
-            "title": "Courses",
-            "createLabel": "Create a new user",
-            "createOrEditLabel": "Create or edit a user"
+            "title": "课程",
+            "createLabel": "创建课程",
+            "createOrEditLabel": "创建或编辑课程"
+        },
+        "form": {
+            "name": "姓名",
+            "name.placeholder": "请输入您的姓名",
+            "language": "语言",
+            "button": "保存"
+        },
+        "pictures":{
+        	"picture":"封面",
+          	"photo":"您可以选择一张照片作为您的封面",
+          	"profile_photo":"设置封面",
+          	"update_photo":"修改封面",
+          	"clear":"清除封面",
+          	"reselect":"重新选择",
+          	"wrongType":"您选择的文件类型有误，支持类型:",
+          	"tooLarge":"您选择的文件过大，超过了1MB."
         },
         "created": "A new user is created with identifier {{ param }}",
         "updated": "An user is updated with identifier {{ param }}",
