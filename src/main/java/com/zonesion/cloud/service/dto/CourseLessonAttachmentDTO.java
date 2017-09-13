@@ -1,8 +1,13 @@
 package com.zonesion.cloud.service.dto;
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.*;
 
+import com.zonesion.cloud.domain.AbstractAuditingEntity;
 import com.zonesion.cloud.domain.CourseLessonAttachment;
 
 import java.io.Serializable;
@@ -11,13 +16,16 @@ import java.time.Instant;
 /**
  * A DTO for the CourseLessonAttachment entity.
  */
-public class CourseLessonAttachmentDTO implements Serializable {
+@Entity
+public class CourseLessonAttachmentDTO extends AbstractAuditingEntity implements Serializable {
 
     /**
 	 * @Fields serialVersionUID : TODO
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private Long id;
 
     @NotNull
@@ -45,46 +53,17 @@ public class CourseLessonAttachmentDTO implements Serializable {
 
     @NotNull
     private Integer fileSize;
-    
-    private String createdBy;
-
-    private Instant createdDate;
-
-    private String lastModifiedBy;
-
-    private Instant lastModifiedDate;
-
-    public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Instant getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(Instant createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public String getLastModifiedBy() {
-		return lastModifiedBy;
-	}
-
-	public void setLastModifiedBy(String lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
-	}
-
-	public Instant getLastModifiedDate() {
-		return lastModifiedDate;
-	}
-
-	public void setLastModifiedDate(Instant lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
+       
+    private Long filesId;
+    private String filesUri;
+    private String filesName;
+    private String filesMime;
+    private Integer filesSize;
+    private String filesStatus;
+    private String filesCreatedBy;
+    private Instant filesCreatedDate;
+    private String filesLastModifiedBy;
+    private Instant filesLastModifiedDate; 
 
 	private Long courseLessonId;
 
@@ -94,35 +73,6 @@ public class CourseLessonAttachmentDTO implements Serializable {
     	
     }
     
-    public CourseLessonAttachmentDTO(CourseLessonAttachment courseLessonAttachment) {
-    	this(courseLessonAttachment.getId(), courseLessonAttachment.getCourseId(),courseLessonAttachment.getUserId(), courseLessonAttachment.getTitle(),
-    		 courseLessonAttachment.getDescription(), courseLessonAttachment.getLink(), courseLessonAttachment.getFileId(),
-    		 courseLessonAttachment.getFileUri(), courseLessonAttachment.getFileMime(),courseLessonAttachment.getFileSize(), 
-    		 courseLessonAttachment.getCreatedBy(),courseLessonAttachment.getCreatedDate(),
-    		 courseLessonAttachment.getLastModifiedBy(),courseLessonAttachment.getLastModifiedDate());
-	}
-    
-    
-
-	public CourseLessonAttachmentDTO(Long id, Long courseId, Long userId, String title, String description, String link,
-			Long fileId, String fileUri, String fileMime, Integer fileSize, String createdBy, Instant createdDate,
-			String lastModifiedBy, Instant lastModifiedDate) {
-		super();
-		this.id = id;
-		this.courseId = courseId;
-		this.userId = userId;
-		this.title = title;
-		this.description = description;
-		this.link = link;
-		this.fileId = fileId;
-		this.fileUri = fileUri;
-		this.fileMime = fileMime;
-		this.fileSize = fileSize;
-		this.createdBy = createdBy;
-		this.createdDate = createdDate;
-		this.lastModifiedBy = lastModifiedBy;
-		this.lastModifiedDate = lastModifiedDate;
-	}
 
 	public CourseLessonAttachmentDTO(Long id, Long courseId, Long userId, String title, String description, String link,
 			Long fileId, String fileUri, String fileMime, Integer fileSize) {
@@ -235,12 +185,95 @@ public class CourseLessonAttachmentDTO implements Serializable {
         this.courseLessonCourseLessonAttachment = CourseLessonCourseLessonAttachment;
     }
 
-    @Override
+    public Long getFilesId() {
+		return filesId;
+	}
+
+	public void setFilesId(Long filesId) {
+		this.filesId = filesId;
+	}
+
+	public String getFilesUri() {
+		return filesUri;
+	}
+
+	public void setFilesUri(String filesUri) {
+		this.filesUri = filesUri;
+	}
+
+	public String getFilesName() {
+		return filesName;
+	}
+
+	public void setFilesName(String filesName) {
+		this.filesName = filesName;
+	}
+
+	public String getFilesMime() {
+		return filesMime;
+	}
+
+	public void setFilesMime(String filesMime) {
+		this.filesMime = filesMime;
+	}
+
+	public Integer getFilesSize() {
+		return filesSize;
+	}
+
+	public void setFilesSize(Integer filesSize) {
+		this.filesSize = filesSize;
+	}
+
+	public String getFilesStatus() {
+		return filesStatus;
+	}
+
+	public void setFilesStatus(String filesStatus) {
+		this.filesStatus = filesStatus;
+	}
+
+	public String getFilesCreatedBy() {
+		return filesCreatedBy;
+	}
+
+	public void setFilesCreatedBy(String filesCreatedBy) {
+		this.filesCreatedBy = filesCreatedBy;
+	}
+
+	public Instant getFilesCreatedDate() {
+		return filesCreatedDate;
+	}
+
+	public void setFilesCreatedDate(Instant filesCreatedDate) {
+		this.filesCreatedDate = filesCreatedDate;
+	}
+
+	public String getFilesLastModifiedBy() {
+		return filesLastModifiedBy;
+	}
+
+	public void setFilesLastModifiedBy(String filesLastModifiedBy) {
+		this.filesLastModifiedBy = filesLastModifiedBy;
+	}
+
+	public Instant getFilesLastModifiedDate() {
+		return filesLastModifiedDate;
+	}
+
+	public void setFilesLastModifiedDate(Instant filesLastModifiedDate) {
+		this.filesLastModifiedDate = filesLastModifiedDate;
+	}
+
+	@Override
 	public String toString() {
 		return "CourseLessonAttachmentDTO [id=" + id + ", courseId=" + courseId + ", userId=" + userId + ", title="
 				+ title + ", description=" + description + ", link=" + link + ", fileId=" + fileId + ", fileUri="
-				+ fileUri + ", fileMime=" + fileMime + ", fileSize=" + fileSize + ", createdBy=" + createdBy
-				+ ", createdDate=" + createdDate + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate="
-				+ lastModifiedDate + "]";
+				+ fileUri + ", fileMime=" + fileMime + ", fileSize=" + fileSize + ", filesId=" + filesId + ", filesUri="
+				+ filesUri + ", filesName=" + filesName + ", filesMime=" + filesMime + ", filesSize=" + filesSize
+				+ ", filesStatus=" + filesStatus + ", filesCreatedBy=" + filesCreatedBy + ", filesCreatedDate="
+				+ filesCreatedDate + ", filesLastModifiedBy=" + filesLastModifiedBy + ", filesLastModifiedDate="
+				+ filesLastModifiedDate + ", courseLessonId=" + courseLessonId + ", courseLessonCourseLessonAttachment="
+				+ courseLessonCourseLessonAttachment + "]";
 	}
 }

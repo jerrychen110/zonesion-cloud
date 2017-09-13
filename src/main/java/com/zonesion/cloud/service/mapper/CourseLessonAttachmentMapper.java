@@ -19,7 +19,7 @@ import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
 @Service
 public class CourseLessonAttachmentMapper {
 	public CourseLessonAttachmentDTO courseLessonAttachmentToCourseLessonAttachmentDTO(CourseLessonAttachment courseLessonAttachment) {
-        return new CourseLessonAttachmentDTO(courseLessonAttachment);
+        return new CourseLessonAttachmentDTO();
     }
 
     public List<CourseLessonAttachmentDTO> courseLessonAttachmentsToCourseLessonAttachmentDTOs(List<CourseLessonAttachment> courseLessonAttachments) {
