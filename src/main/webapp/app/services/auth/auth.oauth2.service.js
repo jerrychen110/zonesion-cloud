@@ -6,9 +6,9 @@
         .module('zonesionCloudApplicationApp')
         .factory('AuthServerProvider', AuthServerProvider);
 
-    AuthServerProvider.$inject = ['$http', '$localStorage', 'Base64'];
+    AuthServerProvider.$inject = ['$http', '$localStorage', 'Base64','$rootScope'];
 
-    function AuthServerProvider ($http, $localStorage, Base64) {
+    function AuthServerProvider ($http, $localStorage, Base64, $rootScope) {
         var service = {
             getToken: getToken,
             login: login,
@@ -46,6 +46,7 @@
         function logout () {
             $http.post('api/logout').then(function() {
                 delete $localStorage.authenticationToken;
+                $rootScope.accountInfo = null;
             });
         }
     }

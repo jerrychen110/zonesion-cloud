@@ -38,15 +38,15 @@
                 username: vm.username,
                 password: vm.password,
                 rememberMe: vm.rememberMe
-            }).then(function () {
+            }).then(function (result) {
                 vm.authenticationError = false;
                 $uibModalInstance.close();
                 if ($state.current.name === 'register' || $state.current.name === 'activate' ||
                     $state.current.name === 'finishReset' || $state.current.name === 'requestReset') {
                     $state.go('home');
                 }
+                
 
-                $rootScope.$broadcast('authenticationSuccess');
 
                 // previousState was set in the authExpiredInterceptor before being redirected to login modal.
                 // since login is successful, go to stored previousState and clear previousState

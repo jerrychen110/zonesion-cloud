@@ -44,17 +44,28 @@
 	<div class="container" style="width:94%;">
 		<div class="course-filter section-header" id="course-filter">
 			推荐课程
-			<div class="course-sort btn-group">
-				<a class="btn btn-default js-course-filter" ng-click="vm.getCourse('new')">最新</a>
-        <a class="btn btn-default js-course-filter" ng-click="vm.getCourse('hot')">最热</a>
-        <a class="btn btn-default js-course-filter" ng-click="vm.getCourse('recommend')">推荐</a>
-			</div>
+      <!-- <div class="course-sort btn-group" >
+        <a class="btn btn-default js-course-filter" ng-class="{'active':vm.courseType=='new'}"  ng-click="vm.getCourse('recommend')">推荐</a>
+				<a class="btn btn-default js-course-filter" ng-class="{'active':vm.courseType=='new'}" ng-click="vm.getCourse('new')">最新</a>
+        <a class="btn btn-default js-course-filter" ng-class="{'active':vm.courseType=='hot'}" ng-click="vm.getCourse('hot')">最新</a>
+			</div> -->
+      <div class="btn-group course-sort" data-toggle="buttons">
+        <label class="btn btn-default outline-none active" ng-click="vm.getCourse('recommend')">
+          <input type="radio" name="options" id="recommend"  autocomplete="off" checked> 推荐
+        </label>
+        <label class="btn btn-default outline-none" ng-click="vm.getCourse('new')">
+          <input type="radio" name="options" id="new"  autocomplete="off"> 最新
+        </label>
+        <label class="btn btn-default outline-none" ng-click="vm.getCourse('hot')">
+          <input type="radio" name="options" id="hot"  autocomplete="off"> 最热
+        </label>
+      </div>
 		</div>
 
 		<div class="section-bodyer">
 			<div class="home-course-list row">
 				<div class="col-md-4 col-sm-6" ng-repeat="course in vm.courses">
-					<div class="course-item" ui-sref="courses({id:course.id,countUser:course.countUserId})">
+					<div class="course-item" ng-click="vm.toCourse(course.id)">
 						<div class="course-img">
 		          			<a href="#" ><img class="img-responsive" ng-src="{{course.coverPicture}}" alt=""/></a>
 						</div>

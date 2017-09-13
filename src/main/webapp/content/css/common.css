@@ -7,3 +7,12 @@
 */
 .default-bg-color {
   background-color: #fff; }
+
+body {
+  outline: none !important; }
+
+.navbar ul li a {
+  color: #333; }
+
+.outline-none {
+  outline: none; }

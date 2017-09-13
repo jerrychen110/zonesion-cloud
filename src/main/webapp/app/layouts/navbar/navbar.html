@@ -1,12 +1,6 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar" role="navigation" ng-if="vm.stateName!='learn'">
     <div class="container">
         <div class="navbar-header">
-            <!-- <button type="button" class="navbar-toggle" ng-click="vm.toggleNavbar()">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button> -->
             <a class="navbar-brand logo" href="#/" ng-click="vm.collapseNavbar()">
                 <img class="logo-img" src="content/images/logo.png" alt="logo"/>
                 <span data-translate="global.title">ZonesionCloudApplication</span> <span class="navbar-version">v{{VERSION}}</span>
@@ -115,31 +109,31 @@
                     	<li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="user" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-wrench"></span>&nbsp;
-                                <span data-translate="global.menu.account.myhome">ÎÒµÄÖ÷Ò³</span>
+                                <span data-translate="global.menu.account.myhome">ï¿½Òµï¿½ï¿½ï¿½Ò³</span>
                             </a>
                         </li>
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="settings" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-wrench"></span>&nbsp;
-                                <span data-translate="global.menu.account.settings">¸öÈËÉèÖÃ</span>
+                                <span data-translate="global.menu.account.settings">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</span>
                             </a>
                         </li>
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="password" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-lock"></span>&nbsp;
-                                <span data-translate="global.menu.account.password">ÐÞ¸ÄÃÜÂë</span>
+                                <span data-translate="global.menu.account.password">ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½</span>
                             </a>
                         </li>
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a href="" ng-click="vm.logout()" id="logout">
                                 <span class="glyphicon glyphicon-log-out"></span>&nbsp;
-                                <span data-translate="global.menu.account.logout">ÍË³ö</span>
+                                <span data-translate="global.menu.account.logout">ï¿½Ë³ï¿½</span>
                             </a>
                         </li>
                         <li ui-sref-active="active" ng-switch-when="false">
                             <a href="" ng-click="vm.login()" id="login">
                                 <span class="glyphicon glyphicon-log-in"></span>&nbsp;
-                                <span data-translate="global.menu.account.login">µÇÂ¼</span>
+                                <span data-translate="global.menu.account.login">ï¿½ï¿½Â¼</span>
                             </a>
                         </li>
                         <!--

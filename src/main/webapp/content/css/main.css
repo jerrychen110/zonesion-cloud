@@ -8,6 +8,20 @@
 .default-bg-color {
   background-color: #fff; }
 
+body {
+  outline: none !important; }
+
+.navbar ul li a {
+  color: #333; }
+
+.outline-none {
+  outline: none; }
+
+.navbar-header a {
+  padding-left: 0px; }
+  .navbar-header a img {
+    margin-top: 6px; }
+
 .last-col {
   overflow: hidden; }
 

@@ -8,3 +8,18 @@
 // .bar-phone-content{
 //   background-color: $default-bg-color
 // }
+body{
+  outline: none!important;
+}
+.navbar{
+  ul{
+    li{
+      a{
+        color: $nav-text-color;
+      }
+    }
+  }
+}
+.outline-none{
+  outline: none;
+}

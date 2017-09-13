@@ -9,6 +9,7 @@
 
     function SidenavController ($state, Auth, Principal, ProfileService, LoginService,$sce,SERVICEHTML) {
         var vm = this;
+        vm.stateName = $state.$current.name;
          vm.htmlTooltip = $sce.trustAsHtml(SERVICEHTML);
     }
 })();
