@@ -32,6 +32,10 @@ public class Chapter extends AbstractAuditingEntity implements Serializable {
     @Size(max = 1)
     @Column(name = "chapter_type", length = 1, nullable = false)
     private String chapterType;
+    
+    @NotNull
+    @Column(name = "parent_id", nullable = false)
+    private Long parentId;
 
     @NotNull
     @Column(name = "number", length = 1, nullable = false)
@@ -82,6 +86,19 @@ public class Chapter extends AbstractAuditingEntity implements Serializable {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+    
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public Chapter parentId(Long parentId) {
+        this.parentId = parentId;
+        return this;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
     public String getChapterType() {

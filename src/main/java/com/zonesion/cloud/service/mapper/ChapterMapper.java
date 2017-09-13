@@ -35,6 +35,7 @@ public class ChapterMapper {
 			chapter.setId(chapterDTO.getId());
 			chapter.setCourse(chapterDTO.getCourse());
 			chapter.setUserId(chapterDTO.getUserId());
+			chapter.setParentId(chapterDTO.getParentId());
 			chapter.setChapterType(chapterDTO.getChapterType());
 			chapter.setNumber(chapterDTO.getNumber());
 			chapter.setSeq(chapterDTO.getSeq());
