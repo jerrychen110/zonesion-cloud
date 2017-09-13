@@ -1,6 +1,22 @@
-<div class="course-detail" data-widget-cid="widget-1" ng-repeat="note in vm.allnotes">
-
-	<div class="note-list" id="note-list" ng-if="note.content !=null">
+<div class="course-detail" data-widget-cid="widget-1">
+	<div class="note-filter nav-filter clearfix">
+  <div class="btn-group">
+    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              全部课时
+             
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+     <li class="active">
+        <a href="#/join/{{vm.allnotes[0].courseId}}/notes">全部课时</a>
+      </li>
+      <li class="" ng-repeat="note in vm.allnotes" ng-if="note.courseLessonId!=0" >
+          <a ui-sref="join.notes.lessonId({courseLessonId:note.courseLessonId})" href="#/join/{{note.courseId}}/notes/lessonId={{note.courseLessonId}}" title="{{note.title}}">{{note.title}}</a>
+        </li>
+    </ul>
+  </div>
+</div>
+	<div class="note-list" id="note-list" ng-if="note.content !=null"  ng-repeat="note in vm.allnotes"  data-ui-view="">
 		<div class="media note-item">
 			<div class="media-left">
 				<a class=" js-user-card" href="#/user/1"
