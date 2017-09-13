@@ -1,4 +1,4 @@
- <div class="es-wrap">
+<div class="es-wrap">
 	<div id="content-container" class="container">
 
 		<div class="clearfix course-detail-header-join">
@@ -82,7 +82,7 @@
 			</div>
 
 			<div class="course-btn-join">
-				<a class="" href="/course/6/learn#lesson/52">继续学习</a>
+				<a class="" href="#/join/{{vm.courses.id}}/learn#lesson/{{courses.courseLessonId}}">继续学习</a>
 			</div>
 			<a class="tooltop pull-right" href="/course/6/manage"
 				data-role="tooltip" title="课程管理" data-placement="top"> <i
@@ -99,13 +99,12 @@
 
 					<div class="nav-btn-tab">
 						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active"><a href="/course/6">课时</a></li>
-							<li role="presentation"><a href="/course/6/thread">讨论区</a></li>
-							<li role="presentation"><a href="/course/6/material/">资料区</a></li>
-							<li role="presentation"><a href="/course/6/reviews/">评价</a>
+							<li role="presentation" class="active"><a href="#/join/{{vm.courses.id}}">课时</a></li>
+							<li role="presentation"><a href="#/join/{{vm.courses.id}}/material">资料区</a></li>
+							<li role="presentation"><a href="#/join/{{vm.courses.id}}/reviews">评价</a>
 							</li>
-							<li role="presentation"><a href="/course/6/notes">笔记</a></li>
-							<li role="presentation"><a href="/course/6/info">概览</a></li>
+							<li role="presentation"><a href="#/join/{{vm.courses.id}}/notes">笔记</a></li>
+							<li role="presentation"><a href="#/join/{{vm.courses.id}}/info">概览</a></li>
 
 						</ul>
 
@@ -116,7 +115,7 @@
 							</a>
 						</div>
 					</div>
-					<div class="course-detail-content">
+					<div class="course-detail-content" data-ui-view="">
 
 
 						<div class="es-piece">
@@ -133,8 +132,8 @@
 											{{courses.chapterTitle}} </span></li>
 									<li class="period lesson-item lesson-item-63"
 										ng-if="courses.courseLessonTitle != null"><a
-										href="/course/6/learn#lesson/63"> <i
-											class="es-icon es-icon-done1 color-primary status-icon"></i>
+										href="#/join/{{courses.id}}/learn#lesson/{{courses.courseLessonId}}"> <i
+											class="es-icon es-icon-doing color-primary status-icon"></i>
 											{{courses.courseLessonTitle}} <span class="date"
 											title="视频时长01:19">01:19</span> <span class="course-type">
 												<i class="es-icon es-icon-videoclass" data-toggle="tooltip"
@@ -182,7 +181,7 @@
 					<div class="panel-body">
 						<ul  ng-repeat="user in vm.allusers" >
 							<li><a class=" js-user-card" href="#/user/{{user.countUserId}}"
-								data-card-url="/user/5/card/show" data-user-id="5">
+								data-card-url="/user/5/card/show" data-user-id="5"> 
 								<img class="avatar-sm" ng-src="{{user.avatar}}">
 							</a></li>
 						</ul>
@@ -388,3 +387,4 @@
 
 <div id="login-modal" class="modal" data-url="/login/ajax"></div>
 <div id="modal" class="modal"></div>
+
