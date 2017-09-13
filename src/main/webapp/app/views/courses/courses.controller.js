@@ -14,8 +14,18 @@
         vm.login = LoginService.open;
 
         //登录成功  刷新信息
-        $scope.$on('authenticationSuccess', function() {
+        /*$scope.$on('authenticationSuccess', function() {
             // getAccount();
+        	$state.go('join',{id:$stateParams.id});
+        });*/
+        Principal.identity().then(function(account) {
+            vm.account = account;
+            vm.isAuthenticated = Principal.isAuthenticated;
+            if(vm.account != null && vm.isAuthenticated != null){
+            	$state.go('join',{id:$stateParams.id});
+            }else{
+            	$state.go('courses')
+            }
         });
         loadAll();
         loadUserInfo();
