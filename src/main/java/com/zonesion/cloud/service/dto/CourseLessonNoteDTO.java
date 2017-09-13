@@ -61,6 +61,7 @@ public class CourseLessonNoteDTO implements Serializable {
     private Long courseLessonNoteId;
     
     private String avatar;
+    private String title;
     
     public CourseLessonNoteDTO(){
     	
@@ -202,6 +203,14 @@ public class CourseLessonNoteDTO implements Serializable {
 
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	@Override

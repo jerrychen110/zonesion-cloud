@@ -27,7 +27,7 @@ public class CourseLessonNoteDTORepository {
 	
 	@Transactional
     public List<CourseLessonNoteDTO> findCourseLessonNote(Long id) {
-        return jdbcTemplate.query("SELECT c.*, ch.*, cl.*, cln.*, clnl.id course_lesson_note_like_id, clnl.user_id course_lesson_note_like_user_id, clnl.created_time course_lesson_note_like_create_time, clnl.course_lesson_note_id, u.avatar FROM t_course c LEFT JOIN t_chapter ch ON ch.course_id = c.id LEFT JOIN t_course_lesson cl ON cl.chapter_id = ch.id LEFT JOIN t_course_lesson_note cln ON cln.course_lesson_id = cl.id LEFT JOIN t_course_lesson_note_like clnl ON clnl.course_lesson_note_id = cln.id LEFT JOIN t_user u ON u.id = c.user_id WHERE c.id = ?", new Object[]{id}, new CourseLessonNoteRowMapper());
+        return jdbcTemplate.query("SELECT cl.title, cln.*, clnl.id course_lesson_note_like_id, clnl.user_id course_lesson_note_like_user_id, clnl.created_time course_lesson_note_like_create_time, clnl.course_lesson_note_id, u.avatar FROM t_course c LEFT JOIN t_chapter ch ON ch.course_id = c.id LEFT JOIN t_course_lesson cl ON cl.chapter_id = ch.id LEFT JOIN t_course_lesson_note cln ON cln.course_lesson_id = cl.id LEFT JOIN t_course_lesson_note_like clnl ON clnl.course_lesson_note_id = cln.id LEFT JOIN t_user u ON u.id = c.user_id WHERE c.id = ?", new Object[]{id}, new CourseLessonNoteRowMapper());
     }
 
 }
@@ -72,6 +72,7 @@ class CourseLessonNoteRowMapper implements RowMapper<CourseLessonNoteDTO> {
 	
 		courseLessonNoteDTO.setCourseLessonNoteId(rs.getLong("course_lesson_note_id"));
 		courseLessonNoteDTO.setAvatar(rs.getString("avatar"));
+		courseLessonNoteDTO.setTitle(rs.getString("title"));
 		return courseLessonNoteDTO;
 	}
 	
