@@ -22,6 +22,12 @@
                     controller: 'ExploreController',
                     controllerAs: 'vm'
                 }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
+                    $translatePartialLoader.addPart('course');
+                    return $translate.refresh();
+                }]
             }
         });
 

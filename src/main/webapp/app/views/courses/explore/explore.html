@@ -1,33 +1,25 @@
 <div class="es-wrap">
-
 	<div class="es-banner">
 		<div class="container">
-			<div class="title">
+			<div class="title inline-block">
 				<i class="es-icon es-icon-viewcomfy"></i> 课程列表
 			</div>
-			<a class="btn btn-primary btn-lg more" href="/classroom/explore">
-				查看专业 </a>
+			<form class="form-inline inline-block pull-right">
+				<div class="form-group">
+					<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+					<div class="input-group">
+						<input type="text" class="form-control" id="exampleInputAmount" placeholder="搜索课程">
+						<div class="input-group-addon"><span class="icon-search"></span></div>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
-
-
 	<div id="content-container" class="container">
-		<div class="category-filters">
-			<a ng-href="#/course/explore?pageNo=1&pageSize={{vm.size}}&filter={{filter.value}}" ng-repeat="filter in vm.allFilters">{{filter.name}}</a>
-<!--  			<a ng-href="#/course/explore?pageNo=1&pageSize={{vm.size}}&filter=newest"
-				class=" " ng-click="getFilters('newest')">最近更新</a>
- 			<a ng-href="#/course/explore?pageNo=1&pageSize={{vm.size}}&filter=hot"
-				class=" " ng-click="getFilters('hot')">最热课程</a>
-			<a ng-href="#/course/explore?pageNo=1&pageSize={{vm.size}}&filter=recommended"
-				class=" " ng-click="getFilters('recommended')">推荐课程</a> -->
-		</div>
-
 		<div class="course-list  explore" ng-repeat="course in vm.allcourses">
-
 			<div class="course-item clearfix">
 				<div class="course-img">
 					<a href="/course/22"><img ng-src="{{course.coverPicture}}"></a>
-
 				</div>
 				<div class="course-info ">
 					<div class="title">
@@ -37,13 +29,11 @@
 					<div class="metas">
 						<span class="student-mun">已有<span>{{course.countUserId}}</span>人学习
 						</span> <span class="star-5"></span>
-
 					</div>
 				</div>
 				<div class="course-teacher">
 					<div class="avatar">
 						<img ng-src="{{course.userAvatar}}">
-
 					</div>
 					<div class="teacher-name">
 						<a href="/user/16">{{course.userName}}</a>
@@ -52,18 +42,18 @@
 				</div>
 			</div>
 		</div>
-		<nav class="text-center">
+		<!-- <nav class="text-center">
 			<ul class="pagination" ng-repeat="pageNo in vm.totalPages">
 				<li class="">
 				<a href="#/courses/explore?pageNo={{pageNo}}&pageSize={{vm.size}}&filter={{vm.filter}}" >{{pageNo}}</a></li>
-<!-- 				<li><a href="/mooc/course/explore?page=2">2</a></li>
-
-				<li><a href="/mooc/course/explore?page=2"><i
-						class="es-icon es-icon-chevronright"></i></a></li>
-				<li><a href="/mooc/course/explore?page=2">尾</a></li> -->
 			</ul>
-
-		</nav>
+		</nav> -->
+		<uib-pagination class="pull-right"
+            total-items="vm.totalCount"
+            ng-model="vm.currentPage"
+            max-size="vm.pageSize"
+            force-ellipses="true">
+    </uib-pagination>
 	</div>
 
 </div>
