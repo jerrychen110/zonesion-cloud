@@ -51,6 +51,16 @@
             controller: 'NotesController',
             controllerAs: 'vm'
         })
+        .state("join.notes.lessonId", {
+            url:"/lessonId=:courseLessonId",
+            params:{"courseLessonId":null},
+            data: {
+            	authorities: ['ROLE_USER']
+            },
+            templateUrl: "app/views/courses/notes/notes-item.html",
+            controller: 'NotesController',
+            controllerAs: 'vm'
+        })
         .state("join.info", {
             url:"/info",
             data: {

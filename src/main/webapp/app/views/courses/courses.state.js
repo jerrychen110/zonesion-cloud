@@ -52,7 +52,7 @@
             controller: 'ReviewsController',
             controllerAs: 'vm'
         })
-        .state("courses.notes", {
+        /*.state("courses.notes", {
             url:"/notes",
             data: {
             	authorities: []
@@ -60,7 +60,7 @@
             templateUrl: "app/views/courses/notes/notes.html",
             controller: 'NotesController',
             controllerAs: 'vm'
-        });
+        })*/;
         $urlRouterProvider.otherwise('/');
     }
 })();
