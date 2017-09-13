@@ -1,65 +1,24 @@
-
 <div class="es-wrap">
 	<div id="content-container" class="container">
-
 		<div class="clearfix course-detail-header">
-
 			<div class="course-header-img ">
 				<a href="#/course/{{vm.courses.id}}"><img class="img-responsive"
 					ng-src="{{vm.courses.coverPicture}}"></a>
 			</div>
-
 			<ul class="course-data clearfix">
 				<li id="unfavorite-btn" data-toggle="tooltip" data-placement="top"
 					data-original-title="取消收藏" data-url="/course/6/unfavorite"
 					style="display: none;"><a href="javascript:;"
 					class="color-primary">
-						<p>
-							<i class="es-icon es-icon-bookmark"></i>
-						</p>
-
+						<p><i class="es-icon es-icon-bookmark"></i></p>
 				</a></li>
-
 				<li id="favorite-btn" data-toggle="tooltip" data-placement="top"
 					data-original-title="收藏课程" data-url="/course/6/favorite"><a
 					href="javascript:;">
 						<p>
 							<i class="es-icon es-icon-bookmarkoutline"></i>
 						</p>
-
 				</a></li>
-
-				<li><span class="es-share top"> <a
-						class="dropdown-toggle" href="" data-toggle="dropdown">
-							<p>
-								<i class="es-icon es-icon-share"></i>
-							</p>
-
-					</a>
-
-						<div class="dropdown-menu  js-social-share-params"
-							data-title="EduSoho慕课版介绍" data-summary=""
-							data-message="我正在学习《EduSoho慕课版介绍》，收获巨大哦，一起来学习吧！"
-							data-url="http://182.61.50.153/course/6"
-							data-picture="/files/default/2015/06-09/112013d1dd0e409854.png?1.4.8">
-
-							<a href="javascript:;" class="js-social-share" data-cmd="weixin"
-								title="分享到微信" data-share="weixin"
-								data-qrcode-url="/common/qrcode?text=http%3A%2F%2F182.61.50.153%2Fcourse%2F6"><i
-								class="es-icon es-icon-weixin"></i></a> <a href="javascript:;"
-								class="js-social-share" data-cmd="tsina" title="分享到新浪微博"
-								data-share="weibo"><i class="es-icon es-icon-weibo"></i></a> <a
-								href="javascript:;" class="js-social-share" data-cmd="qq"
-								title="分享到QQ好友" data-share="qq"><i
-								class="es-icon es-icon-qq"></i></a> <a href="javascript:;"
-								class="js-social-share" data-cmd="qzone" title="分享到QQ空间"
-								data-share="qzone"><i class="es-icon es-icon-qzone"></i></a>
-
-						</div>
-
-
-				</span></li>
-
 			</ul>
 			<div class="course-header-info">
 				<div class="title clearfix">
@@ -70,103 +29,66 @@
 					</span>
 					</span>
 				</div>
-
 				<div class="metas hidden-xs hidden-sm">
 					<p class="student-num ">
 						<label for="" style="width:80px">学员人数：</label><span class="text-primary">{{vm.countUsers}}人</span>
 					</p>
-
 				</div>
 				<div class="content"></div>
 			</div>
-
 			<div class="pull-rights">
-				<div class="score">
-
-
-
-					<i class="es-icon es-icon-staroutline"></i> <i
-						class="es-icon es-icon-staroutline"></i> <i
-						class="es-icon es-icon-staroutline"></i> <i
-						class="es-icon es-icon-staroutline"></i> <i
-						class="es-icon es-icon-staroutline"></i> <span>( 0人 )</span>
-				</div>
 				<div class="study clearfix">
-
 					<a class="btn btn-study"
-						href="#/join/{{vm.courses.id}}">
+						ng-click="vm.stateGo('learn')">
 						加入学习 </a>
-
 				</div>
 			</div>
-
 		</div>
-
-
-
-
-
 		<div class="course-about clearfix">
 			<div class="course-about-main">
-
-
-
-
-
-
-
-
 				<div class="course-detail">
+					<uib-tabset class="tabset-underline-primary">
+						<uib-tab heading="{{'zonesionCloudApplicationApp.course.courseOverview'|translate}}" id="courseOverview">
+							<div class="course-detail-content">
+								<div class="es-piece">
+									<div class="piece-header">课程介绍</div>
+									<div class="piece-body p-lg">
+										<div class="text-muted">{{vm.courses.introduction}}暂无课程简介</div>
+									</div>
+								</div>
+								<div class="es-piece">
+									<div class="piece-header">课时列表</div>
+									<div class="piece-body" ng-repeat="chapter in vm.courseInfo.chapters track by $index">
+										<ul class="period-list" id="course-item-list">
+											<li class="chapter clearfix">
+												<i class="es-icon es-icon-toc"></i> <span class="title">第{{chapter.seq}}章：{{chapter.title}}</span>
+												<span class="period-show"><i
+													class="es-icon es-icon-remove"></i></span>
+											</li>
+											<li class="section" ng-repeat="unit in chapter.units track by $index">
+												<span class="title"> 第{{unit.seq}}节：{{unit.title}} </span>
+												<ul>
+													<li class="period lesson-item lesson-item-63" ng-repeat="lesson in unit.lessons track by $index" >
+														<a href="#/courses/{{courses.id}}/learn#lesson/{{courses.courseLessonId}}">
+															<i class="es-icon es-icon-done1 color-primary status-icon"></i>
+															{{lesson.title}}
+															<span class="date" title="视频时长01:19">01:19</span> <span class="course-type">
+																<i class="es-icon es-icon-videoclass" data-toggle="tooltip"
+																data-placement="top" title="视频课程"></i>
+														</span>
+													</a></li>
+												</ul>
+											</li>
 
-					<div class="nav-btn-tab">
-						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active"><a href="#/courses/{{vm.courses.id}}">课程概览</a></li>
-							<li role="presentation"><a href="#/courses/{{vm.courses.id}}/reviews">评价</a>
-							</li>
-							<li role="presentation"><a href="#/courses/{{vm.courses.id}}/notes"> 笔记</a></li>
-
-						</ul>
-
-					</div>
-					<div class="course-detail-content" data-widget-cid="widget-1" data-ui-view="">
-
-						<div class="es-piece">
-							<div class="piece-header">课程介绍</div>
-							<div class="piece-body p-lg">
-								<div class="text-muted">{{vm.courses.introduction}}暂无课程简介</div>
+										</ul>
+									</div>
+								</div>
 							</div>
-						</div>
-
-
-
-						<div class="es-piece">
-							<div class="piece-header">课时列表</div>
-							<div class="piece-body" ng-repeat="courses in vm.allcourses">
-								<ul class="period-list" id="course-item-list">
-									<li class="chapter clearfix" ng-if="courses.chapterType == 0">
-										<i class="es-icon es-icon-toc"></i> <span class="title">第{{courses.chapterNumber}}章：{{courses.chapterTitle}}</span>
-										<span class="period-show"><i
-											class="es-icon es-icon-remove"></i></span>
-									</li>
-									<li class="section" ng-if="courses.chapterType == 1"><span
-										class="title"> 第{{courses.chapterSeq}}节：
-											{{courses.chapterTitle}} </span></li>
-									<li class="period lesson-item lesson-item-63"
-										ng-if="courses.courseLessonTitle != null"><a
-										href="#/courses/{{courses.id}}/learn#lesson/{{courses.courseLessonId}}"> <i
-											class="es-icon es-icon-done1 color-primary status-icon"></i>
-											{{courses.courseLessonTitle}} <span class="date"
-											title="视频时长01:19">01:19</span> <span class="course-type">
-												<i class="es-icon es-icon-videoclass" data-toggle="tooltip"
-												data-placement="top" title="视频课程"></i>
-										</span>
-									</a></li>
-								</ul>
-							</div>
-						</div>
-
-					</div>
-
+						</uib-tab>
+						<uib-tab heading="{{'zonesionCloudApplicationApp.course.courseReview'|translate}}" id="courseReview">
+							<div ng-include="'app/views/courses/reviews/reviews.html'"></div>
+						</uib-tab>
+					</uib-tabset>
 				</div>
 			</div>
 			<div class="course-about-sidebar">
@@ -179,11 +101,11 @@
 							<li>
 								<div class="teacher-top clearfix">
 									<div class="avatar">
-										<a href="/user/{{vm.courses.id}}"><img
+										<a><img
 											ng-src="{{vm.courses.userAvatar}}"></a>
 									</div>
 									<div class="teacher-name">
-										<a href="/user/{{vm.courses.id}}">{{vm.courses.userName}}</a>
+										<a>{{vm.courses.userName}}</a>
 									</div>
 									<div class="teacher-position">{{vm.courses.userSex}}</div>
 								</div>
@@ -203,8 +125,7 @@
 					</div>
 					<div class="panel-body">
 						<ul  ng-repeat="user in vm.allusers" >
-							<li><a class=" js-user-card" href="#/user/{{user.countUserId}}"
-								data-card-url="/user/5/card/show" data-user-id="5">
+							<li><a class=" js-user-card" >
 								<img class="avatar-sm" ng-src="{{user.avatar}}">
 							</a></li>
 						</ul>

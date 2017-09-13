@@ -40,10 +40,9 @@
                     return currentStateData;
                 }]
             }
-
         })
-
         .state("courses.reviews", {
+            parent: 'courses',
             url:"/reviews",
             data: {
             	authorities: []
@@ -53,6 +52,7 @@
             controllerAs: 'vm'
         })
         .state("courses.notes", {
+            parent: 'courses',
             url:"/notes",
             data: {
             	authorities: []

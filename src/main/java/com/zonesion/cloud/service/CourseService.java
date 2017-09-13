@@ -108,7 +108,7 @@ public class CourseService {
     public CourseLessonInfoDTO findCourseInfoDTO(Long id) {
 		long currentUserId=0;
 		String currentLogin = SecurityUtils.getCurrentUserLogin();
-		if(StringUtils.isNotBlank(currentLogin)) {
+		if(StringUtils.isNotBlank(currentLogin)&&!"anonymousUser".equals(currentLogin)) {
 			currentUserId = userRepository.findOneByLogin(currentLogin).get().getId();
 		}
         log.debug("Request to get Course : {}", id);

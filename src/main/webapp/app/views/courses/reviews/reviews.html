@@ -1,21 +1,31 @@
-<div class="course-detail" data-widget-cid="widget-1"
-	ng-repeat="review in vm.allreviews">
+<div class="course-detail" ng-controller="ReviewsController">
+	<!-- <div class="clearfix">
+	    <button class="btn btn-primary btn-sm pull-right js-show-review-form" style="display: block;">重新评价</button>
+	</div> -->
+	<form id="review-form" style="display: block;" ng-if="vm.isAuthenticated" novalidate="novalidate" data-widget-cid="widget-1">
+    <div class="form-group controls">
+      <textarea class="form-control" rows="8" data-display="评价详细内容" name="content" data-widget-cid="widget-3" ng-model="reviewContent"></textarea>
+    <div class="help-block" style="display:none;"></div></div>
 
-	<div class="js-reviews"  ng-if="review.content !=null">
+    <div class="form-group clearfix">
+      <span class="text-success pull-left" style="display: none;">评价已保存！</span>
+      <button type="button" class="btn btn-primary pull-right" data-loading-text="正在保存..." autocomplete="off" ng-click="updateReviews();">保存</button>
+      <button class="btn btn-link pull-right js-hide-review-form" type="button" style="display: block;">取消</button>
+    </div>
+  </form>
+	<div class="js-reviews" ng-repeat="review in vm.allreviews"  ng-if="review.content !=null">
 		<div class="media media-evaluate">
 			<div class="media-left">
 				<a class=" js-user-card" href="#/user/{{review.userId}}"
-					data-card-url="/user/{{review.userId}}/card/show" data-user-id="1"> 
+					data-card-url="/user/{{review.userId}}/card/show" data-user-id="1">
 					<img class="avatar-sm" src="{{review.avatar}}">
 				</a>
-
 			</div>
 			<div class="media-body">
 				<div class="title">
 					<a class="link-light " href="/user/{{review.userId}}">{{review.lastModifiedBy}}</a> {{review.lastModifiedDate}}
 				</div>
 				<div class="score">
-
 					<i class="es-icon es-icon-star"></i> <i
 						class="es-icon es-icon-star"></i> <i class="es-icon es-icon-star"></i>
 					<i class="es-icon es-icon-star"></i> <i
@@ -32,7 +42,5 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="empty" ng-if="review.content ==null">暂无评价</div>
-
+	<div class="empty" ng-if="vm.allreviews==null">暂无评价</div>
 </div>
