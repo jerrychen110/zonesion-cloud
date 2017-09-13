@@ -20,7 +20,8 @@
       "protractor"
     ],
     "languages": [
-      "en"
+      "en",
+      "zh-cn"
     ],
     "serverPort": 8080,
     "jhipsterVersion": "4.6.2",
