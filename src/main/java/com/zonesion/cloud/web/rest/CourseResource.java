@@ -7,6 +7,7 @@ import com.zonesion.cloud.service.CourseService;
 import com.zonesion.cloud.service.FileManageMentService;
 import com.zonesion.cloud.service.util.JcropSize;
 import com.zonesion.cloud.service.util.FileUtil;
+import com.zonesion.cloud.web.rest.dto.CourseLessonInfoDTO;
 import com.zonesion.cloud.web.rest.util.HeaderUtil;
 import com.zonesion.cloud.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -186,6 +187,11 @@ public class CourseResource {
 		Map<String, String> ret = new HashMap<>();
 		ret.put("coverPicture", coverPicture);
 		return new ResponseEntity<>(ret, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/courses/{id}/course-lessons", method = RequestMethod.GET)
+    public ResponseEntity<CourseLessonInfoDTO> getCourseAllById(@PathVariable Long id){
+    	return new ResponseEntity<>(courseService.findCourseInfoDTO(id), HttpStatus.OK);
     }
 
 }

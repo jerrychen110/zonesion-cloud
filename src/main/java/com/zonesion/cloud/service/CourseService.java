@@ -1,17 +1,34 @@
 package com.zonesion.cloud.service;
 
+import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.Course;
 import com.zonesion.cloud.repository.CourseRepository;
+import com.zonesion.cloud.repository.UserRepository;
+import com.zonesion.cloud.security.SecurityUtils;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.zonesion.cloud.web.rest.dto.CourseLessonInfoDTO;
+import com.zonesion.cloud.web.rest.dto.LessonInfoDTO;
+import com.zonesion.cloud.web.rest.dto.UnitInfoDTO;
+import com.zonesion.cloud.web.rest.dto.ChapterInfoDTO;
 
 /**
  * Service Implementation for managing Course.
@@ -27,6 +44,12 @@ public class CourseService {
     public CourseService(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
     }
+    
+    @Inject
+    private JdbcTemplate jdbcTemplate;
+    
+    @Inject
+    private UserRepository userRepository;
 
     /**
      * Save a course.
@@ -80,5 +103,115 @@ public class CourseService {
 	public List<Course> findByUserId(Long userId) {
 		return courseRepository.findByUserId(userId);
 	}
+	
+	@Transactional(readOnly = true)
+    public CourseLessonInfoDTO findCourseInfoDTO(Long id) {
+		long currentUserId=0;
+		String currentLogin = SecurityUtils.getCurrentUserLogin();
+		if(StringUtils.isNotBlank(currentLogin)) {
+			currentUserId = userRepository.findOneByLogin(currentLogin).get().getId();
+		}
+        log.debug("Request to get Course : {}", id);
+        CourseLessonInfoDTO courseInfoDTO = new CourseLessonInfoDTO();
+        courseInfoDTO.setCourseId(id);
+        Course course = courseRepository.findOne(id);
+        if(course.getChapters()!=null&&!course.getChapters().isEmpty()) {
+        	List<ChapterInfoDTO> chapters = new ArrayList<>();
+        	List<UnitInfoDTO> units = new ArrayList<>();
+        	for(Chapter obj:course.getChapters()) {
+        		if(StringUtils.isNoneBlank(obj.getChapterType())) {
+        			if("0".equals(obj.getChapterType())) {
+        				ChapterInfoDTO chapterDTO = new ChapterInfoDTO();
+        				chapterDTO.setId(obj.getId());
+        				chapterDTO.setChapterType(obj.getChapterType());
+        				chapterDTO.setTitle(obj.getTitle());
+        				chapterDTO.setNumber(obj.getNumber());
+        				chapterDTO.setSeq(obj.getSeq());
+        				chapters.add(chapterDTO);
+        			}else {
+        				UnitInfoDTO unitDTO = new UnitInfoDTO();
+        				unitDTO.setId(obj.getId());
+        				unitDTO.setParentId(obj.getParentId());
+        				unitDTO.setChapterType(obj.getChapterType());
+        				unitDTO.setTitle(obj.getTitle());
+        				unitDTO.setNumber(obj.getNumber());
+        				unitDTO.setSeq(obj.getSeq());
+        				String lessonSql = null;
+        				if(currentUserId!=0) {
+        					StringBuilder sb = new StringBuilder();
+        					sb.append("select tcl.id,tcl.title,tcl.summary,tcl.course_lesson_type,tcl.content,tcl.number,tcl.seq,")
+        					.append("tcl.credit,tcl.learned_num,tcl.viewed_num,tcll.id,tcll.user_id,tcll.is_complete,")
+        					.append("case when tcll.is_complete is null then '0' when tcll.is_complete='0' then '1' else '2' end as status ")
+        					.append("from t_course_lesson tcl left join t_course_lesson_learn tcll on tcl.id=tcll.course_lesson_id ")
+        					.append("and tcll.user_id=").append(currentUserId).append(" where tcl.chapter_id=").append(obj.getId()).append(" order by seq");
+        					lessonSql = sb.toString();
+        				}else {
+        					lessonSql = "select id,title,summary,course_lesson_type,content,number,seq,credit,learned_num,viewed_num,0 as user_id,0 as status from t_course_lesson where chapter_id="+obj.getId()+" order by seq";
+        				}
+        				@SuppressWarnings("unchecked")
+						List<LessonInfoDTO> lessons = jdbcTemplate.query(lessonSql,
+        					new RowMapper(){
+	                            @Override
+	                            public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+	                            	LessonInfoDTO lessonDTO  = new LessonInfoDTO();
+	                            	lessonDTO.setId(rs.getLong("id"));
+	                            	lessonDTO.setTitle(rs.getString("title"));
+	                            	lessonDTO.setSummary(rs.getString("summary")!=null?rs.getString("summary"):"");
+	                            	lessonDTO.setCourseLessonType(rs.getString("course_lesson_type")!=null?rs.getString("course_lesson_type"):"");
+	                            	lessonDTO.setNumber(rs.getInt("number"));
+	                            	lessonDTO.setSeq(rs.getInt("seq"));
+	                            	lessonDTO.setContent(rs.getString("content")!=null?rs.getString("content"):"");
+	                            	lessonDTO.setCredit(rs.getInt("credit")!=0?rs.getInt("credit"):0);
+	                            	lessonDTO.setLearnedNum(rs.getInt("learned_num")!=0?rs.getInt("learned_num"):0);
+	                            	lessonDTO.setViewedNum(rs.getInt("viewed_num")!=0?rs.getInt("viewed_num"):0);
+//	                            	lessonDTO.setLearnedUserId(rs.getLong("user_id")!=0?rs.getLong("user_id"):null);
+	                            	lessonDTO.setLearnedStatus(rs.getString("status")!=null?rs.getString("status"):"");
+	                                return lessonDTO;
+	                            }
+        					});
+        				unitDTO.setLessons(lessons);
+        				units.add(unitDTO);
+        			}
+        		}
+        	}
+        	
+        	//进行最终对象的封装
+        	if(chapters.size()>0&&units.size()>0) {
+        		Collections.sort(chapters, new Comparator<ChapterInfoDTO>(){
+   				 public int compare(ChapterInfoDTO o1, ChapterInfoDTO o2) {
+   					 if(o1.getNumber() > o2.getNumber()){
+		                    return 1;
+		                }
+		                if(o1.getNumber() == o2.getNumber()){
+		                    return 0;
+		                }
+		                return -1;
+	   				 }
+	   			});
+        		for(ChapterInfoDTO chapter:chapters) {
+        			List<UnitInfoDTO> thisUnits = new ArrayList<>();
+        			for(UnitInfoDTO unit:units) {
+        				if(chapter.id==unit.parentId) {
+        					thisUnits.add(unit);
+        				}
+        			}
+        			Collections.sort(thisUnits, new Comparator<UnitInfoDTO>(){
+        				 public int compare(UnitInfoDTO o1, UnitInfoDTO o2) {
+        					 if(o1.getNumber() > o2.getNumber()){
+    		                    return 1;
+    		                }
+    		                if(o1.getNumber() == o2.getNumber()){
+    		                    return 0;
+    		                }
+    		                return -1;
+        				 }
+        			});
+        			chapter.units=thisUnits;
+        		}
+        	}
+        	courseInfoDTO.setChapters(chapters);
+        }
+        return courseInfoDTO;
+    }
 
 }
