@@ -85,11 +85,6 @@ public class CourseLesson extends AbstractAuditingEntity implements Serializable
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "courseLesson")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<CourseLessonAttachment> courseLessonAttachments = new HashSet<>();
-
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "courseLesson")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CourseLessonLearn> courseLessonLearns = new HashSet<>();
 
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "courseLesson")
@@ -302,31 +297,6 @@ public class CourseLesson extends AbstractAuditingEntity implements Serializable
 
     public void setViewedNum(Integer viewedNum) {
         this.viewedNum = viewedNum;
-    }
-
-    public Set<CourseLessonAttachment> getCourseLessonAttachments() {
-        return courseLessonAttachments;
-    }
-
-    public CourseLesson courseLessonAttachments(Set<CourseLessonAttachment> CourseLessonAttachments) {
-        this.courseLessonAttachments = CourseLessonAttachments;
-        return this;
-    }
-
-    public CourseLesson addCourseLessonAttachment(CourseLessonAttachment CourseLessonAttachment) {
-        this.courseLessonAttachments.add(CourseLessonAttachment);
-        CourseLessonAttachment.setCourseLesson(this);
-        return this;
-    }
-
-    public CourseLesson removeCourseLessonAttachment(CourseLessonAttachment CourseLessonAttachment) {
-        this.courseLessonAttachments.remove(CourseLessonAttachment);
-        CourseLessonAttachment.setCourseLesson(null);
-        return this;
-    }
-
-    public void setCourseLessonAttachments(Set<CourseLessonAttachment> CourseLessonAttachments) {
-        this.courseLessonAttachments = CourseLessonAttachments;
     }
 
     public Set<CourseLessonLearn> getCourseLessonLearns() {

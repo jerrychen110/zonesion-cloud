@@ -4,9 +4,13 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="zonesionCloudApplicationApp.courseLessonAttachment.courseId">Course Id</span></dt>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLessonAttachment.targetType">Target Type</span></dt>
         <dd>
-            <span>{{vm.courseLessonAttachment.courseId}}</span>
+            <span>{{vm.courseLessonAttachment.targetType}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLessonAttachment.targetId">Target Id</span></dt>
+        <dd>
+            <span>{{vm.courseLessonAttachment.targetId}}</span>
         </dd>
         <dt><span data-translate="zonesionCloudApplicationApp.courseLessonAttachment.userId">User Id</span></dt>
         <dd>
@@ -24,9 +28,13 @@
         <dd>
             <span>{{vm.courseLessonAttachment.link}}</span>
         </dd>
-        <dt><span data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileId">File Id</span></dt>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileType">File Type</span></dt>
         <dd>
-            <span>{{vm.courseLessonAttachment.fileId}}</span>
+            <span>{{vm.courseLessonAttachment.fileType}}</span>
+        </dd>
+        <dt><span data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileLength">File Length</span></dt>
+        <dd>
+            <span>{{vm.courseLessonAttachment.fileLength}}</span>
         </dd>
         <dt><span data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileUri">File Uri</span></dt>
         <dd>
@@ -39,10 +47,6 @@
         <dt><span data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileSize">File Size</span></dt>
         <dd>
             <span>{{vm.courseLessonAttachment.fileSize}}</span>
-        </dd>
-        <dt><span data-translate="zonesionCloudApplicationApp.courseLessonAttachment.courseLesson">Course Lesson</span></dt>
-        <dd>
-            <a ui-sref="course-lesson-detail({id:vm.courseLessonAttachment.courseLesson.id})">{{vm.courseLessonAttachment.courseLesson.title}}</a>
         </dd>
     </dl>
 

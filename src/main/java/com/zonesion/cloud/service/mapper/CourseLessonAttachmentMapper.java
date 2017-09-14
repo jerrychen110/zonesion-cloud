@@ -35,12 +35,14 @@ public class CourseLessonAttachmentMapper {
     	} else {
     		CourseLessonAttachment courseLessonAttachment = new CourseLessonAttachment();
     		courseLessonAttachment.setId(courseLessonAttachmentDTO.getId());
-    		courseLessonAttachment.setCourseId(courseLessonAttachmentDTO.getId());
+    		courseLessonAttachment.setTargetType(courseLessonAttachmentDTO.getTargetType());
+    		courseLessonAttachment.setTargetId(courseLessonAttachmentDTO.getTargetId());
     		courseLessonAttachment.setUserId(courseLessonAttachmentDTO.getUserId());
     		courseLessonAttachment.setTitle(courseLessonAttachmentDTO.getTitle());
     		courseLessonAttachment.setDescription(courseLessonAttachmentDTO.getDescription());
     		courseLessonAttachment.setLink(courseLessonAttachmentDTO.getLink());
-    		courseLessonAttachment.setFileId(courseLessonAttachmentDTO.getFileId());
+    		courseLessonAttachment.setFileType(courseLessonAttachmentDTO.getFileType());
+    		courseLessonAttachment.setFileLength(courseLessonAttachmentDTO.getFileLength());
     		courseLessonAttachment.setFileUri(courseLessonAttachmentDTO.getFileUri());
     		courseLessonAttachment.setFileMime(courseLessonAttachmentDTO.getFileMime());
     		courseLessonAttachment.setFileSize(courseLessonAttachmentDTO.getFileSize());

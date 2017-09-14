@@ -14,17 +14,29 @@
                     ng-model="vm.courseLessonAttachment.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.courseId" for="field_courseId">Course Id</label>
-            <input type="number" class="form-control" name="courseId" id="field_courseId"
-                    ng-model="vm.courseLessonAttachment.courseId"
-                    required/>
-            <div ng-show="editForm.courseId.$invalid">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.targetType" for="field_targetType">Target Type</label>
+            <input type="text" class="form-control" name="targetType" id="field_targetType"
+                    ng-model="vm.courseLessonAttachment.targetType"
+                    required ng-maxlength="255"/>
+            <div ng-show="editForm.targetType.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.courseId.$error.required" data-translate="entity.validation.required">
+                    ng-show="editForm.targetType.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.courseId.$error.number" data-translate="entity.validation.number">
+                    ng-show="editForm.targetType.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="50">
+                    This field cannot be longer than 50 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.targetId" for="field_courseId">Target Id</label>
+            <input type="number" class="form-control" name="targetId" id="field_targetId"
+                    ng-model="vm.courseLessonAttachment.targetId"
+                    required/>
+            <div ng-show="editForm.targetId.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.targetId.$error.number" data-translate="entity.validation.number">
                     This field should be a number.
                 </p>
             </div>
@@ -80,10 +92,36 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileId" for="field_fileId">File Id</label>
-            <input type="number" class="form-control" name="fileId" id="field_fileId"
-                    ng-model="vm.courseLessonAttachment.fileId"
-                    />
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileType" for="field_fileType">File Type</label>
+            <input type="number" class="form-control" name="fileType" id="field_fileType"
+                    ng-model="vm.courseLessonAttachment.fileType"
+                    required/>
+            <div ng-show="editForm.fileType.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.fileType.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.fileType.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileLength" for="field_fileLength">File Length</label>
+            <input type="number" class="form-control" name="fileLength" id="field_fileLength"
+                    ng-model="vm.courseLessonAttachment.fileLength"
+                    required/>
+            <div ng-show="editForm.fileLength.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.fileLength.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.fileLength.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonAttachment.fileUri" for="field_fileUri">File Uri</label>
@@ -124,18 +162,6 @@
                     This field should be a number.
                 </p>
             </div>
-        </div>
-
-        <div class="form-group">
-            <label data-translate="zonesionCloudApplicationApp.courseLessonAttachment.courseLesson" for="field_courseLesson">Course Lesson</label>
-            <select class="form-control" id="field_courseLesson" name="courseLesson" ng-model="vm.courseLessonAttachment.courseLesson" ng-options="CourseLesson as CourseLesson.title for CourseLesson in vm.courselessons track by CourseLesson.id" required>
-            </select>
-        </div>
-        <div ng-show="editForm.courseLesson.$invalid">
-            <p class="help-block"
-                ng-show="editForm.courseLesson.$error.required" data-translate="entity.validation.required">
-                This field is required.
-            </p>
         </div>
     </div>
     <div class="modal-footer">

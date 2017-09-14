@@ -39,8 +39,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = ZonesionCloudApplicationApp.class)
 public class CourseLessonAttachmentResourceIntTest {
 
-    private static final Long DEFAULT_COURSE_ID = 1L;
-    private static final Long UPDATED_COURSE_ID = 2L;
+	private static final String DEFAULT_TARGET_TYPE = "AAAAAAAAAA";
+    private static final String UPDATED_TARGET_TYPE = "BBBBBBBBBB";
+	
+    private static final Long DEFAULT_TARGET_ID = 1L;
+    private static final Long UPDATED_TARGET_ID = 2L;
 
     private static final Long DEFAULT_USER_ID = 1L;
     private static final Long UPDATED_USER_ID = 2L;
@@ -54,8 +57,11 @@ public class CourseLessonAttachmentResourceIntTest {
     private static final String DEFAULT_LINK = "AAAAAAAAAA";
     private static final String UPDATED_LINK = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_FILE_ID = 1L;
-    private static final Long UPDATED_FILE_ID = 2L;
+    private static final Integer DEFAULT_FILE_TYPE = 1;
+    private static final Integer UPDATED_FILE_TYPE = 2;
+    
+    private static final Integer DEFAULT_FILE_LENGTH = 1;
+    private static final Integer UPDATED_FILE_LENGTH = 2;
 
     private static final String DEFAULT_FILE_URI = "AAAAAAAAAA";
     private static final String UPDATED_FILE_URI = "BBBBBBBBBB";
@@ -106,12 +112,14 @@ public class CourseLessonAttachmentResourceIntTest {
      */
     public static CourseLessonAttachment createEntity(EntityManager em) {
         CourseLessonAttachment courseLessonAttachment = new CourseLessonAttachment()
-            .courseId(DEFAULT_COURSE_ID)
+        	.targetType(DEFAULT_TARGET_TYPE)
+            .targetId(DEFAULT_TARGET_ID)
             .userId(DEFAULT_USER_ID)
             .title(DEFAULT_TITLE)
             .description(DEFAULT_DESCRIPTION)
             .link(DEFAULT_LINK)
-            .fileId(DEFAULT_FILE_ID)
+            .fileType(DEFAULT_FILE_TYPE)
+            .fileLength(DEFAULT_FILE_LENGTH)
             .fileUri(DEFAULT_FILE_URI)
             .fileMime(DEFAULT_FILE_MIME)
             .fileSize(DEFAULT_FILE_SIZE);
@@ -119,7 +127,6 @@ public class CourseLessonAttachmentResourceIntTest {
         CourseLesson courseLesson = CourseLessonResourceIntTest.createEntity(em);
         em.persist(courseLesson);
         em.flush();
-        courseLessonAttachment.setCourseLesson(courseLesson);
         return courseLessonAttachment;
     }
 
@@ -143,12 +150,14 @@ public class CourseLessonAttachmentResourceIntTest {
         List<CourseLessonAttachment> courseLessonAttachmentList = courseLessonAttachmentRepository.findAll();
         assertThat(courseLessonAttachmentList).hasSize(databaseSizeBeforeCreate + 1);
         CourseLessonAttachment testCourseLessonAttachment = courseLessonAttachmentList.get(courseLessonAttachmentList.size() - 1);
-        assertThat(testCourseLessonAttachment.getCourseId()).isEqualTo(DEFAULT_COURSE_ID);
+        assertThat(testCourseLessonAttachment.getTargetType()).isEqualTo(DEFAULT_TARGET_TYPE);
+        assertThat(testCourseLessonAttachment.getTargetId()).isEqualTo(DEFAULT_TARGET_ID);
         assertThat(testCourseLessonAttachment.getUserId()).isEqualTo(DEFAULT_USER_ID);
         assertThat(testCourseLessonAttachment.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testCourseLessonAttachment.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testCourseLessonAttachment.getLink()).isEqualTo(DEFAULT_LINK);
-        assertThat(testCourseLessonAttachment.getFileId()).isEqualTo(DEFAULT_FILE_ID);
+        assertThat(testCourseLessonAttachment.getFileType()).isEqualTo(DEFAULT_FILE_TYPE);
+        assertThat(testCourseLessonAttachment.getFileLength()).isEqualTo(DEFAULT_FILE_LENGTH);
         assertThat(testCourseLessonAttachment.getFileUri()).isEqualTo(DEFAULT_FILE_URI);
         assertThat(testCourseLessonAttachment.getFileMime()).isEqualTo(DEFAULT_FILE_MIME);
         assertThat(testCourseLessonAttachment.getFileSize()).isEqualTo(DEFAULT_FILE_SIZE);
@@ -178,7 +187,7 @@ public class CourseLessonAttachmentResourceIntTest {
     public void checkCourseIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = courseLessonAttachmentRepository.findAll().size();
         // set the field null
-        courseLessonAttachment.setCourseId(null);
+        courseLessonAttachment.setTargetId(null);
 
         // Create the CourseLessonAttachment, which fails.
 
@@ -256,12 +265,14 @@ public class CourseLessonAttachmentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(courseLessonAttachment.getId().intValue())))
-            .andExpect(jsonPath("$.[*].courseId").value(hasItem(DEFAULT_COURSE_ID.intValue())))
+            .andExpect(jsonPath("$.[*].targetType").value(hasItem(DEFAULT_TARGET_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].targetId").value(hasItem(DEFAULT_TARGET_ID.intValue())))
             .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.intValue())))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].link").value(hasItem(DEFAULT_LINK.toString())))
-            .andExpect(jsonPath("$.[*].fileId").value(hasItem(DEFAULT_FILE_ID.intValue())))
+            .andExpect(jsonPath("$.[*].fileType").value(hasItem(DEFAULT_FILE_TYPE.intValue())))
+            .andExpect(jsonPath("$.[*].fileLength").value(hasItem(DEFAULT_FILE_LENGTH.intValue())))
             .andExpect(jsonPath("$.[*].fileUri").value(hasItem(DEFAULT_FILE_URI.toString())))
             .andExpect(jsonPath("$.[*].fileMime").value(hasItem(DEFAULT_FILE_MIME.toString())))
             .andExpect(jsonPath("$.[*].fileSize").value(hasItem(DEFAULT_FILE_SIZE)));
@@ -278,12 +289,14 @@ public class CourseLessonAttachmentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(courseLessonAttachment.getId().intValue()))
-            .andExpect(jsonPath("$.courseId").value(DEFAULT_COURSE_ID.intValue()))
+            .andExpect(jsonPath("$.[*].targetType").value(DEFAULT_TARGET_TYPE.toString()))
+            .andExpect(jsonPath("$.[*].targetId").value(DEFAULT_TARGET_ID.intValue()))
             .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID.intValue()))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.link").value(DEFAULT_LINK.toString()))
-            .andExpect(jsonPath("$.fileId").value(DEFAULT_FILE_ID.intValue()))
+            .andExpect(jsonPath("$.[*].fileType").value(DEFAULT_FILE_TYPE.intValue()))
+            .andExpect(jsonPath("$.[*].fileLength").value(DEFAULT_FILE_LENGTH.intValue()))
             .andExpect(jsonPath("$.fileUri").value(DEFAULT_FILE_URI.toString()))
             .andExpect(jsonPath("$.fileMime").value(DEFAULT_FILE_MIME.toString()))
             .andExpect(jsonPath("$.fileSize").value(DEFAULT_FILE_SIZE));
@@ -308,12 +321,14 @@ public class CourseLessonAttachmentResourceIntTest {
         // Update the courseLessonAttachment
         CourseLessonAttachment updatedCourseLessonAttachment = courseLessonAttachmentRepository.findOne(courseLessonAttachment.getId());
         updatedCourseLessonAttachment
-            .courseId(UPDATED_COURSE_ID)
+        	.targetType(UPDATED_TARGET_TYPE)
+        	.targetId(UPDATED_TARGET_ID)
             .userId(UPDATED_USER_ID)
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION)
             .link(UPDATED_LINK)
-            .fileId(UPDATED_FILE_ID)
+            .fileType(UPDATED_FILE_TYPE)
+            .fileLength(UPDATED_FILE_LENGTH)
             .fileUri(UPDATED_FILE_URI)
             .fileMime(UPDATED_FILE_MIME)
             .fileSize(UPDATED_FILE_SIZE);
@@ -327,12 +342,14 @@ public class CourseLessonAttachmentResourceIntTest {
         List<CourseLessonAttachment> courseLessonAttachmentList = courseLessonAttachmentRepository.findAll();
         assertThat(courseLessonAttachmentList).hasSize(databaseSizeBeforeUpdate);
         CourseLessonAttachment testCourseLessonAttachment = courseLessonAttachmentList.get(courseLessonAttachmentList.size() - 1);
-        assertThat(testCourseLessonAttachment.getCourseId()).isEqualTo(UPDATED_COURSE_ID);
+        assertThat(testCourseLessonAttachment.getTargetType()).isEqualTo(UPDATED_TARGET_TYPE);
+        assertThat(testCourseLessonAttachment.getTargetId()).isEqualTo(UPDATED_TARGET_ID);
         assertThat(testCourseLessonAttachment.getUserId()).isEqualTo(UPDATED_USER_ID);
         assertThat(testCourseLessonAttachment.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testCourseLessonAttachment.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testCourseLessonAttachment.getLink()).isEqualTo(UPDATED_LINK);
-        assertThat(testCourseLessonAttachment.getFileId()).isEqualTo(UPDATED_FILE_ID);
+        assertThat(testCourseLessonAttachment.getFileType()).isEqualTo(UPDATED_FILE_TYPE);
+        assertThat(testCourseLessonAttachment.getFileLength()).isEqualTo(UPDATED_FILE_LENGTH);
         assertThat(testCourseLessonAttachment.getFileUri()).isEqualTo(UPDATED_FILE_URI);
         assertThat(testCourseLessonAttachment.getFileMime()).isEqualTo(UPDATED_FILE_MIME);
         assertThat(testCourseLessonAttachment.getFileSize()).isEqualTo(UPDATED_FILE_SIZE);

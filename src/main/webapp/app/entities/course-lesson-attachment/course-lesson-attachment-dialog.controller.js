@@ -5,15 +5,14 @@
         .module('zonesionCloudApplicationApp')
         .controller('CourseLessonAttachmentDialogController', CourseLessonAttachmentDialogController);
 
-    CourseLessonAttachmentDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'CourseLessonAttachment', 'CourseLesson'];
+    CourseLessonAttachmentDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'CourseLessonAttachment'];
 
-    function CourseLessonAttachmentDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, CourseLessonAttachment, CourseLesson) {
+    function CourseLessonAttachmentDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, CourseLessonAttachment) {
         var vm = this;
 
         vm.courseLessonAttachment = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.courselessons = CourseLesson.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

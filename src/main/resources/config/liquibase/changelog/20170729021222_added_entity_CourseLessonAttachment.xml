@@ -74,4 +74,27 @@
         </createTable>
         
     </changeSet>
+    
+    <changeSet id="20170729021222-2" author="XiaXiong">
+    	<dropForeignKeyConstraint baseTableName="t_course_lesson_attachment" constraintName="fk_course_lesson_attachment_course_lesson_id"/>
+    	<dropColumn tableName="t_course_lesson_attachment">
+    		<column name="course_id"/>
+    		<column name="course_lesson_id"/>
+    		<column name="file_id"/>
+    	</dropColumn>
+    	<addColumn tableName="t_course_lesson_attachment">
+    		<column name="target_type" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="target_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="file_type" type="integer" defaultValue="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="file_length" type="integer" defaultValue="0">
+                <constraints nullable="false" />
+            </column>
+    	</addColumn>
+    </changeSet>
 </databaseChangeLog>
