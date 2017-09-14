@@ -45,7 +45,8 @@
             }, onSuccess, onError);
 
             function onSuccess(data, headers) {
-              $log.debug(data)
+              vm.courseBase = data;
+              $log.debug(data);
             }
             function onError(error) {
               $log.error();

@@ -8,8 +8,8 @@
 				<div class="form-group">
 					<label class="sr-only" for="exampleInputAmount"></label>
 					<div class="input-group">
-						<input type="text" class="form-control" id="exampleInputAmount" ng-model="vm.filter" placeholder="搜索课程">
-						<div class="input-group-addon"><span class="icon-search"></span></div>
+						<input type="text" class="form-control" id="exampleInputAmount" ng-model="vm.query" placeholder="搜索课程">
+						<div class="input-group-addon" ng-click="vm.loadExplore()"><span class="icon-search"></span></div>
 					</div>
 				</div>
 			</form>
