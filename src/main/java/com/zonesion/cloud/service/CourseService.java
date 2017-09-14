@@ -2,6 +2,8 @@ package com.zonesion.cloud.service;
 
 import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.Course;
+import com.zonesion.cloud.repository.CourseFavoriteRepository;
+import com.zonesion.cloud.repository.CourseLessonLearnRepository;
 import com.zonesion.cloud.repository.CourseRepository;
 import com.zonesion.cloud.repository.UserRepository;
 import com.zonesion.cloud.security.SecurityUtils;
@@ -29,6 +31,7 @@ import com.zonesion.cloud.web.rest.dto.CourseLessonInfoDTO;
 import com.zonesion.cloud.web.rest.dto.LessonInfoDTO;
 import com.zonesion.cloud.web.rest.dto.UnitInfoDTO;
 import com.zonesion.cloud.web.rest.dto.ChapterInfoDTO;
+import com.zonesion.cloud.web.rest.dto.CourseBaseInfoDTO;
 
 /**
  * Service Implementation for managing Course.
@@ -50,6 +53,12 @@ public class CourseService {
     
     @Inject
     private UserRepository userRepository;
+    
+    @Inject
+    private CourseLessonLearnRepository courseLessonLearnRepository;
+    
+    @Inject
+    private CourseFavoriteRepository courseFavoriteRepository;
 
     /**
      * Save a course.
@@ -104,11 +113,16 @@ public class CourseService {
 		return courseRepository.findByUserId(userId);
 	}
 	
+	/**
+	 * 根据课程id查询课程的课时信息
+	 * @param id
+	 * @return
+	 */
 	@Transactional(readOnly = true)
-    public CourseLessonInfoDTO findCourseInfoDTO(Long id) {
+    public CourseLessonInfoDTO findCourseLessonInfoDTO(Long id) {
 		long currentUserId=0;
 		String currentLogin = SecurityUtils.getCurrentUserLogin();
-		if(StringUtils.isNotBlank(currentLogin)) {
+		if(StringUtils.isNotBlank(currentLogin)&&!"anonymousUser".equals(currentLogin)) {
 			currentUserId = userRepository.findOneByLogin(currentLogin).get().getId();
 		}
         log.debug("Request to get Course : {}", id);
@@ -164,7 +178,6 @@ public class CourseService {
 	                            	lessonDTO.setCredit(rs.getInt("credit")!=0?rs.getInt("credit"):0);
 	                            	lessonDTO.setLearnedNum(rs.getInt("learned_num")!=0?rs.getInt("learned_num"):0);
 	                            	lessonDTO.setViewedNum(rs.getInt("viewed_num")!=0?rs.getInt("viewed_num"):0);
-//	                            	lessonDTO.setLearnedUserId(rs.getLong("user_id")!=0?rs.getLong("user_id"):null);
 	                            	lessonDTO.setLearnedStatus(rs.getString("status")!=null?rs.getString("status"):"");
 	                                return lessonDTO;
 	                            }
@@ -213,5 +226,50 @@ public class CourseService {
         }
         return courseInfoDTO;
     }
-
+	
+	/**
+	 * 根据课程id查询课程基本信息（课程信息、学员情况）
+	 * @param id
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public CourseBaseInfoDTO findCourseBaseInfoDTO(long id) {
+		long currentUserId=0;
+		String currentLogin = SecurityUtils.getCurrentUserLogin();
+		if(StringUtils.isNotBlank(currentLogin)&&!"anonymousUser".equals(currentLogin)) {
+			currentUserId = userRepository.findOneByLogin(currentLogin).get().getId();
+		}
+		CourseBaseInfoDTO courseBaseInfoDTO = new CourseBaseInfoDTO();
+		Course course = courseRepository.findOne(id);
+		courseBaseInfoDTO.setId(id);
+		courseBaseInfoDTO.setTitle(course.getTitle());
+		courseBaseInfoDTO.setSubTitle(course.getSubTitle());
+		courseBaseInfoDTO.setStatus(course.getStatus());
+		courseBaseInfoDTO.setCourseType(course.getCourseType());
+		courseBaseInfoDTO.setCourseSource(course.getCourseSource());
+		courseBaseInfoDTO.setLessonNum(course.getLessonNum());
+		courseBaseInfoDTO.setCredit(course.getCredit());
+		courseBaseInfoDTO.setCoverPicture(course.getCoverPicture());
+		courseBaseInfoDTO.setIntroduction(course.getIntroduction());
+		courseBaseInfoDTO.setGoals(course.getGoals());
+		courseBaseInfoDTO.setTags(course.getTags());
+		courseBaseInfoDTO.setLearnedNum(courseLessonLearnRepository.getLearnedNumByCourseId(id));
+		String learnedStatus = "0";
+		String isCollected = "0";
+		if(currentUserId>0) {
+			int learned = courseLessonLearnRepository.getLearnedNumByCourseIdAndUserId(id, currentUserId);
+			if(learned>0) {
+				learnedStatus = "1";
+				courseBaseInfoDTO.setLearnedUsers(userRepository.findAllLearnedUserByCourseId(id));
+			}
+			int collected = courseFavoriteRepository.getFavoriteNumByCourseIdAndUserId(id, currentUserId);
+			if(collected>0) {
+				isCollected = "1";
+			}
+		}
+		courseBaseInfoDTO.setLearnedStatus(learnedStatus);
+		courseBaseInfoDTO.setIsCollected(isCollected);
+		return courseBaseInfoDTO;
+	}
+	
 }

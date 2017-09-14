@@ -7,6 +7,7 @@ import com.zonesion.cloud.service.CourseService;
 import com.zonesion.cloud.service.FileManageMentService;
 import com.zonesion.cloud.service.util.JcropSize;
 import com.zonesion.cloud.service.util.FileUtil;
+import com.zonesion.cloud.web.rest.dto.CourseBaseInfoDTO;
 import com.zonesion.cloud.web.rest.dto.CourseLessonInfoDTO;
 import com.zonesion.cloud.web.rest.util.HeaderUtil;
 import com.zonesion.cloud.web.rest.util.PaginationUtil;
@@ -189,9 +190,16 @@ public class CourseResource {
 		return new ResponseEntity<>(ret, HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/courses/{id}/course-lessons", method = RequestMethod.GET)
-    public ResponseEntity<CourseLessonInfoDTO> getCourseAllById(@PathVariable Long id){
-    	return new ResponseEntity<>(courseService.findCourseInfoDTO(id), HttpStatus.OK);
+    @RequestMapping(value = "/courses/{id}/course-base", method = RequestMethod.GET)
+    public ResponseEntity<CourseBaseInfoDTO> getCourseBaseyId(@PathVariable Long id){
+    	log.debug("query course base info : {}", id);
+    	return new ResponseEntity<>(courseService.findCourseBaseInfoDTO(id), HttpStatus.OK);
     }
-
+    
+    @RequestMapping(value = "/courses/{id}/course-lessons", method = RequestMethod.GET)
+    public ResponseEntity<CourseLessonInfoDTO> getCourseLessonInfoById(@PathVariable Long id){
+    	log.debug("query course lesson info : {}", id);
+    	return new ResponseEntity<>(courseService.findCourseLessonInfoDTO(id), HttpStatus.OK);
+    }
+    
 }
