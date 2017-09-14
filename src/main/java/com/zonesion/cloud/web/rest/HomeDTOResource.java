@@ -1,27 +1,17 @@
 package com.zonesion.cloud.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.zonesion.cloud.domain.Course;
 import com.zonesion.cloud.service.HomeDTOService;
-import com.zonesion.cloud.service.dto.CourseDTO;
 import com.zonesion.cloud.service.dto.HomeDTO;
-import com.zonesion.cloud.web.rest.util.HeaderUtil;
 import com.zonesion.cloud.web.rest.util.Page;
-import com.zonesion.cloud.web.rest.util.PaginationUtil;
-import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
-
+import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,35 +24,28 @@ public class HomeDTOResource {
 
     private final Logger log = LoggerFactory.getLogger(HomeDTOResource.class);
 
-    private static final String ENTITY_NAME = "course";
+    private static final String COURSE_RECOMMENDED = "recommended";
+    private static final String COURSE_NEWEST = "newest";
+    private static final String COURSE_HOT = "hot";
 
-    private final HomeDTOService homeDTOService;
-
-    public HomeDTOResource(HomeDTOService homeDTOService) {
-        this.homeDTOService = homeDTOService;
-    }
-
-    @GetMapping("/home/newest")
-    @Timed
-    public ResponseEntity<List<HomeDTO>> getNewestCourse() {
-        log.debug("REST request to get a page of Courses");
-        List<HomeDTO> course = homeDTOService.findNewestCourse();
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(course));
-    }
+    @Inject
+    private HomeDTOService homeDTOService;
     
-    @GetMapping("/home/hot")
+    @GetMapping("/home/course-list")
     @Timed
-    public ResponseEntity<List<HomeDTO>> getHotCourse() {
+    public ResponseEntity<List<HomeDTO>> getHomeCourseList(@RequestParam String courseQueryType) {
         log.debug("REST request to get a page of Courses");
-        List<HomeDTO> course = homeDTOService.findHotCourse();
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(course));
-    }
-    
-    @GetMapping("/home/recommended")
-    @Timed
-    public ResponseEntity<List<HomeDTO>> getRecommendedtCourse() {
-        log.debug("REST request to get a page of Courses");
-        List<HomeDTO> course = homeDTOService.findRecommendedCourse();
+        List<HomeDTO> course = new ArrayList<>();
+        if(COURSE_RECOMMENDED.equals(courseQueryType)) {
+        	course = homeDTOService.findRecommendedCourse();
+        }else if(COURSE_NEWEST.equals(courseQueryType)) {
+        	course = homeDTOService.findNewestCourse();
+        }
+        else if(COURSE_HOT.equals(courseQueryType)) {
+        	course = homeDTOService.findNewestCourse();
+        }else {
+        	course = homeDTOService.findRecommendedCourse();
+        }
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(course));
     }
     

@@ -11,7 +11,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.zonesion.cloud.service.dto.CourseDTO;
 import com.zonesion.cloud.service.dto.HomeDTO;
 import com.zonesion.cloud.web.rest.util.JdbcPaginationHelper;
 import com.zonesion.cloud.web.rest.util.Page;
@@ -27,9 +26,9 @@ import com.zonesion.cloud.web.rest.util.Page;
 public class HomeDTORepository {
 	
 	private String baseSql = "SELECT c.*, u.name user_name, u.avatar user_avatar, u.email user_email, u.mobile user_mobile, u.sex user_sex, u.staff_no, u.major user_major, u.school user_school, count(DISTINCT(cll.user_id)) count_user_id, count(DISTINCT(cr.id)) course_review_id FROM t_course c LEFT JOIN t_chapter ch ON ch.course_id = c.id LEFT JOIN t_course_lesson cl ON cl.chapter_id = ch.id LEFT JOIN t_course_lesson_learn cll ON cll.course_id = c.id LEFT JOIN t_course_review cr ON cr.course_id = c.id LEFT JOIN t_user u ON u.id = c.user_id";
-    private String findNewestSql = baseSql+" GROUP BY c.id, cll.course_id ORDER BY last_modified_date DESC";
-    private String findHotSql = baseSql+" WHERE c.recommended='是' GROUP BY c.id, cll.course_id ORDER BY recommended_sort DESC";
-    private String findRecommendSql = baseSql+ " WHERE c.recommended='是' GROUP BY c.id, cll.course_id";
+    private String findNewestSql = baseSql+" GROUP BY c.id, cll.course_id ORDER BY last_modified_date DESC limit 9";
+    private String findHotSql = baseSql+" WHERE c.recommended='1' GROUP BY c.id, cll.course_id ORDER BY recommended_sort DESC limit 9";
+    private String findRecommendSql = baseSql+ " WHERE c.recommended='1' GROUP BY c.id, cll.course_id limit 9";
     private String countCourseSql = "SELECT count(1) couse_total FROM t_course c";
     
 	@Autowired
