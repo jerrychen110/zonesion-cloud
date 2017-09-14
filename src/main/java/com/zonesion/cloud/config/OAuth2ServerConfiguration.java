@@ -91,6 +91,7 @@ public class OAuth2ServerConfiguration {
                 .antMatchers("/api/register").permitAll()
                 .antMatchers("/api/profile-info").permitAll()
                 .antMatchers("/api/home/**").permitAll()
+                .antMatchers("/api/coursesReview/**").permitAll()
                 .antMatchers("/api/courses/{id}").permitAll()
                 .antMatchers("/api/coursesdto/{id}").permitAll()
                 .antMatchers("/api/user/{id}").permitAll()

@@ -64,9 +64,9 @@ public class HomeDTOResource {
      */
     @GetMapping("/home/explore")
     @Timed
-    public ResponseEntity<Page<HomeDTO>> getPageSearchCourse(Pageable pageable, @RequestParam(required=false) String filters, @RequestParam(required=false) String query) {
+    public ResponseEntity<Page<HomeDTO>> getPageSearchCourse(Pageable pageable, @RequestParam(required=false) String filter, @RequestParam(required=false) String query) {
         log.debug("REST request to get a page of Courses");
-        Page<HomeDTO> course = homeDTOService.findPageAndSearchCourse(pageable, filters, query);
+        Page<HomeDTO> course = homeDTOService.findPageAndSearchCourse(pageable, filter, query);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(course));
     }
     
