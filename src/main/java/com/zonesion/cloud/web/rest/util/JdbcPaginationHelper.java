@@ -34,7 +34,7 @@ public class JdbcPaginationHelper<T> {
         }  
         final Page<T> page = new Page<T>();  
         page.setPageNo(pageNo);  
-        page.setTotalCount(pageCount);  
+        page.setTotalCount(rowCount);
         page.setPageSize(pageSize);  
         // 根据pageNo取一页数据  
         final int startRow = (pageNo - 1) * pageSize;  
