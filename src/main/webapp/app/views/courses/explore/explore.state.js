@@ -11,7 +11,7 @@
         $stateProvider
         .state('explore', {
             parent: 'app',
-            url: '/courses/explore?pageNo={number}&pageSize={size}&filters={filter}',
+            url: '/courses/explore',
             /*params: {"number":null,"size":null,"filter":null},*/
             data: {
                 authorities: []

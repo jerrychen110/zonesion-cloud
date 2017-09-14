@@ -30,7 +30,10 @@
             "courseFavorite": "收藏课程",
             "chapter": "Chapter",
             "courseReview": "评论",
-            "courseOverview":"课程概览"
+            "courseOverview":"课程概览",
+            "database":"资料库",
+            "notes":"笔记",
+            "introduction":"课程简介"
         }
     }
 }
