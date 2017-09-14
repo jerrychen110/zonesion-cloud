@@ -57,9 +57,11 @@ public class CourseLesson extends AbstractAuditingEntity implements Serializable
     @Column(name = "credit", nullable = false)
     private Integer credit;
 
-    @NotNull
-    @Column(name = "media_id", nullable = false)
-    private Integer mediaId;
+    @Column(name = "media_size", nullable = true)
+    private Integer mediaSize;
+    
+    @Column(name = "media_length", nullable = true)
+    private Integer mediaLength;
 
     @Size(max = 1)
     @Column(name = "media_source", length = 1)
@@ -211,17 +213,30 @@ public class CourseLesson extends AbstractAuditingEntity implements Serializable
         this.credit = credit;
     }
 
-    public Integer getMediaId() {
-        return mediaId;
+    public Integer getMediaSize() {
+        return mediaSize;
     }
 
-    public CourseLesson mediaId(Integer mediaId) {
-        this.mediaId = mediaId;
+    public CourseLesson mediaSize(Integer mediaSize) {
+        this.mediaSize = mediaSize;
         return this;
     }
 
-    public void setMediaId(Integer mediaId) {
-        this.mediaId = mediaId;
+    public void setMediaSize(Integer mediaSize) {
+        this.mediaSize = mediaSize;
+    }
+    
+    public Integer getMediaLength() {
+        return mediaLength;
+    }
+
+    public CourseLesson mediaLength(Integer mediaLength) {
+        this.mediaLength = mediaLength;
+        return this;
+    }
+
+    public void setMediaLength(Integer mediaLength) {
+        this.mediaLength = mediaLength;
     }
 
     public String getMediaSource() {
@@ -409,7 +424,8 @@ public class CourseLesson extends AbstractAuditingEntity implements Serializable
             ", courseLessonType='" + getCourseLessonType() + "'" +
             ", content='" + getContent() + "'" +
             ", credit='" + getCredit() + "'" +
-            ", mediaId='" + getMediaId() + "'" +
+            ", mediaSize='" + getMediaSize() + "'" +
+            ", mediaLength='" + getMediaLength() + "'" +
             ", mediaSource='" + getMediaSource() + "'" +
             ", mediaName='" + getMediaName() + "'" +
             ", mediaUri='" + getMediaUri() + "'" +

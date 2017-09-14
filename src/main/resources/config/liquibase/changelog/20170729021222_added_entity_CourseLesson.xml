@@ -94,4 +94,18 @@
         </createTable>
         
     </changeSet>
+    
+    <changeSet id="20170729021222-2" author="XiaXiong">
+    	<dropColumn tableName="t_course_lesson">
+    		<column name="media_id"/>
+    	</dropColumn>
+    	<addColumn tableName="t_course_lesson">
+    		<column name="media_size" type="integer">
+    			<constraints nullable="true"/>
+    		</column>
+    		<column name="media_length" type="integer">
+    			<constraints nullable="true"/>
+    		</column>
+    	</addColumn>
+    </changeSet>
 </databaseChangeLog>

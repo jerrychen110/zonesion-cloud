@@ -44,8 +44,9 @@ public class CourseLessonDTO implements Serializable {
     @NotNull
     private Integer credit;
 
-    @NotNull
-    private Integer mediaId;
+    private Integer mediaSize;
+    
+    private Integer mediaLength;
 
     @Size(max = 1)
     private String mediaSource;
@@ -76,13 +77,13 @@ public class CourseLessonDTO implements Serializable {
     public CourseLessonDTO(CourseLesson courseLesson) {
 		this(courseLesson.getId(), courseLesson.getUserId(), courseLesson.getNumber(), courseLesson.getSeq(),
 			 courseLesson.getTitle(), courseLesson.getSummary(), courseLesson.getCourseLessonType(),
-			 courseLesson.getContent(), courseLesson.getCredit(), courseLesson.getMediaId(),courseLesson.getMediaSource(),
+			 courseLesson.getContent(), courseLesson.getCredit(), courseLesson.getMediaSize(),courseLesson.getMediaLength(),courseLesson.getMediaSource(),
 			 courseLesson.getMediaName(), courseLesson.getMediaUri(), courseLesson.getLearnedNum(), courseLesson.getViewedNum(),
 			 courseLesson.getCreatedBy(), courseLesson.getCreatedDate(), courseLesson.getLastModifiedBy(), courseLesson.getLastModifiedDate());
 	}
     
 	public CourseLessonDTO(Long id, Long userId, Integer number, Integer seq, String title, String summary,
-			String courseLessonType, String content, Integer credit, Integer mediaId, String mediaSource,
+			String courseLessonType, String content, Integer credit, Integer mediaSize, Integer mediaLength, String mediaSource,
 			String mediaName, String mediaUri, Integer learnedNum, Integer viewedNum, String createdBy,
 			Instant createdDate, String lastModifiedBy, Instant lastModifiedDate) {
 		super();
@@ -95,7 +96,8 @@ public class CourseLessonDTO implements Serializable {
 		this.courseLessonType = courseLessonType;
 		this.content = content;
 		this.credit = credit;
-		this.mediaId = mediaId;
+		this.mediaSize = mediaSize;
+		this.mediaLength = mediaLength;
 		this.mediaSource = mediaSource;
 		this.mediaName = mediaName;
 		this.mediaUri = mediaUri;
@@ -211,12 +213,20 @@ public class CourseLessonDTO implements Serializable {
         this.credit = credit;
     }
 
-    public Integer getMediaId() {
-        return mediaId;
+    public Integer getMediaSize() {
+        return mediaSize;
     }
 
-    public void setMediaId(Integer mediaId) {
-        this.mediaId = mediaId;
+    public void setMediaSize(Integer mediaSize) {
+        this.mediaSize = mediaSize;
+    }
+    
+    public Integer getMediaLength() {
+        return mediaLength;
+    }
+
+    public void setMediaLength(Integer mediaLength) {
+        this.mediaLength = mediaLength;
     }
 
     public String getMediaSource() {
@@ -263,7 +273,7 @@ public class CourseLessonDTO implements Serializable {
 	public String toString() {
 		return "CourseLessonDTO [id=" + id + ", userId=" + userId + ", number=" + number + ", seq=" + seq + ", title="
 				+ title + ", summary=" + summary + ", courseLessonType=" + courseLessonType + ", content=" + content
-				+ ", credit=" + credit + ", mediaId=" + mediaId + ", mediaSource=" + mediaSource + ", mediaName="
+				+ ", credit=" + credit + ", mediaSize=" + mediaSize + ", mediaLength=" + mediaLength + ", mediaSource=" + mediaSource + ", mediaName="
 				+ mediaName + ", mediaUri=" + mediaUri + ", learnedNum=" + learnedNum + ", viewedNum=" + viewedNum
 				+ ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", lastModifiedBy=" + lastModifiedBy
 				+ ", lastModifiedDate=" + lastModifiedDate + "]";

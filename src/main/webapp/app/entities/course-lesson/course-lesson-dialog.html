@@ -122,17 +122,25 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLesson.mediaId" for="field_mediaId">Media Id</label>
-            <input type="number" class="form-control" name="mediaId" id="field_mediaId"
-                    ng-model="vm.courseLesson.mediaId"
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLesson.mediaSize" for="field_mediaSize">Media Size</label>
+            <input type="number" class="form-control" name="mediaSize" id="field_mediaSize"
+                    ng-model="vm.courseLesson.mediaSize"
                     required/>
-            <div ng-show="editForm.mediaId.$invalid">
+            <div ng-show="editForm.mediaSize.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.mediaId.$error.required" data-translate="entity.validation.required">
-                    This field is required.
+                    ng-show="editForm.mediaSize.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
                 </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLesson.mediaLength" for="field_mediaLength">Media Length</label>
+            <input type="number" class="form-control" name="mediaLength" id="field_mediaLength"
+                    ng-model="vm.courseLesson.mediaLength"
+                    required/>
+            <div ng-show="editForm.mediaLength.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.mediaId.$error.number" data-translate="entity.validation.number">
+                    ng-show="editForm.mediaLength.$error.number" data-translate="entity.validation.number">
                     This field should be a number.
                 </p>
             </div>
