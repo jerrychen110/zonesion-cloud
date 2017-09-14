@@ -43,7 +43,7 @@
             },
             views: {
                 'courseManagementSub': {
-                    templateUrl: 'app/admin/course-management/course-management-list.html',
+                    templateUrl: 'app/admin/course-management/list/course-management-list.html',
                     controller: 'CourseManagementListController',
                     controllerAs: 'vm'
                 }
@@ -95,7 +95,7 @@
             },
             views: {
             	'content@': {
-            		templateUrl: 'app/admin/course-management/course-management-create.html',
+            		templateUrl: 'app/admin/course-management/create/course-management-create.html',
                     controller: 'CourseManagementCreateController',
                     controllerAs: 'vm'
             	}
@@ -135,7 +135,7 @@
             },
             views: {
             	'content@': {
-            		templateUrl: 'app/admin/course-management/course-management-edit.html',
+            		templateUrl: 'app/admin/course-management/edit/course-management-edit.html',
                     controller: 'CourseManagementEditController',
                     controllerAs: 'vm'
             	}
@@ -160,7 +160,7 @@
         	},
         	views: {
         		'courseEdit': {
-        			templateUrl: 'app/admin/course-management/course-management-edit-base.html',
+        			templateUrl: 'app/admin/course-management/edit/course-management-edit-base.html',
                     controller: 'CourseManagementEditController',
                     controllerAs: 'vm'
         		}
@@ -185,7 +185,7 @@
         	},
         	views: {
         		'courseEdit': {
-        			templateUrl: 'app/admin/course-management/course-management-edit-detail.html',
+        			templateUrl: 'app/admin/course-management/edit/course-management-edit-detail.html',
                     controller: 'CourseManagementEditController',
                     controllerAs: 'vm'
         		}
@@ -210,7 +210,7 @@
         	},
         	views: {
         		'courseEdit': {
-        			templateUrl: 'app/admin/course-management/course-management-edit-picture.html',
+        			templateUrl: 'app/admin/course-management/edit/course-management-edit-picture.html',
                     controller: 'CourseManagementEditController',
                     controllerAs: 'vm'
         		}
@@ -235,7 +235,7 @@
         	},
         	views: {
         		'courseEdit': {
-        			templateUrl: 'app/admin/course-management/course-management-edit-lesson.html',
+        			templateUrl: 'app/admin/course-management/edit/course-management-edit-lesson.html',
                     controller: 'CourseManagementEditController',
                     controllerAs: 'vm'
         		}
@@ -260,7 +260,7 @@
         	},
         	views: {
         		'courseEdit': {
-        			templateUrl: 'app/admin/course-management/course-management-edit-files.html',
+        			templateUrl: 'app/admin/course-management/edit/course-management-edit-files.html',
                     controller: 'CourseManagementEditController',
                     controllerAs: 'vm'
         		}
@@ -277,7 +277,7 @@
                 }]
             }
         })
-        
+
         /*
         .state('course-management.new', {
             url: '/new',
