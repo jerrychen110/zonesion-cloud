@@ -6,54 +6,49 @@
         .controller('CoursesController', CoursesController);
 
     CoursesController.$inject = ['$scope', '$rootScope', 'Principal', 'LoginService',
-    '$state','$stateParams', 'CourseService', 'UsersService','$uibModal'];
+    '$state','$stateParams', 'CourseService', 'UsersService','$uibModal','$log'];
 
     function CoursesController($scope, $rootScope, Principal, LoginService, $state, $stateParams,
-      CourseService, UsersService,$uibModal) {
+      CourseService, UsersService,$uibModal,$log) {
         var vm = this;
         vm.account = $rootScope.accountInfo;
         vm.isAuthenticated = Principal.isAuthenticated();
         vm.login = LoginService.open;
         vm.stateGo = stateGo;
+
+        vm.getCourseLessons=getCourseLessons();
+        vm.getCourseBase=getCourseBase();
         //登录成功  刷新信息
         $scope.$on('authenticationSuccess', function() {
           vm.account =  $rootScope.accountInfo;
           vm.isAuthenticated = Principal.isAuthenticated();
         });
 
-        loadAll();
-        loadUserInfo();
 
-        function loadAll () {
+
+        function getCourseLessons () {
         	CourseService.getCourseLessons({
         		id: $stateParams.id
             }, onSuccess, onError);
 
             function onSuccess(data, headers) {
-                //
-                // vm.courses = data[0];
-                // vm.allcourses = data;
-                // console.log(data);
                 vm.courseInfo= data;
-
             }
             function onError(error) {
                 //AlertService.error(error.data.message);
             }
         }
 
-        function loadUserInfo () {
-        	UsersService.query({
+        function getCourseBase () {
+        	CourseService.getCourseBase({
         		id: $stateParams.id
             }, onSuccess, onError);
 
             function onSuccess(data, headers) {
-
-                vm.allusers = data;
-                console.log(data);
-                vm.countUsers = eval(data).length
+              $log.debug(data)
             }
             function onError(error) {
+              $log.error();
                 //AlertService.error(error.data.message);
             }
         }
@@ -75,7 +70,7 @@
             }).result.then(function(result){
                 // $state.go(url);
                 //登录成功操作
-                
+
             }, function(){
 
             });

@@ -30,7 +30,10 @@
             "courseFavorite": "Course Favorite",
             "chapter": "Chapter",
             "courseReview": "Course Review",
-            "courseOverview":"Course Overview"
+            "courseOverview":"Course Overview",
+            "database":"Database",
+            "notes":"Notes",
+            "introduction":"Introduction"
         }
     }
 }

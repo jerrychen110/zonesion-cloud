@@ -6,9 +6,9 @@
 			</div>
 			<form class="form-inline inline-block pull-right">
 				<div class="form-group">
-					<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+					<label class="sr-only" for="exampleInputAmount"></label>
 					<div class="input-group">
-						<input type="text" class="form-control" id="exampleInputAmount" placeholder="搜索课程">
+						<input type="text" class="form-control" id="exampleInputAmount" ng-model="vm.filter" placeholder="搜索课程">
 						<div class="input-group-addon"><span class="icon-search"></span></div>
 					</div>
 				</div>
@@ -42,12 +42,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- <nav class="text-center">
-			<ul class="pagination" ng-repeat="pageNo in vm.totalPages">
-				<li class="">
-				<a href="#/courses/explore?pageNo={{pageNo}}&pageSize={{vm.size}}&filter={{vm.filter}}" >{{pageNo}}</a></li>
-			</ul>
-		</nav> -->
 		<uib-pagination class="pull-right"
             total-items="vm.totalCount"
             ng-model="vm.currentPage"

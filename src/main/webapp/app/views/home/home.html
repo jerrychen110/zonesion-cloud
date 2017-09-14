@@ -1,28 +1,3 @@
-<!-- <div ng-cloak>
-    <div class="row">
-        <div class="col-md-4">
-        </div>
-        <div class="col-md-8">
-            <h1 data-translate="home.title">Welcome, Zonesion!</h1>
-            <p class="lead" data-translate="home.subtitle">This is your homepage</p>
-
-            <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
-                    You are logged in as user "{{vm.account.login}}".
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.authenticated" translate-compile>
-                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user1" and password="user") <br/>- User (login="user2" and password="user").
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.register" translate-compile>
-                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div> -->
 <section class="es-poster swiper-container">
     <div>
         <ul>
@@ -44,24 +19,18 @@
 	<div class="container" style="width:94%;">
 		<div class="course-filter section-header" id="course-filter">
 			推荐课程
-      <!-- <div class="course-sort btn-group" >
-        <a class="btn btn-default js-course-filter" ng-class="{'active':vm.courseType=='new'}"  ng-click="vm.getCourse('recommend')">推荐</a>
-				<a class="btn btn-default js-course-filter" ng-class="{'active':vm.courseType=='new'}" ng-click="vm.getCourse('new')">最新</a>
-        <a class="btn btn-default js-course-filter" ng-class="{'active':vm.courseType=='hot'}" ng-click="vm.getCourse('hot')">最新</a>
-			</div> -->
       <div class="btn-group course-sort" data-toggle="buttons">
-        <label class="btn btn-default outline-none active" ng-click="vm.getCourse('recommend')">
+        <label class="btn btn-default outline-none active" ng-click="vm.getCourseList('recommended')">
           <input type="radio" name="options" id="recommend"  autocomplete="off" checked> 推荐
         </label>
-        <label class="btn btn-default outline-none" ng-click="vm.getCourse('new')">
+        <label class="btn btn-default outline-none" ng-click="vm.getCourseList('newest')">
           <input type="radio" name="options" id="new"  autocomplete="off"> 最新
         </label>
-        <label class="btn btn-default outline-none" ng-click="vm.getCourse('hot')">
+        <label class="btn btn-default outline-none" ng-click="vm.getCourseList('hot')">
           <input type="radio" name="options" id="hot"  autocomplete="off"> 最热
         </label>
       </div>
 		</div>
-
 		<div class="section-bodyer">
 			<div class="home-course-list row">
 				<div class="col-md-4 col-sm-6" ng-repeat="course in vm.courses">
