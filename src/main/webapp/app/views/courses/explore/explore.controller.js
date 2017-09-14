@@ -28,9 +28,7 @@
             function onSuccess(data, headers) {
                 vm.courses = data[0];
                 vm.allcourses = data.result;
-                for(var i = 1; i <= data.totalCount; i++){
-                	vm.totalPages.push(i);
-                }
+                vm.totalCount=data.totalCount
             }
             function onError(error) {
                 //AlertService.error(error.data.message);
