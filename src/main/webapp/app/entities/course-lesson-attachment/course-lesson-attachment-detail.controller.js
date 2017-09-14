@@ -5,9 +5,9 @@
         .module('zonesionCloudApplicationApp')
         .controller('CourseLessonAttachmentDetailController', CourseLessonAttachmentDetailController);
 
-    CourseLessonAttachmentDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'CourseLessonAttachment', 'CourseLesson'];
+    CourseLessonAttachmentDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'CourseLessonAttachment'];
 
-    function CourseLessonAttachmentDetailController($scope, $rootScope, $stateParams, previousState, entity, CourseLessonAttachment, CourseLesson) {
+    function CourseLessonAttachmentDetailController($scope, $rootScope, $stateParams, previousState, entity, CourseLessonAttachment) {
         var vm = this;
 
         vm.courseLessonAttachment = entity;

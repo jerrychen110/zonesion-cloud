@@ -15,12 +15,14 @@
             "detail": {
                 "title": "Course Lesson Attachment"
             },
-            "courseId": "Course Id",
+            "targetType": "Target Type",
+            "targetId": "Target Id",
             "userId": "User Id",
             "title": "Title",
             "description": "Description",
             "link": "Link",
-            "fileId": "File Id",
+            "fileType": "File Type",
+            "fileLength": "File Length",
             "fileUri": "File Uri",
             "fileMime": "File Mime",
             "fileSize": "File Size",

@@ -1,6 +1,5 @@
 package com.zonesion.cloud.service.dto;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,10 +7,8 @@ import javax.persistence.Id;
 import javax.validation.constraints.*;
 
 import com.zonesion.cloud.domain.AbstractAuditingEntity;
-import com.zonesion.cloud.domain.CourseLessonAttachment;
 
 import java.io.Serializable;
-import java.time.Instant;
 
 /**
  * A DTO for the CourseLessonAttachment entity.
@@ -19,261 +16,180 @@ import java.time.Instant;
 @Entity
 public class CourseLessonAttachmentDTO extends AbstractAuditingEntity implements Serializable {
 
-    /**
+	/**
 	 * @Fields serialVersionUID : TODO
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-    @NotNull
-    private Long courseId;
+	@NotNull
+	private String targetType;
 
-    @NotNull
-    private Long userId;
+	@NotNull
+	private Long targetId;
 
-    @NotNull
-    @Size(max = 255)
-    private String title;
+	@NotNull
+	private Long userId;
 
-    private String description;
+	@NotNull
+	@Size(max = 255)
+	private String title;
 
-    @Size(max = 1024)
-    private String link;
+	private String description;
 
-    private Long fileId;
+	@Size(max = 1024)
+	private String link;
 
-    @Size(max = 1024)
-    private String fileUri;
+	@NotNull
+	private Integer fileType;
 
-    @Size(max = 255)
-    private String fileMime;
+	@NotNull
+	private Integer fileLength;
 
-    @NotNull
-    private Integer fileSize;
-       
-    private Long filesId;
-    private String filesUri;
-    private String filesName;
-    private String filesMime;
-    private Integer filesSize;
-    private String filesStatus;
-    private String filesCreatedBy;
-    private Instant filesCreatedDate;
-    private String filesLastModifiedBy;
-    private Instant filesLastModifiedDate; 
+	@Size(max = 1024)
+	private String fileUri;
 
-	private Long courseLessonId;
+	@Size(max = 255)
+	private String fileMime;
 
-    private String courseLessonCourseLessonAttachment;
-    
-    public CourseLessonAttachmentDTO(){
-    	
-    }
-    
+	@NotNull
+	private Integer fileSize;
 
-	public CourseLessonAttachmentDTO(Long id, Long courseId, Long userId, String title, String description, String link,
-			Long fileId, String fileUri, String fileMime, Integer fileSize) {
+	public CourseLessonAttachmentDTO() {
+
+	}
+
+	public CourseLessonAttachmentDTO(Long id, String targetType, Long targetId, Long userId, String title, String description, String link,
+			Integer fileType, Integer fileLength, String fileUri, String fileMime, Integer fileSize) {
 		super();
 		this.id = id;
-		this.courseId = courseId;
+		this.targetType = targetType;
+		this.targetId = targetId;
 		this.userId = userId;
 		this.title = title;
 		this.description = description;
 		this.link = link;
-		this.fileId = fileId;
+		this.fileType = fileType;
+		this.fileLength = fileLength;
 		this.fileUri = fileUri;
 		this.fileMime = fileMime;
 		this.fileSize = fileSize;
 	}
 
 	public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public Long getFileId() {
-        return fileId;
-    }
-
-    public void setFileId(Long fileId) {
-        this.fileId = fileId;
-    }
-
-    public String getFileUri() {
-        return fileUri;
-    }
-
-    public void setFileUri(String fileUri) {
-        this.fileUri = fileUri;
-    }
-
-    public String getFileMime() {
-        return fileMime;
-    }
-
-    public void setFileMime(String fileMime) {
-        this.fileMime = fileMime;
-    }
-
-    public Integer getFileSize() {
-        return fileSize;
-    }
-
-    public void setFileSize(Integer fileSize) {
-        this.fileSize = fileSize;
-    }
-
-    public Long getCourseLessonId() {
-        return courseLessonId;
-    }
-
-    public void setCourseLessonId(Long CourseLessonId) {
-        this.courseLessonId = CourseLessonId;
-    }
-
-    public String getCourseLessonCourseLessonAttachment() {
-        return courseLessonCourseLessonAttachment;
-    }
-
-    public void setCourseLessonCourseLessonAttachment(String CourseLessonCourseLessonAttachment) {
-        this.courseLessonCourseLessonAttachment = CourseLessonCourseLessonAttachment;
-    }
-
-    public Long getFilesId() {
-		return filesId;
+		return id;
 	}
 
-	public void setFilesId(Long filesId) {
-		this.filesId = filesId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getFilesUri() {
-		return filesUri;
+	public String getTargetType() {
+		return targetType;
 	}
 
-	public void setFilesUri(String filesUri) {
-		this.filesUri = filesUri;
+	public void setTargetType(String targetType) {
+		this.targetType = targetType;
 	}
 
-	public String getFilesName() {
-		return filesName;
+	public Long getTargetId() {
+		return targetId;
 	}
 
-	public void setFilesName(String filesName) {
-		this.filesName = filesName;
+	public void setTargetId(Long targetId) {
+		this.targetId = targetId;
 	}
 
-	public String getFilesMime() {
-		return filesMime;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setFilesMime(String filesMime) {
-		this.filesMime = filesMime;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
-	public Integer getFilesSize() {
-		return filesSize;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setFilesSize(Integer filesSize) {
-		this.filesSize = filesSize;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getFilesStatus() {
-		return filesStatus;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setFilesStatus(String filesStatus) {
-		this.filesStatus = filesStatus;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public String getFilesCreatedBy() {
-		return filesCreatedBy;
+	public String getLink() {
+		return link;
 	}
 
-	public void setFilesCreatedBy(String filesCreatedBy) {
-		this.filesCreatedBy = filesCreatedBy;
+	public void setLink(String link) {
+		this.link = link;
 	}
 
-	public Instant getFilesCreatedDate() {
-		return filesCreatedDate;
+	public Integer getFileType() {
+		return fileType;
 	}
 
-	public void setFilesCreatedDate(Instant filesCreatedDate) {
-		this.filesCreatedDate = filesCreatedDate;
+	public void setFileType(Integer fileType) {
+		this.fileType = fileType;
 	}
 
-	public String getFilesLastModifiedBy() {
-		return filesLastModifiedBy;
+	public Integer getFileLength() {
+		return fileLength;
 	}
 
-	public void setFilesLastModifiedBy(String filesLastModifiedBy) {
-		this.filesLastModifiedBy = filesLastModifiedBy;
+	public void setFileLength(Integer fileLength) {
+		this.fileLength = fileLength;
 	}
 
-	public Instant getFilesLastModifiedDate() {
-		return filesLastModifiedDate;
+	public String getFileUri() {
+		return fileUri;
 	}
 
-	public void setFilesLastModifiedDate(Instant filesLastModifiedDate) {
-		this.filesLastModifiedDate = filesLastModifiedDate;
+	public void setFileUri(String fileUri) {
+		this.fileUri = fileUri;
+	}
+
+	public String getFileMime() {
+		return fileMime;
+	}
+
+	public void setFileMime(String fileMime) {
+		this.fileMime = fileMime;
+	}
+
+	public Integer getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(Integer fileSize) {
+		this.fileSize = fileSize;
 	}
 
 	@Override
 	public String toString() {
-		return "CourseLessonAttachmentDTO [id=" + id + ", courseId=" + courseId + ", userId=" + userId + ", title="
-				+ title + ", description=" + description + ", link=" + link + ", fileId=" + fileId + ", fileUri="
-				+ fileUri + ", fileMime=" + fileMime + ", fileSize=" + fileSize + ", filesId=" + filesId + ", filesUri="
-				+ filesUri + ", filesName=" + filesName + ", filesMime=" + filesMime + ", filesSize=" + filesSize
-				+ ", filesStatus=" + filesStatus + ", filesCreatedBy=" + filesCreatedBy + ", filesCreatedDate="
-				+ filesCreatedDate + ", filesLastModifiedBy=" + filesLastModifiedBy + ", filesLastModifiedDate="
-				+ filesLastModifiedDate + ", courseLessonId=" + courseLessonId + ", courseLessonCourseLessonAttachment="
-				+ courseLessonCourseLessonAttachment + "]";
+		return "CourseLessonAttachmentDTO ["
+				+ "id=" + id
+				+ ", targetType=" + targetType
+				+  ", targetId=" + targetId
+				+ ", userId=" + userId
+				+ ", title=" + title
+				+ ", description=" + description
+				+ ", link=" + link
+				+ ", fileType=" + fileType
+				+  ", fileLength=" + fileLength
+				+  ", fileUri=" + fileUri
+				+  ", fileMime=" + fileMime
+				+  ", fileSize=" + fileSize
+				+ "]";
 	}
 }

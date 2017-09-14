@@ -23,8 +23,12 @@ public class CourseLessonAttachment extends AbstractAuditingEntity implements Se
     private Long id;
 
     @NotNull
-    @Column(name = "course_id", nullable = false)
-    private Long courseId;
+    @Column(name = "target_type", length = 50, nullable = false)
+    private String targetType;
+    
+    @NotNull
+    @Column(name = "target_id", nullable = false)
+    private Long targetId;
 
     @NotNull
     @Column(name = "user_id", nullable = false)
@@ -42,8 +46,13 @@ public class CourseLessonAttachment extends AbstractAuditingEntity implements Se
     @Column(name = "link", length = 1024)
     private String link;
 
-    @Column(name = "file_id")
-    private Long fileId;
+    @NotNull
+    @Column(name = "file_type")
+    private Integer fileType;
+    
+    @NotNull
+    @Column(name = "file_length")
+    private Integer fileLength;
 
     @Size(max = 1024)
     @Column(name = "file_uri", length = 1024)
@@ -57,10 +66,6 @@ public class CourseLessonAttachment extends AbstractAuditingEntity implements Se
     @Column(name = "file_size", nullable = false)
     private Integer fileSize;
 
-    @ManyToOne
-    @JoinColumn(name = "course_lesson_id", insertable = false, updatable = false)
-    private CourseLesson courseLesson;
-
     public Long getId() {
         return id;
     }
@@ -69,17 +74,30 @@ public class CourseLessonAttachment extends AbstractAuditingEntity implements Se
         this.id = id;
     }
 
-    public Long getCourseId() {
-        return courseId;
+    public Long getTargetId() {
+        return targetId;
     }
 
-    public CourseLessonAttachment courseId(Long courseId) {
-        this.courseId = courseId;
+    public CourseLessonAttachment targetId(Long targetId) {
+        this.targetId = targetId;
         return this;
     }
 
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
+    public void setTargetId(Long targetId) {
+        this.targetId = targetId;
+    }
+    
+    public String getTargetType() {
+        return targetType;
+    }
+
+    public CourseLessonAttachment targetType(String targetType) {
+        this.targetType = targetType;
+        return this;
+    }
+
+    public void setTargetType(String targetType) {
+        this.targetType = targetType;
     }
 
     public Long getUserId() {
@@ -134,17 +152,17 @@ public class CourseLessonAttachment extends AbstractAuditingEntity implements Se
         this.link = link;
     }
 
-    public Long getFileId() {
-        return fileId;
+    public Integer getFileType() {
+        return fileType;
     }
 
-    public CourseLessonAttachment fileId(Long fileId) {
-        this.fileId = fileId;
+    public CourseLessonAttachment fileType(Integer fileType) {
+        this.fileType = fileType;
         return this;
     }
 
-    public void setFileId(Long fileId) {
-        this.fileId = fileId;
+    public void setFileType(Integer fileType) {
+        this.fileType = fileType;
     }
 
     public String getFileUri() {
@@ -185,18 +203,18 @@ public class CourseLessonAttachment extends AbstractAuditingEntity implements Se
     public void setFileSize(Integer fileSize) {
         this.fileSize = fileSize;
     }
-
-    public CourseLesson getCourseLesson() {
-        return courseLesson;
+    
+    public Integer getFileLength() {
+        return fileLength;
     }
 
-    public CourseLessonAttachment courseLesson(CourseLesson CourseLesson) {
-        this.courseLesson = CourseLesson;
+    public CourseLessonAttachment fileLength(Integer fileLength) {
+        this.fileSize = fileLength;
         return this;
     }
 
-    public void setCourseLesson(CourseLesson CourseLesson) {
-        this.courseLesson = CourseLesson;
+    public void setFileLength(Integer fileLength) {
+        this.fileLength = fileLength;
     }
 
     @Override
@@ -223,12 +241,14 @@ public class CourseLessonAttachment extends AbstractAuditingEntity implements Se
     public String toString() {
         return "CourseLessonAttachment{" +
             "id=" + getId() +
-            ", courseId='" + getCourseId() + "'" +
+            ", targetType='" + getTargetType() + "'" +
+            ", targetId='" + getTargetId() + "'" +
             ", userId='" + getUserId() + "'" +
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +
             ", link='" + getLink() + "'" +
-            ", fileId='" + getFileId() + "'" +
+            ", fileType='" + getFileType() + "'" +
+            ", fileLength='" + getFileLength() + "'" +
             ", fileUri='" + getFileUri() + "'" +
             ", fileMime='" + getFileMime() + "'" +
             ", fileSize='" + getFileSize() + "'" +

@@ -124,12 +124,14 @@
                     resolve: {
                         entity: function () {
                             return {
-                                courseId: null,
+                            	targetType: null,
+                                targetId: null,
                                 userId: null,
                                 title: null,
                                 description: null,
                                 link: null,
-                                fileId: null,
+                                fileType: null,
+                                fileLength: null,
                                 fileUri: null,
                                 fileMime: null,
                                 fileSize: null,

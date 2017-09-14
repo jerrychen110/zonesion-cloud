@@ -146,7 +146,6 @@ public class CourseLessonResourceIntTest {
         CourseLessonAttachment courseLessonAttachment = CourseLessonAttachmentResourceIntTest.createEntity(em);
         em.persist(courseLessonAttachment);
         em.flush();
-        courseLesson.getCourseLessonAttachments().add(courseLessonAttachment);
         // Add required entity
         CourseLessonLearn courseLessonLearn = CourseLessonLearnResourceIntTest.createEntity(em);
         em.persist(courseLessonLearn);
