@@ -4,3 +4,24 @@
   height: 18px;
   background: url(../img/search.png) no-repeat;
 }
+.course-detail-header{
+  position: relative;
+  .course-header-info{
+    height: 100%;
+    .goals{
+      font-size: 13px;
+      text-align: left;
+    }
+  }
+  .left-info{
+    position: absolute;
+    bottom: 0px;
+    font-size: 13px;
+  }
+
+}
+
+.no-students{
+  text-align: center;
+  margin: 30px;
+}

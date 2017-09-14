@@ -2,8 +2,9 @@
 	<div id="content-container" class="container">
 		<div class="clearfix course-detail-header">
 			<div class="course-header-img ">
-				<a href="#/course/{{vm.courses.id}}"><img class="img-responsive"
-					ng-src="{{vm.courses.coverPicture}}"></a>
+				<a>
+					<img class="img-responsive" ng-src="{{vm.courseBase.coverPicture}}">
+				</a>
 			</div>
 			<ul class="course-data clearfix">
 				<li id="unfavorite-btn" data-toggle="tooltip" data-placement="top"
@@ -23,25 +24,33 @@
 			</ul>
 			<div class="course-header-info">
 				<div class="title clearfix">
-					<span><a href="/course/6">{{vm.courses.title}}</a></span> <span
+					<span><a href="/course/6">{{vm.courseBase.title}}</a></span> <span
 						class="es-qrcode top" data-url="/course/6/qrcode"> <i
 						class="es-icon es-icon-qrcode"></i> <span class="qrcode-popover">
 							<img ng-src="" alt=""> 扫二维码继续学习
 					</span>
+					<p class="goals">
+						<label for="">目标：</label><span >{{vm.courseBase.goals}}</span>
+					</p>
 					</span>
 				</div>
-				<div class="metas hidden-xs hidden-sm">
-					<p class="student-num ">
-						<label for="" style="width:80px">学员人数：</label><span class="text-primary">{{vm.countUsers}}人</span>
-					</p>
-				</div>
 				<div class="content"></div>
-			</div>
-			<div class="pull-rights">
-				<div class="study clearfix">
-					<a class="btn btn-study"
-						ng-click="vm.stateGo('learn')">
-						加入学习 </a>
+				<div class="left-info">
+					<div class=" clearfix">
+						<p class="">
+							<label for="" >课程类型：</label><span class="">{{vm.courseBase.courseType=='0'?'普通课程':'专业课程'}}</span>
+						</p>
+					</div>
+				</div>
+				<div class="pull-rights">
+					<div class="study clearfix">
+						<p class="student-num ">
+							<label for="" >学员人数：</label><span class="text-primary">{{vm.courseBase.learnedNum}}人</span>
+						</p>
+						<a class="btn btn-study"
+							ng-click="vm.stateGo('learn')">
+							加入学习 </a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -54,7 +63,7 @@
 								<div class="es-piece">
 									<div class="piece-header">课程介绍</div>
 									<div class="piece-body p-lg">
-										<div class="text-muted">{{vm.courses.introduction}}暂无课程简介</div>
+										<div class="text-muted">{{vm.courseBase.introduction}}暂无课程简介</div>
 									</div>
 									<p>
 										<strong>标签：</strong> <a
@@ -103,46 +112,32 @@
 				</div>
 			</div>
 			<div class="course-about-sidebar">
-				<div class="es-panel teacher-column">
-					<div class="panel-heading clearfix">
-						任课老师<span class="teacher-icon"></span>
-					</div>
-					<div class="panel-body">
-						<ul>
-							<li>
-								<div class="teacher-top clearfix">
-									<div class="avatar">
-										<a><img
-											ng-src="{{vm.courses.userAvatar}}"></a>
-									</div>
-									<div class="teacher-name">
-										<a>{{vm.courses.userName}}</a>
-									</div>
-									<div class="teacher-position">{{vm.courses.userSex}}</div>
-								</div>
-								<div class="teacher-about">
-									<p>{{vm.courses.userEmail}}</p>
-
-								</div>
-							</li>
-
-						</ul>
-					</div>
-				</div>
-
 				<div class="es-panel student-column">
 					<div class="panel-heading clearfix">
 						最新学员<span class="student-icon"></span>
 					</div>
 					<div class="panel-body">
-						<ul  ng-repeat="user in vm.allusers" >
+						<ul  ng-repeat="user in vm.courseBase.learnedUsers" >
 							<li><a class=" js-user-card" >
 								<img class="avatar-sm" ng-src="{{user.avatar}}">
 							</a></li>
 						</ul>
+						<div class="no-students" ng-if="!vm.courseBase.learnedUsers">
+							暂无学员。
+						</div>
 					</div>
 				</div>
 
+				<div class="es-panel qq-group">
+					<div class="panel-heading clearfix">
+						qq讨论群<span class="student-icon"></span>
+					</div>
+					<div class="panel-body">
+						<div class="no-students" >
+							暂无群信息。
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
