@@ -20,7 +20,11 @@
   }
 
 }
-
+.course-list{
+  .clearfix{
+    outline: none;
+  }
+}
 .no-students{
   text-align: center;
   margin: 30px;

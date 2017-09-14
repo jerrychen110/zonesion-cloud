@@ -5,9 +5,9 @@
         .module('zonesionCloudApplicationApp')
         .controller('ExploreController', ExploreController);
 
-    ExploreController.$inject = ['$scope', '$rootScope', '$stateParams', 'CourseService'];
+    ExploreController.$inject = ['$scope', '$rootScope', '$stateParams', 'CourseService','$state'];
 
-    function ExploreController($scope, $rootScope, $stateParams, CourseService) {
+    function ExploreController($scope, $rootScope, $stateParams, CourseService,$state) {
         var vm = this;
         vm.pageSize = 5;
         vm.currentPage = 1;
@@ -15,6 +15,7 @@
         vm.searchInfo = '';
         vm.filter = '';
         vm.loadExplore=loadExplore;
+        vm.stateGo=stateGo;
         loadExplore();
 
         function loadExplore () {
@@ -33,6 +34,10 @@
             function onError(error) {
                 //AlertService.error(error.data.message);
             }
+        }
+
+        function stateGo(url,id){
+          $state.go(url,{id:id});
         }
     }
 })();

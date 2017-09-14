@@ -17,13 +17,13 @@
 	</div>
 	<div id="content-container" class="container">
 		<div class="course-list  explore" ng-repeat="course in vm.allcourses">
-			<div class="course-item clearfix">
+			<div class="course-item clearfix" ng-click="vm.stateGo('courses',course.id)">
 				<div class="course-img">
-					<a href="/course/22"><img ng-src="{{course.coverPicture}}"></a>
+					<a><img ng-src="{{course.coverPicture}}"></a>
 				</div>
 				<div class="course-info ">
 					<div class="title">
-						<a href="/course/22"> {{course.title}} </a>
+						<a > {{course.title}} </a>
 					</div>
 					<div class="content">{{course.introduction}}</div>
 					<div class="metas">
@@ -36,7 +36,7 @@
 						<img ng-src="{{course.userAvatar}}">
 					</div>
 					<div class="teacher-name">
-						<a href="/user/16">{{course.userName}}</a>
+						<a>{{course.userName}}</a>
 					</div>
 					<div class="teacher-position hidden-sm">{{course.userSchool}}</div>
 				</div>

@@ -1,4 +1,4 @@
-<div class="course-detail" ng-controller="ReviewsController">
+<div class="course-detail" ng-controller="ReviewsController as vm">
 	<!-- <div class="clearfix">
 	    <button class="btn btn-primary btn-sm pull-right js-show-review-form" style="display: block;">重新评价</button>
 	</div> -->
@@ -13,7 +13,7 @@
       <button class="btn btn-link pull-right js-hide-review-form" type="button" style="display: block;">取消</button>
     </div>
   </form>
-	<div class="js-reviews" ng-repeat="review in vm.allreviews"  ng-if="review.content !=null">
+	<div class="js-reviews" ng-repeat="review in vm.allreviews">
 		<div class="media media-evaluate">
 			<div class="media-left">
 				<a class=" js-user-card" href="#/user/{{review.userId}}"
@@ -24,12 +24,6 @@
 			<div class="media-body">
 				<div class="title">
 					<a class="link-light " href="/user/{{review.userId}}">{{review.lastModifiedBy}}</a> {{review.lastModifiedDate}}
-				</div>
-				<div class="score">
-					<i class="es-icon es-icon-star"></i> <i
-						class="es-icon es-icon-star"></i> <i class="es-icon es-icon-star"></i>
-					<i class="es-icon es-icon-star"></i> <i
-						class="es-icon es-icon-star"></i>
 				</div>
 				<div class="content">
 					<div class="short-content">{{review.content}}</div>

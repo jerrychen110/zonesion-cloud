@@ -1,0 +1,26 @@
+<div class="course-detail" ng-controller="DatabaseController as vm">
+	<div class="js-reviews" ng-repeat="review in vm.allreviews">
+		<div class="media media-evaluate">
+			<div class="media-left">
+				<a class=" js-user-card" href="#/user/{{review.userId}}"
+					data-card-url="/user/{{review.userId}}/card/show" data-user-id="1">
+					<img class="avatar-sm" src="{{review.avatar}}">
+				</a>
+			</div>
+			<div class="media-body">
+				<div class="title">
+					<a class="link-light " href="/user/{{review.userId}}">{{review.lastModifiedBy}}</a> {{review.lastModifiedDate}}
+				</div>
+				<div class="content">
+					<div class="short-content">{{review.content}}</div>
+					<div class="full-content" style="display: none;">{{review.content}}</div>
+				</div>
+				<div class="actions">
+					<a href="javascript:;" class="show-full-btn">[展开全文]</a> <a
+						href="javascript:;" class="show-short-btn" style="display: none;">[收起全文]</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="empty" ng-if="vm.allreviews==null">暂无资料</div>
+</div>

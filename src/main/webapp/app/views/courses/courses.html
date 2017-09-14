@@ -49,7 +49,7 @@
 						</p>
 						<a class="btn btn-study"
 							ng-click="vm.stateGo('learn')">
-							加入学习 </a>
+							{{vm.courseBase.status==1?'继续学习':'加入学习'}} </a>
 					</div>
 				</div>
 			</div>
@@ -100,7 +100,7 @@
 							</div>
 						</uib-tab>
 						<uib-tab heading="{{'zonesionCloudApplicationApp.course.database'|translate}}" ng-if="vm.isAuthenticated">
-							<div ng-include="'app/views/courses/reviews/reviews.html'"></div>
+							<div ng-include="'app/views/courses/database/database.html'"></div>
 						</uib-tab>
 						<uib-tab heading="{{'zonesionCloudApplicationApp.course.courseReview'|translate}}" id="courseReview">
 							<div ng-include="'app/views/courses/reviews/reviews.html'"></div>

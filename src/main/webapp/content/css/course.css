@@ -16,6 +16,9 @@
     bottom: 0px;
     font-size: 13px; }
 
+.course-list .clearfix {
+  outline: none; }
+
 .no-students {
   text-align: center;
   margin: 30px; }
