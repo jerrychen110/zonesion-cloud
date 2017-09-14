@@ -27,11 +27,6 @@ public class JdbcPaginationHelper<T> {
             final int pageNo, final int pageSize, final RowMapper<T> rowMapper) {  
         // 总记录数据  
         final int rowCount = jdbcTemplate.queryForObject(countSql, args, Integer.class);  
-        // 计算总页数  
-        int pageCount = rowCount / pageSize;  
-        if (rowCount > pageSize * pageCount) {  
-            pageCount++;  
-        }  
         final Page<T> page = new Page<T>();  
         page.setPageNo(pageNo);  
         page.setTotalCount(rowCount);

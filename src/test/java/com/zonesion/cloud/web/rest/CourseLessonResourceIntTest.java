@@ -66,8 +66,11 @@ public class CourseLessonResourceIntTest {
     private static final Integer DEFAULT_CREDIT = 1;
     private static final Integer UPDATED_CREDIT = 2;
 
-    private static final Integer DEFAULT_MEDIA_ID = 1;
-    private static final Integer UPDATED_MEDIA_ID = 2;
+    private static final Integer DEFAULT_MEDIA_SIZE = 1024;
+    private static final Integer UPDATED_MEDIA_SIZE = 2048;
+    
+    private static final Integer DEFAULT_MEDIA_LENGTH = 50;
+    private static final Integer UPDATED_MEDIA_LENGTH = 90;
 
     private static final String DEFAULT_MEDIA_SOURCE = "A";
     private static final String UPDATED_MEDIA_SOURCE = "B";
@@ -132,7 +135,8 @@ public class CourseLessonResourceIntTest {
             .courseLessonType(DEFAULT_COURSE_LESSON_TYPE)
             .content(DEFAULT_CONTENT)
             .credit(DEFAULT_CREDIT)
-            .mediaId(DEFAULT_MEDIA_ID)
+            .mediaSize(DEFAULT_MEDIA_SIZE)
+            .mediaLength(DEFAULT_MEDIA_LENGTH)
             .mediaSource(DEFAULT_MEDIA_SOURCE)
             .mediaName(DEFAULT_MEDIA_NAME)
             .mediaUri(DEFAULT_MEDIA_URI)
@@ -189,7 +193,8 @@ public class CourseLessonResourceIntTest {
         assertThat(testCourseLesson.getCourseLessonType()).isEqualTo(DEFAULT_COURSE_LESSON_TYPE);
         assertThat(testCourseLesson.getContent()).isEqualTo(DEFAULT_CONTENT);
         assertThat(testCourseLesson.getCredit()).isEqualTo(DEFAULT_CREDIT);
-        assertThat(testCourseLesson.getMediaId()).isEqualTo(DEFAULT_MEDIA_ID);
+        assertThat(testCourseLesson.getMediaSize()).isEqualTo(DEFAULT_MEDIA_SIZE);
+        assertThat(testCourseLesson.getMediaLength()).isEqualTo(DEFAULT_MEDIA_LENGTH);
         assertThat(testCourseLesson.getMediaSource()).isEqualTo(DEFAULT_MEDIA_SOURCE);
         assertThat(testCourseLesson.getMediaName()).isEqualTo(DEFAULT_MEDIA_NAME);
         assertThat(testCourseLesson.getMediaUri()).isEqualTo(DEFAULT_MEDIA_URI);
@@ -329,7 +334,8 @@ public class CourseLessonResourceIntTest {
     public void checkMediaIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = courseLessonRepository.findAll().size();
         // set the field null
-        courseLesson.setMediaId(null);
+        courseLesson.setMediaSize(null);
+        courseLesson.setMediaLength(null);
 
         // Create the CourseLesson, which fails.
 
@@ -397,7 +403,8 @@ public class CourseLessonResourceIntTest {
             .andExpect(jsonPath("$.[*].courseLessonType").value(hasItem(DEFAULT_COURSE_LESSON_TYPE.toString())))
             .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())))
             .andExpect(jsonPath("$.[*].credit").value(hasItem(DEFAULT_CREDIT)))
-            .andExpect(jsonPath("$.[*].mediaId").value(hasItem(DEFAULT_MEDIA_ID)))
+            .andExpect(jsonPath("$.[*].mediaSize").value(hasItem(DEFAULT_MEDIA_SIZE)))
+            .andExpect(jsonPath("$.[*].mediaLength").value(hasItem(DEFAULT_MEDIA_LENGTH)))
             .andExpect(jsonPath("$.[*].mediaSource").value(hasItem(DEFAULT_MEDIA_SOURCE.toString())))
             .andExpect(jsonPath("$.[*].mediaName").value(hasItem(DEFAULT_MEDIA_NAME.toString())))
             .andExpect(jsonPath("$.[*].mediaUri").value(hasItem(DEFAULT_MEDIA_URI.toString())))
@@ -424,7 +431,8 @@ public class CourseLessonResourceIntTest {
             .andExpect(jsonPath("$.courseLessonType").value(DEFAULT_COURSE_LESSON_TYPE.toString()))
             .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT.toString()))
             .andExpect(jsonPath("$.credit").value(DEFAULT_CREDIT))
-            .andExpect(jsonPath("$.mediaId").value(DEFAULT_MEDIA_ID))
+            .andExpect(jsonPath("$.mediaSize").value(DEFAULT_MEDIA_SIZE))
+            .andExpect(jsonPath("$.mediaLength").value(DEFAULT_MEDIA_LENGTH))
             .andExpect(jsonPath("$.mediaSource").value(DEFAULT_MEDIA_SOURCE.toString()))
             .andExpect(jsonPath("$.mediaName").value(DEFAULT_MEDIA_NAME.toString()))
             .andExpect(jsonPath("$.mediaUri").value(DEFAULT_MEDIA_URI.toString()))
@@ -459,7 +467,8 @@ public class CourseLessonResourceIntTest {
             .courseLessonType(UPDATED_COURSE_LESSON_TYPE)
             .content(UPDATED_CONTENT)
             .credit(UPDATED_CREDIT)
-            .mediaId(UPDATED_MEDIA_ID)
+            .mediaSize(UPDATED_MEDIA_SIZE)
+            .mediaLength(UPDATED_MEDIA_LENGTH)
             .mediaSource(UPDATED_MEDIA_SOURCE)
             .mediaName(UPDATED_MEDIA_NAME)
             .mediaUri(UPDATED_MEDIA_URI)
@@ -483,7 +492,8 @@ public class CourseLessonResourceIntTest {
         assertThat(testCourseLesson.getCourseLessonType()).isEqualTo(UPDATED_COURSE_LESSON_TYPE);
         assertThat(testCourseLesson.getContent()).isEqualTo(UPDATED_CONTENT);
         assertThat(testCourseLesson.getCredit()).isEqualTo(UPDATED_CREDIT);
-        assertThat(testCourseLesson.getMediaId()).isEqualTo(UPDATED_MEDIA_ID);
+        assertThat(testCourseLesson.getMediaSize()).isEqualTo(UPDATED_MEDIA_SIZE);
+        assertThat(testCourseLesson.getMediaLength()).isEqualTo(UPDATED_MEDIA_LENGTH);
         assertThat(testCourseLesson.getMediaSource()).isEqualTo(UPDATED_MEDIA_SOURCE);
         assertThat(testCourseLesson.getMediaName()).isEqualTo(UPDATED_MEDIA_NAME);
         assertThat(testCourseLesson.getMediaUri()).isEqualTo(UPDATED_MEDIA_URI);

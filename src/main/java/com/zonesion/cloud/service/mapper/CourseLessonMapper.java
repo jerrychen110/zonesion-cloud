@@ -44,7 +44,8 @@ public class CourseLessonMapper {
     		courseLesson.setCourseLessonType(courseLessonDTO.getCourseLessonType());
     		courseLesson.setContent(courseLessonDTO.getContent());
     		courseLesson.setCredit(courseLessonDTO.getCredit());
-    		courseLesson.setMediaId(courseLessonDTO.getMediaId());
+    		courseLesson.setMediaSize(courseLessonDTO.getMediaSize());
+    		courseLesson.setMediaLength(courseLessonDTO.getMediaLength());
     		courseLesson.setMediaSource(courseLessonDTO.getMediaSource());
     		courseLesson.setMediaName(courseLessonDTO.getMediaName());
     		courseLesson.setMediaUri(courseLessonDTO.getMediaUri());
