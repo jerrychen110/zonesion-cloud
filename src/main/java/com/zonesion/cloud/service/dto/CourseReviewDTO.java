@@ -1,8 +1,12 @@
 package com.zonesion.cloud.service.dto;
 
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.*;
 
+import com.zonesion.cloud.domain.AbstractAuditingEntity;
 import com.zonesion.cloud.domain.CourseReview;
 
 import java.io.Serializable;
@@ -11,13 +15,15 @@ import java.time.Instant;
 /**
  * A DTO for the CourseReview entity.
  */
-public class CourseReviewDTO implements Serializable {
+public class CourseReviewDTO extends AbstractAuditingEntity implements Serializable {
 
     /**
 	 * @Fields serialVersionUID : TODO
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	@Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
     @NotNull
@@ -39,19 +45,33 @@ public class CourseReviewDTO implements Serializable {
     
     private Long courseId;
     
-    private String createdBy;
+/*    private String createdBy;
 
     private Instant createdDate;
 
     private String lastModifiedBy;
 
-    private Instant lastModifiedDate;
-    private String avatar;
+    private Instant lastModifiedDate;*/
+    //private String avatar;
     
     public CourseReviewDTO(){
     	
     }
     
+    
+	public CourseReviewDTO(Long id, Long userId, String title, String content, Integer rating, String privacy,
+			Long courseId) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.title = title;
+		this.content = content;
+		this.rating = rating;
+		this.privacy = privacy;
+		this.courseId = courseId;
+	}
+
+
 	public Long getId() {
         return id;
     }
@@ -108,51 +128,9 @@ public class CourseReviewDTO implements Serializable {
 		this.courseId = courseId;
 	}
 
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Instant getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(Instant createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public String getLastModifiedBy() {
-		return lastModifiedBy;
-	}
-
-	public void setLastModifiedBy(String lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
-	}
-
-	public Instant getLastModifiedDate() {
-		return lastModifiedDate;
-	}
-
-	public void setLastModifiedDate(Instant lastModifiedDate) {
-		this.lastModifiedDate = lastModifiedDate;
-	}
-
-    public String getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
-
 	@Override
 	public String toString() {
 		return "CourseReviewDTO [id=" + id + ", userId=" + userId + ", title=" + title + ", content=" + content
-				+ ", rating=" + rating + ", privacy=" + privacy + ", courseId=" + courseId + ", createdBy=" + createdBy
-				+ ", createdDate=" + createdDate + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate="
-				+ lastModifiedDate + "]";
+				+ ", rating=" + rating + ", privacy=" + privacy + ", courseId=" + courseId + "]";
 	}
 }

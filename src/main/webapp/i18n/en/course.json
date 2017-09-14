@@ -29,7 +29,8 @@
             "recommendedSort": "Recommended Sort",
             "courseFavorite": "Course Favorite",
             "chapter": "Chapter",
-            "courseReview": "Course Review"
+            "courseReview": "Course Review",
+            "courseOverview":"Course Overview"
         }
     }
 }

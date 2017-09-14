@@ -27,9 +27,10 @@
             "goals": "Goals",
             "recommended": "Recommended",
             "recommendedSort": "Recommended Sort",
-            "courseFavorite": "Course Favorite",
+            "courseFavorite": "收藏课程",
             "chapter": "Chapter",
-            "courseReview": "Course Review"
+            "courseReview": "评论",
+            "courseOverview":"课程概览"
         }
     }
 }
