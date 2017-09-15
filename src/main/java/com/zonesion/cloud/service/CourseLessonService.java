@@ -1,11 +1,14 @@
 package com.zonesion.cloud.service;
 
+import com.zonesion.cloud.config.Constants;
 import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.CourseLesson;
+import com.zonesion.cloud.domain.CourseLessonAttachment;
 import com.zonesion.cloud.repository.CourseLessonRepository;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
@@ -36,6 +39,9 @@ public class CourseLessonService {
     public CourseLessonService(CourseLessonRepository courseLessonRepository) {
         this.courseLessonRepository = courseLessonRepository;
     }
+    
+    @Inject
+    private CourseLessonAttachmentService courseLessonAttachmentService;
 
     /**
      * Save a courseLesson.
@@ -102,4 +108,10 @@ public class CourseLessonService {
 		return courseLessonList;
 		
 	}*/
+	
+	@Transactional(readOnly = true)
+	public Page<CourseLessonAttachment> getCourseAttachementsByCourseId(long lessonId, Pageable pageable) {
+		return courseLessonAttachmentService.findAllByTargetTypeAndTargetId(Constants.ATTACHEMENT_TYPE_LESSON, lessonId, pageable);
+	}
+	
 }

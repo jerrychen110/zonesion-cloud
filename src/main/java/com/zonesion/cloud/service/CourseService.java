@@ -1,7 +1,9 @@
 package com.zonesion.cloud.service;
 
+import com.zonesion.cloud.config.Constants;
 import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.Course;
+import com.zonesion.cloud.domain.CourseLessonAttachment;
 import com.zonesion.cloud.repository.CourseFavoriteRepository;
 import com.zonesion.cloud.repository.CourseLessonLearnRepository;
 import com.zonesion.cloud.repository.CourseRepository;
@@ -59,6 +61,9 @@ public class CourseService {
     
     @Inject
     private CourseFavoriteRepository courseFavoriteRepository;
+    
+    @Inject
+    private CourseLessonAttachmentService courseLessonAttachmentService;
 
     /**
      * Save a course.
@@ -270,6 +275,11 @@ public class CourseService {
 		courseBaseInfoDTO.setLearnedStatus(learnedStatus);
 		courseBaseInfoDTO.setIsCollected(isCollected);
 		return courseBaseInfoDTO;
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<CourseLessonAttachment> getCourseAttachementsByCourseId(long courseId, Pageable pageable) {
+		return courseLessonAttachmentService.findAllByTargetTypeAndTargetId(Constants.ATTACHEMENT_TYPE_COURSE, courseId, pageable);
 	}
 	
 }

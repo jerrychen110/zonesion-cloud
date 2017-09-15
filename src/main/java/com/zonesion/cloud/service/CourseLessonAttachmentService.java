@@ -69,4 +69,17 @@ public class CourseLessonAttachmentService {
         log.debug("Request to delete CourseLessonAttachment : {}", id);
         courseLessonAttachmentRepository.delete(id);
     }
+    
+    /**
+     * 根据targetType和targetId查询附件列表
+     * @param targetType(course、lesson)
+     * @param targetId
+     * @param pageable
+     * @return
+     */
+    @Transactional(readOnly = true)
+    public Page<CourseLessonAttachment> findAllByTargetTypeAndTargetId(String targetType, long targetId, Pageable pageable) {
+        log.debug("Request to get all CourseLessonAttachments");
+        return courseLessonAttachmentRepository.findAllByTargetTypeAndTargetIdOrderByCreatedDateDesc(targetType, targetId, pageable);
+    }
 }
