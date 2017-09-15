@@ -12,9 +12,9 @@
         vm.isAuthenticated = Principal.isAuthenticated;
         vm.currentPage = 1;
         vm.pageSize = 10;
-        loadReviews();
-
-        function loadReviews() {
+        vm.getAttachements=getAttachements;
+        vm.getAttachements();
+        function getAttachements() {
         	CourseService.getCourseAttachements({
         		id: $stateParams.id,
             page:vm.currentPage-1,
@@ -23,6 +23,7 @@
 
             function onSuccess(data, headers) {
                 vm.attachements = data;
+                vm.totalCount = parseInt(headers('X-Total-Count'));
                 angular.forEach(vm.attachements,function(att){
                   att.fileSize=CommonFactory.bytesToSize(att.fileSize);
                 })
