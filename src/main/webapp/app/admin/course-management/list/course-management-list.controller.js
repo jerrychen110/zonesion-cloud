@@ -46,17 +46,15 @@
 
         function loadAll () {
             Course.query({
-                page: vm.currentPage,
-                size: vm.pageSize,
                 courseType: vm.courseType,
                 courseSource: vm.courseSource
+
             }, onSuccess, onError);
             function onSuccess(data, headers) {
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
-                vm.queryCount = vm.totalItems;
+                vm.totalCount = vm.totalItems;
                 vm.courses = data;
-                vm.page = pagingParams.page;
                 vm.statesObj= {
                		 0:"未发布",
                		 1:"已发布",
@@ -71,6 +69,7 @@
             function onError(error) {
                 AlertService.error(error.data.message);
             }
+
         }
 
 

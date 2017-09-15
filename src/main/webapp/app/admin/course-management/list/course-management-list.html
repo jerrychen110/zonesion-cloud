@@ -49,7 +49,6 @@
 		</tbody>
 	</table>
 	<nav class="pull-right">
-		<jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
-        <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+        <uib-pagination class="pagination-sm" total-items="vm.totalCount" ng-model="vm.currentPage" ng-change="vm.transition()"></uib-pagination>
 	</nav>
 </div>
