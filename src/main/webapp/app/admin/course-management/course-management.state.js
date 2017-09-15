@@ -36,7 +36,7 @@
         })
         .state('course-management-list', {
             parent: 'course-management',
-            url: '/course-management-list?page&sort&courseType&courseSource',
+            url: '/course-management-list?courseType&courseSource',
             data: {
                 authorities: ['ROLE_ADMIN'],
                 pageTitle: 'courseManagement.home.title'
