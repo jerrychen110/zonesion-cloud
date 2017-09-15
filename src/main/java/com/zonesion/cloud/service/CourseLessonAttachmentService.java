@@ -2,6 +2,15 @@ package com.zonesion.cloud.service;
 
 import com.zonesion.cloud.domain.CourseLessonAttachment;
 import com.zonesion.cloud.repository.CourseLessonAttachmentRepository;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -81,5 +90,34 @@ public class CourseLessonAttachmentService {
     public Page<CourseLessonAttachment> findAllByTargetTypeAndTargetId(String targetType, long targetId, Pageable pageable) {
         log.debug("Request to get all CourseLessonAttachments");
         return courseLessonAttachmentRepository.findAllByTargetTypeAndTargetIdOrderByCreatedDateDesc(targetType, targetId, pageable);
+    }
+    
+    /**
+     * 下载附件资料
+     * @param id
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    public void downloadAttchement(long id, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	CourseLessonAttachment courseLessonAttachment = courseLessonAttachmentRepository.findOne(id);
+    	//设置文件MIME类型
+        response.setContentType(request.getServletContext().getMimeType(courseLessonAttachment.getTitle()));
+        //设置Content-Disposition
+        response.setHeader("Content-Disposition", "attachment;filename="+courseLessonAttachment.getTitle());
+        //读取目标文件，通过response将目标文件写到客户端
+        //获取目标文件的绝对路径
+        String fullFileName = request.getServletContext().getRealPath(courseLessonAttachment.getFileUri());
+        //读取文件
+        InputStream in = new FileInputStream(fullFileName);
+        OutputStream out = response.getOutputStream();
+        //写文件
+        int b;
+        while((b=in.read())!= -1)
+        {  
+            out.write(b);
+        }
+        in.close();
+        out.close();
     }
 }

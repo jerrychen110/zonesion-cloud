@@ -16,7 +16,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -123,5 +127,12 @@ public class CourseLessonAttachmentResource {
         log.debug("REST request to delete CourseLessonAttachment : {}", id);
         courseLessonAttachmentService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+    
+    @GetMapping("/course-lesson-attachments/{id}/download")
+    @Timed
+    public ResponseEntity<?> downloadCourseLessonAttachment(@PathVariable Long id, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	courseLessonAttachmentService.downloadAttchement(id, request, response);
+    	return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }
