@@ -2,7 +2,7 @@
 	<li class="media" ng-repeat="attachement in vm.attachements track by $index">
 		<div class="media-body">
 			<div class="mbs">
-				<a href="/course/6/material/2/download" target="_blank">{{attachement.title}}</a>
+				<a ng-click="vm.downloadFile(attachement.id)">{{attachement.title}}</a>
 			</div>
 			<div class="text-muted text-sm mbs">
 				{{attachement.description}}

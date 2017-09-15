@@ -5,14 +5,15 @@
         .module('zonesionCloudApplicationApp')
         .controller('DatabaseController', DatabaseController);
 
-    DatabaseController.$inject = ['$scope', '$rootScope', '$stateParams', 'CourseService','Principal','CommonFactory'];
+    DatabaseController.$inject = ['$scope', '$rootScope', '$stateParams', 'CourseService','Principal','CommonFactory','AttachementService'];
 
-    function DatabaseController($scope, $rootScope, $stateParams, CourseService,Principal,CommonFactory) {
+    function DatabaseController($scope, $rootScope, $stateParams, CourseService,Principal,CommonFactory,AttachementService) {
         var vm = this;
         vm.isAuthenticated = Principal.isAuthenticated;
         vm.currentPage = 1;
         vm.pageSize = 10;
         vm.getAttachements=getAttachements;
+        vm.downloadFile = downloadFile;
         vm.getAttachements();
         function getAttachements() {
         	CourseService.getCourseAttachements({
@@ -33,6 +34,17 @@
             function onError(error) {
                 //AlertService.error(error.data.message);
             }
+        }
+
+        //下载文件
+        function downloadFile(selectedId){
+          AttachementService.downloadAttachement({id:selectedId}, onSuccess, onError);
+          function onSuccess(data, headers) {
+
+          }
+          function onError(error) {
+              //AlertService.error(error.data.message);
+          }
         }
     }
 })();
