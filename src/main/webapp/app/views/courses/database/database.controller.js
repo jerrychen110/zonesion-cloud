@@ -13,7 +13,6 @@
         vm.currentPage = 1;
         vm.pageSize = 10;
         vm.getAttachements=getAttachements;
-        vm.downloadFile = downloadFile;
         vm.getAttachements();
         function getAttachements() {
         	CourseService.getCourseAttachements({
@@ -34,17 +33,6 @@
             function onError(error) {
                 //AlertService.error(error.data.message);
             }
-        }
-
-        //下载文件
-        function downloadFile(selectedId){
-          AttachementService.downloadAttachement({id:selectedId}, onSuccess, onError);
-          function onSuccess(data, headers) {
-
-          }
-          function onError(error) {
-              //AlertService.error(error.data.message);
-          }
         }
     }
 })();
