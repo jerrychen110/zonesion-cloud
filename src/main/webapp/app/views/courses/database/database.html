@@ -1,5 +1,6 @@
-<ul class="media-list" ng-controller="DatabaseController as vm">
-	<li class="media" ng-repeat="attachement in vm.attachements track by $index">
+<div class="es-wrap" ng-controller="DatabaseController as vm">
+<div class="media-list" >
+	<div class="media" ng-repeat="attachement in vm.attachements track by $index">
 		<div class="media-body">
 			<div class="mbs">
 		<a href="{{attachement.fileUri}}" download="{{attachement.title}}">{{attachement.title}}</a>
@@ -13,12 +14,14 @@
 				<span class="text-muted">上传于{{attachement.createdDate}}</span>
 			</div>
 	    </div>
-	  </li>
-		<nav class="pull-right" ng-if="vm.attachements!=null">
+	  </div>
+		<div class="text-right" ng-if="vm.attachements!=null">
 			<uib-pagination total-items="vm.totalCount" ng-model="vm.currentPage" items-per-page="vm.pageSize"
 			 first-text="首页"
 			 previous-text="上一页" next-text="下一页" last-text="尾页"
 				boundary-links="true" boundary-link-numbers="true" ng-change="vm.getAttachements()"></uib-pagination>
-		</nav>
-		<div class="empty" ng-if="vm.attachements==null">暂无资料</div>
-	</ul>
+		</div>
+
+	</div>
+	<div class="empty" ng-if="vm.attachements==null">暂无资料</div>
+</div>
