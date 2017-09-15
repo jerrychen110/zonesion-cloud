@@ -48,39 +48,39 @@
                     controllerAs: 'vm'
                 }
             },
-            params: {
-                page: {
-                    value: '1',
-                    squash: true
-                },
-                sort: {
-                    value: 'id,asc',
-                    squash: true
-                },
-                courseType: {
-                	value: '0',
-                	squash: true
-                },
-                courseSource: {
-                	value: '0',
-                	squash: true
-                }
-            },
+            // params: {
+            //     page: {
+            //         value: '1',
+            //         squash: true
+            //     },
+            //     sort: {
+            //         value: 'id,asc',
+            //         squash: true
+            //     },
+            //     courseType: {
+            //     	value: '0',
+            //     	squash: true
+            //     },
+            //     courseSource: {
+            //     	value: '0',
+            //     	squash: true
+            //     }
+            // },
             resolve: {
-                pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
-                    return {
-                        page: PaginationUtil.parsePage($stateParams.page),
-                        sort: $stateParams.sort,
-                        predicate: PaginationUtil.parsePredicate($stateParams.sort),
-                        ascending: PaginationUtil.parseAscending($stateParams.sort)
-                    };
-                }],
-                custParams: ['$stateParams', function ($stateParams){
-                	return {
-                		courseType: $stateParams.courseType,
-                		courseSource: $stateParams.courseSource
-                	};
-                }],
+                // pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
+                //     return {
+                //         page: PaginationUtil.parsePage($stateParams.page),
+                //         sort: $stateParams.sort,
+                //         predicate: PaginationUtil.parsePredicate($stateParams.sort),
+                //         ascending: PaginationUtil.parseAscending($stateParams.sort)
+                //     };
+                // }],
+                // custParams: ['$stateParams', function ($stateParams){
+                // 	return {
+                // 		courseType: $stateParams.courseType,
+                // 		courseSource: $stateParams.courseSource
+                // 	};
+                // }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('course-management');
                     return $translate.refresh();
