@@ -16,16 +16,16 @@
         vm.clear = clear;
         vm.save = save;
         vm.course = entity;
-        
+
         JhiLanguageService.getAll().then(function (languages) {
             vm.languages = languages;
         });
-        
+
         Principal.identity().then(function(account) {
             vm.currentAccount = account;
             vm.course.userId = account.id;
         });
-        
+
         function clear() {
         	vm.course = {
                     id: null, userId: null, title: null, subTitle: null,
@@ -34,7 +34,7 @@
                     recommended: "0", recommendedSort: "0"
                 };
         }
-        
+
         function save () {
             vm.isSaving = true;
             vm.course.courseType = custParams.courseType;
@@ -42,14 +42,14 @@
             vm.course.coverPicture = "/content/images/course.png";
             Course.save(vm.course, onSaveSuccess, onSaveError);
         }
-        
+
         function onSaveError () {
             vm.isSaving = false;
         }
-        
+
         function onSaveSuccess (result) {
             vm.isSaving = false;
-            $state.go('course-management-edit', {id:result.id}, { reload: true });
+            $state.go('course-management-edit-base', {id:result.id}, { reload: true });
         }
     }
 })();
