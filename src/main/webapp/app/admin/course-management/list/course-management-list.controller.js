@@ -34,6 +34,8 @@
         vm.headTitle = null;
         vm.selectItem = selectItem;
 
+        vm.loadAll();
+
         // 认证成功以后刷新页面信息
         $scope.$on('authenticationSuccess', function() {
           vm.currentAccount =  $rootScope.accountInfo;
