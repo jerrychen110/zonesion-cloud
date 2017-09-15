@@ -2,10 +2,10 @@ package com.zonesion.cloud.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.zonesion.cloud.domain.Course;
-import com.zonesion.cloud.domain.CourseLessonAttachment;
 import com.zonesion.cloud.repository.CourseRepository;
 import com.zonesion.cloud.service.CourseService;
 import com.zonesion.cloud.service.FileManageMentService;
+import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
 import com.zonesion.cloud.service.util.JcropSize;
 import com.zonesion.cloud.service.util.FileUtil;
 import com.zonesion.cloud.web.rest.dto.CourseBaseInfoDTO;
@@ -204,9 +204,9 @@ public class CourseResource {
     }
     
     @RequestMapping(value = "/courses/{id}/course-attachments", method = RequestMethod.GET)
-    public ResponseEntity<List<CourseLessonAttachment>> getCourseAttachementsById(@PathVariable Long id, @ApiParam Pageable pageable){
+    public ResponseEntity<List<CourseLessonAttachmentDTO>> getCourseAttachementsById(@PathVariable Long id, @ApiParam Pageable pageable){
     	log.debug("query course base info : {}", id);
-    	Page<CourseLessonAttachment> page = courseService.getCourseAttachementsByCourseId(id, pageable);
+    	Page<CourseLessonAttachmentDTO> page = courseService.getCourseAttachementsByCourseId(id, pageable);
     	HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/courses/{id}/course-attachments");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
