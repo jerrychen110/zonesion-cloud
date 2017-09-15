@@ -34,9 +34,6 @@
         vm.headTitle = null;
         vm.selectItem = selectItem;
 
-        vm.loadAll();
-
-
         // 认证成功以后刷新页面信息
         $scope.$on('authenticationSuccess', function() {
           vm.currentAccount =  $rootScope.accountInfo;
@@ -46,23 +43,24 @@
 
         function loadAll () {
             Course.query({
+                page: vm.currentPage-1,
+                size: vm.pageSize,
                 courseType: vm.courseType,
                 courseSource: vm.courseSource
 
             }, onSuccess, onError);
             function onSuccess(data, headers) {
                 vm.links = ParseLinks.parse(headers('link'));
-                vm.totalItems = headers('X-Total-Count');
-                vm.totalCount = vm.totalItems;
+                vm.totalCount = parseInt(headers('X-Total-Count'));
                 vm.courses = data;
                 vm.statesObj= {
                		 0:"未发布",
                		 1:"已发布",
                		 2:"已关闭"
                		};
-                if(custParams.courseSource=='0'){
+                if(vm.courseSource=='0'){
                 	vm.headTitle = "自有课程";
-                }else if(custParams.courseSource=='1'){
+                }else if(vm.courseSource=='1'){
                 	vm.headTitle = "第三方课程";
                 }
             }
@@ -79,11 +77,7 @@
         }
 
         function transition () {
-            $state.transitionTo($state.$current, {
-                page: vm.page,
-                sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
-                search: vm.currentSearch
-            });
+          vm.loadAll();
         }
 
         //

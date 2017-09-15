@@ -49,6 +49,9 @@
 		</tbody>
 	</table>
 	<nav class="pull-right">
-        <uib-pagination class="pagination-sm" total-items="vm.totalCount" ng-model="vm.currentPage" ng-change="vm.transition()"></uib-pagination>
+		<uib-pagination total-items="vm.totalCount" ng-model="vm.currentPage" items-per-page="vm.pageSize"
+		 first-text="首页"
+		 previous-text="上一页" next-text="下一页" last-text="尾页"
+		  boundary-links="true" boundary-link-numbers="true" ng-change="vm.loadAll()"></uib-pagination>
 	</nav>
 </div>
