@@ -20,13 +20,13 @@
 		<div class="course-filter section-header" id="course-filter">
 			推荐课程
       <div class="btn-group course-sort" data-toggle="buttons">
-        <label class="btn btn-default outline-none active" ng-click="vm.getCourseList('recommended')">
+        <label class="btn btn-default outline-none" ng-class="{'active':vm.courseType=='recommended'}" ng-click="vm.getCourseList('recommended')">
           <input type="radio" name="options" id="recommend"  autocomplete="off" checked> 推荐
         </label>
-        <label class="btn btn-default outline-none" ng-click="vm.getCourseList('newest')">
+        <label class="btn btn-default outline-none" ng-class="{'active':vm.courseType=='newest'}" ng-click="vm.getCourseList('newest')">
           <input type="radio" name="options" id="new"  autocomplete="off"> 最新
         </label>
-        <label class="btn btn-default outline-none" ng-click="vm.getCourseList('hot')">
+        <label class="btn btn-default outline-none" ng-class="{'active':vm.courseType=='hot'}" ng-click="vm.getCourseList('hot')">
           <input type="radio" name="options" id="hot"  autocomplete="off"> 最热
         </label>
       </div>

@@ -31,6 +31,7 @@
         }
 
         function getCourseList(type) {
+          vm.courseType = type;
           CourseService.getCourseList({courseQueryType:type},function(data, headers){
             vm.totalItems = headers('X-Total-Count');
             vm.queryCount = vm.totalItems;
