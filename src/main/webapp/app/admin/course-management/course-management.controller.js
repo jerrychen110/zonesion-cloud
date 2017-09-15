@@ -20,6 +20,7 @@
             vm.languages = languages;
         });
 
+        // 认证成功以后刷新页面信息
         $scope.$on('authenticationSuccess', function() {
           vm.currentAccount =  $rootScope.accountInfo;
           vm.isAuthenticated = Principal.isAuthenticated();
@@ -29,6 +30,7 @@
             vm.currentAccount = account;
         });
 
+        //根据不同的角色获得不同的侧面导航信息栏
         function getSideNavInfo(){
           if(vm.currentAccount==null){
             return;
@@ -50,6 +52,7 @@
           })
         }
 
+        //选择导航栏
         function selectItem(selectIndex){
           angular.forEach(vm.sidenavInfo,function(sidenavInfo,index){
             if(index==selectIndex){

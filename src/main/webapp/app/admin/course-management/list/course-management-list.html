@@ -9,8 +9,7 @@
 </div>
 <div class="panel-body">
 	<ul class="nav nav-tabs">
-		<li ui-sref-active="active"><a ui-sref="course-management-list({courseType:0,courseSource:vm.courseSource})" ng-click="vm.collapseNavbar()">普通课程</a></li>
-		<li ui-sref-active="active"><a ui-sref="course-management-list({courseType:1,courseSource:vm.courseSource})" ng-click="vm.collapseNavbar()">专业课程</a></li>
+		<li ng-repeat="courseTab in vm.courseTabs" ng-class="{'active':courseTab.active}"><a  ng-click="vm.selectItem($index)">{{courseTab.name}}</a></li>
 	</ul>
 	<br>
 	<table class="table table-striped table-hover" id="course-table" style="word-break:break-all;">
@@ -50,7 +49,9 @@
 		</tbody>
 	</table>
 	<nav class="pull-right">
-		<jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
-        <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+		<uib-pagination total-items="vm.totalCount" ng-model="vm.currentPage" items-per-page="vm.pageSize"
+		 first-text="首页"
+		 previous-text="上一页" next-text="下一页" last-text="尾页"
+		  boundary-links="true" boundary-link-numbers="true" ng-change="vm.loadAll()"></uib-pagination>
 	</nav>
 </div>

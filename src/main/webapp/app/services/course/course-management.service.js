@@ -6,7 +6,7 @@
         .factory('CourseManagementService', CourseManagementService);
 
     CourseManagementService.$inject = ['$resource'];
-    
+
     function CourseManagementService ($resource) {
         var resourceUrl =  'api/coursesdto/:id';
 

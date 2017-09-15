@@ -9,7 +9,7 @@
 
     function ExploreController($scope, $rootScope, $stateParams, CourseService,$state) {
         var vm = this;
-        vm.pageSize = 5;
+        vm.pageSize = 2;
         vm.currentPage = 1;
         vm.totalCount = 0;
         vm.searchInfo = '';

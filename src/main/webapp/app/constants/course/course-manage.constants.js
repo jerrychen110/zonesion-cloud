@@ -18,5 +18,6 @@
           {title:'我的问答',active:false},
           {title:'我的笔记',active:false}
         ])
+        .constant('COURSETYPETABS',[{name:'普通课程',active:true,courseType:0},{name:"专业课程",active:false,courseType:1}])
 ;
 })();
