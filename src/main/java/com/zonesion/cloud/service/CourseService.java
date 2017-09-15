@@ -167,7 +167,7 @@ public class CourseService {
         				}else {
         					lessonSql = "select id,title,summary,course_lesson_type,content,number,seq,credit,learned_num,viewed_num,0 as user_id,0 as status from t_course_lesson where chapter_id="+obj.getId()+" order by seq";
         				}
-        				@SuppressWarnings("unchecked")
+        				@SuppressWarnings({ "unchecked", "rawtypes" })
 						List<LessonInfoDTO> lessons = jdbcTemplate.query(lessonSql,
         					new RowMapper(){
 	                            @Override
