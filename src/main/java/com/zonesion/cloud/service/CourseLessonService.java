@@ -3,8 +3,8 @@ package com.zonesion.cloud.service;
 import com.zonesion.cloud.config.Constants;
 import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.CourseLesson;
-import com.zonesion.cloud.domain.CourseLessonAttachment;
 import com.zonesion.cloud.repository.CourseLessonRepository;
+import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
 
 import java.util.List;
 
@@ -110,7 +110,7 @@ public class CourseLessonService {
 	}*/
 	
 	@Transactional(readOnly = true)
-	public Page<CourseLessonAttachment> getCourseAttachementsByCourseId(long lessonId, Pageable pageable) {
+	public Page<CourseLessonAttachmentDTO> getLessonAttachementsByLessonId(long lessonId, Pageable pageable) {
 		return courseLessonAttachmentService.findAllByTargetTypeAndTargetId(Constants.ATTACHEMENT_TYPE_LESSON, lessonId, pageable);
 	}
 	

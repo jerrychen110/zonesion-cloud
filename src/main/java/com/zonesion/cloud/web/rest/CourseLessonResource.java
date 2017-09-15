@@ -3,6 +3,7 @@ package com.zonesion.cloud.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.zonesion.cloud.domain.CourseLesson;
 import com.zonesion.cloud.service.CourseLessonService;
+import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
 import com.zonesion.cloud.web.rest.util.HeaderUtil;
 import com.zonesion.cloud.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -123,6 +124,14 @@ public class CourseLessonResource {
         log.debug("REST request to delete CourseLesson : {}", id);
         courseLessonService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+    
+    @RequestMapping(value = "/course-lessons/{id}/lesson-attachments", method = RequestMethod.GET)
+    public ResponseEntity<List<CourseLessonAttachmentDTO>> getLessonAttachementsById(@PathVariable Long id, @ApiParam Pageable pageable){
+    	log.debug("query course base info : {}", id);
+    	Page<CourseLessonAttachmentDTO> page = courseLessonService.getLessonAttachementsByLessonId(id, pageable);
+    	HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/course-lessons/{id}/lesson-attachments");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
     
     @GetMapping("/course-lessons/info/{id}")

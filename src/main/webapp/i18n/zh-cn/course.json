@@ -2,38 +2,37 @@
     "zonesionCloudApplicationApp": {
         "course" : {
             "home": {
-                "title": "Courses",
-                "createLabel": "Create a new Course",
-                "createOrEditLabel": "Create or edit a Course"
+                "title": "课程",
+                "createLabel": "创建新课程",
+                "createOrEditLabel": "创建或修改课程"
             },
-            "created": "A new Course is created with identifier {{ param }}",
-            "updated": "A Course is updated with identifier {{ param }}",
-            "deleted": "A Course is deleted with identifier {{ param }}",
+            "created": "课程 {{ param }} 被创建",
+            "updated": "课程 {{ param }} 被修改",
+            "deleted": "课程 {{ param }} 被删除",
             "delete": {
-                "question": "Are you sure you want to delete Course {{ id }}?"
+                "question": "你确定要删除课程  {{ id }}?"
             },
             "detail": {
-                "title": "Course"
+                "title": "课程"
             },
-            "userId": "User Id",
-            "title": "Title",
-            "subTitle": "Sub Title",
-            "status": "Status",
-            "courseType": "Course Type",
-            "lessonNum": "Lesson Num",
-            "credit": "Credit",
-            "coverPicture": "Cover Picture",
-            "introduction": "Introduction",
-            "goals": "Goals",
-            "recommended": "Recommended",
-            "recommendedSort": "Recommended Sort",
+            "userId": "用户Id",
+            "title": "标题",
+            "subTitle": "副标题",
+            "status": "状态",
+            "courseType": "课程类型",
+            "lessonNum": "课时数",
+            "credit": "学分",
+            "coverPicture": "课程封面",
+            "introduction": "课程简介",
+            "goals": "目标",
+            "recommended": "是否推荐",
+            "recommendedSort": "推荐排序",
             "courseFavorite": "收藏课程",
-            "chapter": "Chapter",
+            "chapter": "章",
             "courseReview": "评论",
             "courseOverview":"课程概览",
             "database":"资料库",
-            "notes":"笔记",
-            "introduction":"课程简介"
+            "notes":"笔记"
         }
     }
 }

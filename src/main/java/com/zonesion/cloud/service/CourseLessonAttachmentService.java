@@ -2,6 +2,7 @@ package com.zonesion.cloud.service;
 
 import com.zonesion.cloud.domain.CourseLessonAttachment;
 import com.zonesion.cloud.repository.CourseLessonAttachmentRepository;
+import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -87,9 +88,9 @@ public class CourseLessonAttachmentService {
      * @return
      */
     @Transactional(readOnly = true)
-    public Page<CourseLessonAttachment> findAllByTargetTypeAndTargetId(String targetType, long targetId, Pageable pageable) {
+    public Page<CourseLessonAttachmentDTO> findAllByTargetTypeAndTargetId(String targetType, long targetId, Pageable pageable) {
         log.debug("Request to get all CourseLessonAttachments");
-        return courseLessonAttachmentRepository.findAllByTargetTypeAndTargetIdOrderByCreatedDateDesc(targetType, targetId, pageable);
+        return courseLessonAttachmentRepository.findAllByTargetTypeAndTargetIdOrderByCreatedDateDesc(targetType, targetId, pageable).map(CourseLessonAttachmentDTO::new);
     }
     
     /**

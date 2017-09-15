@@ -6,15 +6,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
-import com.zonesion.cloud.domain.AbstractAuditingEntity;
+import com.zonesion.cloud.domain.CourseLessonAttachment;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 /**
  * A DTO for the CourseLessonAttachment entity.
  */
 @Entity
-public class CourseLessonAttachmentDTO extends AbstractAuditingEntity implements Serializable {
+public class CourseLessonAttachmentDTO implements Serializable {
 
 	/**
 	 * @Fields serialVersionUID : TODO
@@ -57,13 +58,31 @@ public class CourseLessonAttachmentDTO extends AbstractAuditingEntity implements
 
 	@NotNull
 	private Integer fileSize;
+	
+	private String createdBy;
+
+    private Instant createdDate;
+
+    private String lastModifiedBy;
+
+    private Instant lastModifiedDate;
 
 	public CourseLessonAttachmentDTO() {
 
 	}
+	
+	public CourseLessonAttachmentDTO(CourseLessonAttachment courseLessonAttachment) {
+		this(courseLessonAttachment.getId(), courseLessonAttachment.getTargetType(), courseLessonAttachment.getTargetId(),
+				courseLessonAttachment.getUserId(), courseLessonAttachment.getTitle(), courseLessonAttachment.getDescription(),
+				courseLessonAttachment.getLink(), courseLessonAttachment.getFileType(), courseLessonAttachment.getFileLength(),
+				courseLessonAttachment.getFileUri(), courseLessonAttachment.getFileMime(), courseLessonAttachment.getFileSize(),
+				courseLessonAttachment.getCreatedBy(), courseLessonAttachment.getCreatedDate(), courseLessonAttachment.getLastModifiedBy(),
+				courseLessonAttachment.getLastModifiedDate());
+	}
 
-	public CourseLessonAttachmentDTO(Long id, String targetType, Long targetId, Long userId, String title, String description, String link,
-			Integer fileType, Integer fileLength, String fileUri, String fileMime, Integer fileSize) {
+	public CourseLessonAttachmentDTO(Long id, String targetType, Long targetId, Long userId, String title,
+			String description, String link, Integer fileType, Integer fileLength, String fileUri, String fileMime,
+			Integer fileSize, String createdBy, Instant createdDate, String lastModifiedBy, Instant lastModifiedDate) {
 		super();
 		this.id = id;
 		this.targetType = targetType;
@@ -77,6 +96,10 @@ public class CourseLessonAttachmentDTO extends AbstractAuditingEntity implements
 		this.fileUri = fileUri;
 		this.fileMime = fileMime;
 		this.fileSize = fileSize;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedDate = lastModifiedDate;
 	}
 
 	public Long getId() {
@@ -174,6 +197,38 @@ public class CourseLessonAttachmentDTO extends AbstractAuditingEntity implements
 	public void setFileSize(Integer fileSize) {
 		this.fileSize = fileSize;
 	}
+	
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Instant getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Instant createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public Instant getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Instant lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
 
 	@Override
 	public String toString() {
@@ -190,6 +245,10 @@ public class CourseLessonAttachmentDTO extends AbstractAuditingEntity implements
 				+  ", fileUri=" + fileUri
 				+  ", fileMime=" + fileMime
 				+  ", fileSize=" + fileSize
+				+  ", createdBy=" + createdBy
+				+ ", createdDate=" + createdDate
+				+ ", lastModifiedBy='" + lastModifiedBy
+				+ ", lastModifiedDate=" + lastModifiedDate
 				+ "]";
 	}
 }
