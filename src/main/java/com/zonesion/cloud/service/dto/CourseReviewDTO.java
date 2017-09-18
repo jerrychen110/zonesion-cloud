@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.*;
 
 import com.zonesion.cloud.domain.AbstractAuditingEntity;
+import com.zonesion.cloud.domain.Course;
 import com.zonesion.cloud.domain.CourseReview;
 
 import java.io.Serializable;
@@ -17,9 +18,6 @@ import java.time.Instant;
  */
 public class CourseReviewDTO extends AbstractAuditingEntity implements Serializable {
 
-    /**
-	 * @Fields serialVersionUID : TODO
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -43,24 +41,29 @@ public class CourseReviewDTO extends AbstractAuditingEntity implements Serializa
     @Size(max = 1)
     private String privacy;
     
-    private Long courseId;
+    private long courseId;
     
-/*    private String createdBy;
+	private String createdBy;
 
     private Instant createdDate;
 
     private String lastModifiedBy;
 
-    private Instant lastModifiedDate;*/
-    //private String avatar;
+    private Instant lastModifiedDate;
     
     public CourseReviewDTO(){
     	
     }
     
+    public CourseReviewDTO(CourseReview courseReview) {
+    	this(courseReview.getId(), courseReview.getUserId(), courseReview.getTitle(), courseReview.getContent(),
+    			courseReview.getRating(), courseReview.getPrivacy(), courseReview.getCourse().getId(), courseReview.getCreatedBy(),
+    			courseReview.getCreatedDate(), courseReview.getLastModifiedBy(), courseReview.getLastModifiedDate());
+    }
+    
     
 	public CourseReviewDTO(Long id, Long userId, String title, String content, Integer rating, String privacy,
-			Long courseId) {
+			long courseId, String createdBy, Instant createdDate, String lastModifiedBy, Instant lastModifiedDate) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -69,6 +72,10 @@ public class CourseReviewDTO extends AbstractAuditingEntity implements Serializa
 		this.rating = rating;
 		this.privacy = privacy;
 		this.courseId = courseId;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedDate = lastModifiedDate;
 	}
 
 
@@ -120,17 +127,50 @@ public class CourseReviewDTO extends AbstractAuditingEntity implements Serializa
         this.privacy = privacy;
     }
     
-    public Long getCourseId() {
+    public long getCourseId() {
 		return courseId;
 	}
 
-	public void setCourseId(Long courseId) {
+	public void setCourseId(long courseId) {
 		this.courseId = courseId;
+	}
+	
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Instant getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Instant createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public Instant getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Instant lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
 	}
 
 	@Override
 	public String toString() {
 		return "CourseReviewDTO [id=" + id + ", userId=" + userId + ", title=" + title + ", content=" + content
-				+ ", rating=" + rating + ", privacy=" + privacy + ", courseId=" + courseId + "]";
+				+ ", rating=" + rating + ", privacy=" + privacy + ", createdBy=" + createdBy
+				+ ", createdDate=" + createdDate + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate=" + lastModifiedDate + "]";
 	}
 }
