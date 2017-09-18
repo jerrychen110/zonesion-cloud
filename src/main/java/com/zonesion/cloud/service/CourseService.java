@@ -3,12 +3,14 @@ package com.zonesion.cloud.service;
 import com.zonesion.cloud.config.Constants;
 import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.Course;
+import com.zonesion.cloud.domain.CourseReview;
 import com.zonesion.cloud.repository.CourseFavoriteRepository;
 import com.zonesion.cloud.repository.CourseLessonLearnRepository;
 import com.zonesion.cloud.repository.CourseRepository;
 import com.zonesion.cloud.repository.UserRepository;
 import com.zonesion.cloud.security.SecurityUtils;
 import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
+import com.zonesion.cloud.service.dto.CourseReviewDTO;
 import com.zonesion.cloud.service.dto.ext.CourseReviewExtDTO;
 
 import java.sql.ResultSet;
@@ -301,6 +303,17 @@ public class CourseService {
 	@Transactional(readOnly = true)
 	public Page<CourseReviewExtDTO> getCourseReviewsByCourseId(long id, Pageable pageable) {
 		return courseReviewService.getCourseReviewsByCourseId(id, pageable);
+	}
+	
+	public CourseReviewDTO saveCourseReview(long id, CourseReviewDTO courseReviewDTO) {
+		CourseReview courseReview = new CourseReview();
+		courseReview.setTitle(courseReviewDTO.getTitle());
+		courseReview.setContent(courseReviewDTO.getContent());
+		courseReview.setUserId(courseReviewDTO.getUserId());
+		courseReview.setRating(courseReviewDTO.getRating());
+		courseReview.setPrivacy(courseReviewDTO.getPrivacy());
+		courseReview.setCourse(courseRepository.findOne(id));
+		return new CourseReviewDTO(courseReviewService.save(courseReview));
 	}
 	
 }

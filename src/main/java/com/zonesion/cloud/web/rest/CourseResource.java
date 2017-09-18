@@ -6,6 +6,7 @@ import com.zonesion.cloud.repository.CourseRepository;
 import com.zonesion.cloud.service.CourseService;
 import com.zonesion.cloud.service.FileManageMentService;
 import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
+import com.zonesion.cloud.service.dto.CourseReviewDTO;
 import com.zonesion.cloud.service.dto.ext.CourseReviewExtDTO;
 import com.zonesion.cloud.service.util.JcropSize;
 import com.zonesion.cloud.service.util.FileUtil;
@@ -221,6 +222,30 @@ public class CourseResource {
     	log.debug("query course base info : {}", id);
     	Page<CourseReviewExtDTO> page = courseService.getCourseReviewsByCourseId(id, pageable);
     	HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/courses/{id}/course-reviews");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/courses/{id}/course-reviews", method = RequestMethod.POST)
+    @Timed
+    public ResponseEntity<CourseReviewDTO> saveCourseReview(@PathVariable Long id, CourseReviewDTO courseReviewDTO) throws URISyntaxException {
+    	CourseReviewDTO result = courseService.saveCourseReview(id, courseReviewDTO);
+    	if(courseReviewDTO.getId()!=null) {
+    		return ResponseEntity.ok()
+    	            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, result.getId().toString()))
+    	            .body(result);
+    	}else {
+	    	return ResponseEntity.created(new URI("/api/courses/" + result.getId()))
+	                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+	                .body(result);
+    	}
+    }
+    
+    @RequestMapping(value = "/courses/{id}/course-notes", method = RequestMethod.GET)
+    @Timed
+    public ResponseEntity<List<CourseReviewExtDTO>> getCourseNotesById(@PathVariable Long id, @ApiParam Pageable pageable, @RequestParam(required=false) long courseLessonId){
+    	log.debug("query course base info : {}", id);
+    	Page<CourseReviewExtDTO> page = courseService.getCourseReviewsByCourseId(id, pageable);
+    	HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/courses/{id}/course-notes");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
     

@@ -6,8 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
-import com.zonesion.cloud.domain.AbstractAuditingEntity;
-import com.zonesion.cloud.domain.Course;
 import com.zonesion.cloud.domain.CourseReview;
 
 import java.io.Serializable;
@@ -16,7 +14,7 @@ import java.time.Instant;
 /**
  * A DTO for the CourseReview entity.
  */
-public class CourseReviewDTO extends AbstractAuditingEntity implements Serializable {
+public class CourseReviewDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
