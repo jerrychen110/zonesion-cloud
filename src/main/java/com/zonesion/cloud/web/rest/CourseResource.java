@@ -8,6 +8,7 @@ import com.zonesion.cloud.service.FileManageMentService;
 import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
 import com.zonesion.cloud.service.dto.CourseReviewDTO;
 import com.zonesion.cloud.service.dto.ext.CourseReviewExtDTO;
+import com.zonesion.cloud.service.dto.in.CourseReviewInDTO;
 import com.zonesion.cloud.service.util.JcropSize;
 import com.zonesion.cloud.service.util.FileUtil;
 import com.zonesion.cloud.web.rest.dto.CourseBaseInfoDTO;
@@ -227,17 +228,11 @@ public class CourseResource {
     
     @RequestMapping(value = "/courses/{id}/course-reviews", method = RequestMethod.POST)
     @Timed
-    public ResponseEntity<CourseReviewDTO> saveCourseReview(@PathVariable Long id, CourseReviewDTO courseReviewDTO) throws URISyntaxException {
-    	CourseReviewDTO result = courseService.saveCourseReview(id, courseReviewDTO);
-    	if(courseReviewDTO.getId()!=null) {
-    		return ResponseEntity.ok()
-    	            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, result.getId().toString()))
-    	            .body(result);
-    	}else {
-	    	return ResponseEntity.created(new URI("/api/courses/" + result.getId()))
-	                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-	                .body(result);
-    	}
+    public ResponseEntity<CourseReviewDTO> saveCourseReview(@PathVariable Long id, CourseReviewInDTO courseReviewInDTO) throws URISyntaxException {
+    	CourseReviewDTO result = courseService.saveCourseReview(id, courseReviewInDTO);
+		return ResponseEntity.ok()
+	            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, result.getId().toString()))
+	            .body(result);
     }
     
     @RequestMapping(value = "/courses/{id}/course-notes", method = RequestMethod.GET)
