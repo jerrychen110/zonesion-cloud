@@ -9,6 +9,7 @@ import com.zonesion.cloud.repository.CourseRepository;
 import com.zonesion.cloud.repository.UserRepository;
 import com.zonesion.cloud.security.SecurityUtils;
 import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
+import com.zonesion.cloud.service.dto.ext.CourseReviewExtDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -64,6 +65,9 @@ public class CourseService {
     
     @Inject
     private CourseLessonAttachmentService courseLessonAttachmentService;
+    
+    @Inject
+    private CourseReviewService courseReviewService;
 
     /**
      * Save a course.
@@ -277,9 +281,26 @@ public class CourseService {
 		return courseBaseInfoDTO;
 	}
 	
+	/**
+	 * 查询课程的附件资料
+	 * @param courseId
+	 * @param pageable
+	 * @return
+	 */
 	@Transactional(readOnly = true)
 	public Page<CourseLessonAttachmentDTO> getCourseAttachementsByCourseId(long courseId, Pageable pageable) {
 		return courseLessonAttachmentService.findAllByTargetTypeAndTargetId(Constants.ATTACHEMENT_TYPE_COURSE, courseId, pageable);
+	}
+	
+	/**
+	 * 查询课程的评论记录
+	 * @param id
+	 * @param pageable
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public Page<CourseReviewExtDTO> getCourseReviewsByCourseId(long id, Pageable pageable) {
+		return courseReviewService.getCourseReviewsByCourseId(id, pageable);
 	}
 	
 }

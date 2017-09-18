@@ -97,6 +97,7 @@ public class OAuth2ServerConfiguration {
                 .antMatchers("/api/user/{id}").permitAll()
                 .antMatchers("/api/courses/{id}/course-base").permitAll()
                 .antMatchers("/api/courses/{id}/course-lessons").permitAll()
+                .antMatchers("/api/courses/{id}/course-reviews").permitAll()
                 .antMatchers("/api/**").authenticated()
                 .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
                 .antMatchers("/v2/api-docs/**").permitAll()
