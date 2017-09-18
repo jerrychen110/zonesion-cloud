@@ -124,4 +124,11 @@ public class MajorResource {
         majorService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+    
+    @RequestMapping(value = "/majors/order", method = RequestMethod.GET)
+    @Timed
+    public ResponseEntity<List<Major>> getAllMajor() {
+    	return new ResponseEntity<>(majorService.findAllOrderById(), HttpStatus.OK);
+    }
+    
 }
