@@ -19,7 +19,8 @@
         vm.openReview = openReview;
         vm.cancelReview = cancelReview;
         vm.saveReview = saveReview;
-        loadReviews();
+        vm.loadReviews = loadReviews;
+        vm.loadReviews();
         //登录成功  刷新信息
         $scope.$on('authenticationSuccess', function() {
           vm.account =  $rootScope.accountInfo;
@@ -35,6 +36,9 @@
 
             function onSuccess(data, headers) {
                 vm.allreviews = data;
+                angular.forEach(vm.allreviews,function(reviewInfo){
+                  reviewInfo.lastModifiedDate = moment(reviewInfo.lastModifiedDate).format('YYYY-MM-DD HH:mm:ss');
+                })
                 console.log(data);
             }
             function onError(error) {
@@ -56,9 +60,8 @@
           var params = {
             id:$stateParams.id,
             content: vm.reviewContent,
-            courseId: $stateParams.id,
             privacy: 0,
-            rating: 1,
+            rating: 0,
             title: "string",
             userId: vm.account.id
           }
@@ -69,8 +72,9 @@
           // }
           CourseService.saveReview(params,onSuccess, onError);
           function onSuccess(data, headers) {
-              vm.allreviews = data;
-              console.log(data);
+            vm.openReviewFlag = false;
+            vm.currentPage = 1;
+            vm.loadReviews();
           }
           function onError(error) {
               //AlertService.error(error.data.message);
