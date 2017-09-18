@@ -10,6 +10,7 @@ import com.zonesion.cloud.repository.CourseRepository;
 import com.zonesion.cloud.repository.UserRepository;
 import com.zonesion.cloud.security.SecurityUtils;
 import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
+import com.zonesion.cloud.service.dto.CourseLessonNoteDTO;
 import com.zonesion.cloud.service.dto.CourseReviewDTO;
 import com.zonesion.cloud.service.dto.ext.CourseReviewExtDTO;
 import com.zonesion.cloud.service.dto.in.CourseReviewInDTO;
@@ -71,6 +72,9 @@ public class CourseService {
     
     @Inject
     private CourseReviewService courseReviewService;
+    
+    @Inject
+    private CourseLessonNoteService courseLessonNoteService;
 
     /**
      * Save a course.
@@ -315,6 +319,11 @@ public class CourseService {
 		courseReview.setPrivacy(courseReviewInDTO.getPrivacy());
 		courseReview.setCourse(courseRepository.findOne(id));
 		return new CourseReviewDTO(courseReviewService.save(courseReview));
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<CourseLessonNoteDTO> getCourseNotesByCourseId(Long id, Pageable pageable, Long courseLessonId){
+		return courseLessonNoteService.getCourseNotesByCourseId(id, pageable, courseLessonId);
 	}
 	
 }

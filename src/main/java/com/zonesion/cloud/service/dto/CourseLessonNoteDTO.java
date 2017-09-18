@@ -54,14 +54,9 @@ public class CourseLessonNoteDTO implements Serializable {
 
     private Instant lastModifiedDate;
     
-    private Long courseLessonNoteLikeId;
-    private Long courseLessonNoteLikeUserId;
-    
-    private Instant courseLessonNoteLikeCreateTime;
-    private Long courseLessonNoteId;
-    
     private String avatar;
-    private String title;
+    
+    private String login;
     
     public CourseLessonNoteDTO(){
     	
@@ -163,40 +158,6 @@ public class CourseLessonNoteDTO implements Serializable {
 		this.courseLessonId = courseLessonId;
 	}
 	
-
-	public Long getCourseLessonNoteLikeId() {
-		return courseLessonNoteLikeId;
-	}
-
-	public void setCourseLessonNoteLikeId(Long courseLessonNoteLikeId) {
-		this.courseLessonNoteLikeId = courseLessonNoteLikeId;
-	}
-
-	public Long getCourseLessonNoteLikeUserId() {
-		return courseLessonNoteLikeUserId;
-	}
-
-	public void setCourseLessonNoteLikeUserId(Long courseLessonNoteLikeUserId) {
-		this.courseLessonNoteLikeUserId = courseLessonNoteLikeUserId;
-	}
-
-	public Instant getCourseLessonNoteLikeCreateTime() {
-		return courseLessonNoteLikeCreateTime;
-	}
-
-	public void setCourseLessonNoteLikeCreateTime(Instant courseLessonNoteLikeCreateTime) {
-		this.courseLessonNoteLikeCreateTime = courseLessonNoteLikeCreateTime;
-	}
-
-	public Long getCourseLessonNoteId() {
-		return courseLessonNoteId;
-	}
-
-	public void setCourseLessonNoteId(Long courseLessonNoteId) {
-		this.courseLessonNoteId = courseLessonNoteId;
-	}
-	
-
 	public String getAvatar() {
 		return avatar;
 	}
@@ -205,12 +166,12 @@ public class CourseLessonNoteDTO implements Serializable {
 		this.avatar = avatar;
 	}
 	
-	public String getTitle() {
-		return title;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	@Override
@@ -219,8 +180,6 @@ public class CourseLessonNoteDTO implements Serializable {
 				+ content + ", length=" + length + ", likeNum=" + likeNum + ", isPrivate=" + isPrivate
 				+ ", courseLessonId=" + courseLessonId + ", createdBy=" + createdBy + ", createdDate=" + createdDate
 				+ ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate=" + lastModifiedDate
-				+ ", courseLessonNoteLikeId=" + courseLessonNoteLikeId + ", courseLessonNoteLikeUserId="
-				+ courseLessonNoteLikeUserId + ", courseLessonNoteLikeCreateTime=" + courseLessonNoteLikeCreateTime
-				+ ", courseLessonNoteId=" + courseLessonNoteId + "]";
+				+ ", avatar=" + avatar + ", login=" + login + "]";
 	}
 }

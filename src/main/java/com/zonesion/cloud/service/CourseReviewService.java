@@ -3,7 +3,6 @@ package com.zonesion.cloud.service;
 import com.zonesion.cloud.domain.CourseReview;
 import com.zonesion.cloud.repository.CourseReviewRepository;
 import com.zonesion.cloud.service.dto.ext.CourseReviewExtDTO;
-import com.zonesion.cloud.web.rest.dto.LessonInfoDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

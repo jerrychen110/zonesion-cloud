@@ -22,12 +22,16 @@ import com.zonesion.cloud.service.dto.CourseLessonNoteDTO;
 public class CourseLessonNoteDTORepository {
     
 	@Autowired
-	
     private JdbcTemplate jdbcTemplate;
 	
 	@Transactional
-    public List<CourseLessonNoteDTO> findCourseLessonNote(Long id) {
-        return jdbcTemplate.query("SELECT cl.title, cln.*, clnl.id course_lesson_note_like_id, clnl.user_id course_lesson_note_like_user_id, clnl.created_time course_lesson_note_like_create_time, clnl.course_lesson_note_id, u.avatar FROM t_course c LEFT JOIN t_chapter ch ON ch.course_id = c.id LEFT JOIN t_course_lesson cl ON cl.chapter_id = ch.id LEFT JOIN t_course_lesson_note cln ON cln.course_lesson_id = cl.id LEFT JOIN t_course_lesson_note_like clnl ON clnl.course_lesson_note_id = cln.id LEFT JOIN t_user u ON u.id = c.user_id WHERE c.id = ?", new Object[]{id}, new CourseLessonNoteRowMapper());
+    public List<CourseLessonNoteDTO> findCourseNote(Long id) {
+        return jdbcTemplate.query("select tcln.*,tu.avatar,tu.login from t_course_lesson_note tcln left join t_user tu on tcln.user_id=tu.id where tcln.course_id= ? order by tcln.created_date desc", new Object[]{id}, new CourseLessonNoteRowMapper());
+    }
+	
+	@Transactional
+    public List<CourseLessonNoteDTO> findCourseLessonNote(Long id, Long courseLessonId) {
+        return jdbcTemplate.query("select tcln.*,tu.avatar,tu.login from t_course_lesson_note tcln left join t_user tu on tcln.user_id=tu.id where tcln.course_id= ? and tcln.course_lesson_id=? order by tcln.created_date desc", new Object[]{id, courseLessonId}, new CourseLessonNoteRowMapper());
     }
 
 }
@@ -36,7 +40,6 @@ class CourseLessonNoteRowMapper implements RowMapper<CourseLessonNoteDTO> {
 
 	@Override
 	public CourseLessonNoteDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-		// TODO Auto-generated method stub
 		CourseLessonNoteDTO courseLessonNoteDTO = new CourseLessonNoteDTO();
 		courseLessonNoteDTO.setId(rs.getLong("id"));
 		courseLessonNoteDTO.setCourseId(rs.getLong("course_id"));
@@ -60,19 +63,8 @@ class CourseLessonNoteRowMapper implements RowMapper<CourseLessonNoteDTO> {
 		}else{
 			courseLessonNoteDTO.setLastModifiedDate(rs.getTimestamp("last_modified_date").toInstant());
 		}
-		courseLessonNoteDTO.setCourseLessonNoteLikeId(rs.getLong("course_lesson_note_like_id"));
-		courseLessonNoteDTO.setCourseLessonNoteLikeUserId(rs.getLong("course_lesson_note_like_user_id"));
-		
-		if(rs.getTime("course_lesson_note_like_create_time")==null){
-			courseLessonNoteDTO.setCourseLessonNoteLikeCreateTime(null);
-		}else{
-			courseLessonNoteDTO.setCourseLessonNoteLikeCreateTime(rs.getTimestamp("course_lesson_note_like_create_time").toInstant());
-		}
-
-	
-		courseLessonNoteDTO.setCourseLessonNoteId(rs.getLong("course_lesson_note_id"));
 		courseLessonNoteDTO.setAvatar(rs.getString("avatar"));
-		courseLessonNoteDTO.setTitle(rs.getString("title"));
+		courseLessonNoteDTO.setLogin(rs.getString("login"));
 		return courseLessonNoteDTO;
 	}
 	
