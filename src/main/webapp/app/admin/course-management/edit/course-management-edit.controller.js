@@ -15,16 +15,16 @@
         vm.languages = null;
         vm.save = save;
         vm.course = entity;
-        
+
         JhiLanguageService.getAll().then(function (languages) {
             vm.languages = languages;
         });
-        
+
         Principal.identity().then(function(account) {
             vm.currentAccount = account;
             vm.course.userId = account.id;
         });
-        
+
         //修改封面
         $scope.IMAGE_TYPES = {
       		  mime:'image/jpeg,image/png,image/bmp,image/x-jpeg,image/x-png,image/x-ms-bmp',
@@ -35,11 +35,11 @@
       $scope.coverPictureImgContent=null;
       $scope.saveCoverPictureState=0;//0:init 1:saving 2:success -1:fail
       $scope.coverPictureSelection = [0, 0, 100, 100, 100, 100];
-      
+
       $scope.cancelCoverPicture = function() {
         $scope.coverPicturePicked=false;
       };
-      
+
       $scope.saveCoverPicture = function() {
           $scope.saveCoverPictureState = 1;
           $log.debug($scope.coverPictureSelection);
@@ -87,7 +87,7 @@
             $scope.coverPicturePicked=file;
           }
         };
-        
+
         //富文本插件ckeditor相关设置
         $scope.editorOptions = {
 	      language: 'zh-cn',
@@ -125,16 +125,16 @@
 	        }
 	      }
 	    };
-        
+
         function save () {
             vm.isSaving = true;
             Course.update(vm.course, onSaveSuccess, onSaveError);
         }
-        
+
         function onSaveError () {
             vm.isSaving = false;
         }
-        
+
         function onSaveSuccess (result) {
             vm.isSaving = false;
 //            $state.go('course-management-list', {courseType:result.courseType, courseSource: result.courseSource}, { reload: true });

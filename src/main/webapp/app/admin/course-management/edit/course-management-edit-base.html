@@ -17,7 +17,29 @@
 			<div class="form-group">
 				<label class="col-md-2 control-label">标签</label>
 				<div class="col-md-8 controls">
-					<input type="text" id="course_tags" name="tags" ng-model="vm.course.tags" class="width-full select2-offscreen" data-widget-cid="widget-3" data-explain>
+					<div class="col-xs-12 pln prn filter-content mbl"
+	isteven-multi-select
+	input-model="filterInfo.inputList"
+	output-model="outputData[$index]"
+	button-label="val"
+	item-label="val"
+	search-property="val"
+	tick-property="selected"
+	max-labels="4"
+	disable-button="pageFilter"
+	min-search-length="1"
+	on-open="funcOpen($index)"
+	on-close="funcClose($index)"
+	helper-elements="{{helperElements}}"
+	selection-mode="{{config.filter.mode}}"
+	translation="localLang"
+	on-item-click="changeSelect(filterInfo)"
+	on-select-all="changeSelect(filterInfo)"
+	on-select-none="changeSelect(filterInfo)"
+	on-reset="changeSelect(filterInfo)"
+>
+</div>
+					<!-- <input type="text" id="course_tags" name="tags" ng-model="vm.course.tags" class="width-full select2-offscreen" data-widget-cid="widget-3" data-explain> -->
 				</div>
 			</div>
 			<div class="form-group">
