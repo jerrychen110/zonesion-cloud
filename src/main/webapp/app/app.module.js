@@ -18,7 +18,8 @@
             // jhipster-needle-angularjs-add-module JHipster will add new module here
             'angular-loading-bar',
             'ngJcrop',
-            'ngCkeditor'
+            'ngCkeditor',
+            'isteven-multi-select'
         ])
         .run(run);
 

@@ -5,9 +5,11 @@
         .module('zonesionCloudApplicationApp')
         .controller('CourseManagementEditController', CourseManagementEditController);
 
-    CourseManagementEditController.$inject = ['Principal', 'Course', 'entity', 'AlertService', '$state', '$log', '$scope', '$rootScope', 'JhiLanguageService', 'Upload'];
+    CourseManagementEditController.$inject = ['Principal', 'Course', 'entity', 'AlertService', '$state', '$log',
+     '$scope', '$rootScope', 'JhiLanguageService', 'Upload','CourseManagementService'];
 
-    function CourseManagementEditController(Principal, Course, entity, AlertService, $state, $log, $scope, $rootScope, JhiLanguageService, Upload) {
+    function CourseManagementEditController(Principal, Course, entity, AlertService, $state, $log,
+      $scope, $rootScope, JhiLanguageService, Upload,CourseManagementService) {
         var vm = this;
 
         vm.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
@@ -15,6 +17,19 @@
         vm.languages = null;
         vm.save = save;
         vm.course = entity;
+        vm.majors = [];
+        vm.selectedMajors = [];
+        vm.localLang = {
+          selectAll       : '全选',
+          selectNone      : '全部选',
+          reset           : '重置',
+          search          : '搜索',
+          nothingSelected : '没有选择的专业',
+          multipleLabel   : '当前选中数量'
+};
+
+        vm.getOrders = getOrders;
+        vm.getOrders();
 
         JhiLanguageService.getAll().then(function (languages) {
             vm.languages = languages;
@@ -138,6 +153,18 @@
         function onSaveSuccess (result) {
             vm.isSaving = false;
 //            $state.go('course-management-list', {courseType:result.courseType, courseSource: result.courseSource}, { reload: true });
+        }
+
+        //获取分类专业
+        function getOrders(){
+          CourseManagementService.getMajors(function(data){
+            vm.majors = data;
+            angular.forEach(vm.majors,function(major){
+              major.selected = false;
+            })
+          },function(error){
+
+          })
         }
     }
 })();

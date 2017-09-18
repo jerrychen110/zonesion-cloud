@@ -16,30 +16,20 @@
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">标签</label>
-				<div class="col-md-8 controls">
-					<!-- <div class="col-xs-12 pln prn filter-content mbl"
-	isteven-multi-select
-	input-model="modernBrowsers"
-	output-model="outputBrowsers"
-	button-label="val"
-	item-label="val"
-	search-property="val"
-	tick-property="selected"
-	max-labels="4"
-	disable-button="pageFilter"
-	min-search-length="1"
-	on-open="funcOpen($index)"
-	on-close="funcClose($index)"
-	helper-elements="{{helperElements}}"
-	selection-mode="{{config.filter.mode}}"
-	translation="localLang"
-	on-item-click="changeSelect(filterInfo)"
-	on-select-all="changeSelect(filterInfo)"
-	on-select-none="changeSelect(filterInfo)"
-	on-reset="changeSelect(filterInfo)"
->
-</div> -->
-					<input type="text" id="course_tags" name="tags" ng-model="vm.course.tags" class="width-full select2-offscreen" data-widget-cid="widget-3" data-explain>
+				<div class="col-md-8 ">
+					<div class="col-xs-12 pln prn filter-content mbl " ng-if="vm.majors.length>1"
+							isteven-multi-select
+							input-model="vm.majors"
+							output-model="vm.selectedMajors"
+							button-label="major"
+							item-label="major"
+							search-property="major"
+							tick-property="selected"
+							translation="vm.localLang"
+
+							>
+					</div>
+					<!-- <input type="text" id="course_tags" name="tags" ng-model="vm.course.tags" class="width-full select2-offscreen" data-widget-cid="widget-3" data-explain> -->
 				</div>
 			</div>
 			<div class="form-group">

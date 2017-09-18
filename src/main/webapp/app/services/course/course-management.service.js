@@ -20,7 +20,8 @@
                     }
                     return data;
                 }
-            }
+            },
+            'getMajors':{mothed:'GET',isArray:true,url:'api/majors/order'}
         });
     }
 })();

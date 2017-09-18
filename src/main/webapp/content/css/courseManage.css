@@ -1,0 +1,5 @@
+.filter-content {
+  height: 34px;
+  border-radius: 4px; }
+  .filter-content .multiSelect > button {
+    text-align: left; }

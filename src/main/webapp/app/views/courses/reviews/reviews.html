@@ -23,10 +23,10 @@
 			</div>
 			<div class="media-body">
 				<div class="title">
-					<a class="link-light " href="/user/{{review.userId}}">{{review.lastModifiedBy}}</a> {{review.lastModifiedDate}}
+					<a class="link-light ">{{review.lastModifiedBy}}</a> {{review.lastModifiedDate}}
 				</div>
 				<div class="content">
-					<div ng-class="{'full-content':review.fullContent,'short-content':!review.fullContent}" id="{{'reviewContent'+$index}}" >{{review.content}}</div>
+					<div ng-class="{'full-content':review.fullContent,'short-content':!review.fullContent}" >{{review.content}}</div>
 				</div>
 				<div class="actions">
 					<a href="javascript:;" ng-class="{'show-short-btn':review.fullContent,'show-full-btn':!review.fullContent}" ng-click="vm.showContent($index)">{{review.fullContent?'[收起全文]':'[展开全文]'}}</a>
