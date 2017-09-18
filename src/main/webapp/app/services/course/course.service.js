@@ -25,7 +25,7 @@
             'getCourseExplore':{method:'GET',isArray:false,url:'api/home/explore'},
             'getCourseBase':{method:'GET',isArray:false,params: {id:'@id'},url:'api/courses/:id/course-base'},
             'getCourseLessons':{method:'GET',isArray:false,params: {id:'@id'},url:'api/courses/:id/course-lessons'},
-            'getCourseReviews':{method:'GET',isArray:true,params: {id:'@id'},url:'api/coursesReview/:id'},
+            'getCourseReviews':{method:'GET',isArray:true,params: {id:'@id'},url:'/api/courses/:id/course-reviews'},
             'getCourseNotes':{method:'GET',isArray:true,params: {id:'@id'},url:'api/coursesLessonNote/:id'},
             'getCourseAttachements':{method:'GET',isArray:true,params: {id:'@id'},url:'/api/courses/:id/course-attachments'},
             'saveReview':{method:'POST',isArray:false,url:'api/coursesReview'}

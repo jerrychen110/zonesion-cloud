@@ -9,7 +9,7 @@
 
     <div class="form-group clearfix">
       <span class="text-success pull-left" style="display: none;">评价已保存！</span>
-      <button type="button" class="btn btn-primary pull-right" data-loading-text="正在保存..." autocomplete="off" ng-click="vm.saveReview()">保存</button>
+      <button type="button" class="btn btn-primary pull-right" id="saveReviewBtn" data-loading-text="正在保存..." autocomplete="off" ng-click="vm.saveReview()">保存</button>
       <button class="btn btn-link pull-right js-hide-review-form" type="button" style="display: block;" ng-click="vm.cancelReview()">取消</button>
     </div>
   </form>
@@ -40,7 +40,7 @@
 		<uib-pagination total-items="vm.totalCount" ng-model="vm.currentPage" items-per-page="vm.pageSize"
 		 first-text="首页"
 		 previous-text="上一页" next-text="下一页" last-text="尾页"
-			boundary-links="true" boundary-link-numbers="true" ng-change="vm.getAttachements()"></uib-pagination>
+			boundary-links="true" boundary-link-numbers="true" ng-change="vm.loadReviews()"></uib-pagination>
 	</div>
 	<div class="empty" ng-if="vm.allreviews.length==0">暂无评价</div>
 </div>

@@ -28,7 +28,9 @@
 
         function loadReviews() {
         	CourseService.getCourseReviews({
-        		id: $stateParams.id
+        		id: $stateParams.id,
+            page:vm.currentPage-1,
+            size:vm.pageSize
             }, onSuccess, onError);
 
             function onSuccess(data, headers) {
@@ -52,10 +54,18 @@
         //save review
         function saveReview(){
           var params = {
-            "content": vm.reviewContent,
-            "courseId": $stateParams.id,
-            "userId": vm.account.id
-          }
+  "content": "string",
+  "courseId": 1,
+  "privacy": 0,
+  "rating": 1,
+  "title": "string",
+  "userId": vm.account.id
+}
+          // {
+          //   "content": vm.reviewContent,
+          //   "courseId": $stateParams.id,
+          //   "userId": vm.account.id
+          // }
           CourseService.saveReview(params,onSuccess, onError);
           function onSuccess(data, headers) {
               vm.allreviews = data;

@@ -26,3 +26,6 @@ body {
 .btn-group .active {
   background-color: #0fbe8a !important;
   color: white !important; }
+
+.btn {
+  outline: none !important; }
