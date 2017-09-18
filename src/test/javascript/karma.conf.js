@@ -28,6 +28,7 @@ module.exports = function (config) {
             'src/main/webapp/bower_components/json3/lib/json3.js',
             'src/main/webapp/bower_components/jcrop/js/jquery.Jcrop.js',
             'src/main/webapp/bower_components/ckeditor/ckeditor.js',
+            'src/main/webapp/bower_components/moment/moment.js',
             'src/main/webapp/bower_components/angular/angular.js',
             'src/main/webapp/bower_components/angular-aria/angular-aria.js',
             'src/main/webapp/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',

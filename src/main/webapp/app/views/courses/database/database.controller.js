@@ -10,10 +10,14 @@
     function DatabaseController($scope, $rootScope, $stateParams, CourseService,Principal,CommonFactory,AttachementService) {
         var vm = this;
         vm.isAuthenticated = Principal.isAuthenticated;
+        // 初始化分页数据
         vm.currentPage = 1;
         vm.pageSize = 10;
+        vm.attachements = [];
         vm.getAttachements=getAttachements;
         vm.getAttachements();
+
+        //获取资料库列表数据
         function getAttachements() {
         	CourseService.getCourseAttachements({
         		id: $stateParams.id,
@@ -24,8 +28,10 @@
             function onSuccess(data, headers) {
                 vm.attachements = data;
                 vm.totalCount = parseInt(headers('X-Total-Count'));
+                //数据处理（size和时间）
                 angular.forEach(vm.attachements,function(att){
                   att.fileSize=CommonFactory.bytesToSize(att.fileSize);
+                  att.createdDate=moment(att.createdDate).format('YYYY-MM-DD HH:mm:ss');
                 })
                 console.log(data);
 
