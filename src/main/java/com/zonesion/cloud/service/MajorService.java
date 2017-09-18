@@ -2,6 +2,9 @@ package com.zonesion.cloud.service;
 
 import com.zonesion.cloud.domain.Major;
 import com.zonesion.cloud.repository.MajorRepository;
+
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -68,5 +71,9 @@ public class MajorService {
     public void delete(Long id) {
         log.debug("Request to delete Major : {}", id);
         majorRepository.delete(id);
+    }
+    
+    public List<Major> findAllOrderById() {
+    	return majorRepository.findAllOrderById();
     }
 }
