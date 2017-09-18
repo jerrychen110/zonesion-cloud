@@ -20,6 +20,7 @@
         vm.cancelReview = cancelReview;
         vm.saveReview = saveReview;
         vm.loadReviews = loadReviews;
+        vm.showContent = showContent;
         vm.loadReviews();
         //登录成功  刷新信息
         $scope.$on('authenticationSuccess', function() {
@@ -38,6 +39,7 @@
                 vm.allreviews = data;
                 angular.forEach(vm.allreviews,function(reviewInfo){
                   reviewInfo.lastModifiedDate = moment(reviewInfo.lastModifiedDate).format('YYYY-MM-DD HH:mm:ss');
+                  reviewInfo.fullContent =false;
                 })
                 console.log(data);
             }
@@ -84,6 +86,10 @@
         //取消评论
         function cancelReview(){
           vm.openReviewFlag = false;
+        }
+        //
+        function showContent(index){
+          vm.allreviews[index].fullContent = !vm.allreviews[index].fullContent;
         }
 
 

@@ -227,6 +227,11 @@ body {
   text-align: center;
   margin: 30px; }
 
+.short-content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
 /*
 定义的样式
 */
