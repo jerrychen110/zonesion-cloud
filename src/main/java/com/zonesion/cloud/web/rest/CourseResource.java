@@ -6,6 +6,7 @@ import com.zonesion.cloud.repository.CourseRepository;
 import com.zonesion.cloud.service.CourseService;
 import com.zonesion.cloud.service.FileManageMentService;
 import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
+import com.zonesion.cloud.service.dto.CourseLessonNoteDTO;
 import com.zonesion.cloud.service.dto.CourseReviewDTO;
 import com.zonesion.cloud.service.dto.ext.CourseReviewExtDTO;
 import com.zonesion.cloud.service.dto.in.CourseReviewInDTO;
@@ -237,9 +238,9 @@ public class CourseResource {
     
     @RequestMapping(value = "/courses/{id}/course-notes", method = RequestMethod.GET)
     @Timed
-    public ResponseEntity<List<CourseReviewExtDTO>> getCourseNotesById(@PathVariable Long id, @ApiParam Pageable pageable, @RequestParam(required=false) long courseLessonId){
+    public ResponseEntity<List<CourseLessonNoteDTO>> getCourseNotesById(@PathVariable Long id, @ApiParam Pageable pageable, @RequestParam(required=false) Long courseLessonId){
     	log.debug("query course base info : {}", id);
-    	Page<CourseReviewExtDTO> page = courseService.getCourseReviewsByCourseId(id, pageable);
+    	Page<CourseLessonNoteDTO> page = courseService.getCourseNotesByCourseId(id, pageable, courseLessonId);
     	HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/courses/{id}/course-notes");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

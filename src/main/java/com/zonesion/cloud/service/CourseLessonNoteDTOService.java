@@ -28,6 +28,6 @@ public class CourseLessonNoteDTOService {
 
     public List<CourseLessonNoteDTO> findCourseLessonNote(Long courseId) {
         log.debug("Request to get all Courses notes ");
-        return courseLessonNoteDTORepository.findCourseLessonNote(courseId);
+        return courseLessonNoteDTORepository.findCourseNote(courseId);
     }
 }

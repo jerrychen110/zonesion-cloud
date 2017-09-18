@@ -1,10 +1,19 @@
 package com.zonesion.cloud.service;
 
 import com.zonesion.cloud.domain.CourseLessonNote;
+import com.zonesion.cloud.repository.CourseLessonNoteDTORepository;
 import com.zonesion.cloud.repository.CourseLessonNoteRepository;
+import com.zonesion.cloud.service.dto.CourseLessonNoteDTO;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +33,9 @@ public class CourseLessonNoteService {
     public CourseLessonNoteService(CourseLessonNoteRepository courseLessonNoteRepository) {
         this.courseLessonNoteRepository = courseLessonNoteRepository;
     }
+    
+    @Inject
+    private CourseLessonNoteDTORepository courseLessonNoteDTORepository;
 
     /**
      * Save a courseLessonNote.
@@ -68,5 +80,16 @@ public class CourseLessonNoteService {
     public void delete(Long id) {
         log.debug("Request to delete CourseLessonNote : {}", id);
         courseLessonNoteRepository.delete(id);
+    }
+    
+    public Page<CourseLessonNoteDTO> getCourseNotesByCourseId(Long id, Pageable pageable, Long courseLessonId) {
+    	List<CourseLessonNoteDTO> courseNotes = new ArrayList<>();
+    	if(courseLessonId!=null) {
+    		courseNotes = courseLessonNoteDTORepository.findCourseLessonNote(id, courseLessonId);
+    	}else {
+    		courseNotes = courseLessonNoteDTORepository.findCourseNote(id);
+    	}
+    	Page<CourseLessonNoteDTO> result = new PageImpl<>(courseNotes, pageable, courseNotes.size());
+    	return result;
     }
 }
