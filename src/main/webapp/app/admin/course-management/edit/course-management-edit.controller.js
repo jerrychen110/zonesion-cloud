@@ -21,7 +21,7 @@
         vm.selectedMajors = [];
         vm.localLang = {
           selectAll       : '全选',
-          selectNone      : '全部选',
+          selectNone      : '全不选',
           reset           : '重置',
           search          : '搜索',
           nothingSelected : '没有选择的专业',

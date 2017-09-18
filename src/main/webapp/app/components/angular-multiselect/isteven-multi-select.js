@@ -46,8 +46,6 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
 
             // settings based on attribute
             isDisabled      : '=',
-            disableButton   : '=',
-            maxLabels       : '=?',
 
             // callbacks
             onClear         : '&',
@@ -518,21 +516,16 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
 
                 $scope.varButtonLabel   = '';
                 var ctr                 = 0;
-                if($scope.outputModel==undefined){
-                  return;
-                }
 
                 // refresh button label...
                 if ( $scope.outputModel.length === 0 ) {
                     // https://github.com/isteven/angular-multi-select/pull/19
                     $scope.varButtonLabel = $scope.lang.nothingSelected;
-                }else if(attrs.selectionMode.toUpperCase() !== 'SINGLE'&&$scope.outputModel.length === $scope.inputModel.length){
-                  $scope.varButtonLabel = $scope.translation.selectAll;
                 }
                 else {
                     var tempMaxLabels = $scope.outputModel.length;
-                    if ( typeof $scope.maxLabels !== 'undefined' && $scope.maxLabels !== '' ) {
-                        tempMaxLabels = $scope.maxLabels;
+                    if ( typeof attrs.maxLabels !== 'undefined' && attrs.maxLabels !== '' ) {
+                        tempMaxLabels = attrs.maxLabels;
                     }
 
                     // if max amount of labels displayed..
@@ -542,30 +535,25 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                     else {
                         $scope.more = false;
                     }
-                    if(attrs.selectionMode.toUpperCase() === 'SINGLE'){
-                      angular.forEach( $scope.inputModel, function( value, key ) {
-                          if ( typeof value !== 'undefined' && value[ attrs.tickProperty ] === true ) {
-                              if ( ctr < tempMaxLabels ) {
-                                  $scope.varButtonLabel += ( $scope.varButtonLabel.length > 0 ? ', ' : ' ') + $scope.writeLabel( value, 'buttonLabel' );
-                              }
-                              ctr++;
-                          }
-                      });
-                    }else {
-                      $scope.varButtonLabel = $scope.lang.multipleLabel;
-                      $scope.varButtonLabel += '(' + $scope.outputModel.length + ')';
-                    }
 
+                    angular.forEach( $scope.inputModel, function( value, key ) {
+                        if ( typeof value !== 'undefined' && value[ attrs.tickProperty ] === true ) {
+                            if ( ctr < tempMaxLabels ) {
+                                $scope.varButtonLabel += ( $scope.varButtonLabel.length > 0 ? '</div>, <div class="buttonLabel">' : '<div class="buttonLabel">') + $scope.writeLabel( value, 'buttonLabel' );
+                            }
+                            ctr++;
+                        }
+                    });
 
-                    // if ( $scope.more === true ) {
+                    if ( $scope.more === true ) {
                         // https://github.com/isteven/angular-multi-select/pull/16
-                        // if (tempMaxLabels > 0) {
-                        //     $scope.varButtonLabel += '<span class="more-max-labels">, ... '+'(' + $scope.outputModel.length + ')</span>';
-                        // }
-                        // $scope.varButtonLabel += '(' + $scope.outputModel.length + ')';
-                    // }
+                        if (tempMaxLabels > 0) {
+                            $scope.varButtonLabel += ', ... ';
+                        }
+                        $scope.varButtonLabel += '(' + $scope.outputModel.length + ')';
+                    }
                 }
-                $scope.varButtonLabel = $sce.trustAsHtml( $scope.varButtonLabel.toString() );
+                $scope.varButtonLabel = $sce.trustAsHtml( $scope.varButtonLabel + '<span class="caret"></span>' );
             }
 
             // Check if a checkbox is disabled or enabled. It will check the granular control (disableProperty) and global control (isDisabled)
@@ -594,7 +582,7 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                 var label   = '';
 
                 angular.forEach( temp, function( value, key ) {
-                    item[ value ] && ( label += value.split( '.' ).reduce( function( prev, current ) {
+                    item[ value ] && ( label += '&nbsp;' + value.split( '.' ).reduce( function( prev, current ) {
                         return prev[ current ];
                     }, item ));
                 });
@@ -684,9 +672,7 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                         if ( !$scope.isDisabled ) {
                             $scope.tabIndex = $scope.tabIndex + helperItemsLength;
                             if ( $scope.inputModel.length > 0 ) {
-                                if(formElements[ $scope.tabIndex ]) {
-                                  formElements[ $scope.tabIndex ].focus();
-                                }
+                                formElements[ $scope.tabIndex ].focus();
                                 $scope.setFocusStyle( $scope.tabIndex );
                                 // blur button in vain
                                 angular.element( element ).children()[ 0 ].blur();
@@ -930,7 +916,7 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
             }
 
             // get elements required for DOM operation
-            checkBoxLayer = element.find('.checkboxLayer')[0];
+            checkBoxLayer = element.children().children().next()[0];
 
             // set max-height property if provided
             if ( typeof attrs.maxHeight !== 'undefined' ) {
@@ -969,7 +955,6 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                 $scope.lang.reset           = $sce.trustAsHtml( $scope.icon.reset      + '&nbsp;&nbsp;' + $scope.translation.reset );
                 $scope.lang.search          = $scope.translation.search;
                 $scope.lang.nothingSelected = $sce.trustAsHtml( $scope.translation.nothingSelected );
-                $scope.lang.multipleLabel = $sce.trustAsHtml( $scope.translation.multipleLabel );
             }
             else {
                 $scope.lang.selectAll       = $sce.trustAsHtml( $scope.icon.selectAll  + '&nbsp;&nbsp;Select All' );
@@ -977,13 +962,12 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                 $scope.lang.reset           = $sce.trustAsHtml( $scope.icon.reset      + '&nbsp;&nbsp;Reset' );
                 $scope.lang.search          = 'Search...';
                 $scope.lang.nothingSelected = 'None Selected';
-                $scope.lang.multipleLabel = 'Multiple Values';
             }
             $scope.icon.tickMark = $sce.trustAsHtml( $scope.icon.tickMark );
 
             // min length of keyword to trigger the filter function
-            if ( typeof attrs.minSearchLength !== 'undefined' && parseInt( attrs.minSearchLength ) > 0 ) {
-                vMinSearchLength = Math.floor( parseInt( attrs.minSearchLength ) );
+            if ( typeof attrs.MinSearchLength !== 'undefined' && parseInt( attrs.MinSearchLength ) > 0 ) {
+                vMinSearchLength = Math.floor( parseInt( attrs.MinSearchLength ) );
             }
 
             /*******************************************************
@@ -1002,9 +986,6 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                     $scope.refreshOutputModel();
                     $scope.refreshButton();
                 }
-            }, true );
-            $scope.$watch( 'maxLabels' , function( newVal ) {
-                $scope.refreshButton();
             }, true );
 
             // watch2 for changes in input model as a whole
@@ -1053,31 +1034,31 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
             '<button id="{{directiveId}}" type="button"' +
                 'ng-click="toggleCheckboxes( $event ); refreshSelectedItems(); refreshButton(); prepareGrouping; prepareIndex();"' +
                 'ng-bind-html="varButtonLabel"' +
-                'ng-disabled="disableButton"' +
+                'ng-disabled="disable-button"' +
             '>' +
-            '</button><span class="caret"></span>' +
+            '</button>' +
             // overlay layer
-            '<div class="checkboxLayer" out-of-document>' +
+            '<div class="checkboxLayer">' +
                 // container of the helper elements
                 '<div class="helperContainer" ng-if="helperStatus.filter || helperStatus.all || helperStatus.none || helperStatus.reset ">' +
                     // container of the first 3 buttons, select all, none and reset
                     '<div class="line" ng-if="helperStatus.all || helperStatus.none || helperStatus.reset ">' +
                         // select all
-                        '<button type="button" class="btn btn-xs btn-success"' +
+                        '<button type="button" class="helperButton"' +
                             'ng-disabled="isDisabled"' +
                             'ng-if="helperStatus.all"' +
                             'ng-click="select( \'all\', $event );"' +
                             'ng-bind-html="lang.selectAll">' +
                         '</button>'+
                         // select none
-                        '<button type="button" class="btn btn-xs btn-danger mls"' +
+                        '<button type="button" class="helperButton"' +
                             'ng-disabled="isDisabled"' +
                             'ng-if="helperStatus.none"' +
                             'ng-click="select( \'none\', $event );"' +
                             'ng-bind-html="lang.selectNone">' +
                         '</button>'+
                         // reset
-                        '<button type="button" class="btn btn-xs btn-info reset"' +
+                        '<button type="button" class="helperButton reset"' +
                             'ng-disabled="isDisabled"' +
                             'ng-if="helperStatus.reset"' +
                             'ng-click="select( \'reset\', $event );"' +
