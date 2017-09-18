@@ -1,16 +1,16 @@
 <div class="course-detail" ng-controller="ReviewsController as vm">
-	<!-- <div class="clearfix">
-	    <button class="btn btn-primary btn-sm pull-right js-show-review-form" style="display: block;">重新评价</button>
-	</div> -->
-	<form id="review-form" style="display: block;" ng-if="vm.isAuthenticated" novalidate="novalidate" data-widget-cid="widget-1">
+	<div class="clearfix mbm">
+	    <button class="btn btn-primary btn-sm pull-right js-show-review-form" ng-if="!vm.openReviewFlag" style="display: block;" ng-click="vm.openReview()">评价</button>
+	</div>
+	<form id="review-form" style="display: block;" ng-if="vm.openReviewFlag" novalidate="novalidate" data-widget-cid="widget-1">
     <div class="form-group controls">
-      <textarea class="form-control" rows="8" data-display="评价详细内容" name="content" data-widget-cid="widget-3" ng-model="reviewContent"></textarea>
+      <textarea class="form-control" rows="8" data-display="评价详细内容" name="content" data-widget-cid="widget-3" ng-model="vm.reviewContent"></textarea>
     <div class="help-block" style="display:none;"></div></div>
 
     <div class="form-group clearfix">
       <span class="text-success pull-left" style="display: none;">评价已保存！</span>
-      <button type="button" class="btn btn-primary pull-right" data-loading-text="正在保存..." autocomplete="off" ng-click="updateReviews();">保存</button>
-      <button class="btn btn-link pull-right js-hide-review-form" type="button" style="display: block;">取消</button>
+      <button type="button" class="btn btn-primary pull-right" data-loading-text="正在保存..." autocomplete="off" ng-click="vm.saveReview()">保存</button>
+      <button class="btn btn-link pull-right js-hide-review-form" type="button" style="display: block;" ng-click="vm.cancelReview()">取消</button>
     </div>
   </form>
 	<div class="js-reviews" ng-repeat="review in vm.allreviews">
@@ -36,5 +36,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="empty" ng-if="vm.allreviews==null">暂无评价</div>
+	<div class="text-right" ng-if="vm.allreviews.length!=0">
+		<uib-pagination total-items="vm.totalCount" ng-model="vm.currentPage" items-per-page="vm.pageSize"
+		 first-text="首页"
+		 previous-text="上一页" next-text="下一页" last-text="尾页"
+			boundary-links="true" boundary-link-numbers="true" ng-change="vm.getAttachements()"></uib-pagination>
+	</div>
+	<div class="empty" ng-if="vm.allreviews.length==0">暂无评价</div>
 </div>
