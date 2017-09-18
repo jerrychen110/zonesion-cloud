@@ -28,7 +28,7 @@
             'getCourseReviews':{method:'GET',isArray:true,params: {id:'@id'},url:'/api/courses/:id/course-reviews'},
             'getCourseNotes':{method:'GET',isArray:true,params: {id:'@id'},url:'api/coursesLessonNote/:id'},
             'getCourseAttachements':{method:'GET',isArray:true,params: {id:'@id'},url:'/api/courses/:id/course-attachments'},
-            'saveReview':{method:'POST',isArray:false,url:'api/coursesReview'}
+            'saveReview':{method:'POST',isArray:false,params: {id:'@id'},url:'api/courses/:id/course-reviews'}
         });
     }
 })();

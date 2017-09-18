@@ -54,13 +54,14 @@
         //save review
         function saveReview(){
           var params = {
-  "content": "string",
-  "courseId": 1,
-  "privacy": 0,
-  "rating": 1,
-  "title": "string",
-  "userId": vm.account.id
-}
+            id:$stateParams.id,
+            content: vm.reviewContent,
+            courseId: $stateParams.id,
+            privacy: 0,
+            rating: 1,
+            title: "string",
+            userId: vm.account.id
+          }
           // {
           //   "content": vm.reviewContent,
           //   "courseId": $stateParams.id,
