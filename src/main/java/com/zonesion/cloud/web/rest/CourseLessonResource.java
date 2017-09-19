@@ -2,8 +2,10 @@ package com.zonesion.cloud.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.zonesion.cloud.domain.CourseLesson;
+import com.zonesion.cloud.domain.CourseLessonNote;
 import com.zonesion.cloud.service.CourseLessonService;
 import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
+import com.zonesion.cloud.web.rest.dto.in.CourseLessonNoteInDTO;
 import com.zonesion.cloud.web.rest.util.HeaderUtil;
 import com.zonesion.cloud.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -140,5 +142,12 @@ public class CourseLessonResource {
         log.debug("REST request to get Course : {}", id);
         List<CourseLesson> course = courseLessonService.findAllCourseLesson(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(course));
+    }
+    
+    @RequestMapping(value = "/course-lessons/{id}/lesson-note", method = RequestMethod.POST)
+    @Timed
+    public ResponseEntity<CourseLessonNote> saveCourseLessonNote(@PathVariable Long id, CourseLessonNoteInDTO courseLessonNoteInDTO) {
+    	CourseLessonNote result = courseLessonService.saveCourseLessonNote(id, courseLessonNoteInDTO);
+    	return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
