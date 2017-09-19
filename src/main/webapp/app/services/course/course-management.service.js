@@ -21,7 +21,8 @@
                     return data;
                 }
             },
-            'getMajors':{mothed:'GET',isArray:true,url:'api/majors/order'}
+            'getMajors':{mothed:'GET',isArray:true,url:'api/majors/order'},
+            'addChapter':{mothed:'POST',isArray:false,params:{id:'@id'},url:'/api/courses/:id/chapters'}
         });
     }
 })();

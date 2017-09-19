@@ -6,10 +6,10 @@
         .controller('CourseManagementEditController', CourseManagementEditController);
 
     CourseManagementEditController.$inject = ['Principal', 'Course', 'entity', 'AlertService', '$state', '$log',
-     '$scope', '$rootScope', 'JhiLanguageService', 'Upload','CourseManagementService'];
+     '$scope', '$rootScope', 'JhiLanguageService', 'Upload','CourseManagementService','$uibModal'];
 
     function CourseManagementEditController(Principal, Course, entity, AlertService, $state, $log,
-      $scope, $rootScope, JhiLanguageService, Upload,CourseManagementService) {
+      $scope, $rootScope, JhiLanguageService, Upload,CourseManagementService,$uibModal) {
         var vm = this;
 
         vm.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
@@ -167,6 +167,8 @@
 
           })
         }
+
+
 
         //
         function stateGo(url){

@@ -138,7 +138,7 @@
         	},
         	views: {
         		'courseEdit': {
-        			templateUrl: 'app/admin/course-management/edit/course-management-edit-base.html',
+        			templateUrl: 'app/admin/course-management/edit/base/course-management-edit-base.html',
                     controller: 'CourseManagementEditController',
                     controllerAs: 'vm'
         		}
@@ -163,7 +163,7 @@
         	},
         	views: {
         		'courseEdit': {
-        			templateUrl: 'app/admin/course-management/edit/course-management-edit-detail.html',
+        			templateUrl: 'app/admin/course-management/edit/detail/course-management-edit-detail.html',
                     controller: 'CourseManagementEditController',
                     controllerAs: 'vm'
         		}
@@ -188,7 +188,7 @@
         	},
         	views: {
         		'courseEdit': {
-        			templateUrl: 'app/admin/course-management/edit/course-management-edit-picture.html',
+        			templateUrl: 'app/admin/course-management/edit/picture/course-management-edit-picture.html',
                     controller: 'CourseManagementEditController',
                     controllerAs: 'vm'
         		}
@@ -213,8 +213,8 @@
         	},
         	views: {
         		'courseEdit': {
-        			templateUrl: 'app/admin/course-management/edit/course-management-edit-lesson.html',
-                    controller: 'CourseManagementEditController',
+        			templateUrl: 'app/admin/course-management/edit/lesson/course-management-edit-lesson.html',
+                    controller: 'EditLessonController',
                     controllerAs: 'vm'
         		}
         	},
@@ -238,7 +238,7 @@
         	},
         	views: {
         		'courseEdit': {
-        			templateUrl: 'app/admin/course-management/edit/course-management-edit-files.html',
+        			templateUrl: 'app/admin/course-management/edit/file/course-management-edit-files.html',
                     controller: 'CourseManagementEditController',
                     controllerAs: 'vm'
         		}
