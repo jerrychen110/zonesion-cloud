@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,6 +49,9 @@ public class CourseLessonService {
     
     @Inject
     private CourseLessonNoteRepository courseLessonNoteRepository;
+    
+    @Inject
+    private JdbcTemplate jdbcTemplate;
 
     /**
      * Save a courseLesson.
@@ -131,5 +135,13 @@ public class CourseLessonService {
 		courseLessonNote.setIsPrivate(courseLessonNoteInDTO.getIsPrivate());
 		
 		return courseLessonNoteRepository.save(courseLessonNote);
+	}
+	
+	public int getLessonMaxNumberByChapterId(Long courseId, Long chapterId) {
+		StringBuilder sb = new StringBuilder();
+    	sb.append("select max(number) from t_course_lesson where course_id=")
+    	.append(courseId).append(" and chapter_id='").append(chapterId).append("'");
+    	
+    	return jdbcTemplate.queryForObject(sb.toString(), Integer.class)!=null?jdbcTemplate.queryForObject(sb.toString(), Integer.class):0;
 	}
 }

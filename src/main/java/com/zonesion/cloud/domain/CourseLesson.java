@@ -28,6 +28,10 @@ public class CourseLesson extends AbstractAuditingEntity implements Serializable
     @NotNull
     @Column(name = "user_id", nullable = false)
     private Long userId;
+    
+    @NotNull
+    @Column(name = "course_id", nullable = false)
+    private Long courseId;
 
     @NotNull
     @Column(name = "number", nullable = false)
@@ -93,7 +97,6 @@ public class CourseLesson extends AbstractAuditingEntity implements Serializable
     private Set<CourseLessonNote> courseLessonNotes = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "chapter_id", insertable = false, updatable = false)
     private Chapter chapter;
 
     public Long getId() {
@@ -115,6 +118,19 @@ public class CourseLesson extends AbstractAuditingEntity implements Serializable
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+    
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public CourseLesson courseId(Long courseId) {
+        this.courseId = courseId;
+        return this;
+    }
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
     }
 
     public Integer getNumber() {
@@ -387,6 +403,7 @@ public class CourseLesson extends AbstractAuditingEntity implements Serializable
         return "CourseLesson{" +
             "id=" + getId() +
             ", userId='" + getUserId() + "'" +
+            ", courseId='" + getCourseId() + "'" +
             ", number='" + getNumber() + "'" +
             ", seq='" + getSeq() + "'" +
             ", title='" + getTitle() + "'" +
