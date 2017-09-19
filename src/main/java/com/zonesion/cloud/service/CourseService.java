@@ -37,6 +37,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zonesion.cloud.web.rest.dto.CourseLessonInfoDTO;
 import com.zonesion.cloud.web.rest.dto.LessonInfoDTO;
 import com.zonesion.cloud.web.rest.dto.UnitInfoDTO;
+import com.zonesion.cloud.web.rest.dto.in.ChapterInDTO;
 import com.zonesion.cloud.web.rest.dto.ChapterInfoDTO;
 import com.zonesion.cloud.web.rest.dto.CourseBaseInfoDTO;
 
@@ -75,6 +76,9 @@ public class CourseService {
     
     @Inject
     private CourseLessonNoteService courseLessonNoteService;
+    
+    @Inject
+    private ChapterService chapterService;
 
     /**
      * Save a course.
@@ -326,4 +330,15 @@ public class CourseService {
 		return courseLessonNoteService.getCourseNotesByCourseId(id, pageable, courseLessonId);
 	}
 	
+	public Chapter createChapter(Long id, ChapterInDTO chapterInDTO) {
+		Chapter chapter = new Chapter();
+		chapter.setChapterType(chapterInDTO.getChapterType());
+		chapter.setTitle(chapterInDTO.getTitle());
+		chapter.setParentId(chapterInDTO.getParentId());
+		chapter.setNumber(chapterService.getMaxNumberByCourseId(id, chapterInDTO.getChapterType())+1);
+		chapter.setSeq(chapterService.getMaxSeqByCourseId(id, chapterInDTO.getChapterType())+1);
+		chapter.setCourse(courseRepository.findOne(id));
+		chapter.setUserId(chapterInDTO.getUserId());
+		return chapterService.save(chapter);
+	}
 }

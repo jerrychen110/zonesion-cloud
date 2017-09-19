@@ -1,6 +1,7 @@
 package com.zonesion.cloud.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.Course;
 import com.zonesion.cloud.repository.CourseRepository;
 import com.zonesion.cloud.service.CourseService;
@@ -14,6 +15,7 @@ import com.zonesion.cloud.service.util.JcropSize;
 import com.zonesion.cloud.service.util.FileUtil;
 import com.zonesion.cloud.web.rest.dto.CourseBaseInfoDTO;
 import com.zonesion.cloud.web.rest.dto.CourseLessonInfoDTO;
+import com.zonesion.cloud.web.rest.dto.in.ChapterInDTO;
 import com.zonesion.cloud.web.rest.util.HeaderUtil;
 import com.zonesion.cloud.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -245,4 +247,23 @@ public class CourseResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
     
+    /**
+     * POST  /chapters : Create a new chapter.
+     *
+     * @param chapter the chapter to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new chapter, or with status 400 (Bad Request) if the chapter has already an ID
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+     */
+    @PostMapping("/courses/{id}/chapters")
+    @Timed
+    public ResponseEntity<Chapter> createChapter(@PathVariable Long id, @Valid @RequestBody ChapterInDTO chapterInDTO) throws URISyntaxException {
+        log.debug("REST request to save Chapter : {}", chapterInDTO);
+        if (chapterInDTO.getId() != null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new chapter cannot already have an ID")).body(null);
+        }
+        Chapter result = courseService.createChapter(id, chapterInDTO);
+        return ResponseEntity.created(new URI("/api/courses/"+id+"/chapters/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
 }
