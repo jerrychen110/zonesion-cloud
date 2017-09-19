@@ -56,7 +56,6 @@ public class Chapter extends AbstractAuditingEntity implements Serializable {
     private Set<CourseLesson> courseLessons = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "course_id", insertable = false,updatable = false)
     private Course course;
 
     public Long getId() {
