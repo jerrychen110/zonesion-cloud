@@ -108,4 +108,12 @@
     		</column>
     	</addColumn>
     </changeSet>
+    
+    <changeSet id="20170729021222-3" author="XiaXiong">
+    	<addColumn tableName="t_course_lesson">
+    		<column name="course_id" type="bigint">
+    			<constraints nullable="false"/>
+    		</column>
+    	</addColumn>
+    </changeSet>
 </databaseChangeLog>

@@ -3,6 +3,7 @@ package com.zonesion.cloud.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.Course;
+import com.zonesion.cloud.domain.CourseLesson;
 import com.zonesion.cloud.repository.CourseRepository;
 import com.zonesion.cloud.service.CourseService;
 import com.zonesion.cloud.service.FileManageMentService;
@@ -16,6 +17,7 @@ import com.zonesion.cloud.service.util.FileUtil;
 import com.zonesion.cloud.web.rest.dto.CourseBaseInfoDTO;
 import com.zonesion.cloud.web.rest.dto.CourseLessonInfoDTO;
 import com.zonesion.cloud.web.rest.dto.in.ChapterInDTO;
+import com.zonesion.cloud.web.rest.dto.in.CourseLessonInDTO;
 import com.zonesion.cloud.web.rest.util.HeaderUtil;
 import com.zonesion.cloud.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -257,7 +259,7 @@ public class CourseResource {
     @PostMapping("/courses/{id}/chapters")
     @Timed
     public ResponseEntity<Chapter> createChapter(@PathVariable Long id, @Valid @RequestBody ChapterInDTO chapterInDTO) throws URISyntaxException {
-        log.debug("REST request to save Chapter : {}", chapterInDTO);
+        log.debug("REST request to create Chapter : {}", chapterInDTO);
         if (chapterInDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new chapter cannot already have an ID")).body(null);
         }
@@ -266,4 +268,18 @@ public class CourseResource {
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
+    
+    @PostMapping("/courses/{id}/lessons")
+    @Timed
+    public ResponseEntity<CourseLesson> createLesson(@PathVariable Long id, @Valid @RequestBody CourseLessonInDTO courseLessonInDTO) throws URISyntaxException {
+    	log.debug("REST request to create Lesson : {}", courseLessonInDTO);
+        if (courseLessonInDTO.getId() != null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new lesson cannot already have an ID")).body(null);
+        }
+        CourseLesson result = courseService.createLesson(id, courseLessonInDTO);
+    	return ResponseEntity.created(new URI("/api/courses/"+id+"/lessons/" + result.getId()))
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                .body(result);
+    }
+    
 }

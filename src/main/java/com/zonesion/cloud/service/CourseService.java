@@ -3,6 +3,7 @@ package com.zonesion.cloud.service;
 import com.zonesion.cloud.config.Constants;
 import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.Course;
+import com.zonesion.cloud.domain.CourseLesson;
 import com.zonesion.cloud.domain.CourseReview;
 import com.zonesion.cloud.repository.CourseFavoriteRepository;
 import com.zonesion.cloud.repository.CourseLessonLearnRepository;
@@ -38,6 +39,7 @@ import com.zonesion.cloud.web.rest.dto.CourseLessonInfoDTO;
 import com.zonesion.cloud.web.rest.dto.LessonInfoDTO;
 import com.zonesion.cloud.web.rest.dto.UnitInfoDTO;
 import com.zonesion.cloud.web.rest.dto.in.ChapterInDTO;
+import com.zonesion.cloud.web.rest.dto.in.CourseLessonInDTO;
 import com.zonesion.cloud.web.rest.dto.ChapterInfoDTO;
 import com.zonesion.cloud.web.rest.dto.CourseBaseInfoDTO;
 
@@ -79,6 +81,9 @@ public class CourseService {
     
     @Inject
     private ChapterService chapterService;
+    
+    @Inject
+    private CourseLessonService courseLessonService;
 
     /**
      * Save a course.
@@ -340,5 +345,28 @@ public class CourseService {
 		chapter.setCourse(courseRepository.findOne(id));
 		chapter.setUserId(chapterInDTO.getUserId());
 		return chapterService.save(chapter);
+	}
+	
+	public CourseLesson createLesson(Long id, CourseLessonInDTO courseLessonInDTO) {
+		CourseLesson newCourseLesson = new CourseLesson();
+		newCourseLesson.setTitle(courseLessonInDTO.getTitle());
+		newCourseLesson.setSummary(courseLessonInDTO.getSummary());
+		newCourseLesson.setUserId(courseLessonInDTO.getUserId());
+		newCourseLesson.setCourseId(id);
+		newCourseLesson.setChapter(chapterService.findOne(courseLessonInDTO.getChapterId()));
+		newCourseLesson.setCredit(courseLessonInDTO.getCredit());
+		int maxNumber = courseLessonService.getLessonMaxNumberByChapterId(id, courseLessonInDTO.getChapterId());
+		newCourseLesson.setNumber(maxNumber+1);
+		newCourseLesson.setSeq(maxNumber+1);
+		newCourseLesson.setCourseLessonType(courseLessonInDTO.getCourseLessonType());
+		newCourseLesson.setContent(courseLessonInDTO.getContent());
+		newCourseLesson.setMediaName(courseLessonInDTO.getMediaName());
+		newCourseLesson.setMediaUri(courseLessonInDTO.getMediaUri());
+		newCourseLesson.setMediaSource(courseLessonInDTO.getMediaSource());
+		newCourseLesson.setMediaSize(courseLessonInDTO.getMediaSize());
+		newCourseLesson.setMediaLength(courseLessonInDTO.getMediaLength());
+		newCourseLesson.setLearnedNum(0);
+		newCourseLesson.setViewedNum(0);
+		return courseLessonService.save(newCourseLesson);
 	}
 }
