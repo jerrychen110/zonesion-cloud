@@ -1,17 +1,14 @@
 <div class="course-detail" ng-controller="NotesController as vm">
 	<div class="note-filter nav-filter clearfix">
-  <div class="btn-group">
-    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              全部课时
+  <div class="btn-group" uib-dropdown>
+    <button type="button" class="btn btn-default btn-sm dropdown-toggle" uib-dropdown-toggle data-toggle="dropdown" aria-expanded="false">
+              {{vm.selectedLesson.id?vm.selectedLesson.title:'全部课时'}}
 
       <span class="caret"></span>
     </button>
-    <ul class="dropdown-menu" role="menu">
-     <li class="active">
-        <a href="#/join/{{vm.allnotes[0].courseId}}/notes">全部课时</a>
-      </li>
-      <li class="" ng-repeat="note in vm.allnotes" ng-if="note.courseLessonId!=0" >
-          <a ui-sref="join.notes.lessonId({courseLessonId:note.courseLessonId})" href="#/join/{{note.courseId}}/notes/lessonId={{note.courseLessonId}}" title="{{note.title}}">{{note.title}}</a>
+    <ul class="dropdown-menu" role="menu"   uib-dropdown-menu>
+      <li class=""  ng-repeat="lessonData in vm.lessonDatas" ng-class="{'active':lessonData.id==vm.selectedLesson.id||(vm.selectedLesson.id==null&&$index==0)}" ng-click="vm.selectLesson(lessonData)">
+          <a >{{lessonData.title}}</a>
         </li>
     </ul>
   </div>
@@ -36,6 +33,12 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="text-right" ng-if="vm.allreviews.length!=0">
+		<uib-pagination total-items="vm.totalCount" ng-model="vm.currentPage" items-per-page="vm.pageSize"
+		 first-text="首页"
+		 previous-text="上一页" next-text="下一页" last-text="尾页"
+			boundary-links="true" boundary-link-numbers="true" ng-change="vm.loadNotes()"></uib-pagination>
 	</div>
 	<div class="empty ng-scope" ng-if="vm.allnotes ==null">暂无笔记</div>
 </div>
