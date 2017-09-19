@@ -3,8 +3,11 @@ package com.zonesion.cloud.service;
 import com.zonesion.cloud.config.Constants;
 import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.CourseLesson;
+import com.zonesion.cloud.domain.CourseLessonNote;
+import com.zonesion.cloud.repository.CourseLessonNoteRepository;
 import com.zonesion.cloud.repository.CourseLessonRepository;
 import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
+import com.zonesion.cloud.web.rest.dto.in.CourseLessonNoteInDTO;
 
 import java.util.List;
 
@@ -42,6 +45,9 @@ public class CourseLessonService {
     
     @Inject
     private CourseLessonAttachmentService courseLessonAttachmentService;
+    
+    @Inject
+    private CourseLessonNoteRepository courseLessonNoteRepository;
 
     /**
      * Save a courseLesson.
@@ -114,4 +120,16 @@ public class CourseLessonService {
 		return courseLessonAttachmentService.findAllByTargetTypeAndTargetId(Constants.ATTACHEMENT_TYPE_LESSON, lessonId, pageable);
 	}
 	
+	public CourseLessonNote saveCourseLessonNote(Long id, CourseLessonNoteInDTO courseLessonNoteInDTO) {
+		CourseLessonNote courseLessonNote = new CourseLessonNote();
+		courseLessonNote.setCourseId(courseLessonNoteInDTO.getCourseId());
+		courseLessonNote.setCourseLesson(courseLessonRepository.findOne(id));
+		courseLessonNote.setUserId(courseLessonNoteInDTO.getUserId());
+		courseLessonNote.setContent(courseLessonNoteInDTO.getContent());
+		courseLessonNote.setLength(courseLessonNoteInDTO.getLength());
+		courseLessonNote.setLikeNum(0);
+		courseLessonNote.setIsPrivate(courseLessonNoteInDTO.getIsPrivate());
+		
+		return courseLessonNoteRepository.save(courseLessonNote);
+	}
 }
