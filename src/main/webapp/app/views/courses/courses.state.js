@@ -28,17 +28,6 @@
                     $translatePartialLoader.addPart('course');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'Course', function($stateParams, Course) {
-                    return Course.get({id : $stateParams.id}).$promise;
-                }],
-                previousState: ["$state", function ($state) {
-                    var currentStateData = {
-                        name: $state.current.name || 'course',
-                        params: $state.params,
-                        url: $state.href($state.current.name, $state.params)
-                    };
-                    return currentStateData;
-                }]
             }
         })
         .state("courses.reviews", {
