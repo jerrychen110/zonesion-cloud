@@ -56,7 +56,6 @@ public class CacheConfiguration {
             cm.createCache(com.zonesion.cloud.domain.CourseLessonLearn.class.getName(), jcacheConfiguration);
             cm.createCache(com.zonesion.cloud.domain.CourseLessonNote.class.getName(), jcacheConfiguration);
             cm.createCache(com.zonesion.cloud.domain.CourseLessonNote.class.getName() + ".courseLessonNoteLikes", jcacheConfiguration);
-            cm.createCache(com.zonesion.cloud.domain.CourseLessonNoteLike.class.getName(), jcacheConfiguration);
             cm.createCache(com.zonesion.cloud.domain.File.class.getName(), jcacheConfiguration);
             cm.createCache(com.zonesion.cloud.domain.Major.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry

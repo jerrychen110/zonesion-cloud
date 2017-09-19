@@ -4,7 +4,6 @@ import com.zonesion.cloud.ZonesionCloudApplicationApp;
 
 import com.zonesion.cloud.domain.CourseLessonNote;
 import com.zonesion.cloud.domain.CourseLesson;
-import com.zonesion.cloud.domain.CourseLessonNoteLike;
 import com.zonesion.cloud.repository.CourseLessonNoteRepository;
 import com.zonesion.cloud.service.CourseLessonNoteService;
 import com.zonesion.cloud.web.rest.errors.ExceptionTranslator;
@@ -109,11 +108,6 @@ public class CourseLessonNoteResourceIntTest {
         em.persist(courseLesson);
         em.flush();
         courseLessonNote.setCourseLesson(courseLesson);
-        // Add required entity
-        CourseLessonNoteLike courseLessonNoteLike = CourseLessonNoteLikeResourceIntTest.createEntity(em);
-        em.persist(courseLessonNoteLike);
-        em.flush();
-        courseLessonNote.getCourseLessonNoteLikes().add(courseLessonNoteLike);
         return courseLessonNote;
     }
 

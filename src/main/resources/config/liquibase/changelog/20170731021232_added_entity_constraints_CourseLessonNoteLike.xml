@@ -15,4 +15,9 @@
                                  referencedTableName="t_course_lesson_note"/>
 
     </changeSet>
+    
+    <changeSet id="20170731021232-3" author="XiaXiong">
+    	<dropForeignKeyConstraint baseTableName="t_course_lesson_note_like" constraintName="fk_course_lesson_note_like_course_lesson_note_id"/>
+    	<dropTable tableName="t_course_lesson_note_like"/>
+    </changeSet>
 </databaseChangeLog>

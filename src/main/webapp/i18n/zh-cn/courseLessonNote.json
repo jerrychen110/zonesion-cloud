@@ -21,8 +21,7 @@
             "length": "Length",
             "likeNum": "Like Num",
             "isPrivate": "Is Private",
-            "courseLesson": "Course Lesson",
-            "courseLessonNoteLike": "Course Lesson Note Like"
+            "courseLesson": "Course Lesson"
         }
     }
 }

@@ -51,14 +51,8 @@ public class CourseLessonNote extends AbstractAuditingEntity implements Serializ
     private String isPrivate;
 
     @ManyToOne
-    @JoinColumn(name = "course_lesson_id", insertable = false, updatable = false)
     private CourseLesson courseLesson;
-
-    @OneToMany(mappedBy = "courseLessonNote", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<CourseLessonNoteLike> courseLessonNoteLikes = new HashSet<>();
-
+    
     public Long getId() {
         return id;
     }
@@ -156,31 +150,6 @@ public class CourseLessonNote extends AbstractAuditingEntity implements Serializ
 
     public void setCourseLesson(CourseLesson CourseLesson) {
         this.courseLesson = CourseLesson;
-    }
-
-    public Set<CourseLessonNoteLike> getCourseLessonNoteLikes() {
-        return courseLessonNoteLikes;
-    }
-
-    public CourseLessonNote courseLessonNoteLikes(Set<CourseLessonNoteLike> CourseLessonNoteLikes) {
-        this.courseLessonNoteLikes = CourseLessonNoteLikes;
-        return this;
-    }
-
-    public CourseLessonNote addCourseLessonNoteLike(CourseLessonNoteLike CourseLessonNoteLike) {
-        this.courseLessonNoteLikes.add(CourseLessonNoteLike);
-        CourseLessonNoteLike.setCourseLessonNote(this);
-        return this;
-    }
-
-    public CourseLessonNote removeCourseLessonNoteLike(CourseLessonNoteLike CourseLessonNoteLike) {
-        this.courseLessonNoteLikes.remove(CourseLessonNoteLike);
-        CourseLessonNoteLike.setCourseLessonNote(null);
-        return this;
-    }
-
-    public void setCourseLessonNoteLikes(Set<CourseLessonNoteLike> CourseLessonNoteLikes) {
-        this.courseLessonNoteLikes = CourseLessonNoteLikes;
     }
 
     @Override
