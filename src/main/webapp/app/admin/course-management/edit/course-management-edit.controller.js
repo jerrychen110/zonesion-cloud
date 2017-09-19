@@ -16,7 +16,7 @@
         vm.currentAccount = null;
         vm.languages = null;
         vm.save = save;
-        vm.course = entity;
+        vm.course = angular.copy(entity);
         vm.majors = [];
         vm.selectedMajors = [];
         vm.localLang = {
@@ -29,6 +29,7 @@
 };
 
         vm.getOrders = getOrders;
+        vm.stateGo = stateGo;
         vm.getOrders();
 
         JhiLanguageService.getAll().then(function (languages) {
@@ -165,6 +166,11 @@
           },function(error){
 
           })
+        }
+
+        //
+        function stateGo(url){
+          $state.go(url,{id:$state.params.id});
         }
     }
 })();
