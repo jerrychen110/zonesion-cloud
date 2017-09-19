@@ -49,7 +49,8 @@
 
         function onSaveSuccess (result) {
             vm.isSaving = false;
-            $state.go('course-management-edit-base', {id:result.id}, { reload: true });
+            vm.course.id = result.id;
+            $state.go('course-management-edit-base', {id:vm.course.id});
         }
     }
 })();

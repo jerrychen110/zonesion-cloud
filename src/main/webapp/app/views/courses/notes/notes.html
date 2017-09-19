@@ -34,11 +34,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="text-right" ng-if="vm.allreviews.length!=0">
+	<div class="text-right" ng-if="vm.allnotes.length!=0">
 		<uib-pagination total-items="vm.totalCount" ng-model="vm.currentPage" items-per-page="vm.pageSize"
 		 first-text="首页"
 		 previous-text="上一页" next-text="下一页" last-text="尾页"
 			boundary-links="true" boundary-link-numbers="true" ng-change="vm.loadNotes()"></uib-pagination>
 	</div>
-	<div class="empty ng-scope" ng-if="vm.allnotes ==null">暂无笔记</div>
+	<div class="empty ng-scope" ng-if="vm.allnotes.length ==0">暂无笔记</div>
 </div>
