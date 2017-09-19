@@ -16,7 +16,7 @@
         vm.currentAccount = null;
         vm.languages = null;
         vm.save = save;
-        vm.course = angular.copy(entity);
+        vm.course = entity;
         vm.majors = [];
         vm.selectedMajors = [];
         vm.localLang = {

@@ -13,7 +13,7 @@
         vm.allnotes = [];
         vm.currentPage = 1;
         vm.pageSize=1;
-        vm.allreviews = [];
+        vm.allnotes= [];
         vm.selectedLesson={id:null,title:'全部课程'};
         vm.loadNotes=loadNotes;
         vm.loadLessons = loadLessons;
