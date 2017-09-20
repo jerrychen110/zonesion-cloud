@@ -16,6 +16,7 @@ import com.zonesion.cloud.service.util.JcropSize;
 import com.zonesion.cloud.service.util.FileUtil;
 import com.zonesion.cloud.web.rest.dto.CourseBaseInfoDTO;
 import com.zonesion.cloud.web.rest.dto.CourseLessonInfoDTO;
+import com.zonesion.cloud.web.rest.dto.MyCourseDTO;
 import com.zonesion.cloud.web.rest.dto.in.ChapterInDTO;
 import com.zonesion.cloud.web.rest.dto.in.CourseLessonInDTO;
 import com.zonesion.cloud.web.rest.util.HeaderUtil;
@@ -199,6 +200,11 @@ public class CourseResource {
 		return new ResponseEntity<>(ret, HttpStatus.OK);
     }
     
+    /**
+     * 查询课程基本信息
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/courses/{id}/course-base", method = RequestMethod.GET)
     @Timed
     public ResponseEntity<CourseBaseInfoDTO> getCourseBaseById(@PathVariable Long id){
@@ -206,6 +212,11 @@ public class CourseResource {
     	return new ResponseEntity<>(courseService.findCourseBaseInfoDTO(id), HttpStatus.OK);
     }
     
+    /**
+     * 查询课时信息
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/courses/{id}/course-lessons", method = RequestMethod.GET)
     @Timed
     public ResponseEntity<CourseLessonInfoDTO> getCourseLessonInfoById(@PathVariable Long id){
@@ -213,6 +224,12 @@ public class CourseResource {
     	return new ResponseEntity<>(courseService.findCourseLessonInfoDTO(id), HttpStatus.OK);
     }
     
+    /**
+     * 查询课程相关的附件资料
+     * @param id
+     * @param pageable
+     * @return
+     */
     @RequestMapping(value = "/courses/{id}/course-attachments", method = RequestMethod.GET)
     @Timed
     public ResponseEntity<List<CourseLessonAttachmentDTO>> getCourseAttachementsById(@PathVariable Long id, @ApiParam Pageable pageable){
@@ -222,6 +239,12 @@ public class CourseResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
     
+    /**
+     * 查询课程相关的评论信息
+     * @param id
+     * @param pageable
+     * @return
+     */
     @RequestMapping(value = "/courses/{id}/course-reviews", method = RequestMethod.GET)
     @Timed
     public ResponseEntity<List<CourseReviewExtDTO>> getCourseReviewsById(@PathVariable Long id, @ApiParam Pageable pageable){
@@ -231,6 +254,13 @@ public class CourseResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
     
+    /**
+     * 发表课程评论
+     * @param id
+     * @param courseReviewInDTO
+     * @return
+     * @throws URISyntaxException
+     */
     @RequestMapping(value = "/courses/{id}/course-reviews", method = RequestMethod.POST)
     @Timed
     public ResponseEntity<CourseReviewDTO> saveCourseReview(@PathVariable Long id, CourseReviewInDTO courseReviewInDTO) throws URISyntaxException {
@@ -240,6 +270,13 @@ public class CourseResource {
 	            .body(result);
     }
     
+    /**
+     * 查询课程相关的笔记信息
+     * @param id
+     * @param pageable
+     * @param courseLessonId
+     * @return
+     */
     @RequestMapping(value = "/courses/{id}/course-notes", method = RequestMethod.GET)
     @Timed
     public ResponseEntity<List<CourseLessonNoteDTO>> getCourseNotesById(@PathVariable Long id, @ApiParam Pageable pageable, @RequestParam(required=false) Long courseLessonId){
@@ -250,7 +287,7 @@ public class CourseResource {
     }
     
     /**
-     * POST  /chapters : Create a new chapter.
+     * 添加章节
      *
      * @param chapter the chapter to create
      * @return the ResponseEntity with status 201 (Created) and with body the new chapter, or with status 400 (Bad Request) if the chapter has already an ID
@@ -270,7 +307,7 @@ public class CourseResource {
     }
     
     /**
-     * PUT  /chapters : Update a chapter.
+     * 修改章节
      *
      * @param chapter the chapter to create
      * @return the ResponseEntity with status 201 (Created) and with body the new chapter, or with status 400 (Bad Request) if the chapter has already an ID
@@ -327,6 +364,24 @@ public class CourseResource {
     	return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, result.getId().toString()))
                 .body(result);
+    }
+    
+    @RequestMapping(value = "/courses/my/learning-courses", method = RequestMethod.GET)
+    @Timed
+    public ResponseEntity<List<MyCourseDTO>> getMyLearningCourses(@ApiParam Pageable pageable){
+    	log.debug("query my learning course");
+    	Page<MyCourseDTO> page = courseService.getMyLearningCourses(pageable);
+    	HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/courses/my/learning-courses");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/courses/my/favorite-course", method = RequestMethod.GET)
+    @Timed
+    public ResponseEntity<List<MyCourseDTO>> getMyFavoriteCourses(@ApiParam Pageable pageable){
+    	log.debug("query my favorite course");
+    	Page<MyCourseDTO> page = courseService.getMyFavoriteCourses(pageable);
+    	HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/courses/my/favorite-courses");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
     
 }

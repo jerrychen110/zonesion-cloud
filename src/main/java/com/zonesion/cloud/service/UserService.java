@@ -207,4 +207,12 @@ public class UserService {
     public List<String> getAuthorities() {
         return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
     }
+    
+    /**
+     * 获取当前用户ID
+     * @return
+     */
+    public Long getCurrentUserId() {
+    	return userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get().getId();
+    }
 }
