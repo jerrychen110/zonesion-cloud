@@ -29,5 +29,21 @@
           'label':'mp3',
           'extensions':['mp3']
         }])
+        .constant('LESSONTYPES',[{
+          name:'视频',
+          checked:true
+        },
+        {
+          name:'音频',
+          checked:false
+        },
+        {
+          name:'图文',
+          checked:false
+        },
+        {
+          name:'PPT',
+          checked:false
+        }])
 ;
 })();

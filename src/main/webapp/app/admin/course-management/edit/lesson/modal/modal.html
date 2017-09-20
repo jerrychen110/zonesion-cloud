@@ -21,12 +21,15 @@
         <div class="col-md-2 control-label"><label>类型</label></div>
         <div class="col-md-9 controls">
           <div class="radios">
-            <label><input type="radio" name="type" value="video" checked="checked"> 视频</label><label><input type="radio" name="type" value="audio"> 音频</label><label><input type="radio" name="type" value="flash"> Flash</label><label><input type="radio" name="type" value="text"> 图文</label><label><input type="radio" name="type" value="ppt"> PPT</label><label><input type="radio" name="type" value="document"> 文档</label>
+            <label ng-repeat="lessonType in vm.lessonTypes">
+              <input type="radio" name="type" value="video"
+              ng-checked="lessonType.checked" ng-click="vm.changeLessonType()"> {{lessonType.name}}
+            </label>
           </div>
         </div>
       </div>
 
-      <div class="form-group for-text-type for-video-type for-audio-type ">
+      <div class="form-group for-text-type for-video-type for-audio-type">
         <div class="col-md-2 control-label"><label for="lesson-title-field">标题</label></div>
         <div class="col-md-9 controls">
           <div class="row">
@@ -40,27 +43,6 @@
       <div class="form-group for-text-type for-video-type for-audio-type ">
         <div class="col-md-2 control-label"><label for="lesson-summary-field">视频</label></div>
         <div class="col-md-9 controls">
-          <!-- <div class="tab-content">
-            <div class="tab-pane active" id="video-chooser-upload-pane">
-              <div class="file-chooser-uploader">
-                <div class="file-chooser-uploader-label">选择你要上传的视频文件：</div>
-                <div class="file-chooser-uploader-control">
-                  <button type="button" class="btn " name="button">上传</button>
-                  <div class="progress" id="video-chooser-progress" style="display:none;" data-widget-cid="widget-75">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                    </div>
-                  </div>
-                  <div class="alert alert-info">
-                    <ul>
-                      <li>支持<strong>mp4</strong>格式的视频文件上传，文件大小不能超过<strong>200.0MB </strong>。MP4文件的视频编码格式，请使用AVC(H264)编码，否则浏览器无法播放。</li>
-                    </ul>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-        </div> -->
         <div flow-init="vm.flowInitOptions" flow-file-added="vm.fileAdded($file, $event, $flow)"
                 flow-error="vm.flowError( $file, $message, $flow )" flow-file-success="vm.flowFileSuccess( $file, $message, $flow )"
                 flow-file-error="vm.flowFileError( $file, $message, $flow )" class="ng-scope">
@@ -73,7 +55,7 @@
                   <span><span >拖拽一个文件到此处.</span></span>
                 </div>
                 <div class="pts pbs" id="datasource-excel-extenstion-error66" ng-class="{'text-danger':vm.extenstionError}">
-                  <span >支持文件格式：</span> {{acceptExtensions}}.
+                  <span >支持文件格式：</span> {{vm.acceptExtensions}}.
                 </div>
                 <div ng-repeat="file in $flow.files" class="transfer-box">
                   <div class="row mbs">
@@ -107,7 +89,7 @@
                     </div>
                   </div>
                   <div class="pts pbs text-danger" ng-show="uploadFileError">
-                    <span translate="list.failure">File upload failed, please check the file format and try to reupload or contact</span><a href="#"><span translate="list.us">us</span></a>.
+                    <span >视屏上传失败！</span>
                   </div>
                 </div>
               </div>

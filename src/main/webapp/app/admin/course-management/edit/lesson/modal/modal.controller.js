@@ -5,9 +5,9 @@
         .module('zonesionCloudApplicationApp')
         .controller('EditLessonModalController', EditLessonModalController);
 
-    EditLessonModalController.$inject = ['$uibModalInstance','options','CourseManagementService','LOAD_TYPES','$log','$localStorage'];
+    EditLessonModalController.$inject = ['$uibModalInstance','options','CourseManagementService','LOAD_TYPES','$log','$localStorage','LESSONTYPES'];
 
-    function EditLessonModalController($uibModalInstance,options,CourseManagementService,LOAD_TYPES,$log,$localStorage) {
+    function EditLessonModalController($uibModalInstance,options,CourseManagementService,LOAD_TYPES,$log,$localStorage,LESSONTYPES) {
       var vm = this;
       vm.clear = clear;
       vm.save = save;
@@ -15,12 +15,16 @@
       vm.title = vm.options.title
       vm.optionName=vm.options.operation==0?'添加':vm.options.operation==1?'修改':'删除';
       vm.optionType=vm.options.type==0?'章':'节';
+      vm.changeLessonType = changeLessonType;
 
       /*
       **文件上传
       */
+      vm.ssss = true;
       vm.selectType = 'mp4';
+      vm.lessonTypes = angular.copy(LESSONTYPES);
       var acceptExtensions = _.find(LOAD_TYPES,{type:vm.selectType}).extensions;
+      vm.acceptExtensions = acceptExtensions.join(', ');
       vm.flowInitOptions = {
         target:'api/file-management/file-upload',
         forceChunkSize:true,
@@ -107,6 +111,18 @@
 
       function onSaveError () {
           // vm.isSaving = false;
+      }
+
+      //切换不同的lesson 类型
+      function  changeLessonType(selectedIndex) {
+
+        _.forEach(vm.lessonTypes,function(typeInfo,index){
+          if(index==selectedIndex){
+            typeInfo.checked = true;
+          }else{
+            typeInfo.checked = false;
+          }
+        })
       }
 
     }
