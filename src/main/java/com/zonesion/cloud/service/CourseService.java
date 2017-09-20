@@ -215,17 +215,6 @@ public class CourseService {
         	
         	//进行最终对象的封装
         	if(chapters.size()>0&&units.size()>0) {
-        		Collections.sort(chapters, new Comparator<ChapterInfoDTO>(){
-   				 public int compare(ChapterInfoDTO o1, ChapterInfoDTO o2) {
-   					 if(o1.getNumber() > o2.getNumber()){
-		                    return 1;
-		                }
-		                if(o1.getNumber() == o2.getNumber()){
-		                    return 0;
-		                }
-		                return -1;
-	   				 }
-	   			});
         		for(ChapterInfoDTO chapter:chapters) {
         			List<UnitInfoDTO> thisUnits = new ArrayList<>();
         			for(UnitInfoDTO unit:units) {
@@ -246,6 +235,17 @@ public class CourseService {
         			});
         			chapter.units=thisUnits;
         		}
+        		Collections.sort(chapters, new Comparator<ChapterInfoDTO>(){
+      				 public int compare(ChapterInfoDTO o1, ChapterInfoDTO o2) {
+      					 if(o1.getNumber() > o2.getNumber()){
+   		                    return 1;
+   		                }
+   		                if(o1.getNumber() == o2.getNumber()){
+   		                    return 0;
+   		                }
+   		                return -1;
+   	   				 }
+   	   			});
         	}
         	courseInfoDTO.setChapters(chapters);
         }
@@ -335,29 +335,37 @@ public class CourseService {
 		return courseLessonNoteService.getCourseNotesByCourseId(id, pageable, courseLessonId);
 	}
 	
-	public Chapter createChapter(Long id, ChapterInDTO chapterInDTO) {
+	public Chapter saveChapter(Long id, ChapterInDTO chapterInDTO) {
 		Chapter chapter = new Chapter();
+		if(chapterInDTO.getId()!=null) {
+			chapter.setId(chapterInDTO.getId());
+		}else {
+			chapter.setNumber(chapterService.getMaxNumberByCourseId(id, chapterInDTO.getChapterType())+1);
+			chapter.setSeq(chapterService.getMaxSeqByCourseId(id, chapterInDTO.getChapterType())+1);
+		}
 		chapter.setChapterType(chapterInDTO.getChapterType());
 		chapter.setTitle(chapterInDTO.getTitle());
 		chapter.setParentId(chapterInDTO.getParentId());
-		chapter.setNumber(chapterService.getMaxNumberByCourseId(id, chapterInDTO.getChapterType())+1);
-		chapter.setSeq(chapterService.getMaxSeqByCourseId(id, chapterInDTO.getChapterType())+1);
 		chapter.setCourse(courseRepository.findOne(id));
 		chapter.setUserId(chapterInDTO.getUserId());
 		return chapterService.save(chapter);
 	}
 	
-	public CourseLesson createLesson(Long id, CourseLessonInDTO courseLessonInDTO) {
+	public CourseLesson saveLesson(Long id, CourseLessonInDTO courseLessonInDTO) {
 		CourseLesson newCourseLesson = new CourseLesson();
+		if(courseLessonInDTO.getId()!=null) {
+			newCourseLesson.setId(courseLessonInDTO.getId());
+		}else {
+			int maxNumber = courseLessonService.getLessonMaxNumberByChapterId(id, courseLessonInDTO.getChapterId());
+			newCourseLesson.setNumber(maxNumber+1);
+			newCourseLesson.setSeq(maxNumber+1);
+		}
 		newCourseLesson.setTitle(courseLessonInDTO.getTitle());
 		newCourseLesson.setSummary(courseLessonInDTO.getSummary());
 		newCourseLesson.setUserId(courseLessonInDTO.getUserId());
 		newCourseLesson.setCourseId(id);
 		newCourseLesson.setChapter(chapterService.findOne(courseLessonInDTO.getChapterId()));
 		newCourseLesson.setCredit(courseLessonInDTO.getCredit());
-		int maxNumber = courseLessonService.getLessonMaxNumberByChapterId(id, courseLessonInDTO.getChapterId());
-		newCourseLesson.setNumber(maxNumber+1);
-		newCourseLesson.setSeq(maxNumber+1);
 		newCourseLesson.setCourseLessonType(courseLessonInDTO.getCourseLessonType());
 		newCourseLesson.setContent(courseLessonInDTO.getContent());
 		newCourseLesson.setMediaName(courseLessonInDTO.getMediaName());

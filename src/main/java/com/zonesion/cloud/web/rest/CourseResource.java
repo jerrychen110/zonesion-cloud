@@ -263,12 +263,39 @@ public class CourseResource {
         if (chapterInDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new chapter cannot already have an ID")).body(null);
         }
-        Chapter result = courseService.createChapter(id, chapterInDTO);
+        Chapter result = courseService.saveChapter(id, chapterInDTO);
         return ResponseEntity.created(new URI("/api/courses/"+id+"/chapters/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
     
+    /**
+     * PUT  /chapters : Update a chapter.
+     *
+     * @param chapter the chapter to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new chapter, or with status 400 (Bad Request) if the chapter has already an ID
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+     */
+    @PutMapping("/courses/{id}/chapters")
+    @Timed
+    public ResponseEntity<Chapter> updateChapter(@PathVariable Long id, @Valid @RequestBody ChapterInDTO chapterInDTO) throws URISyntaxException {
+        log.debug("REST request to update Chapter : {}", chapterInDTO);
+        if (chapterInDTO.getId() == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "id not exists", "ID不能为空！")).body(null);
+        }
+        Chapter result = courseService.saveChapter(id, chapterInDTO);
+        return ResponseEntity.ok()
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, result.getId().toString()))
+                .body(result);
+    }
+    
+    /**
+     * 新增课时
+     * @param id
+     * @param courseLessonInDTO
+     * @return
+     * @throws URISyntaxException
+     */
     @PostMapping("/courses/{id}/lessons")
     @Timed
     public ResponseEntity<CourseLesson> createLesson(@PathVariable Long id, @Valid @RequestBody CourseLessonInDTO courseLessonInDTO) throws URISyntaxException {
@@ -276,9 +303,29 @@ public class CourseResource {
         if (courseLessonInDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new lesson cannot already have an ID")).body(null);
         }
-        CourseLesson result = courseService.createLesson(id, courseLessonInDTO);
+        CourseLesson result = courseService.saveLesson(id, courseLessonInDTO);
     	return ResponseEntity.created(new URI("/api/courses/"+id+"/lessons/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                .body(result);
+    }
+    
+    /**
+     * 修改课时
+     * @param id
+     * @param courseLessonInDTO
+     * @return
+     * @throws URISyntaxException
+     */
+    @PutMapping("/courses/{id}/lessons")
+    @Timed
+    public ResponseEntity<CourseLesson> updateLesson(@PathVariable Long id, @Valid @RequestBody CourseLessonInDTO courseLessonInDTO) throws URISyntaxException {
+    	log.debug("REST request to update Lesson : {}", courseLessonInDTO);
+        if (courseLessonInDTO.getId() == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "id not exists", "ID不能为空！")).body(null);
+        }
+        CourseLesson result = courseService.saveLesson(id, courseLessonInDTO);
+    	return ResponseEntity.ok()
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, result.getId().toString()))
                 .body(result);
     }
     
