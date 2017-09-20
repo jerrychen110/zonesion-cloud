@@ -375,7 +375,7 @@ public class CourseResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/courses/my/favorite-course", method = RequestMethod.GET)
+    @RequestMapping(value = "/courses/my/favorite-courses", method = RequestMethod.GET)
     @Timed
     public ResponseEntity<List<MyCourseDTO>> getMyFavoriteCourses(@ApiParam Pageable pageable){
     	log.debug("query my favorite course");
