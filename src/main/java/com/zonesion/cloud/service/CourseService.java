@@ -14,7 +14,7 @@ import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
 import com.zonesion.cloud.service.dto.CourseLessonNoteDTO;
 import com.zonesion.cloud.service.dto.CourseReviewDTO;
 import com.zonesion.cloud.service.dto.ext.CourseReviewExtDTO;
-import com.zonesion.cloud.service.dto.in.CourseReviewInDTO;
+import com.zonesion.cloud.web.rest.dto.in.CourseReviewInDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

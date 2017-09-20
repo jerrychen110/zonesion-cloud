@@ -1,4 +1,4 @@
-package com.zonesion.cloud.service.dto.in;
+package com.zonesion.cloud.web.rest.dto.in;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
