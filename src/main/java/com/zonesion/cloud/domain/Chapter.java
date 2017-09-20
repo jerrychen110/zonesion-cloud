@@ -52,7 +52,7 @@ public class Chapter extends AbstractAuditingEntity implements Serializable {
 
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "chapter")
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CourseLesson> courseLessons = new HashSet<>();
 
     @ManyToOne

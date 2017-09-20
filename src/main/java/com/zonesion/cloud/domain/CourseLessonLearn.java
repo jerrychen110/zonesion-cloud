@@ -40,7 +40,6 @@ public class CourseLessonLearn extends AbstractAuditingEntity implements Seriali
     private String isComplete;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "course_lesson_id", insertable = false, updatable = false)
     private CourseLesson courseLesson;
 
     public Long getId() {

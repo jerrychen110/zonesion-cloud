@@ -88,12 +88,12 @@ public class CourseLesson extends AbstractAuditingEntity implements Serializable
 
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "courseLesson")
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CourseLessonLearn> courseLessonLearns = new HashSet<>();
 
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "courseLesson")
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CourseLessonNote> courseLessonNotes = new HashSet<>();
 
     @ManyToOne

@@ -88,17 +88,17 @@ public class Course extends AbstractAuditingEntity implements Serializable {
     
     @JsonIgnore
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "course")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Chapter> chapters = new HashSet<>();
     
     @JsonIgnore
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "course")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CourseFavorite> courseFavorites = new HashSet<>();
     
     @JsonIgnore
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "course")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CourseReview> courseReviews = new HashSet<>();
     
     public Long getId() {

@@ -45,7 +45,6 @@ public class CourseReview extends AbstractAuditingEntity implements Serializable
     private String privacy;
 
     @ManyToOne
-//    @JoinColumn(name = "course_id", insertable = false, updatable = false)
     private Course course;
 
     public Long getId() {
