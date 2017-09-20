@@ -29,6 +29,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -37,6 +38,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zonesion.cloud.web.rest.dto.CourseLessonInfoDTO;
 import com.zonesion.cloud.web.rest.dto.LessonInfoDTO;
+import com.zonesion.cloud.web.rest.dto.MyCourseDTO;
 import com.zonesion.cloud.web.rest.dto.UnitInfoDTO;
 import com.zonesion.cloud.web.rest.dto.in.ChapterInDTO;
 import com.zonesion.cloud.web.rest.dto.in.CourseLessonInDTO;
@@ -84,6 +86,9 @@ public class CourseService {
     
     @Inject
     private CourseLessonService courseLessonService;
+    
+    @Inject
+    private UserService userService;
 
     /**
      * Save a course.
@@ -215,17 +220,6 @@ public class CourseService {
         	
         	//进行最终对象的封装
         	if(chapters.size()>0&&units.size()>0) {
-        		Collections.sort(chapters, new Comparator<ChapterInfoDTO>(){
-   				 public int compare(ChapterInfoDTO o1, ChapterInfoDTO o2) {
-   					 if(o1.getNumber() > o2.getNumber()){
-		                    return 1;
-		                }
-		                if(o1.getNumber() == o2.getNumber()){
-		                    return 0;
-		                }
-		                return -1;
-	   				 }
-	   			});
         		for(ChapterInfoDTO chapter:chapters) {
         			List<UnitInfoDTO> thisUnits = new ArrayList<>();
         			for(UnitInfoDTO unit:units) {
@@ -246,6 +240,17 @@ public class CourseService {
         			});
         			chapter.units=thisUnits;
         		}
+        		Collections.sort(chapters, new Comparator<ChapterInfoDTO>(){
+      				 public int compare(ChapterInfoDTO o1, ChapterInfoDTO o2) {
+      					 if(o1.getNumber() > o2.getNumber()){
+   		                    return 1;
+   		                }
+   		                if(o1.getNumber() == o2.getNumber()){
+   		                    return 0;
+   		                }
+   		                return -1;
+   	   				 }
+   	   			});
         	}
         	courseInfoDTO.setChapters(chapters);
         }
@@ -335,29 +340,37 @@ public class CourseService {
 		return courseLessonNoteService.getCourseNotesByCourseId(id, pageable, courseLessonId);
 	}
 	
-	public Chapter createChapter(Long id, ChapterInDTO chapterInDTO) {
+	public Chapter saveChapter(Long id, ChapterInDTO chapterInDTO) {
 		Chapter chapter = new Chapter();
+		if(chapterInDTO.getId()!=null) {
+			chapter.setId(chapterInDTO.getId());
+		}else {
+			chapter.setNumber(chapterService.getMaxNumberByCourseId(id, chapterInDTO.getChapterType())+1);
+			chapter.setSeq(chapterService.getMaxSeqByCourseId(id, chapterInDTO.getChapterType())+1);
+		}
 		chapter.setChapterType(chapterInDTO.getChapterType());
 		chapter.setTitle(chapterInDTO.getTitle());
 		chapter.setParentId(chapterInDTO.getParentId());
-		chapter.setNumber(chapterService.getMaxNumberByCourseId(id, chapterInDTO.getChapterType())+1);
-		chapter.setSeq(chapterService.getMaxSeqByCourseId(id, chapterInDTO.getChapterType())+1);
 		chapter.setCourse(courseRepository.findOne(id));
 		chapter.setUserId(chapterInDTO.getUserId());
 		return chapterService.save(chapter);
 	}
 	
-	public CourseLesson createLesson(Long id, CourseLessonInDTO courseLessonInDTO) {
+	public CourseLesson saveLesson(Long id, CourseLessonInDTO courseLessonInDTO) {
 		CourseLesson newCourseLesson = new CourseLesson();
+		if(courseLessonInDTO.getId()!=null) {
+			newCourseLesson.setId(courseLessonInDTO.getId());
+		}else {
+			int maxNumber = courseLessonService.getLessonMaxNumberByChapterId(id, courseLessonInDTO.getChapterId());
+			newCourseLesson.setNumber(maxNumber+1);
+			newCourseLesson.setSeq(maxNumber+1);
+		}
 		newCourseLesson.setTitle(courseLessonInDTO.getTitle());
 		newCourseLesson.setSummary(courseLessonInDTO.getSummary());
 		newCourseLesson.setUserId(courseLessonInDTO.getUserId());
 		newCourseLesson.setCourseId(id);
 		newCourseLesson.setChapter(chapterService.findOne(courseLessonInDTO.getChapterId()));
 		newCourseLesson.setCredit(courseLessonInDTO.getCredit());
-		int maxNumber = courseLessonService.getLessonMaxNumberByChapterId(id, courseLessonInDTO.getChapterId());
-		newCourseLesson.setNumber(maxNumber+1);
-		newCourseLesson.setSeq(maxNumber+1);
 		newCourseLesson.setCourseLessonType(courseLessonInDTO.getCourseLessonType());
 		newCourseLesson.setContent(courseLessonInDTO.getContent());
 		newCourseLesson.setMediaName(courseLessonInDTO.getMediaName());
@@ -368,5 +381,75 @@ public class CourseService {
 		newCourseLesson.setLearnedNum(0);
 		newCourseLesson.setViewedNum(0);
 		return courseLessonService.save(newCourseLesson);
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Page<MyCourseDTO> getMyLearningCourses(Pageable pageable) {
+		long currentUserId = userService.getCurrentUserId();
+		StringBuilder sb = new StringBuilder();
+		sb.append("select distinct tc.id,tc.title,tc.sub_title,tc.lesson_num,tc.cover_picture,tc.introduction,")
+		.append("tc.goals,tc.tags,tclln.learned_num,tu.id user_id,tu.login,tu.avatar")
+		.append(" from t_course tc")
+		.append(" left join t_course_lesson_learn tcll ON tc.id = tcll.course_id")
+		.append(" left join t_user tu ON tcll.user_id = tu.id")
+		.append(" left join (select course_id,count(distinct user_id) learned_num from t_course_lesson_learn group by course_id order by course_id) tclln on tc.id=tclln.course_id")
+		.append(" where tu.id=").append(currentUserId).append(" order by tc.created_date desc");
+		
+		List<MyCourseDTO> myCourses = jdbcTemplate.query(sb.toString(), new RowMapper(){
+            @Override
+            public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+            	MyCourseDTO myCourseDTO  = new MyCourseDTO();
+            	myCourseDTO.setId(rs.getLong("id"));
+            	myCourseDTO.setTitle(rs.getString("title")!=null?rs.getString("title"):"");
+            	myCourseDTO.setSubTitle(rs.getString("sub_title")!=null?rs.getString("sub_title"):"");
+            	myCourseDTO.setLessonNum(rs.getInt("lesson_num")!=0?rs.getInt("lesson_num"):0);
+            	myCourseDTO.setCoverPicture(rs.getString("cover_picture")!=null?rs.getString("cover_picture"):"");
+            	myCourseDTO.setIntroduction(rs.getString("introduction")!=null?rs.getString("introduction"):"");
+            	myCourseDTO.setGoals(rs.getString("goals")!=null?rs.getString("goals"):"");
+            	myCourseDTO.setTags(rs.getString("tags")!=null?rs.getString("tags"):"");
+            	myCourseDTO.setLearnedNum(rs.getInt("learned_num")!=0?rs.getInt("learned_num"):0);
+            	myCourseDTO.setUserId(rs.getLong("user_id"));
+            	myCourseDTO.setLogin(rs.getString("login")!=null?rs.getString("login"):"");
+            	myCourseDTO.setAvatar(rs.getString("avatar")!=null?rs.getString("avatar"):"");
+                return myCourseDTO;
+            }
+		});
+		Page<MyCourseDTO> result = new PageImpl<>(myCourses, pageable, myCourses.size());
+    	return result;
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Page<MyCourseDTO> getMyFavoriteCourses(Pageable pageable) {
+		long currentUserId = userService.getCurrentUserId();
+		StringBuilder sb = new StringBuilder();
+		sb.append("select distinct tc.id,tc.title,tc.sub_title,tc.lesson_num,tc.cover_picture,tc.introduction,")
+		.append("tc.goals,tc.tags,tclln.learned_num,tu.id user_id,tu.login,tu.avatar")
+		.append(" from t_course tc")
+		.append(" left join t_course_favorite tcf ON tc.id = tcf.course_id")
+		.append(" left join t_user tu ON tcf.user_id = tu.id")
+		.append(" left join (select course_id,count(distinct user_id) learned_num from t_course_lesson_learn group by course_id order by course_id) tclln on tc.id=tclln.course_id")
+		.append(" where tu.id=").append(currentUserId).append(" order by tc.created_date desc");
+		
+		List<MyCourseDTO> myCourses = jdbcTemplate.query(sb.toString(), new RowMapper(){
+            @Override
+            public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+            	MyCourseDTO myCourseDTO  = new MyCourseDTO();
+            	myCourseDTO.setId(rs.getLong("id"));
+            	myCourseDTO.setTitle(rs.getString("title")!=null?rs.getString("title"):"");
+            	myCourseDTO.setSubTitle(rs.getString("sub_title")!=null?rs.getString("sub_title"):"");
+            	myCourseDTO.setLessonNum(rs.getInt("lesson_num")!=0?rs.getInt("lesson_num"):0);
+            	myCourseDTO.setCoverPicture(rs.getString("cover_picture")!=null?rs.getString("cover_picture"):"");
+            	myCourseDTO.setIntroduction(rs.getString("introduction")!=null?rs.getString("introduction"):"");
+            	myCourseDTO.setGoals(rs.getString("goals")!=null?rs.getString("goals"):"");
+            	myCourseDTO.setTags(rs.getString("tags")!=null?rs.getString("tags"):"");
+            	myCourseDTO.setLearnedNum(rs.getInt("learned_num")!=0?rs.getInt("learned_num"):0);
+            	myCourseDTO.setUserId(rs.getLong("user_id"));
+            	myCourseDTO.setLogin(rs.getString("login")!=null?rs.getString("login"):"");
+            	myCourseDTO.setAvatar(rs.getString("avatar")!=null?rs.getString("avatar"):"");
+                return myCourseDTO;
+            }
+		});
+		Page<MyCourseDTO> result = new PageImpl<>(myCourses, pageable, myCourses.size());
+    	return result;
 	}
 }
