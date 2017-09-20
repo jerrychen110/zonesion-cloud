@@ -81,13 +81,13 @@ public class ChapterService {
     	StringBuilder sb = new StringBuilder();
     	sb.append("select max(number) from t_chapter where course_id=")
     	.append(id).append(" and chapter_type='").append(chapterType).append("'");
-    	return jdbcTemplate.queryForObject(sb.toString(), Integer.class);
+    	return jdbcTemplate.queryForObject(sb.toString(), Integer.class)!=null?jdbcTemplate.queryForObject(sb.toString(), Integer.class):0;
     }
     
     public int getMaxSeqByCourseId(Long id, String chapterType) {
     	StringBuilder sb = new StringBuilder();
     	sb.append("select max(seq) from t_chapter where course_id=")
     	.append(id).append(" and chapter_type='").append(chapterType).append("'");
-    	return jdbcTemplate.queryForObject(sb.toString(), Integer.class);
+    	return jdbcTemplate.queryForObject(sb.toString(), Integer.class)!=null?jdbcTemplate.queryForObject(sb.toString(), Integer.class):0;
     }
 }
