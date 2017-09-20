@@ -225,8 +225,8 @@
                 }
             },
             resolve: {
-                entity: ['Course', '$stateParams', function (Course, $stateParams) {
-                    return Course.get({id: $stateParams.id});
+                entity: ['CourseService', '$stateParams', function (CourseService, $stateParams) {
+                    return CourseService.getCourseLessons({id: $stateParams.id});
                 }]
             }
         })

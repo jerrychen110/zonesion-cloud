@@ -5,3 +5,14 @@
     text-align: left;
   }
 }
+.lesson-list {
+  .item-chapter{
+    position: relative;
+  }
+  .item-lesson{
+    position: relative;
+  }
+  .item-actions{
+    top:0px;
+  }
+}

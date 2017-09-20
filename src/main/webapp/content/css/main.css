@@ -491,6 +491,15 @@ body {
   .filter-content .multiSelect > button {
     text-align: left; }
 
+.lesson-list .item-chapter {
+  position: relative; }
+
+.lesson-list .item-lesson {
+  position: relative; }
+
+.lesson-list .item-actions {
+  top: 0px; }
+
 body {
   background: #fafafa;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
