@@ -19,7 +19,8 @@
             'angular-loading-bar',
             'ngJcrop',
             'ngCkeditor',
-            'isteven-multi-select'
+            'isteven-multi-select',
+            'flow'
         ])
         .run(run);
 

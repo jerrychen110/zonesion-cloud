@@ -33,6 +33,7 @@
               controller: 'EditLessonModalController',
               controllerAs: 'vm',
               backdrop: 'static',
+              size:type==2?'lg':'',
               resolve: {
                   options:  {
                     type:type,// 0章 1节 2课时

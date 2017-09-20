@@ -30,6 +30,8 @@ module.exports = function (config) {
             'src/main/webapp/bower_components/jcrop/js/jquery.Jcrop.js',
             'src/main/webapp/bower_components/ckeditor/ckeditor.js',
             'src/main/webapp/bower_components/moment/moment.js',
+            'src/main/webapp/bower_components/flow.js/dist/flow.js',
+            'src/main/webapp/bower_components/uuid.js/src/uuid.js',
             'src/main/webapp/bower_components/angular/angular.js',
             'src/main/webapp/bower_components/angular-aria/angular-aria.js',
             'src/main/webapp/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
@@ -48,6 +50,7 @@ module.exports = function (config) {
             'src/main/webapp/bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js',
             'src/main/webapp/bower_components/ng-file-upload/ng-file-upload.js',
             'src/main/webapp/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
+            'src/main/webapp/bower_components/ng-flow/dist/ng-flow.js',
             'src/main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'src/main/webapp/app/app.module.js',

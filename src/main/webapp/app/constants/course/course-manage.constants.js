@@ -19,5 +19,15 @@
           {title:'我的笔记',active:false}
         ])
         .constant('COURSETYPETABS',[{name:'普通课程',active:true,courseType:0},{name:"专业课程",active:false,courseType:1}])
+        .constant('LOAD_TYPES',[{
+          'type':'mp4',
+          'label':'mp4',
+          'extensions':['mp4']
+        },
+        {
+          'type':'mp3',
+          'label':'mp3',
+          'extensions':['mp3']
+        }])
 ;
 })();
