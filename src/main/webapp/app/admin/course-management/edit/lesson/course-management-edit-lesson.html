@@ -31,7 +31,7 @@
 							</button>
 						</div>
 					</div>
-					<ul class=""  ng-repeat="unit in  chapter.unit track by $index" >
+					<ul class=""  ng-repeat="unit in  chapter.units track by $index" >
 						<li>
 							<div class="item-chapter item-chapter-unit">
 								<div class="unit-content mlm">
@@ -39,7 +39,7 @@
 								</div>
 								<div class="item-actions prs">
 									<div class="btn-group">
-										<button class="btn btn-link dropdown-toggle" >
+										<button class="btn btn-link dropdown-toggle" ng-click="vm.openModal(2,0,chapter.id,chapter.title)">
 											<i class="glyphicon glyphicon-plus-sign"></i>
 										</button>
 									</div>
