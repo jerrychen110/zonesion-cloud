@@ -143,7 +143,7 @@ public class FileManageMentService {
 	 * @return
 	 */
 	public String saveDataFile(String fileName, String folder, String dataFileType) throws IOException {
-		log.debug("upload datafile!");
+		log.debug("upload file!");
 		String destFileName = fileName.substring(fileName.lastIndexOf(File.separator) + 1);
 		FileObject vfsFile = null;
 		String destFilePath = Paths.get(FileUtil.LOCAL_PRIVATE_FOLDER_PATH, folder, destFileName).toString();

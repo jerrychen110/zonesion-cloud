@@ -82,6 +82,7 @@ public class FileManagementController {
 		int resumableChunkNumber = NumberUtils.toInt(request.getParameter("flowChunkNumber"), -1);
 		ResumableInfo info = fileManageMentService.getResumableInfo(request);
 		fileManageMentService.saveResumableFile(info, request.getFile("file").getInputStream(), request.getContentLength(), resumableChunkNumber);
+		info.getUploadedChunks().add(new ResumableInfo.ResumableChunkNumber(resumableChunkNumber));
 		if (info.checkIfUploadFinished()) {
 			String fileTempUrl = info.getResumableFilePath();
 			String fileName = info.getResumableFilename();
