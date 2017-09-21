@@ -118,8 +118,8 @@
       <div class="form-group for-video-type for-audio-type" id="lesson-length-form-group" ng-if="vm.selectTypeInfo.type=='mp4'||vm.selectTypeInfo.type=='mp3'">
           <div class="col-md-2 control-label for-video-type"><label>{{vm.selectTypeInfo.timeTitle}}</label></div>
         <div class="col-md-9 controls">
-          <input class="form-control width-input width-input-small" ng-minlength="1" ng-maxlength="200" ng-pattern="/^[a-z0-9]*$/" required>分
-          <input class="form-control width-input width-input-small" ng-minlength="1" ng-maxlength="60" ng-pattern="/^[a-z0-9]*$/" required>秒
+          <input class="form-control width-input width-input-small" ng-model="vm.lessonInfo.min">分
+          <input class="form-control width-input width-input-small" ng-model="vm.lessonInfo.sec">秒
           <div class="help-block">时长必须为整数。</div>
         </div>
       </div>

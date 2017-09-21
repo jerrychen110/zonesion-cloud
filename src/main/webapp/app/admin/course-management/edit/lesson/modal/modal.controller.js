@@ -120,13 +120,14 @@
           }
         }else{
           var chapterId = vm.options.type==0?vm.options.parentId:vm.options.currentId;
+          var mediaLength= vm.lessonInfo.min*60+vm.lessonInfo.sec;
           params = {
             chapterId: chapterId,
             content: vm.lessonInfo.content,
             courseId: vm.options.courseId,
             courseLessonType: vm.selectTypeInfo.LessonType,//
             credit: 0,
-            mediaLength: 136,
+            mediaLength: mediaLength,
             mediaName: vm.lessonInfo.mediaName,
             mediaSize: vm.lessonInfo.mediaSize,
             mediaSource: 0,
