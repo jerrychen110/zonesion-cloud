@@ -365,7 +365,7 @@ public class CourseService {
 			newCourseLesson.setNumber(courseLessonInDTO.getNumber());
 			newCourseLesson.setSeq(courseLessonInDTO.getSeq());
 		}else {
-			int maxNumber = courseLessonService.getLessonMaxNumberByChapterId(id, courseLessonInDTO.getChapterId());
+			int maxNumber = courseLessonService.getLessonMaxNumberByCourseId(id);
 			newCourseLesson.setNumber(maxNumber+1);
 			newCourseLesson.setSeq(maxNumber+1);
 		}
