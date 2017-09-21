@@ -52,7 +52,7 @@
         <div class="col-md-9 controls">
           <div class="file-chooser-bar" ng-if="!vm.showUploadFile">
                 <span data-role="placeholder">{{vm.lessonInfo.mediaName}}</span>
-                <button class="btn btn-link btn-sm" type="button" ng-click=""><i class="glyphicon glyphicon-edit"></i> 编辑</button>
+                <button class="btn btn-link btn-sm" type="button"  ng-click="vm.showUploadFile=true"><i class="glyphicon glyphicon-edit"></i> 编辑</button>
 
               </div>
           <div ng-if="vm.showUploadFile" flow-init="vm.flowInitOptions" flow-file-added="vm.fileAdded($file, $event, $flow)"
