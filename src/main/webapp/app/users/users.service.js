@@ -22,7 +22,8 @@
                 }
             },
             'getCourseLearning':{method:'GET',isArray:true,url:'/api/courses/my/learning-courses'},
-            'getCourseFavorite':{method:'GET',isArray:true,url:'/api/courses/my/favorite-courses'}
+            'getCourseFavorite':{method:'GET',isArray:true,url:'/api/courses/my/favorite-courses'},
+            'getCourseAccount':{method:'GET',isArray:false,url:'/api/account'}
         });
     }
 })();

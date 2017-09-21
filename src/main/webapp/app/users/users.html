@@ -1,22 +1,22 @@
 <div class="es-wrap">
-	<div id="content-container" class="container">
+	<div id="content-container">
 
 		<div class="es-section userpage-header">
 			<div class="media">
 				<div class="media-left">
 					<div class="avatar-bg">
 						<img class="avatar-lg"
-							ng-src="{{avatar}}">
+							ng-src="{{vm.userAccount.avatar}}">
 						<span class="icon-user-status icon-md"><i
 							class="es-icon es-icon-school"></i></span>
 					</div>
 				</div>
 				<div class="media-body">
 					<h2>
-						{{name}} <small>{{school}}</small>
+						{{vm.userAccount.name}} <small>{{vm.userAccount.login}}</small>
 					</h2>
 					<div class="about">
-						<p>{{about}}</p>
+						<p>{{vm.userAccount.school}}</p>
 					</div>
 				</div>
 			</div>
@@ -28,7 +28,7 @@
 				<li ng-class="{'active':vm.activeTab==2}"><a ng-click='vm.activeTab=2;vm.getCourseFavorite()'>收藏课程</a></li>
 			</ul>
 
-			<div ng-show='vm.activeTab==1'>
+			<div ng-show='vm.activeTab==1' class="clearfix">
                 <ul class="course-wide-list" ng-repeat="userLearning in vm.userLearning">
                     <li class="course-item clearfix ">
                         <a class="course-picture-link" href="/course/1">
@@ -61,9 +61,15 @@
                         </div>
                     </li>
                 </ul>
+                <nav class="pull-right">
+                    <uib-pagination total-items="vm.totalCount" ng-model="vm.currentPage" items-per-page="vm.pageSize"
+                                    first-text="首页"
+                                    previous-text="上一页" next-text="下一页" last-text="尾页"
+                                    boundary-links="true" boundary-link-numbers="true" ng-change="vm.getCourseLearning()"></uib-pagination>
+                </nav>
                 <div ng-show="" class="empty">无在学课程</div>
 			</div>
-			<div ng-show='vm.activeTab==2'>
+			<div ng-show='vm.activeTab==2' class="clearfix">
                 <ul class="course-wide-list" ng-repeat="userLearning in vm.userLearning">
                     <li class="course-item clearfix ">
                         <a class="course-picture-link" ng-href="course/{{userLearning.id}}">
@@ -95,6 +101,12 @@
                         </div>
                     </li>
                 </ul>
+                <nav class="pull-right">
+                    <uib-pagination total-items="vm.totalCount" ng-model="vm.currentPage" items-per-page="vm.pageSize"
+                                    first-text="首页"
+                                    previous-text="上一页" next-text="下一页" last-text="尾页"
+                                    boundary-links="true" boundary-link-numbers="true" ng-change="vm.getCourseLearning()"></uib-pagination>
+                </nav>
                 <div ng-show="" class="empty">收藏课程</div>
 			</div>
 

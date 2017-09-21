@@ -10,28 +10,39 @@
     function UsersController($scope, $rootScope, $stateParams, UsersService,$state) {
 
         var vm = this;
-        $scope.avatar = '';
-        $scope.name = 'admin';
-        $scope.school = '武汉理工大学';
-        $scope.about = '武汉理工大学武汉理工大学武汉理工大学武汉理工大学武汉理工大学';
 
         vm.activeTab = 1;
         vm.blank = false;
-
         vm.currentPage = 1;
         vm.pageSize = 2;
         vm.getCourseLearning = getCourseLearning;
         vm.getCourseFavorite = getCourseFavorite;
+
+        getCourseAccount();
         getCourseLearning();
+
+        function getCourseAccount() {
+            UsersService.getCourseAccount(onSuccess, onError);
+
+            function onSuccess(data, headers) {
+                console.log(data);
+                vm.userAccount = data;
+            }
+            function onError(error) {
+                //AlertService.error(error.data.message);
+            }
+        }
 
         function getCourseLearning () {
             UsersService.getCourseLearning({
                 apge: vm.currentPage,
-                size: vm.pageSize
+                size: vm.pageSize,
+                filter: null,
+                query: vm.query
             }, onSuccess, onError);
 
             function onSuccess(data, headers) {
-                console.log(data);
+                //console.log(data);
                 vm.blank = true;
                 vm.userLearning = data;
             }
@@ -47,7 +58,7 @@
             }, onSuccess, onError);
 
             function onSuccess(data, headers) {
-                console.log(data);
+                //console.log(data);
                 vm.blank = true;
                 vm.userLearning = data;
             }
