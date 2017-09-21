@@ -25,7 +25,9 @@
             'addChapter':{method:'POST',isArray:false,params:{courseId:'@courseId'},url:'/api/courses/:courseId/chapters'},
             'updateChapter':{method:'PUT',isArray:false,params:{courseId:'@courseId'},url:'/api/courses/:courseId/chapters'},
             'addLesson':{method:'POST',isArray:false,params:{courseId:'@courseId'},url:'/api/courses/:courseId/lessons'},
-            'updateLesson':{method:'PUT',isArray:false,params:{courseId:'@courseId'},url:'/api/courses/:courseId/lessons'}
+            'updateLesson':{method:'PUT',isArray:false,params:{courseId:'@courseId'},url:'/api/courses/:courseId/lessons'},
+            'getAttachementList':{method:'PUT',isArray:false,params:{id:'@id'},url:'api/course-lessons/:id/lesson-attachments'}
+
         });
     }
 })();
