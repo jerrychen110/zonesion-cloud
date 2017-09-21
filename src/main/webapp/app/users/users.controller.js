@@ -5,46 +5,51 @@
         .module('zonesionCloudApplicationApp')
         .controller('UsersController', UsersController);
 
-    UsersController.$inject = ['$scope', '$rootScope', '$stateParams', 'UsersService', 'UsersFavoritedService'];
+    UsersController.$inject = ['$scope', '$rootScope', '$stateParams', 'UsersService','$state'];
 
-    function UsersController($scope, $rootScope, $stateParams, UsersService, UsersFavoritedService) {
+    function UsersController($scope, $rootScope, $stateParams, UsersService,$state) {
+
         var vm = this;
-        vm.countUser = $stateParams.countUser
-        loadLearnCourse();
-        loadFavoritedCourse();
+        $scope.avatar = '';
+        $scope.name = 'admin';
+        $scope.school = '武汉理工大学';
+        $scope.about = '武汉理工大学武汉理工大学武汉理工大学武汉理工大学武汉理工大学';
 
-        function loadLearnCourse () {
-        	UsersService.query({
-        		id: $stateParams.id
-                //size: vm.itemsPerPage
-                //sort: sort()
+        vm.activeTab = 1;
+        vm.blank = false;
+
+        vm.currentPage = 1;
+        vm.pageSize = 2;
+        vm.getCourseLearning = getCourseLearning;
+        vm.getCourseFavorite = getCourseFavorite;
+        getCourseLearning();
+
+        function getCourseLearning () {
+            UsersService.getCourseLearning({
+                apge: vm.currentPage,
+                size: vm.pageSize
             }, onSuccess, onError);
 
             function onSuccess(data, headers) {
-                //vm.links = ParseLinks.parse(headers('link'));
-                vm.totalItems = headers('X-Total-Count');
-                vm.queryCount = vm.totalItems;
-                vm.userInfo = data[0];
-                vm.userInfos = data;
                 console.log(data);
+                vm.blank = true;
+                vm.userLearning = data;
             }
             function onError(error) {
                 //AlertService.error(error.data.message);
             }
         }
-        
-        function loadFavoritedCourse () {
-        	UsersFavoritedService.query({
-        		id: $stateParams.id
-                //size: vm.itemsPerPage
-                //sort: sort()
+
+        function getCourseFavorite () {
+            UsersService.getCourseFavorite({
+                apge: vm.currentPage,
+                size: vm.pageSize
             }, onSuccess, onError);
 
             function onSuccess(data, headers) {
-            	
-            	vm.userFavorite = data[0];
-                vm.userFavorites = data;
-                console.log(vm.userFavorites);
+                console.log(data);
+                vm.blank = true;
+                vm.userLearning = data;
             }
             function onError(error) {
                 //AlertService.error(error.data.message);

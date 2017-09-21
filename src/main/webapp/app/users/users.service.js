@@ -6,7 +6,7 @@
         .factory('UsersService', UsersService);
 
     UsersService.$inject = ['$resource'];
-    
+
     function UsersService ($resource) {
         var resourceUrl =  'api/user/:id';
 
@@ -20,7 +20,9 @@
                     }
                     return data;
                 }
-            }
+            },
+            'getCourseLearning':{method:'GET',isArray:true,url:'/api/courses/my/learning-courses'},
+            'getCourseFavorite':{method:'GET',isArray:true,url:'/api/courses/my/favorite-courses'}
         });
     }
 })();
