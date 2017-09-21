@@ -5,25 +5,28 @@
         .module('zonesionCloudApplicationApp')
         .controller('EditLessonModalController', EditLessonModalController);
 
-    EditLessonModalController.$inject = ['$uibModalInstance','options','CourseManagementService','LOAD_TYPES','$log','$localStorage','LESSONTYPES'];
+    EditLessonModalController.$inject = ['$uibModalInstance','options','CourseManagementService','LOAD_TYPES',
+    '$log','$localStorage','LESSONTYPES','EDITOROPTIONS'];
 
-    function EditLessonModalController($uibModalInstance,options,CourseManagementService,LOAD_TYPES,$log,$localStorage,LESSONTYPES) {
+    function EditLessonModalController($uibModalInstance,options,CourseManagementService,LOAD_TYPES,
+      $log,$localStorage,LESSONTYPES,EDITOROPTIONS) {
       var vm = this;
       vm.clear = clear;
       vm.save = save;
       vm.options =angular.copy(options);
       vm.title = vm.options.title
       vm.optionName=vm.options.operation==0?'添加':vm.options.operation==1?'修改':'删除';
-      vm.optionType=vm.options.type==0?'章':'节';
+      vm.optionType=vm.options.type==0?'章':vm.options.type==1?'节':'课时';
       vm.changeLessonType = changeLessonType;
-
+      vm.editorOptions = EDITOROPTIONS;
       /*
       **文件上传
       */
-      vm.ssss = true;
-      vm.selectType = 'mp4';
+
       vm.lessonTypes = angular.copy(LESSONTYPES);
-      var acceptExtensions = _.find(LOAD_TYPES,{type:vm.selectType}).extensions;
+
+      vm.selectTypeInfo = _.find(vm.lessonTypes,{checked:true});
+      var acceptExtensions = _.find(LOAD_TYPES,{type:vm.selectTypeInfo.type}).extensions;
       vm.acceptExtensions = acceptExtensions.join(', ');
       vm.flowInitOptions = {
         target:'api/file-management/file-upload',
@@ -62,6 +65,9 @@
           vm.uploadFileCodeError = true;
           return;
         }
+        vm.lessonInfo.mediaUri = $message;
+        vm.lessonInfo.mediaName = $file.file.name;
+        vm.lessonInfo.mediaSize = $file.file.size;
         vm.uploadFileError = false;
       };
 
@@ -81,16 +87,14 @@
 
       function save () {
           vm.isSaving = true;
-          var params = {
-            chapterType:vm.options.type,
-            title:vm.title,
-            courseId:vm.options.courseId,
-            parentId:vm.options.chapterId?vm.options.chapterId:0,
-            userId:vm.options.userId
-          }
+          var params = getParams();
           switch (vm.options.operation) {
             case 0:
-              CourseManagementService.addChapter(params,onSaveSuccess,onSaveError)
+              if(vm.options.type==2){
+                CourseManagementService.addLesson(params,onSaveSuccess,onSaveError);
+              }else{
+                CourseManagementService.addChapter(params,onSaveSuccess,onSaveError);
+              }
               break;
             case 1:
 
@@ -101,6 +105,38 @@
             default:
 
           }
+      }
+
+      //get params function
+      function getParams(){
+        var params;
+        if(vm.options.type!=2){
+           params = {
+            chapterType:vm.options.type,
+            title:vm.title,
+            courseId:vm.options.courseId,
+            parentId:vm.options.parentId?vm.options.parentId:'0',
+            userId:vm.options.userId
+          }
+        }else{
+          var chapterId = vm.options.type==0?vm.options.parentId:vm.options.currentId;
+          params = {
+            chapterId: chapterId,
+            content: vm.lessonInfo.content,
+            courseId: vm.options.courseId,
+            courseLessonType: vm.selectTypeInfo.LessonType,//
+            credit: 0,
+            mediaLength: 136,
+            mediaName: vm.lessonInfo.mediaName,
+            mediaSize: vm.lessonInfo.mediaSize,
+            mediaSource: 0,
+            mediaUri: vm.lessonInfo.mediaUri,
+            summary: vm.lessonInfo.summary,
+            title: vm.lessonInfo.title,
+            userId: vm.options.userId
+          }
+        }
+        return params;
       }
 
       function onSaveSuccess (result) {
@@ -119,6 +155,9 @@
         _.forEach(vm.lessonTypes,function(typeInfo,index){
           if(index==selectedIndex){
             typeInfo.checked = true;
+            vm.selectTypeInfo = typeInfo;
+            acceptExtensions = _.find(LOAD_TYPES,{type:vm.selectTypeInfo.type}).extensions;
+            vm.acceptExtensions = acceptExtensions.join(', ');
           }else{
             typeInfo.checked = false;
           }

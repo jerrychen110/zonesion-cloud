@@ -27,6 +27,10 @@ public class CourseLessonInDTO {
 	
 	@NotNull
     private Integer credit;
+	
+	private Integer number;
+	
+	private Integer seq;
 
 	private String mediaName;
 	
@@ -43,8 +47,8 @@ public class CourseLessonInDTO {
     }
 
 	public CourseLessonInDTO(Long id, Long userId, Long courseId, Long chapterId, String courseLessonType, String title,
-			String summary, String content, Integer credit, String mediaName, Integer mediaSize, Integer mediaLength,
-			String mediaSource, String mediaUri) {
+			String summary, String content, Integer credit, Integer number, Integer seq, String mediaName, Integer mediaSize,
+			Integer mediaLength, String mediaSource, String mediaUri) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -55,6 +59,8 @@ public class CourseLessonInDTO {
 		this.summary = summary;
 		this.content = content;
 		this.credit = credit;
+		this.number = number;
+		this.seq = seq;
 		this.mediaName = mediaName;
 		this.mediaSize = mediaSize;
 		this.mediaLength = mediaLength;
@@ -132,6 +138,22 @@ public class CourseLessonInDTO {
 
 	public void setCredit(Integer credit) {
 		this.credit = credit;
+	}
+
+	public Integer getNumber() {
+		return number;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
+	public Integer getSeq() {
+		return seq;
+	}
+
+	public void setSeq(Integer seq) {
+		this.seq = seq;
 	}
 
 	public String getMediaName() {

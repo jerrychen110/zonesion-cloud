@@ -41,7 +41,7 @@ public class CacheConfiguration {
             cm.createCache(com.zonesion.cloud.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.zonesion.cloud.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.zonesion.cloud.domain.Course.class.getName(), jcacheConfiguration);
-            cm.createCache(com.zonesion.cloud.domain.Course.class.getName() + ".courseFavorites", jcacheConfiguration);
+//            cm.createCache(com.zonesion.cloud.domain.Course.class.getName() + ".courseFavorites", jcacheConfiguration);
 //            cm.createCache(com.zonesion.cloud.domain.Course.class.getName() + ".chapters", jcacheConfiguration);
 //            cm.createCache(com.zonesion.cloud.domain.Course.class.getName() + ".courseReviews", jcacheConfiguration);
             cm.createCache(com.zonesion.cloud.domain.CourseFavorite.class.getName(), jcacheConfiguration);

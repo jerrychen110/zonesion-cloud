@@ -137,11 +137,9 @@ public class CourseLessonService {
 		return courseLessonNoteRepository.save(courseLessonNote);
 	}
 	
-	public int getLessonMaxNumberByChapterId(Long courseId, Long chapterId) {
+	public int getLessonMaxNumberByCourseId(Long courseId) {
 		StringBuilder sb = new StringBuilder();
-    	sb.append("select max(number) from t_course_lesson where course_id=")
-    	.append(courseId).append(" and chapter_id='").append(chapterId).append("'");
-    	
+    	sb.append("select max(number) from t_course_lesson where course_id=").append(courseId);
     	return jdbcTemplate.queryForObject(sb.toString(), Integer.class)!=null?jdbcTemplate.queryForObject(sb.toString(), Integer.class):0;
 	}
 }

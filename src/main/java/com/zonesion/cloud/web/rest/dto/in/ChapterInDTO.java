@@ -20,12 +20,16 @@ public class ChapterInDTO {
 	
 	@NotNull
 	private Long parentId;
+	
+	private Integer number;
+	
+	private Integer seq;
 
 	public ChapterInDTO() {
 		
 	}
 
-	public ChapterInDTO(Long id, String chapterType, String title, Long userId, Long courseId, Long parentId) {
+	public ChapterInDTO(Long id, String chapterType, String title, Long userId, Long courseId, Long parentId, Integer number, Integer seq) {
 		super();
 		this.id = id;
 		this.chapterType = chapterType;
@@ -33,6 +37,8 @@ public class ChapterInDTO {
 		this.userId = userId;
 		this.courseId = courseId;
 		this.parentId = parentId;
+		this.number = number;
+		this.seq = seq;
 	}
 
 	public Long getId() {
@@ -81,6 +87,22 @@ public class ChapterInDTO {
 
 	public void setParentId(Long parentId) {
 		this.parentId = parentId;
+	}
+
+	public Integer getNumber() {
+		return number;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
+	public Integer getSeq() {
+		return seq;
+	}
+
+	public void setSeq(Integer seq) {
+		this.seq = seq;
 	}
 	
 }

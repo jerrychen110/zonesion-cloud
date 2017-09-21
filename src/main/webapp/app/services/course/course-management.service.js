@@ -22,7 +22,8 @@
                 }
             },
             'getMajors':{method:'GET',isArray:true,url:'api/majors/order'},
-            'addChapter':{method:'POST',isArray:false,params:{courseId:'@courseId'},url:'/api/courses/:courseId/chapters'}
+            'addChapter':{method:'POST',isArray:false,params:{courseId:'@courseId'},url:'/api/courses/:courseId/chapters'},
+            'addLesson':{method:'POST',isArray:false,params:{courseId:'@courseId'},url:'/api/courses/:courseId/lessons'}
         });
     }
 })();

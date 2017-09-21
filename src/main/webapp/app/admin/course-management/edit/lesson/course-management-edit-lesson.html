@@ -19,14 +19,14 @@
 						</div>
 						<div class="item-actions prs">
 							<div class="btn-group">
-								<button class="btn btn-link dropdown-toggle" ng-click="vm.openModal(1,0,chapter.id)">
+								<button class="btn btn-link dropdown-toggle" ng-click="vm.openModal(1,0,chapter.id,chapter.id)">
 									<i class="glyphicon glyphicon-plus-sign"></i>
 								</button>
 							</div>
-							<button class="btn btn-link" title="编辑" ng-click="vm.openModal(0,1,chapter.id,chapter.title)">
+							<button class="btn btn-link" title="编辑" ng-click="vm.openModal(0,1,chapter.id,chapter.id,chapter.title)">
 								<i class="glyphicon glyphicon-edit"></i>
 							</button>
-							<button class="btn btn-link delete-chapter-btn" ng-click="vm.openModal(0,2,chapter.id,chapter.title)">
+							<button class="btn btn-link delete-chapter-btn" ng-click="vm.openModal(0,2,chapter.id,chapter.id,chapter.title)">
 								<i class="glyphicon glyphicon-trash"></i>
 							</button>
 						</div>
@@ -39,7 +39,7 @@
 								</div>
 								<div class="item-actions prs">
 									<div class="btn-group">
-										<button class="btn btn-link dropdown-toggle" ng-click="vm.openModal(2,0,chapter.id,chapter.title)">
+										<button class="btn btn-link dropdown-toggle" ng-click="vm.openModal(2,0,chapter.id,unit.id,chapter.title)">
 											<i class="glyphicon glyphicon-plus-sign"></i>
 										</button>
 									</div>

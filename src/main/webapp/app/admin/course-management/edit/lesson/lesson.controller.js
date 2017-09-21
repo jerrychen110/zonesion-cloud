@@ -27,7 +27,7 @@
           vm.currentAccount =  $rootScope.accountInfo;
         });
         //
-        function openModal(type,operation,chapterId,title){
+        function openModal(type,operation,parentId,currentId,title){
           $uibModal.open({
               templateUrl: 'app/admin/course-management/edit/lesson/modal/modal.html',
               controller: 'EditLessonModalController',
@@ -38,9 +38,10 @@
                   options:  {
                     type:type,// 0章 1节 2课时
                     operation:operation,// 0 添加 1 修改 2删除
-                    courseId:$state.params.id,
-                    userId:vm.currentAccount.id,
-                    chapterId:chapterId,
+                    courseId:$state.params.id,//课程id
+                    userId:vm.currentAccount.id,//userid
+                    parentId:parentId,
+                    currentId:currentId,
                     title:title?title:''
                   }
               }

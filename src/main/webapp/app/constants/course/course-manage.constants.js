@@ -28,22 +28,72 @@
           'type':'mp3',
           'label':'mp3',
           'extensions':['mp3']
+        },
+        {
+          'type':'ppt',
+          'label':'ppt',
+          'extensions':['ppt','pptx']
         }])
         .constant('LESSONTYPES',[{
           name:'视频',
-          checked:true
+          checked:true,
+          content:'视频',
+          type:'mp4',
+          timeTitle:'视频时长',
+          LessonType:0
+
         },
         {
           name:'音频',
-          checked:false
+          checked:false,
+          content:'音频',
+          type:'mp3',
+          timeTitle:'音频时长',
+          LessonType:1
         },
         {
           name:'图文',
-          checked:false
+          checked:false,
+          content:'内容',
+          type:'text',
+          timeTitle:'',
+          LessonType:2
         },
         {
           name:'PPT',
-          checked:false
+          checked:false,
+          content:'ppt',
+          type:'ppt',
+          timeTitle:'',
+          LessonType:3
         }])
+        .constant('EDITOROPTIONS',{
+	      language: 'zh-cn',
+	      image_previewText:' ',
+	      allowedContent: true,
+	      extraPlugins : 'widget,filetools,notification,lineutils,notificationaggregator,uploadwidget,uploadimage',
+	      filebrowserImageUploadUrl: '/api/file/image-upload?type=Images',
+	      filebrowserWindowHeight: '240',
+	      disallowedContent:'script; *[on*];*{*javascript*}',
+	      toolbar :[
+	        { name: 'tools', items: [ 'Maximize'] },
+    		{ name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+    		{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
+    		{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent',  '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
+    		{ name: 'links', items: [ 'Link', 'Unlink' ] },
+    		{ name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak'] },
+    		{ name: 'colors', items: [  'TextColor', 'BGColor', 'Format'] },
+    		{ name: 'styles', items: [ 'Styles', 'Font', 'FontSize' ] },
+	        { name: 'document', items: [ 'Source'] }
+	      ],
+	      on: {
+	        instanceReady: function () {
+	          setTimeout(function () {
+	            $('.cke_reset iframe').contents().find('body').css('background-color','##fff');
+	            $('.cke_reset iframe').contents().find('body').css('margin','0px');
+	          }, 100);
+	        }
+	      }
+	    })
 ;
 })();
