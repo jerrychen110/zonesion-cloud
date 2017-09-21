@@ -184,13 +184,14 @@ public class CourseService {
         				if(currentUserId!=0) {
         					StringBuilder sb = new StringBuilder();
         					sb.append("select tcl.id,tcl.title,tcl.summary,tcl.course_lesson_type,tcl.content,tcl.number,tcl.seq,")
-        					.append("tcl.credit,tcl.learned_num,tcl.viewed_num,tcll.id,tcll.user_id,tcll.is_complete,")
+        					.append("tcl.credit,tcl.learned_num,tcl.viewed_num,tcl.media_name,tcl.media_source,tcl.media_uri,tcl.media_size,")
+        					.append("tcl.media_length,tcll.id,tcll.user_id,tcll.is_complete,")
         					.append("case when tcll.is_complete is null then '0' when tcll.is_complete='0' then '1' else '2' end as status ")
         					.append("from t_course_lesson tcl left join t_course_lesson_learn tcll on tcl.id=tcll.course_lesson_id ")
         					.append("and tcll.user_id=").append(currentUserId).append(" where tcl.chapter_id=").append(obj.getId()).append(" order by seq");
         					lessonSql = sb.toString();
         				}else {
-        					lessonSql = "select id,title,summary,course_lesson_type,content,number,seq,credit,learned_num,viewed_num,0 as user_id,0 as status from t_course_lesson where chapter_id="+obj.getId()+" order by seq";
+        					lessonSql = "select id,title,summary,course_lesson_type,content,number,seq,credit,learned_num,viewed_num,media_name,media_source,media_uri,media_size,media_length,0 as user_id,0 as status from t_course_lesson where chapter_id="+obj.getId()+" order by seq";
         				}
         				@SuppressWarnings({ "unchecked", "rawtypes" })
 						List<LessonInfoDTO> lessons = jdbcTemplate.query(lessonSql,
@@ -206,6 +207,11 @@ public class CourseService {
 	                            	lessonDTO.setSeq(rs.getInt("seq"));
 	                            	lessonDTO.setContent(rs.getString("content")!=null?rs.getString("content"):"");
 	                            	lessonDTO.setCredit(rs.getInt("credit")!=0?rs.getInt("credit"):0);
+	                            	lessonDTO.setMediaName(rs.getString("media_name")!=null?rs.getString("media_name"):"");
+	                            	lessonDTO.setMediaSource(rs.getString("media_source")!=null?rs.getString("media_source"):"");
+	                            	lessonDTO.setMediaUri(rs.getString("media_uri")!=null?rs.getString("media_uri"):"");
+	                            	lessonDTO.setMediaSize(rs.getInt("media_size")!=0?rs.getInt("media_size"):0);
+	                            	lessonDTO.setMediaLength(rs.getInt("media_length")!=0?rs.getInt("media_length"):0);
 	                            	lessonDTO.setLearnedNum(rs.getInt("learned_num")!=0?rs.getInt("learned_num"):0);
 	                            	lessonDTO.setViewedNum(rs.getInt("viewed_num")!=0?rs.getInt("viewed_num"):0);
 	                            	lessonDTO.setLearnedStatus(rs.getString("status")!=null?rs.getString("status"):"");
@@ -365,7 +371,7 @@ public class CourseService {
 			newCourseLesson.setNumber(courseLessonInDTO.getNumber());
 			newCourseLesson.setSeq(courseLessonInDTO.getSeq());
 		}else {
-			int maxNumber = courseLessonService.getLessonMaxNumberByChapterId(id, courseLessonInDTO.getChapterId());
+			int maxNumber = courseLessonService.getLessonMaxNumberByCourseId(id);
 			newCourseLesson.setNumber(maxNumber+1);
 			newCourseLesson.setSeq(maxNumber+1);
 		}
