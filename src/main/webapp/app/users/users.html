@@ -1,37 +1,22 @@
 <div class="es-wrap">
-	<div id="content-container" class="container">
+	<div id="content-container">
 
 		<div class="es-section userpage-header">
 			<div class="media">
 				<div class="media-left">
 					<div class="avatar-bg">
 						<img class="avatar-lg"
-							ng-src="{{vm.userInfo.avatar}}">
+							ng-src="{{vm.userAccount.avatar}}">
 						<span class="icon-user-status icon-md"><i
 							class="es-icon es-icon-school"></i></span>
 					</div>
 				</div>
 				<div class="media-body">
-					<div class="actions">
-						<a class="btn btn-primary btn-sm follow-btn" href="javascript:;"
-							data-url="/user/5/follow">关注</a> <a
-							class="btn btn-default btn-sm unfollow-btn" href="javascript:;"
-							data-url="/user/5/unfollow" style="display: none;">已关注</a>
-						<button class="btn btn-default btn-sm" data-toggle="modal"
-							data-backdrop="static" data-target="#modal"
-							data-url="/message/create/5">私信</button>
-					</div>
 					<h2>
-						{{vm.userInfo.name}} <small>{{vm.userInfo.school}}</small>
+						{{vm.userAccount.name}} <small>{{vm.userAccount.login}}</small>
 					</h2>
 					<div class="about">
-						<p>负责好知网和EduSoho的产品设计和规划。曾经就职于恒生电子、19楼网络传媒等中大型公司，担任了项目经理、高级产品经理、运营经理等职务，有过不算怎么成功的自主创业经历。主导设计了19楼商业系统、某建筑行业垂直门户与B2B平台、中小社区联盟平台等产品，具有丰富的产品规划和管理经验、网络社区和O2O的运营经验，以及公司管理和运营的经验。</p>
-					</div>
-					<div class="links">
-						<a href="http://weibo.com/edusoho" target="_blank" class="mrm"><img
-							src="/assets/img/user/link-weibo.png?1.4.8"> 微博</a> <a
-							href="http://www.edusoho.com/" target="_blank" class="mrm"><img
-							src="/assets/img/user/link-site.png?1.4.8"> 网站</a>
+						<p>{{vm.userAccount.school}}</p>
 					</div>
 				</div>
 			</div>
@@ -39,95 +24,91 @@
 
 		<div class="es-section">
 			<ul class="nav nav-tabs clearfix">
-				<li><a ng-click='activeTab=1'>在学课程</a></li>
-				<li><a ng-click='activeTab=2'>收藏的课程</a></li>
-				<li><a ng-click='activeTab=4'>加入的小组</a></li>
-				<li><a ng-click='activeTab=5'>关注/粉丝</a></li>
-
-				<li><a href="#/user/{{vm.userInfo.id}}/teaching/classrooms">在教专业</a></li>
-
-				<li><a href="#/user/{{vm.userInfo.id}}/learning/classrooms">在学专业</a></li>
+				<li ng-class="{'active':vm.activeTab==1}"><a ng-click='vm.activeTab=1;vm.getCourseLearning()'>在学课程</a></li>
+				<li ng-class="{'active':vm.activeTab==2}"><a ng-click='vm.activeTab=2;vm.getCourseFavorite()'>收藏课程</a></li>
 			</ul>
 
-			<div ng-show='activeTab==1'>
-			<ul class="course-wide-list" ng-repeat="userInfo in vm.userInfos">
-				<li class="course-item clearfix "><a
-					class="course-picture-link" href="/course/1"> <img
-						class="course-picture"
-						ng-src="{{userInfo.courseCoverPicture}}"
-						alt="{{userInfo.course_title}}">
-				</a>
+			<div ng-show='vm.activeTab==1' class="clearfix">
+                <ul class="course-wide-list" ng-repeat="userLearning in vm.userLearning">
+                    <li class="course-item clearfix ">
+                        <a class="course-picture-link" href="/course/1">
+                            <img class="course-picture" ng-src="{{userLearning.coverPicture}}" alt="{{userLearning.title}}">
+                        </a>
+                        <div class="course-body">
 
-					<div class="course-body">
+                            <div style="float: right;" class="text-muted mrm mls"></div>
 
-						<div style="float: right;" class="text-muted mrm mls"></div>
+                            <h4 class="course-title">
+                                <a href="/course/1">{{userLearning.title}}</a>
+                            </h4>
 
-						<h4 class="course-title">
-							<a href="/course/1">{{userInfo.courseTitle}}</a>
-						</h4>
+                            <div class="course-about ellipsis">{{userLearning.introduction}}</div>
 
-						<div class="course-about ellipsis">{{userInfo.courseSubTitle}}</div>
+                            <div class="course-footer clearfix">
+                                <div class="teacher">
+                                    <a href="/user/1">
+                                    <img ng-src="{{userLearning.avatar}}" class="teacher-avatar"></a>
+                                    <a class="teacher-nickname ellipsis" href="/user/1">{{userLearning.login}}</a>
+                                    <span class="teacher-title ellipsis">{{userLearning.tags}}</span>
+                                </div>
+                                <div class="course-metas">
+                                    <span class="text-muted mlm mrs"><strong>{{userLearning.lessonNum}}</strong>课时</span>
+                                    <span class="divider"></span>
+                                    <span class="text-muted mrm mls"><strong>{{userLearning.learnedNum}}</strong>学员</span>
+                                </div>
+                            </div>
 
-						<div class="course-footer clearfix">
-							<div class="teacher">
-								<a href="/user/1">
-								<img ng-src="{{userInfo.avatar}}" class="teacher-avatar"></a>
-									<a class="teacher-nickname ellipsis" href="/user/1">{{userInfo.name}}</a>
-									<span class="teacher-title ellipsis">{{userInfo.school}}</span>
-							</div>
-
-							<div class="course-metas">
-
-								<span class="stars-{{userInfo.courseRecommendedSort}}">&nbsp;</span> <span class="divider"></span>
-								<span class="text-muted mrm mls"><strong>{{userInfo.countUserId}}</strong>学员</span>
-
-							</div>
-						</div>
-					</div></li>
-			</ul>
+                        </div>
+                    </li>
+                </ul>
+                <nav class="pull-right">
+                    <uib-pagination total-items="vm.totalCount" ng-model="vm.currentPage" items-per-page="vm.pageSize"
+                                    first-text="首页"
+                                    previous-text="上一页" next-text="下一页" last-text="尾页"
+                                    boundary-links="true" boundary-link-numbers="true" ng-change="vm.getCourseLearning()"></uib-pagination>
+                </nav>
+                <div ng-show="" class="empty">无在学课程</div>
 			</div>
-			<div ng-show='activeTab==2'>
-			<ul class="course-wide-list" ng-repeat="userfavorited in vm.userFavorites">
-				<li class="course-item clearfix "><a
-					class="course-picture-link" href="/course/1"> <img
-						class="course-picture"
-						ng-src="{{userfavorited.courseCoverPicture}}"
-						alt="{{userfavorited.course_title}}">
-				</a>
+			<div ng-show='vm.activeTab==2' class="clearfix">
+                <ul class="course-wide-list" ng-repeat="userLearning in vm.userLearning">
+                    <li class="course-item clearfix ">
+                        <a class="course-picture-link" ng-href="course/{{userLearning.id}}">
+                            <img class="course-picture" ng-src="{{userLearning.coverPicture}}" alt="{{userLearning.title}}">
+                        </a>
+                        <div class="course-body">
 
-					<div class="course-body">
+                            <div style="float: right;" class="text-muted mrm mls"></div>
 
-						<div style="float: right;" class="text-muted mrm mls"></div>
+                            <h4 class="course-title">
+                                <a ng-href="course/{{userLearning.id}}">{{userLearning.title}}</a>
+                            </h4>
 
-						<h4 class="course-title">
-							<a href="/course/1">{{userfavorited.courseTitle}}</a>
-						</h4>
+                            <div class="course-about ellipsis">{{userLearning.introduction}}</div>
 
-						<div class="course-about ellipsis">{{userfavorited.courseSubTitle}}</div>
+                            <div class="course-footer clearfix">
+                                <div class="teacher">
+                                    <a ng-href="user/{{userLearning.userId}}">
+                                        <img ng-src="{{userLearning.avatar}}" class="teacher-avatar"></a>
+                                    <a class="teacher-nickname ellipsis" ng-href="user/{{userLearning.userId}}">{{userLearning.login}}</a>
+                                    <span class="teacher-title ellipsis">{{userLearning.tags}}</span>
+                                </div>
+                                <div class="course-metas">
+                                    <span>{{userLearning.lessonNum}}</span><span class="divider"></span>
+                                    <span class="text-muted mrm mls"><strong>{{userLearning.learnedNum}}</strong>学员</span>
+                                </div>
+                            </div>
 
-						<div class="course-footer clearfix">
-							<div class="teacher">
-								<a href="/user/1">
-								<img ng-src="{{userfavorited.avatar}}" class="teacher-avatar"></a>
-									<a class="teacher-nickname ellipsis" href="/user/1">{{userfavorited.name}}</a>
-									<span class="teacher-title ellipsis">{{userfavorited.school}}</span>
-							</div>
-
-							<div class="course-metas">
-
-								<span class="stars-{{userfavorited.courseRecommendedSort}}">&nbsp;</span> <span class="divider"></span>
-								<span class="text-muted mrm mls"><strong>{{userfavorited.countUserId}}</strong>学员</span>
-
-							</div>
-						</div>
-					</div></li>
-			</ul>
+                        </div>
+                    </li>
+                </ul>
+                <nav class="pull-right">
+                    <uib-pagination total-items="vm.totalCount" ng-model="vm.currentPage" items-per-page="vm.pageSize"
+                                    first-text="首页"
+                                    previous-text="上一页" next-text="下一页" last-text="尾页"
+                                    boundary-links="true" boundary-link-numbers="true" ng-change="vm.getCourseLearning()"></uib-pagination>
+                </nav>
+                <div ng-show="" class="empty">收藏课程</div>
 			</div>
-			<div ng-show='activeTab==4'>
-			<ul class="course-wide-list">
-				<div class="empty">无在教的课程</div>
-			</ul>
-
 
 		</div>
 
