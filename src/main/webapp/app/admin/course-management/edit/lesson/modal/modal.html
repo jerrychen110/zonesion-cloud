@@ -16,14 +16,14 @@
       </div>
       <input type="hidden" name="type" value="chapter">
     </form>
-    <form id="course-lesson-form" class="form-horizontal lesson-form lesson-form-video" ng-if="vm.options.type==2">
+    <form id="course-lesson-form" class="form-horizontal lesson-form lesson-form-video" novalidate show-validation ng-if="vm.options.type==2">
       <div class="form-group">
         <div class="col-md-2 control-label"><label>类型</label></div>
         <div class="col-md-9 controls">
           <div class="radios">
             <label ng-repeat="lessonType in vm.lessonTypes">
               <input type="radio" name="type" value="video"
-              ng-checked="lessonType.checked" ng-click="vm.changeLessonType()"> {{lessonType.name}}
+              ng-checked="lessonType.checked" ng-click="vm.changeLessonType($index)"> {{lessonType.name}}
             </label>
           </div>
         </div>
@@ -34,14 +34,21 @@
         <div class="col-md-9 controls">
           <div class="row">
             <div class="col-md-12">
-              <input id="lesson-title-field" class="form-control" type="text" name="title" value="" data-widget-cid="widget-93" data-explain="">
+              <input id="lesson-title-field" class="form-control" type="text" name="title" value=""  ng-model="vm.lessonInfo.title">
             </div>
           </div>
         <div class="help-block" style="display:none;"></div></div>
       </div>
 
       <div class="form-group for-text-type for-video-type for-audio-type ">
-        <div class="col-md-2 control-label"><label for="lesson-summary-field">视频</label></div>
+        <div class="col-md-2 control-label"><label for="lesson-summary-field">简介</label></div>
+        <div class="col-md-9 controls"><textarea class="form-control" id="lesson-summary-field" name="summary" ng-model="vm.lessonInfo.summary"></textarea>
+
+        </div>
+      </div>
+
+      <div class="form-group for-text-type for-video-type for-audio-type " ng-if="vm.selectTypeInfo.type!='text'">
+        <div class="col-md-2 control-label"><label for="lesson-summary-field">{{vm.selectTypeInfo.content}}</label></div>
         <div class="col-md-9 controls">
         <div flow-init="vm.flowInitOptions" flow-file-added="vm.fileAdded($file, $event, $flow)"
                 flow-error="vm.flowError( $file, $message, $flow )" flow-file-success="vm.flowFileSuccess( $file, $message, $flow )"
@@ -89,28 +96,30 @@
                     </div>
                   </div>
                   <div class="pts pbs text-danger" ng-show="uploadFileError">
-                    <span >视屏上传失败！</span>
+                    <span >{{vm.selectTypeInfo.content}}上传失败！</span>
                   </div>
                 </div>
               </div>
       </div>
     </div>
 
-      <div class="form-group for-text-type for-video-type for-audio-type ">
-        <div class="col-md-2 control-label"><label for="lesson-summary-field">简介</label></div>
-        <div class="col-md-9 controls"><textarea class="form-control" id="lesson-summary-field" name="summary"></textarea>
-
-        </div>
+    <div class="form-group" ng-if="vm.selectTypeInfo.type=='text'">
+      <div class="col-md-2 control-label">
+        <label  class="style1">内容</label>
       </div>
+      <div class="col-md-9 controls">
+        <textarea name=about rows="10" cols="" ckeditor="vm.editorOptions" ng-model="vm.lessonInfo.content"
+          class="form-control" aria-invalid="false" aria-multiline="true" style="visibility:hidden;display:none;" >
+        </textarea>
+      </div>
+    </div>
 
 
-      <div class="form-group for-video-type for-audio-type" id="lesson-length-form-group">
-          <div class="col-md-2 control-label for-video-type"><label>视频时长</label></div>
-          <div class="hide"><label for="lesson-length-field">视频时长或</label></div>
-          <div class="col-md-2 control-label for-audio-type"><label for="lesson-length-field">音频时长</label></div>
+      <div class="form-group for-video-type for-audio-type" id="lesson-length-form-group" ng-if="vm.selectTypeInfo.type=='mp4'||vm.selectTypeInfo.type=='mp3'">
+          <div class="col-md-2 control-label for-video-type"><label>{{vm.selectTypeInfo.timeTitle}}</label></div>
         <div class="col-md-9 controls">
-          <input class="form-control width-input width-input-small" id="lesson-minute-field" type="text" name="minute" value="" data-widget-cid="widget-95" data-explain="时长必须为整数。">分
-          <input class="form-control width-input width-input-small" id="lesson-second-field" type="text" name="second" value="" data-widget-cid="widget-96" data-explain="时长必须为整数。">秒
+          <input class="form-control width-input width-input-small" ng-minlength="1" ng-maxlength="200" ng-pattern="/^[a-z0-9]*$/" required>分
+          <input class="form-control width-input width-input-small" ng-minlength="1" ng-maxlength="60" ng-pattern="/^[a-z0-9]*$/" required>秒
           <div class="help-block">时长必须为整数。</div>
         </div>
       </div>
@@ -124,6 +133,6 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-link" data-dismiss="modal" ng-click="vm.clear()">取消</button>
-    <button id="course-chapter-btn" data-submiting-text="正在提交" class="btn btn-primary" ng-click="vm.save()" >确定</button>
+    <button id="course-chapter-btn" data-submiting-text="正在提交" type="submit" class="btn btn-primary" ng-click="vm.save()" >确定</button>
   </div>
 </div>
