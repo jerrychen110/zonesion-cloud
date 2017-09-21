@@ -344,6 +344,8 @@ public class CourseService {
 		Chapter chapter = new Chapter();
 		if(chapterInDTO.getId()!=null) {
 			chapter.setId(chapterInDTO.getId());
+			chapter.setNumber(chapterInDTO.getNumber());
+			chapter.setSeq(chapterInDTO.getSeq());
 		}else {
 			chapter.setNumber(chapterService.getMaxNumberByCourseId(id, chapterInDTO.getChapterType())+1);
 			chapter.setSeq(chapterService.getMaxSeqByCourseId(id, chapterInDTO.getChapterType())+1);
@@ -360,6 +362,8 @@ public class CourseService {
 		CourseLesson newCourseLesson = new CourseLesson();
 		if(courseLessonInDTO.getId()!=null) {
 			newCourseLesson.setId(courseLessonInDTO.getId());
+			newCourseLesson.setNumber(courseLessonInDTO.getNumber());
+			newCourseLesson.setSeq(courseLessonInDTO.getSeq());
 		}else {
 			int maxNumber = courseLessonService.getLessonMaxNumberByChapterId(id, courseLessonInDTO.getChapterId());
 			newCourseLesson.setNumber(maxNumber+1);
