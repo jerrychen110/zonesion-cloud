@@ -27,7 +27,7 @@
           vm.currentAccount =  $rootScope.accountInfo;
         });
         //
-        function openModal(type,operation,parentId,currentId,title){
+        function openModal(type,operation,parentId,currentId,selectedInfo){
           $uibModal.open({
               templateUrl: 'app/admin/course-management/edit/lesson/modal/modal.html',
               controller: 'EditLessonModalController',
@@ -42,7 +42,7 @@
                     userId:vm.currentAccount.id,//userid
                     parentId:parentId,
                     currentId:currentId,
-                    title:title?title:''
+                    selectedInfo:selectedInfo
                   }
               }
           }).result.then(function(result) {

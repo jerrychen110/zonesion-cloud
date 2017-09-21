@@ -50,56 +50,61 @@
       <div class="form-group for-text-type for-video-type for-audio-type " ng-if="vm.selectTypeInfo.type!='text'">
         <div class="col-md-2 control-label"><label for="lesson-summary-field">{{vm.selectTypeInfo.content}}</label></div>
         <div class="col-md-9 controls">
-        <div flow-init="vm.flowInitOptions" flow-file-added="vm.fileAdded($file, $event, $flow)"
-                flow-error="vm.flowError( $file, $message, $flow )" flow-file-success="vm.flowFileSuccess( $file, $message, $flow )"
-                flow-file-error="vm.flowFileError( $file, $message, $flow )" class="ng-scope">
-                <div class="flow-drop text-center" flow-drop ng-class="flowDropClass">
-                  <span class="btn btn-default btn-sm" flow-btn="" id="flow-file-add-btn85">
-                    <i class="fa fa-upload mrs"></i> <span >选择文件</span>
-                    <input type="file" multiple="multiple" class="hide">
-                  </span>
-                  <b><span >或</span></b>
-                  <span><span >拖拽一个文件到此处.</span></span>
-                </div>
-                <div class="pts pbs" id="datasource-excel-extenstion-error66" ng-class="{'text-danger':vm.extenstionError}">
-                  <span >支持文件格式：</span> {{vm.acceptExtensions}}.
-                </div>
-                <div ng-repeat="file in $flow.files" class="transfer-box">
-                  <div class="row mbs">
-                    <div class="col-sm-5">
-                      {{file.name}} ({{file.size}}bytes)
-                    </div>
-                    <div class="btn-group col-sm-7">
-                      <button id="flow-btn80" class="btn btn-xs btn-danger pull-right" ng-click="file.cancel()" ng-show="!file.isComplete()">
-                        <span translate="buttons.cancel">Cancel</span>
-                      </button>
-                      <button id="flow-btn81" ng-disabled="saving" class="btn btn-xs btn-danger pull-right" ng-click="deleteFile(file)" ng-show="file.isComplete()">
-                        <span translate="buttons.delete">Delete</span>
-                      </button>
-                      <button id="flow-btn82" class="btn btn-xs btn-info pull-right" ng-click="file.retry()" ng-show="file.error">
-                        <span translate="buttons.retry">Retry</span>
-                      </button>
-                      <button id="flow-btn83" class="btn btn-xs btn-success pull-right" ng-click="file.resume()" ng-show="file.paused">
-                        <span translate="buttons.continue">Continue</span>
-                      </button>
-                      <button id="flow-btn84" class="btn btn-xs btn-warning pull-right" ng-click="file.pause()" ng-show="!file.paused && file.isUploading()">
-                        <span translate="buttons.pause">Pause</span>
-                      </button>
-                      <button id="flow-btn85" class="btn btn-xs btn-success pull-right" ng-click="$flow.upload()" ng-show="!file.isUploading()&&!file.isComplete()&&!file.paused">
-                        <span translate="buttons.upload">upload</span>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="progress progress-striped pts mbm" ng-class="{active: file.isUploading()}">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}" style="width: 100%;">
-                      <span class="sr-only ng-binding">1% Complete</span>
-                    </div>
-                  </div>
-                  <div class="pts pbs text-danger" ng-show="uploadFileError">
-                    <span >{{vm.selectTypeInfo.content}}上传失败！</span>
-                  </div>
-                </div>
+          <div class="file-chooser-bar" ng-if="!vm.showUploadFile">
+                <span data-role="placeholder">{{vm.lessonInfo.mediaName}}</span>
+                <button class="btn btn-link btn-sm" type="button" ng-click=""><i class="glyphicon glyphicon-edit"></i> 编辑</button>
+
               </div>
+          <div ng-if="vm.showUploadFile" flow-init="vm.flowInitOptions" flow-file-added="vm.fileAdded($file, $event, $flow)"
+                  flow-error="vm.flowError( $file, $message, $flow )" flow-file-success="vm.flowFileSuccess( $file, $message, $flow )"
+                  flow-file-error="vm.flowFileError( $file, $message, $flow )" class="ng-scope">
+                  <div class="flow-drop text-center" flow-drop ng-class="flowDropClass">
+                    <span class="btn btn-default btn-sm" flow-btn="" id="flow-file-add-btn85">
+                      <i class="fa fa-upload mrs"></i> <span >选择文件</span>
+                      <input type="file" multiple="multiple" class="hide">
+                    </span>
+                    <b><span >或</span></b>
+                    <span><span >拖拽一个文件到此处.</span></span>
+                  </div>
+                  <div class="pts pbs" id="datasource-excel-extenstion-error66" ng-class="{'text-danger':vm.extenstionError}">
+                    <span >支持文件格式：</span> {{vm.acceptExtensions}}.
+                  </div>
+                  <div ng-repeat="file in $flow.files" class="transfer-box">
+                    <div class="row mbs">
+                      <div class="col-sm-5">
+                        {{file.name}} ({{file.size}}bytes)
+                      </div>
+                      <div class="btn-group col-sm-7">
+                        <button id="flow-btn80" class="btn btn-xs btn-danger pull-right" ng-click="file.cancel()" ng-show="!file.isComplete()">
+                          <span translate="buttons.cancel">Cancel</span>
+                        </button>
+                        <button id="flow-btn81" ng-disabled="saving" class="btn btn-xs btn-danger pull-right" ng-click="deleteFile(file)" ng-show="file.isComplete()">
+                          <span translate="buttons.delete">Delete</span>
+                        </button>
+                        <button id="flow-btn82" class="btn btn-xs btn-info pull-right" ng-click="file.retry()" ng-show="file.error">
+                          <span translate="buttons.retry">Retry</span>
+                        </button>
+                        <button id="flow-btn83" class="btn btn-xs btn-success pull-right" ng-click="file.resume()" ng-show="file.paused">
+                          <span translate="buttons.continue">Continue</span>
+                        </button>
+                        <button id="flow-btn84" class="btn btn-xs btn-warning pull-right" ng-click="file.pause()" ng-show="!file.paused && file.isUploading()">
+                          <span translate="buttons.pause">Pause</span>
+                        </button>
+                        <button id="flow-btn85" class="btn btn-xs btn-success pull-right" ng-click="$flow.upload()" ng-show="!file.isUploading()&&!file.isComplete()&&!file.paused">
+                          <span translate="buttons.upload">upload</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="progress progress-striped pts mbm" ng-class="{active: file.isUploading()}">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}" style="width: 100%;">
+                        <span class="sr-only ng-binding">1% Complete</span>
+                      </div>
+                    </div>
+                    <div class="pts pbs text-danger" ng-show="uploadFileError">
+                      <span >{{vm.selectTypeInfo.content}}上传失败！</span>
+                    </div>
+                  </div>
+                </div>
       </div>
     </div>
 
@@ -118,8 +123,8 @@
       <div class="form-group for-video-type for-audio-type" id="lesson-length-form-group" ng-if="vm.selectTypeInfo.type=='mp4'||vm.selectTypeInfo.type=='mp3'">
           <div class="col-md-2 control-label for-video-type"><label>{{vm.selectTypeInfo.timeTitle}}</label></div>
         <div class="col-md-9 controls">
-          <input class="form-control width-input width-input-small" ng-minlength="1" ng-maxlength="200" ng-pattern="/^[a-z0-9]*$/" required>分
-          <input class="form-control width-input width-input-small" ng-minlength="1" ng-maxlength="60" ng-pattern="/^[a-z0-9]*$/" required>秒
+          <input class="form-control width-input width-input-small" ng-model="vm.lessonInfo.min">分
+          <input class="form-control width-input width-input-small" ng-model="vm.lessonInfo.sec">秒
           <div class="help-block">时长必须为整数。</div>
         </div>
       </div>

@@ -11,20 +11,25 @@
     function EditLessonModalController($uibModalInstance,options,CourseManagementService,LOAD_TYPES,
       $log,$localStorage,LESSONTYPES,EDITOROPTIONS) {
       var vm = this;
-      vm.clear = clear;
-      vm.save = save;
       vm.options =angular.copy(options);
-      vm.title = vm.options.title
+      vm.title = vm.options.selectedInfo?vm.options.selectedInfo.title:'';
       vm.optionName=vm.options.operation==0?'添加':vm.options.operation==1?'修改':'删除';
       vm.optionType=vm.options.type==0?'章':vm.options.type==1?'节':'课时';
-      vm.changeLessonType = changeLessonType;
       vm.editorOptions = EDITOROPTIONS;
       /*
       **文件上传
       */
 
+      vm.lessonInfo = {
+        id:vm.options.selectedInfo?vm.options.selectedInfo.id:null,
+        title: vm.options.selectedInfo?vm.options.selectedInfo.title:'',
+        summary: vm.options.selectedInfo?vm.options.selectedInfo.summary:'',
+        content: vm.options.selectedInfo?vm.options.selectedInfo.content:'',
+        mediaUri: vm.options.selectedInfo?vm.options.selectedInfo.mediaUri:'',
+        mediaSize: vm.options.selectedInfo?vm.options.selectedInfo.mediaSize:'',
+        mediaName: vm.options.selectedInfo?vm.options.selectedInfo.mediaName:''
+      }
       vm.lessonTypes = angular.copy(LESSONTYPES);
-
       vm.selectTypeInfo = _.find(vm.lessonTypes,{checked:true});
       var acceptExtensions = _.find(LOAD_TYPES,{type:vm.selectTypeInfo.type}).extensions;
       vm.acceptExtensions = acceptExtensions.join(', ');
@@ -38,9 +43,15 @@
         generateUniqueIdentifier:UUID.generate,
         permanentErrors:[404, 415, 500, 501,401]
       };
+
+
+      vm.clear = clear;
+      vm.save = save;
+      vm.changeLessonType = changeLessonType;
       vm.fileAdded = fileAdded;
       vm.flowError = flowError;
       vm.flowFileSuccess = flowFileSuccess;
+      vm.showUpload = showUpload();
 
       //上传
       function fileAdded($file) {
@@ -97,6 +108,11 @@
               }
               break;
             case 1:
+            if(vm.options.type==2){
+              CourseManagementService.updateLesson(params,onSaveSuccess,onSaveError);
+            }else{
+              CourseManagementService.updateChapter(params,onSaveSuccess,onSaveError);
+            }
 
               break;
             case 2:
@@ -110,30 +126,36 @@
       //get params function
       function getParams(){
         var params;
+        var id = vm.options.operation==0?null:vm.options.currentId;
         if(vm.options.type!=2){
            params = {
+            id:id,
             chapterType:vm.options.type,
             title:vm.title,
             courseId:vm.options.courseId,
             parentId:vm.options.parentId?vm.options.parentId:'0',
-            userId:vm.options.userId
+            userId:vm.options.userId  ,
+            number: vm.options.selectedInfo?vm.options.selectedInfo.number:null,
+            seq: vm.options.selectedInfo?vm.options.selectedInfo.seq:null
           }
         }else{
           var chapterId = vm.options.type==0?vm.options.parentId:vm.options.currentId;
+          var mediaLength= vm.lessonInfo.min*60+vm.lessonInfo.sec;
           params = {
             chapterId: chapterId,
             content: vm.lessonInfo.content,
             courseId: vm.options.courseId,
             courseLessonType: vm.selectTypeInfo.LessonType,//
             credit: 0,
-            mediaLength: 136,
+            mediaLength: mediaLength,
             mediaName: vm.lessonInfo.mediaName,
             mediaSize: vm.lessonInfo.mediaSize,
             mediaSource: 0,
             mediaUri: vm.lessonInfo.mediaUri,
             summary: vm.lessonInfo.summary,
             title: vm.lessonInfo.title,
-            userId: vm.options.userId
+            userId: vm.options.userId,
+            id:vm.lessonInfo.id
           }
         }
         return params;
@@ -162,6 +184,14 @@
             typeInfo.checked = false;
           }
         })
+      }
+
+      function showUpload(){
+        if(vm.lessonInfo.mediaName){
+          vm.showUploadFile = false;
+        }else{
+          vm.showUploadFile = true;
+        }
       }
 
     }
