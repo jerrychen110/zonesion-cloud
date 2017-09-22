@@ -16,11 +16,11 @@
             </ul>
           </div>
         </div>
-        <div class="file-chooser-main">
-          <div class="tab-content">
+        <div class="form-group">
+          <div class="col-md-10 col-md-offset-1  controls">
             <div class="tab-pane active" id="file-chooser-upload-pane">
 
-              <div ng-if="vm.showUploadFile" flow-init="vm.flowInitOptions" 
+              <div  flow-init="vm.flowInitOptions"
                       flow-error="vm.flowError( $file, $message, $flow )" flow-file-success="vm.flowFileSuccess( $file, $message, $flow )"
                       flow-file-error="vm.flowFileError( $file, $message, $flow )" class="ng-scope">
                       <div class="flow-drop text-center" flow-drop ng-class="flowDropClass">
@@ -72,24 +72,6 @@
                     </div>
 
             </div>
-
-            <div class="tab-pane" id="file-chooser-course-pane">
-                <div id="file-browser" data-role="course-file-browser" data-url="/uploadfile/browsers?targetType=coursematerial&amp;targetId=26" data-empty="暂无文件，请先上传。" data-widget-cid="widget-4" class="file-browser"><div class="empty">暂无文件，请先上传。</div></div>
-            </div>
-
-            <div class="tab-pane" id="file-chooser-link-pane">
-
-              <div class="form-group" style="margin-bottom:0px;">
-                <div class="col-md-12 controls">
-                  <input type="text" class="form-control" name="link" placeholder="资料链接地址">
-                  <div class="help-block"></div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>      <input type="hidden" name="fileId">
           </div>
         </div>
 
@@ -104,9 +86,8 @@
             <button class="btn btn-primary" id="material-upload-btn" type="submit">添加</button>
           </div>
         </div>
-
+      </div>
         <input type="hidden" name="_csrf_token" value="f08a6e5668396ab1cdc86d2cde407973f15152b2">
-
       </form>
 
 </div>
