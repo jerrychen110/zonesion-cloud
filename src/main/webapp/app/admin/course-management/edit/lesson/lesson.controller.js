@@ -62,7 +62,8 @@
               size:'lg',
               resolve: {
                   options:  {
-                  lessonId:lessonId
+                  lessonId:lessonId,
+                  userId:vm.currentAccount.id
                   }
               }
           }).result.then(function(result) {

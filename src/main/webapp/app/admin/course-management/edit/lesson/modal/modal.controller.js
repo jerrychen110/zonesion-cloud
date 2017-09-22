@@ -6,10 +6,10 @@
         .controller('EditLessonModalController', EditLessonModalController);
 
     EditLessonModalController.$inject = ['$uibModalInstance','options','CourseManagementService','LOAD_TYPES',
-    '$log','$localStorage','LESSONTYPES','EDITOROPTIONS'];
+    '$log','$localStorage','LESSONTYPES','EDITOROPTIONS','CommonFactory'];
 
     function EditLessonModalController($uibModalInstance,options,CourseManagementService,LOAD_TYPES,
-      $log,$localStorage,LESSONTYPES,EDITOROPTIONS) {
+      $log,$localStorage,LESSONTYPES,EDITOROPTIONS,CommonFactory) {
       var vm = this;
       vm.options =angular.copy(options);
       vm.title = vm.options.selectedInfo?vm.options.selectedInfo.title:'';
@@ -40,7 +40,7 @@
         singleFile:true,
         testChunks:false,
         uploadMethod:'POST',
-        headers:getHeaders(),
+        headers:CommonFactory.getHeaders(),
         generateUniqueIdentifier:UUID.generate,
         permanentErrors:[404, 415, 500, 501,401]
       };
@@ -83,15 +83,6 @@
         vm.uploadFileError = false;
       };
 
-
-      function getHeaders(){
-        var header = {};
-        var token = $localStorage.authenticationToken;
-        if (token) {
-          header.Authorization = 'Bearer ' + token.access_token;
-        }
-        return header;
-      }
 
       function clear () {
           $uibModalInstance.dismiss('cancel');
