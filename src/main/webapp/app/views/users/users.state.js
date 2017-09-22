@@ -17,12 +17,12 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/users/users.html',
+                    templateUrl: 'app/views/users/users.html',
                     controller: 'UsersController',
                     controllerAs: 'vm'
                 }
             }
         });
-        
+
     }
 })();
