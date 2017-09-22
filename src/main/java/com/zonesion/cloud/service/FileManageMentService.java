@@ -92,7 +92,7 @@ public class FileManageMentService {
 				IOUtils.closeQuietly(outputs);
 			}
 		}
-		return Paths.get(folder, destFileName).toString();
+		return Paths.get(FileUtil.LOCAL_PUBLIC_FOLDER_PATH, folder, destFileName).toString();
 	}
 	
 	/**
