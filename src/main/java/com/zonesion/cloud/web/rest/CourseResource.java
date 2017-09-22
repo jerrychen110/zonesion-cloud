@@ -12,6 +12,7 @@ import com.zonesion.cloud.service.dto.CourseLessonNoteDTO;
 import com.zonesion.cloud.service.dto.CourseReviewDTO;
 import com.zonesion.cloud.service.dto.ext.CourseReviewExtDTO;
 import com.zonesion.cloud.service.util.JcropSize;
+import com.zonesion.cloud.service.util.ServiceConstants;
 import com.zonesion.cloud.service.util.FileUtil;
 import com.zonesion.cloud.web.rest.dto.CourseBaseInfoDTO;
 import com.zonesion.cloud.web.rest.dto.CourseLessonInfoDTO;
@@ -364,6 +365,21 @@ public class CourseResource {
     	return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, result.getId().toString()))
                 .body(result);
+    }
+    
+    @PutMapping("/courses/{id}/publish")
+    @Timed
+    public ResponseEntity<Course> publishCourse(@PathVariable Long id) throws URISyntaxException {
+        log.debug("REST request to publish Course : {}", id);
+        Course thisCourse = courseService.findOne(id);
+        if (thisCourse == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "course not exists", "该课程不存在！")).body(null);
+        }
+        thisCourse.setStatus(ServiceConstants.COURSE_STATUS_PUBLISHED);
+        Course result = courseService.save(thisCourse);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);
     }
     
     @RequestMapping(value = "/courses/my/learning-courses", method = RequestMethod.GET)

@@ -23,6 +23,9 @@ public final class ServiceConstants {
     
     public static final String FILE_EXTENSION_AUDIO_MP3 = "mp3";
     
+    public static final String COURSE_STATUS_UNPUBLISH = "0";
+    
+    public static final String COURSE_STATUS_PUBLISHED = "1";
     
 
 }
