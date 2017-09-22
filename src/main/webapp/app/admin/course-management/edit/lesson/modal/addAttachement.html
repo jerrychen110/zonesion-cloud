@@ -1,0 +1,85 @@
+<div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="vm.clear()">×</button>
+      <h4 class="modal-title">添加资料</h4>
+    </div>
+    <div class="modal-body">
+      <form id="course-material-form" class="form-horizontal"  method="post">
+        <div class="form-group">
+          <div class="col-md-10 col-md-offset-1  controls">
+            <ul class="list-group" id="material-list" >
+              <li class="list-group-item clearfix" ng-repeat="attachement in vm.attachements track by $index" >
+                <button class="close delete-btn" type="button" title="删除" ng-click="vm.deleteAttachement()">×</button>
+                <a>{{attachement.title}} </a>{{'('+attachement.fileSize+')'}}
+              </li>
+
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-10 col-md-offset-1  controls">
+            <div class="tab-pane active" id="file-chooser-upload-pane">
+
+              <div  flow-init="vm.flowInitOptions" flow-file-added="vm.fileAdded($file, $event, $flow)"
+                      flow-error="vm.flowError( $file, $message, $flow )" flow-file-success="vm.flowFileSuccess( $file, $message, $flow )"
+                      flow-file-error="vm.flowFileError( $file, $message, $flow )" class="ng-scope">
+                      <div class="flow-drop text-center" flow-drop ng-class="flowDropClass">
+                        <span class="btn btn-default btn-sm" flow-btn="" id="flow-file-add-btn85">
+                          <i class="fa fa-upload mrs"></i> <span >选择文件</span>
+                          <input type="file" multiple="multiple" class="hide">
+                        </span>
+                        <b><span >或</span></b>
+                        <span><span >拖拽一个文件到此处.</span></span>
+                      </div>
+                      <div ng-repeat="file in $flow.files" class="transfer-box" ng-if="vm.showLoading">
+                        <div class="row mbs">
+                          <div class="col-sm-5">
+                            {{file.name}} ({{file.size}}bytes)
+                          </div>
+                          <div class="btn-group col-sm-7">
+                            <button id="flow-btn80" class="btn btn-xs btn-danger pull-right" ng-click="file.cancel()" ng-show="!file.isComplete()">
+                              <span translate="buttons.cancel">Cancel</span>
+                            </button>
+                            <button id="flow-btn81" ng-disabled="saving" class="btn btn-xs btn-danger pull-right" ng-click="deleteFile(file)" ng-show="file.isComplete()">
+                              <span translate="buttons.delete">Delete</span>
+                            </button>
+                            <button id="flow-btn82" class="btn btn-xs btn-info pull-right" ng-click="file.retry()" ng-show="file.error">
+                              <span translate="buttons.retry">Retry</span>
+                            </button>
+                            <button id="flow-btn83" class="btn btn-xs btn-success pull-right" ng-click="file.resume()" ng-show="file.paused">
+                              <span translate="buttons.continue">Continue</span>
+                            </button>
+                            <button id="flow-btn84" class="btn btn-xs btn-warning pull-right" ng-click="file.pause()" ng-show="!file.paused && file.isUploading()">
+                              <span translate="buttons.pause">Pause</span>
+                            </button>
+                            <button id="flow-btn85" class="btn btn-xs btn-success pull-right" ng-click="$flow.upload()" ng-show="!file.isUploading()&&!file.isComplete()&&!file.paused">
+                              <span translate="buttons.upload">upload</span>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="progress progress-striped pts mbm" ng-class="{active: file.isUploading()}">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}" style="width: 100%;">
+                            <span class="sr-only ng-binding">1% Complete</span>
+                          </div>
+                        </div>
+                        <div class="pts pbs text-danger" ng-show="uploadFileError">
+                          <span >{{vm.selectTypeInfo.content}}上传失败！</span>
+                        </div>
+                      </div>
+                    </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-10 col-md-offset-1 controls">
+            <button class="btn btn-primary pull-right" id="material-upload-btn"  ng-click="vm.clear()">关闭</button>
+          </div>
+        </div>
+      </div>
+        <input type="hidden" name="_csrf_token" value="f08a6e5668396ab1cdc86d2cde407973f15152b2">
+      </form>
+
+</div>
+      </div>

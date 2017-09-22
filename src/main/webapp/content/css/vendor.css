@@ -36,3 +36,6 @@ body {
 
 input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus {
   outline: 0; }
+
+table tr td:focus {
+  outline: 0; }

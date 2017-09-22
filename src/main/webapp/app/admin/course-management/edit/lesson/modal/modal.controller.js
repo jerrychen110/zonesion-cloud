@@ -6,10 +6,10 @@
         .controller('EditLessonModalController', EditLessonModalController);
 
     EditLessonModalController.$inject = ['$uibModalInstance','options','CourseManagementService','LOAD_TYPES',
-    '$log','$localStorage','LESSONTYPES','EDITOROPTIONS'];
+    '$log','$localStorage','LESSONTYPES','EDITOROPTIONS','CommonFactory'];
 
     function EditLessonModalController($uibModalInstance,options,CourseManagementService,LOAD_TYPES,
-      $log,$localStorage,LESSONTYPES,EDITOROPTIONS) {
+      $log,$localStorage,LESSONTYPES,EDITOROPTIONS,CommonFactory) {
       var vm = this;
       vm.options =angular.copy(options);
       vm.title = vm.options.selectedInfo?vm.options.selectedInfo.title:'';
@@ -27,19 +27,20 @@
         content: vm.options.selectedInfo?vm.options.selectedInfo.content:'',
         mediaUri: vm.options.selectedInfo?vm.options.selectedInfo.mediaUri:'',
         mediaSize: vm.options.selectedInfo?vm.options.selectedInfo.mediaSize:'',
-        mediaName: vm.options.selectedInfo?vm.options.selectedInfo.mediaName:''
+        mediaName: vm.options.selectedInfo?vm.options.selectedInfo.mediaName:'',
+        min:vm.options.selectedInfo?parseInt(vm.options.selectedInfo.mediaLength/60):0,
+        sec:vm.options.selectedInfo?parseInt(vm.options.selectedInfo.mediaLength%60):0,
+        number: vm.options.selectedInfo?vm.options.selectedInfo.number:null,
+        seq:vm.options.selectedInfo?vm.options.selectedInfo.seq:null
       }
-      vm.lessonTypes = angular.copy(LESSONTYPES);
-      vm.selectTypeInfo = _.find(vm.lessonTypes,{checked:true});
-      var acceptExtensions = _.find(LOAD_TYPES,{type:vm.selectTypeInfo.type}).extensions;
-      vm.acceptExtensions = acceptExtensions.join(', ');
+      var acceptExtensions;
       vm.flowInitOptions = {
         target:'api/file-management/file-upload',
         forceChunkSize:true,
         singleFile:true,
         testChunks:false,
         uploadMethod:'POST',
-        headers:getHeaders(),
+        headers:CommonFactory.getHeaders(),
         generateUniqueIdentifier:UUID.generate,
         permanentErrors:[404, 415, 500, 501,401]
       };
@@ -51,8 +52,8 @@
       vm.fileAdded = fileAdded;
       vm.flowError = flowError;
       vm.flowFileSuccess = flowFileSuccess;
-      vm.showUpload = showUpload();
-
+      vm.showUpload = showUpload;
+      vm.showUpload();
       //上传
       function fileAdded($file) {
         vm.uploadFileError = false;
@@ -82,15 +83,6 @@
         vm.uploadFileError = false;
       };
 
-
-      function getHeaders(){
-        var header = {};
-        var token = $localStorage.authenticationToken;
-        if (token) {
-          header.Authorization = 'Bearer ' + token.access_token;
-        }
-        return header;
-      }
 
       function clear () {
           $uibModalInstance.dismiss('cancel');
@@ -139,13 +131,13 @@
             seq: vm.options.selectedInfo?vm.options.selectedInfo.seq:null
           }
         }else{
-          var chapterId = vm.options.type==0?vm.options.parentId:vm.options.currentId;
+          var chapterId = vm.options.operation==0?vm.options.currentId:vm.options.parentId;
           var mediaLength= vm.lessonInfo.min*60+vm.lessonInfo.sec;
           params = {
             chapterId: chapterId,
             content: vm.lessonInfo.content,
             courseId: vm.options.courseId,
-            courseLessonType: vm.selectTypeInfo.LessonType,//
+            courseLessonType: vm.selectTypeInfo.lessonType,//
             credit: 0,
             mediaLength: mediaLength,
             mediaName: vm.lessonInfo.mediaName,
@@ -155,7 +147,9 @@
             summary: vm.lessonInfo.summary,
             title: vm.lessonInfo.title,
             userId: vm.options.userId,
-            id:vm.lessonInfo.id
+            id:vm.lessonInfo.id,
+            number: vm.lessonInfo.number,
+            seq: vm.lessonInfo.seq
           }
         }
         return params;
@@ -187,11 +181,26 @@
       }
 
       function showUpload(){
-        if(vm.lessonInfo.mediaName){
+        vm.lessonTypes = angular.copy(LESSONTYPES);
+        if(vm.lessonInfo.title){
           vm.showUploadFile = false;
+          vm.selectTypeInfo =_.find(vm.lessonTypes,{lessonType:vm.options.selectedInfo.courseLessonType});
+          _.forEach(vm.lessonTypes,function(lessonType){
+            if(vm.selectTypeInfo.lessonType==lessonType.lessonType){
+                lessonType.checked = true;
+            }else{
+              lessonType.checked = false;
+            }
+          })
         }else{
           vm.showUploadFile = true;
+          vm.selectTypeInfo = _.find(vm.lessonTypes,{checked:true});
         }
+        if(vm.selectTypeInfo.type!='text'){
+          acceptExtensions = _.find(LOAD_TYPES,{type:vm.selectTypeInfo.type}).extensions;
+          vm.acceptExtensions = acceptExtensions.join(', ');
+        }
+
       }
 
     }

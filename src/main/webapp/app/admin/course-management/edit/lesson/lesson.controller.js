@@ -21,6 +21,7 @@
         vm.stateGo = stateGo;
         vm.openModal = openModal;
         vm.getCourseLesson = getCourseLesson;
+        vm.addAttachement = addAttachement;
         vm.getCourseLesson();
         // 认证成功以后刷新页面信息
         $scope.$on('authenticationSuccess', function() {
@@ -43,6 +44,26 @@
                     parentId:parentId,
                     currentId:currentId,
                     selectedInfo:selectedInfo
+                  }
+              }
+          }).result.then(function(result) {
+            getCourseLesson();
+          }, function() {
+              // $state.go('^');
+          });
+        }
+
+        function addAttachement(lessonId){
+          $uibModal.open({
+              templateUrl: 'app/admin/course-management/edit/lesson/modal/addAttachement.html',
+              controller: 'AddAttachementController',
+              controllerAs: 'vm',
+              backdrop: 'static',
+              size:'lg',
+              resolve: {
+                  options:  {
+                  lessonId:lessonId,
+                  userId:vm.currentAccount.id
                   }
               }
           }).result.then(function(result) {

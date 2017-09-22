@@ -40,7 +40,7 @@
           content:'视频',
           type:'mp4',
           timeTitle:'视频时长',
-          LessonType:0
+          lessonType:'0'
 
         },
         {
@@ -49,7 +49,7 @@
           content:'音频',
           type:'mp3',
           timeTitle:'音频时长',
-          LessonType:1
+          lessonType:'1'
         },
         {
           name:'图文',
@@ -57,7 +57,7 @@
           content:'内容',
           type:'text',
           timeTitle:'',
-          LessonType:2
+          lessonType:'2'
         },
         {
           name:'PPT',
@@ -65,7 +65,7 @@
           content:'ppt',
           type:'ppt',
           timeTitle:'',
-          LessonType:3
+          lessonType:'3'
         }])
         .constant('EDITOROPTIONS',{
 	      language: 'zh-cn',

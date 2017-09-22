@@ -52,7 +52,7 @@
         <div class="col-md-9 controls">
           <div class="file-chooser-bar" ng-if="!vm.showUploadFile">
                 <span data-role="placeholder">{{vm.lessonInfo.mediaName}}</span>
-                <button class="btn btn-link btn-sm" type="button" ng-click=""><i class="glyphicon glyphicon-edit"></i> 编辑</button>
+                <button class="btn btn-link btn-sm" type="button"  ng-click="vm.showUploadFile=true"><i class="glyphicon glyphicon-edit"></i> 编辑</button>
 
               </div>
           <div ng-if="vm.showUploadFile" flow-init="vm.flowInitOptions" flow-file-added="vm.fileAdded($file, $event, $flow)"
@@ -69,7 +69,7 @@
                   <div class="pts pbs" id="datasource-excel-extenstion-error66" ng-class="{'text-danger':vm.extenstionError}">
                     <span >支持文件格式：</span> {{vm.acceptExtensions}}.
                   </div>
-                  <div ng-repeat="file in $flow.files" class="transfer-box">
+                  <div ng-repeat="file in $flow.files" class="transfer-box" >
                     <div class="row mbs">
                       <div class="col-sm-5">
                         {{file.name}} ({{file.size}}bytes)
