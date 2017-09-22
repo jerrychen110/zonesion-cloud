@@ -27,6 +27,7 @@
           generateUniqueIdentifier:UUID.generate,
           permanentErrors:[404, 415, 500, 501,401]
         };
+        vm.showLoading = false;
         vm.attachements = [];
         vm.getAttachementList = getAttachementList;
         vm.fileAdded = fileAdded;
@@ -41,6 +42,7 @@
           vm.showChangeAlert = false;
           vm.extenstionError = false;
           vm.previewData = null;
+          vm.showLoading = true;
           return !vm.extenstionError;
         };
         //上传失败
@@ -109,7 +111,8 @@
 
         function deleteAttachement(attachementId){
           CourseManagementService.deleteAttachement({id:attachementId},function(result){
-            vm.getAttachementList()
+            vm.getAttachementList();
+            vm.showLoading = false;
           },function(error) {
 
           })

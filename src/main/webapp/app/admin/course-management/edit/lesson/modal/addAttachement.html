@@ -20,7 +20,7 @@
           <div class="col-md-10 col-md-offset-1  controls">
             <div class="tab-pane active" id="file-chooser-upload-pane">
 
-              <div  flow-init="vm.flowInitOptions"
+              <div  flow-init="vm.flowInitOptions" flow-file-added="vm.fileAdded($file, $event, $flow)"
                       flow-error="vm.flowError( $file, $message, $flow )" flow-file-success="vm.flowFileSuccess( $file, $message, $flow )"
                       flow-file-error="vm.flowFileError( $file, $message, $flow )" class="ng-scope">
                       <div class="flow-drop text-center" flow-drop ng-class="flowDropClass">
@@ -31,10 +31,7 @@
                         <b><span >或</span></b>
                         <span><span >拖拽一个文件到此处.</span></span>
                       </div>
-                      <div class="pts pbs" id="datasource-excel-extenstion-error66" ng-class="{'text-danger':vm.extenstionError}">
-                        <span >支持文件格式：</span> {{vm.acceptExtensions}}.
-                      </div>
-                      <div ng-repeat="file in $flow.files" class="transfer-box">
+                      <div ng-repeat="file in $flow.files" class="transfer-box" ng-if="vm.showLoading">
                         <div class="row mbs">
                           <div class="col-sm-5">
                             {{file.name}} ({{file.size}}bytes)

@@ -239,7 +239,7 @@
         	views: {
         		'courseEdit': {
         			templateUrl: 'app/admin/course-management/edit/file/course-management-edit-files.html',
-                    controller: 'CourseManagementEditController',
+                    controller: 'FileManagementController',
                     controllerAs: 'vm'
         		}
         	},
