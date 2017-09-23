@@ -15,6 +15,8 @@
         vm.settingsAccount = null;
         vm.success = null;
 
+        vm.settingsAccount = $rootScope.accountInfo;
+
         /**
          * Store the "settings account" in a separate variable, and not in the shared "account" variable.
          */
@@ -32,10 +34,10 @@
             };
         };
 
-        Principal.identity().then(function(account) {
-            vm.settingsAccount = copyAccount(account);
+        //  刷新信息
+        $scope.$on('authenticationSuccess', function() {
+          vm.settingsAccount =  $rootScope.accountInfo;
         });
-
         function save () {
             Auth.updateAccount(vm.settingsAccount).then(function() {
                 vm.error = null;
@@ -48,7 +50,7 @@
                 vm.error = 'ERROR';
             });
         }
-        
+
         $scope.IMAGE_TYPES = {
         		  mime:'image/jpeg,image/png,image/bmp,image/x-jpeg,image/x-png,image/x-ms-bmp',
         		  description:'JPG,PNG,BMP',
@@ -58,11 +60,11 @@
         $scope.avatarImgContent=null;
         $scope.saveAvatarState=0;//0:init 1:saving 2:success -1:fail
         $scope.avatarSelection = [0, 0, 100, 100, 100, 100];
-        
+
         $scope.cancelAvatar = function() {
           $scope.avatarPicked=false;
         };
-        
+
         $scope.saveAvatar = function() {
             $scope.saveAvatarState = 1;
             $log.debug($scope.avatarSelection);
@@ -79,7 +81,7 @@
               $scope.avatarPicked=false;
               $scope.avatarSelection = [0, 0, 100, 100, 100, 100];
               Principal.identity(true).then(function(account) {
-                  $scope.settingsAccount = angular.copy(account);
+                  vm.settingsAccount = angular.copy(account);
                   $rootScope.account = angular.copy(account);
               });
             },function error(res){
@@ -110,7 +112,7 @@
               $scope.avatarPicked=file;
             }
           };
-        
-        
+
+
     }
 })();
