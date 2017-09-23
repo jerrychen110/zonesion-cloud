@@ -139,7 +139,7 @@
         	views: {
         		'courseEdit': {
         			templateUrl: 'app/admin/course-management/edit/base/course-management-edit-base.html',
-                    controller: 'CourseManagementEditController',
+                    controller: 'CourseManagementBaseController',
                     controllerAs: 'vm'
         		}
         	},

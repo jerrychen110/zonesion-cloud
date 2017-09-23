@@ -48,8 +48,8 @@
 							<label for="" >学员人数：</label><span class="text-primary">{{vm.courseBase.learnedNum}}人</span>
 						</p>
 						<a class="btn btn-study"
-							ng-click="vm.stateGo('learn',vm.courseBase.status)">
-							{{vm.courseBase.status==1?'继续学习':'加入学习'}} </a>
+							ng-click="vm.stateGo('learn',vm.courseBase.learnedStatus)">
+							{{vm.courseBase.learnedStatus==1?'继续学习':'加入学习'}} </a>
 					</div>
 				</div>
 			</div>
