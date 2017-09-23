@@ -294,12 +294,11 @@ public class CourseService {
 		courseBaseInfoDTO.setIntroduction(course.getIntroduction());
 		courseBaseInfoDTO.setGoals(course.getGoals());
 		courseBaseInfoDTO.setTags(course.getTags());
-		courseBaseInfoDTO.setLearnedNum(courseLessonLearnRepository.getLearnedNumByCourseId(id));
+		courseBaseInfoDTO.setLearnedNum(courseMemberRepository.getLearnedNumByCourseId(id));
 		String learnedStatus = "0";
 		String isCollected = "0";
 		if(currentUserId>0) {
-			int learned = courseLessonLearnRepository.getLearnedNumByCourseIdAndUserId(id, currentUserId);
-			if(learned>0) {
+			if(courseBaseInfoDTO.getLearnedNum()>0) {
 				learnedStatus = "1";
 				courseBaseInfoDTO.setLearnedUsers(userRepository.findAllLearnedUserByCourseId(id));
 			}

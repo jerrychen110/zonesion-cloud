@@ -31,6 +31,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Page<User> findAllByLoginNot(Pageable pageable, String login);
     
-    @Query(value="select distinct tu.* from t_course_lesson_learn tcll LEFT JOIN t_user tu on tcll.user_id=tu.id WHERE tcll.course_id = ?1 order by tcll.created_date desc",nativeQuery = true)
+    @Query(value="select distinct tu.* from t_course_member tcm LEFT JOIN t_user tu on tcm.user_id=tu.id WHERE tcm.course_id = ?1 order by tcm.created_time desc",nativeQuery = true)
 	List<User> findAllLearnedUserByCourseId(long courseId);
 }
