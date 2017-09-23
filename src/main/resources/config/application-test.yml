@@ -57,6 +57,8 @@ spring:
         cache-seconds: 1
     thymeleaf:
         cache: false
+    resources:
+        static-locations: ./,file:target/local-storage/
 
 liquibase:
     contexts: dev
