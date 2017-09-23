@@ -119,6 +119,6 @@ function img() {
 function ckeditor() {
     return gulp.src(config.bower + 'ckeditor/**')
         .pipe(plumber({errorHandler: handleErrors}))
-        //.pipe(changed(config.dist +  'content/ckeditor/'))
-        .pipe(gulp.dest(config.ckedtorDist));
+        .pipe(changed(config.ckedtorDist +  'content/ckeditor/'))
+        .pipe(gulp.dest(config.ckedtorDist +  'content/ckeditor/'));
 }
