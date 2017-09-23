@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.Course;
 import com.zonesion.cloud.domain.CourseLesson;
+import com.zonesion.cloud.domain.CourseMember;
 import com.zonesion.cloud.repository.CourseRepository;
 import com.zonesion.cloud.service.CourseService;
 import com.zonesion.cloud.service.FileManageMentService;
@@ -380,6 +381,26 @@ public class CourseResource {
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
+    }
+    
+    /**
+     * 加入学习
+     * @param id
+     * @param courseMember
+     * @return
+     * @throws URISyntaxException
+     */
+    @PostMapping("/courses/{id}/join")
+    @Timed
+    public ResponseEntity<CourseMember> joinCourse(@PathVariable Long id, @Valid @RequestBody CourseMember courseMember) throws URISyntaxException {
+    	log.debug("REST request to join course : {}", id);
+        if (courseService.findOne(id) == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "course not exists", "该课程不存在")).body(null);
+        }
+        CourseMember result = courseService.joinCourse(courseMember);
+    	return ResponseEntity.created(new URI("/api/courses/"+id+"/join/" + result.getId()))
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                .body(result);
     }
     
     @RequestMapping(value = "/courses/my/learning-courses", method = RequestMethod.GET)
