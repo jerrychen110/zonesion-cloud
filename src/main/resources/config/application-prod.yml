@@ -47,6 +47,8 @@ spring:
         password:
     thymeleaf:
         cache: true
+    resources:
+        static-locations: ./,file:target/local-storage/
 
 liquibase:
     contexts: prod
