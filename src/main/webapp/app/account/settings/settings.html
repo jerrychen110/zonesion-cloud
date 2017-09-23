@@ -1,20 +1,20 @@
-<div>
+<div class="container user-setting">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h2 data-translate="settings.title" translate-values="{username: '{{vm.settingsAccount.login}}'}">User settings for [<b>{{vm.settingsAccount.login}}</b>]</h2>
-
-            <div class="alert alert-success" ng-show="vm.success" data-translate="settings.messages.success">
+          <p class="text-center text-gray ng-scope" >个人设置</p>
+            <!-- <div class="alert alert-success" ng-show="vm.success" data-translate="settings.messages.success">
                 <strong>Settings saved!</strong>
             </div>
 
-           <jhi-alert-error></jhi-alert-error>
+           <jhi-alert-error></jhi-alert-error> -->
 
-            <form name="form" role="form" novalidate ng-submit="vm.save()" show-validation>
-				<div class="form-group media">
-					<div class="media-body media-right setting-body" >
+            <form class="mtm " name="form" role="form"  novalidate ng-submit="vm.save()" show-validation>
+              <div class="form-group media">
+                <div class="media-body media-right setting-body" >
 		              <span user-avatar user-account="vm.settingsAccount" avatar-size="3x"></span>
 		            </div>
-					<div><button ng-disabled="saveAvatarState==1" type="button"
+                <div>
+                  <button ng-disabled="saveAvatarState==1" type="button"
 				                 class="btn btn-link pll prl mrl dart-default-btn mlsm text-center"
 				                 ngf-select ng-model="avatarPicked" name="file" ngf-pattern="IMAGE_TYPES.pattern"
 				                 ngf-accept="IMAGE_TYPES.mime" ngf-max-size="1MB" ngf-change="onAvatarPicked($file)"><span
@@ -48,7 +48,7 @@
 				            translate="settings.pictures.tooLarge">You choose the file is too large, more than 1MB.</span></label>
 				    </div>
 				</div>
-				
+
                 <div class="form-group">
                     <label class="control-label" for="name" data-translate="settings.form.name">Name</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="{{'settings.form.name.placeholder' | translate}}"
