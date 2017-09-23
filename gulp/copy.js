@@ -117,7 +117,7 @@ function img() {
 }
 
 function ckeditor() {
-    return gulp.src(config.app + 'src/main/webapp/bower_components/ckeditor/{config.js,styles.js,lang/zh-cn.js,lang/en.js,skins/moono/**,contents.css,plugins/**}')
+    return gulp.src(config.app + 'src/main/webapp/bower_components/ckeditor/**')
         .pipe(plumber({errorHandler: handleErrors}))
         .pipe(changed(config.dist +  'content/ckeditor/'))
         .pipe(gulp.dest(config.dist +  'content/ckeditor/'));
