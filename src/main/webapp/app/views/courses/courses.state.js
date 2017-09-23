@@ -8,7 +8,7 @@
     stateConfig.$inject = ['$stateProvider','$urlRouterProvider'];
 
     function stateConfig($stateProvider,$urlRouterProvider) {
-    	$urlRouterProvider.when("", "/courses");
+    	// $urlRouterProvider.when("", "/courses");
         $stateProvider
         .state('courses', {
             parent: 'app',
@@ -51,6 +51,6 @@
               authorities: []
             }
         });
-        $urlRouterProvider.otherwise('/');
+        // $urlRouterProvider.otherwise('/');
     }
 })();

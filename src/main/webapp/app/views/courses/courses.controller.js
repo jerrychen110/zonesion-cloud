@@ -55,7 +55,7 @@
         }
 
         //路由跳转
-        function stateGo(url){
+        function stateGo(url,type){
           if(!vm.isAuthenticated){
             $uibModal.open({
               animation: true,
@@ -71,12 +71,22 @@
             }).result.then(function(result){
                 // $state.go(url);
                 //登录成功操作
+                getCourseBase();
 
             }, function(){
 
             });
           }else{
-            $state.go(url);
+            if(type==0){
+              CourseService.joinCourse({id:$stateParams.id,courseId:$stateParams.id,userId:vm.account.id},function(result){
+                getCourseBase();
+              },function(error){
+
+              })
+            }else{
+              $state.go(url);
+            }
+
           }
 
         }
