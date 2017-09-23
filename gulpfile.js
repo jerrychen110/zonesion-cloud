@@ -33,7 +33,7 @@ gulp.task('clean', function () {
     return del([config.dist], { dot: true });
 });
 
-gulp.task('copy', ['copy:i18n', 'copy:languages', 'copy:fonts', 'copy:common', 'copy:swagger', 'copy:images', 'copy:img']);
+gulp.task('copy', ['copy:i18n', 'copy:languages', 'copy:fonts', 'copy:common', 'copy:swagger', 'copy:images', 'copy:img', 'copy:ckeditor']);
 
 gulp.task('copy:i18n', copy.i18n);
 
@@ -48,6 +48,8 @@ gulp.task('copy:swagger', copy.swagger);
 gulp.task('copy:images', copy.images);
 
 gulp.task('copy:img', copy.img);
+
+gulp.task('copy:ckeditor', copy.ckeditor);
 
 /*
 gulp.task('images', function () {
