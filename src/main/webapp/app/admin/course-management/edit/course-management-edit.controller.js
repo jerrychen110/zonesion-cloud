@@ -30,11 +30,9 @@
 
         vm.getOrders = getOrders;
         vm.stateGo = stateGo;
+        vm.publishCourse = publishCourse;
         vm.getOrders();
 
-        JhiLanguageService.getAll().then(function (languages) {
-            vm.languages = languages;
-        });
 
         Principal.identity().then(function(account) {
             vm.currentAccount = account;
@@ -133,7 +131,24 @@
           })
         }
 
+        //获得课程
+        function getCourseInfo(){
+          Course.get({id: $state.params.id},function(result){
+              vm.course = result;
+          },function(error) {
 
+          })
+
+        }
+
+        //发布课程
+        function  publishCourse() {
+          CourseManagementService.publishCourse({id:$state.params.id},function(result){
+            getCourseInfo();
+          },function(error){
+
+          })
+        }
 
         //
         function stateGo(url){

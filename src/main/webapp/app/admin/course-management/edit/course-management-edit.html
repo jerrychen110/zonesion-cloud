@@ -9,7 +9,7 @@
 					<button class="btn btn-default btn-sm dropdown-toggle" ng-click="vm.stateGo('courses')">预览</button>
 				</div>
 				<div class="btn-group">
-					<button class="btn btn-success btn-sm course-publish-btn" data-url="/course/22/manage/publish">发布课程</button>
+					<button class="btn btn-success btn-sm course-publish-btn" ng-if="vm.course.status==0" ng-click="vm.publishCourse()">发布课程</button>
 				</div>
 			</div>
 		</div>

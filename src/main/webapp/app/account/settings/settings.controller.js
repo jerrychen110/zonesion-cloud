@@ -5,9 +5,9 @@
         .module('zonesionCloudApplicationApp')
         .controller('SettingsController', SettingsController);
 
-    SettingsController.$inject = ['Principal', 'Auth', 'JhiLanguageService', '$translate', '$log', '$rootScope', '$scope', 'Upload'];
+    SettingsController.$inject = ['Principal', 'Auth', 'JhiLanguageService', '$translate', '$log', '$rootScope', '$scope', 'Upload','CourseManagementService'];
 
-    function SettingsController (Principal, Auth, JhiLanguageService, $translate, $log, $rootScope, $scope, Upload) {
+    function SettingsController (Principal, Auth, JhiLanguageService, $translate, $log, $rootScope, $scope, Upload,CourseManagementService) {
         var vm = this;
 
         vm.error = null;
@@ -15,8 +15,11 @@
         vm.settingsAccount = null;
         vm.success = null;
 
+
         vm.settingsAccount = $rootScope.accountInfo;
 
+        vm.getOrders = getOrders;
+        vm.getOrders();
         /**
          * Store the "settings account" in a separate variable, and not in the shared "account" variable.
          */
@@ -49,6 +52,15 @@
                 vm.success = null;
                 vm.error = 'ERROR';
             });
+        }
+
+        //获取分类专业
+        function getOrders(){
+          CourseManagementService.getMajors(function(data){
+            vm.majors = data;
+          },function(error){
+
+          })
         }
 
         $scope.IMAGE_TYPES = {

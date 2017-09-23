@@ -126,29 +126,15 @@
                     <label class="control-label col-md-2" for="staffNo" >教师工号</label>
                     <div class="controls col-md-7">
                       <input type="text" class="form-control" id="staffNo" name="staffNo" placeholder="教师工号"
-                             ng-model="vm.settingsAccount.staffNo" ng-minlength=1 ng-maxlength=50 required maxlength="50">
-                      <div ng-show="form.staffNo.$dirty && form.staffNo.$invalid">
-                          <p class="help-block"
-                                 ng-show="form.staffNo.$error.required" data-translate="settings.messages.validate.staffNo.required">
-                              Your staffNo is required.
-                          </p>
-                          <p class="help-block"
-                                 ng-show="form.staffNo.$error.minlength" data-translate="settings.messages.validate.staffNo.minlength">
-                              Your staffNo is required to be at least 1 character.
-                          </p>
-                          <p class="help-block"
-                                 ng-show="form.staffNo.$error.maxlength" data-translate="settings.messages.validate.staffNo.maxlength">
-                              Your staffNo cannot be longer than 50 characters.
-                          </p>
-                      </div>
+                             ng-model="vm.settingsAccount.staffNo" >
                     </div>
 
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="major" data-translate="global.form.major">Major</label>
+                    <label class="control-label col-md-2" for="major" data-translate="global.form.major"  >Major</label>
                     <div class="controls col-md-7">
-                      <select class="form-control" name="">
-                        <option value="">武汉</option>
+                      <select class="form-control" name="" >
+                        <option ng-repeat="major in vm.majors" value="">{{major.major}}</option>
                       </select>
                     </div>
                 </div>
