@@ -65,7 +65,9 @@
         r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
         ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>-->
-    
+    <script type="text/javascript">
+    	window.CKEDITOR_BASEPATH = '/bower_components/ckeditor/';
+	</script>
     <!-- build:js app/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -98,9 +100,6 @@
     <script src="bower_components/ng-flow/dist/ng-flow.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
-    <script type="text/javascript">
-		var CKEDITOR_BASEPATH = 'source/bower_components/ckeditor/';
-	</script>
     <!-- build:js app/app.js  -->
     <!-- inject:js -->
     <script src="app/app.module.js"></script>
