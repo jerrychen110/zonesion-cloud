@@ -4,9 +4,11 @@ import com.zonesion.cloud.config.Constants;
 import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.Course;
 import com.zonesion.cloud.domain.CourseLesson;
+import com.zonesion.cloud.domain.CourseMember;
 import com.zonesion.cloud.domain.CourseReview;
 import com.zonesion.cloud.repository.CourseFavoriteRepository;
 import com.zonesion.cloud.repository.CourseLessonLearnRepository;
+import com.zonesion.cloud.repository.CourseMemberRepository;
 import com.zonesion.cloud.repository.CourseRepository;
 import com.zonesion.cloud.repository.UserRepository;
 import com.zonesion.cloud.security.SecurityUtils;
@@ -89,6 +91,9 @@ public class CourseService {
     
     @Inject
     private UserService userService;
+    
+    @Inject
+    private CourseMemberRepository courseMemberRepository;
 
     /**
      * Save a course.
@@ -391,6 +396,14 @@ public class CourseService {
 		newCourseLesson.setLearnedNum(0);
 		newCourseLesson.setViewedNum(0);
 		return courseLessonService.save(newCourseLesson);
+	}
+	
+	public CourseMember joinCourse(CourseMember courseMember) {
+		CourseMember findCourseMember = courseMemberRepository.findOneByCourseIdAndUserId(courseMember.getCourseId(), courseMember.getUserId());
+		if(findCourseMember==null) {
+			findCourseMember = courseMemberRepository.save(courseMember);
+		}
+		return findCourseMember;
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
