@@ -4,6 +4,7 @@ module.exports = {
     app: 'src/main/webapp/',
     dist: 'target/www/',
     swaggerDist: 'target/www/swagger-ui/',
+    ckedtorDist: 'target/www/content/ckeditor/'
     test: 'src/test/javascript/',
     scss: 'src/main/webapp/content/scss/',
     sassSrc: 'src/main/webapp/content/scss/**/*.{scss,sass}',
