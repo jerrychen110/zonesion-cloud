@@ -26,10 +26,10 @@ import com.zonesion.cloud.web.rest.util.Page;
 @Repository
 public class HomeDTORepository {
 
-	private String baseSql = "SELECT c.*, u.name user_name, u.avatar user_avatar, u.email user_email, u.mobile user_mobile, u.sex user_sex, u.staff_no, u.major user_major, u.school user_school, count(DISTINCT(cll.user_id)) count_user_id, count(DISTINCT(cr.id)) course_review_id FROM t_course c LEFT JOIN t_chapter ch ON ch.course_id = c.id LEFT JOIN t_course_lesson cl ON cl.chapter_id = ch.id LEFT JOIN t_course_lesson_learn cll ON cll.course_id = c.id LEFT JOIN t_course_review cr ON cr.course_id = c.id LEFT JOIN t_user u ON u.id = c.user_id";
-	private String findNewestEndSql = " GROUP BY c.id, cll.course_id ORDER BY last_modified_date DESC";
+	private String baseSql = "SELECT c.*, u.name user_name, u.avatar user_avatar, u.email user_email, u.mobile user_mobile, u.sex user_sex, u.staff_no, u.major user_major, u.school user_school, count(DISTINCT(cll.user_id)) count_user_id, count(DISTINCT(cr.id)) course_review_id FROM t_course c LEFT JOIN t_chapter ch ON ch.course_id = c.id LEFT JOIN t_course_lesson cl ON cl.chapter_id = ch.id LEFT JOIN t_course_member cll ON cll.course_id = c.id LEFT JOIN t_course_review cr ON cr.course_id = c.id LEFT JOIN t_user u ON u.id = c.user_id";
+	private String findNewestEndSql = " GROUP BY c.id, cll.course_id ORDER BY c.last_modified_date DESC";
 	private String findHotEndSql = " GROUP BY c.id, cll.course_id ORDER BY count(DISTINCT(cll.user_id)) DESC,c.id";
-	private String findRecommendEndSql = " GROUP BY c.id, cll.course_id ORDER BY recommended_sort";
+	private String findRecommendEndSql = " GROUP BY c.id, cll.course_id ORDER BY c.recommended_sort";
 	private String findAllEndSql = " GROUP BY c.id, cll.course_id ORDER BY c.id";
 	private String countCourseSql = "SELECT count(1) couse_total FROM t_course c";
 	private String homeListLimitSql = " limit 9";
@@ -76,7 +76,7 @@ public class HomeDTORepository {
 			countSql = countCourseSql+queryStr+" AND c.recommended='1'";
 		}else {
 			filterSql = baseSql+queryStr+findAllEndSql;
-			countSql = countCourseSql;
+			countSql = countCourseSql+queryStr;
 		}
 		JdbcPaginationHelper<HomeDTO> JdbcPaginationHelper = new JdbcPaginationHelper<HomeDTO>();
 		return JdbcPaginationHelper.fetchPage(jdbcTemplate, countSql, filterSql, args, pageNo, pageSize,
