@@ -76,7 +76,6 @@
     </changeSet>
     
     <changeSet id="20170729021222-2" author="XiaXiong">
-    	<dropForeignKeyConstraint baseTableName="t_course_lesson_attachment" constraintName="fk_course_lesson_attachment_course_lesson_id"/>
     	<dropColumn tableName="t_course_lesson_attachment">
     		<column name="course_id"/>
     		<column name="course_lesson_id"/>
