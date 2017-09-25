@@ -2,6 +2,7 @@ package com.zonesion.cloud.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.zonesion.cloud.domain.CourseLesson;
+import com.zonesion.cloud.domain.CourseLessonLearn;
 import com.zonesion.cloud.domain.CourseLessonNote;
 import com.zonesion.cloud.service.CourseLessonService;
 import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
@@ -128,6 +129,12 @@ public class CourseLessonResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
     
+    /**
+     * 获取课时附件列表
+     * @param id
+     * @param pageable
+     * @return
+     */
     @RequestMapping(value = "/course-lessons/{id}/lesson-attachments", method = RequestMethod.GET)
     public ResponseEntity<List<CourseLessonAttachmentDTO>> getLessonAttachementsById(@PathVariable Long id, @ApiParam Pageable pageable){
     	log.debug("query course base info : {}", id);
@@ -136,6 +143,11 @@ public class CourseLessonResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
     
+    /**
+     * 获取课时信息
+     * @param id
+     * @return
+     */
     @GetMapping("/course-lessons/info/{id}")
     @Timed
     public ResponseEntity<List<CourseLesson>> getAllCourse(@PathVariable Long id) {
@@ -144,10 +156,34 @@ public class CourseLessonResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(course));
     }
     
+    /**
+     * 记录课时笔记
+     * @param id
+     * @param courseLessonNoteInDTO
+     * @return
+     */
     @RequestMapping(value = "/course-lessons/{id}/lesson-note", method = RequestMethod.POST)
     @Timed
     public ResponseEntity<CourseLessonNote> saveCourseLessonNote(@PathVariable Long id, CourseLessonNoteInDTO courseLessonNoteInDTO) {
     	CourseLessonNote result = courseLessonService.saveCourseLessonNote(id, courseLessonNoteInDTO);
+    	return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+    
+    /**
+     * 课时学习完成
+     * @param id
+     * @param courseId
+     * @param userId
+     * @return
+     */
+    @RequestMapping(value = "/course-lessons/{id}/learn-over", method = RequestMethod.PUT)
+    @Timed
+    public ResponseEntity<CourseLessonLearn> doLessonLearned(@PathVariable Long id, @RequestParam(required=true) Long courseId, @RequestParam(required=true) Long userId) {
+    	log.debug("REST request to get latest lesson : {}", id);
+        if (courseLessonService.findOne(id) == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "lesson not exists", "该课时不存在")).body(null);
+        }
+    	CourseLessonLearn result = courseLessonService.doLessonLearned(id, courseId, userId);
     	return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
