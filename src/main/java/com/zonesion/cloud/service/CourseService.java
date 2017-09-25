@@ -424,6 +424,7 @@ public class CourseService {
 				courseLessonLearn.setCourseId(courseId);
 				courseLessonLearn.setUserId(userId);
 				courseLessonLearn.setCourseLesson(courseLessons.get(0));
+				courseLessonLearn.setDuration(Long.valueOf(0));
 				courseLessonLearn.setIsComplete("0");
 				courseLessonLearnRepository.save(courseLessonLearn);
 			}
