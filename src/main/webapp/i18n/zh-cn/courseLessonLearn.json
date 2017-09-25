@@ -17,7 +17,7 @@
             },
             "courseId": "Course Id",
             "userId": "User Id",
-            "durationId": "Duration Id",
+            "duration": "Duration",
             "isComplete": "Is Complete",
             "courseLesson": "Course Lesson"
         }

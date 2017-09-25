@@ -84,7 +84,7 @@
 												<span class="title"> 第{{unit.seq}}节：{{unit.title}} </span>
 												<ul>
 													<li class="period lesson-item lesson-item-63" ng-repeat="lesson in unit.lessons track by $index" >
-														<a href="#/courses/{{courses.id}}/learn#lesson/{{courses.courseLessonId}}">
+														<a ng-click="vm.toLearn(lesson.id)" target="_blank">
 															<i class="es-icon es-icon-done1 color-primary status-icon"></i>
 															{{lesson.title}}
 															<span class="date" title="视频时长01:19">01:19</span> <span class="course-type">

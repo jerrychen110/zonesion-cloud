@@ -126,7 +126,7 @@
                             return {
                                 courseId: null,
                                 userId: null,
-                                durationId: null,
+                                duration: null,
                                 isComplete: null,
                                 id: null
                             };

@@ -4,10 +4,12 @@ import com.zonesion.cloud.config.Constants;
 import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.Course;
 import com.zonesion.cloud.domain.CourseLesson;
+import com.zonesion.cloud.domain.CourseLessonLearn;
 import com.zonesion.cloud.domain.CourseMember;
 import com.zonesion.cloud.domain.CourseReview;
 import com.zonesion.cloud.repository.CourseFavoriteRepository;
 import com.zonesion.cloud.repository.CourseLessonLearnRepository;
+import com.zonesion.cloud.repository.CourseLessonRepository;
 import com.zonesion.cloud.repository.CourseMemberRepository;
 import com.zonesion.cloud.repository.CourseRepository;
 import com.zonesion.cloud.repository.UserRepository;
@@ -88,6 +90,9 @@ public class CourseService {
     
     @Inject
     private CourseLessonService courseLessonService;
+    
+    @Inject
+    private CourseLessonRepository courseLessonRepository;
     
     @Inject
     private UserService userService;
@@ -403,6 +408,28 @@ public class CourseService {
 			findCourseMember = courseMemberRepository.save(courseMember);
 		}
 		return findCourseMember;
+	}
+	
+	public Long getLatestLearnLesson(Long courseId, Long userId) {
+		Long lessonId=null;
+		List<CourseLessonLearn> courseLessonLearns = courseLessonLearnRepository.findAllByCourseIdAndUserIdOrderByCreatedDateDesc(courseId, userId);
+		if(courseLessonLearns!=null&&courseLessonLearns.size()>0) {
+			lessonId = courseLessonLearns.get(0).getCourseLesson().getId();
+		}else {
+			List<CourseLesson> courseLessons = courseLessonRepository.findAllByCourseIdOrderByCreatedDateAsc(courseId);
+			if(courseLessons!=null&&courseLessons.size()>0) {
+				lessonId = courseLessons.get(0).getId();
+				//保存学习记录
+				CourseLessonLearn courseLessonLearn = new CourseLessonLearn();
+				courseLessonLearn.setCourseId(courseId);
+				courseLessonLearn.setUserId(userId);
+				courseLessonLearn.setCourseLesson(courseLessons.get(0));
+				courseLessonLearn.setDuration(Long.valueOf(0));
+				courseLessonLearn.setIsComplete("0");
+				courseLessonLearnRepository.save(courseLessonLearn);
+			}
+		}
+		return lessonId;
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })

@@ -27,7 +27,7 @@ public class CourseLessonLearnDTO implements Serializable {
     private Long userId;
 
     @NotNull
-    private Long durationId;
+    private Long duration;
 
     @NotNull
     @Size(max = 1)
@@ -47,18 +47,18 @@ public class CourseLessonLearnDTO implements Serializable {
     
     public CourseLessonLearnDTO(CourseLessonLearn courseLessonLearn) {
 		this(courseLessonLearn.getId(), courseLessonLearn.getCourseId(), courseLessonLearn.getUserId(),
-			 courseLessonLearn.getDurationId(), courseLessonLearn.getIsComplete(), courseLessonLearn.getCreatedBy(),
+			 courseLessonLearn.getDuration(), courseLessonLearn.getIsComplete(), courseLessonLearn.getCreatedBy(),
 			 courseLessonLearn.getCreatedDate(), courseLessonLearn.getLastModifiedBy(), courseLessonLearn.getLastModifiedDate());
 	}
     
 
-	public CourseLessonLearnDTO(Long id, Long courseId, Long userId, Long durationId, String isComplete,
+	public CourseLessonLearnDTO(Long id, Long courseId, Long userId, Long duration, String isComplete,
 			String createdBy, Instant createdDate, String lastModifiedBy, Instant lastModifiedDate) {
 		super();
 		this.id = id;
 		this.courseId = courseId;
 		this.userId = userId;
-		this.durationId = durationId;
+		this.duration = duration;
 		this.isComplete = isComplete;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
@@ -122,12 +122,12 @@ public class CourseLessonLearnDTO implements Serializable {
         this.userId = userId;
     }
 
-    public Long getDurationId() {
-        return durationId;
+    public Long getDuration() {
+        return duration;
     }
 
-    public void setDurationId(Long durationId) {
-        this.durationId = durationId;
+    public void setDuration(Long duration) {
+        this.duration = duration;
     }
 
     public String getIsComplete() {
@@ -140,8 +140,8 @@ public class CourseLessonLearnDTO implements Serializable {
 
     @Override
 	public String toString() {
-		return "CourseLessonLearnDTO [id=" + id + ", courseId=" + courseId + ", userId=" + userId + ", durationId="
-				+ durationId + ", isComplete=" + isComplete + ", createdBy=" + createdBy + ", createdDate="
+		return "CourseLessonLearnDTO [id=" + id + ", courseId=" + courseId + ", userId=" + userId + ", duration="
+				+ duration + ", isComplete=" + isComplete + ", createdBy=" + createdBy + ", createdDate="
 				+ createdDate + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDate=" + lastModifiedDate + "]";
 	}
 }

@@ -35,7 +35,7 @@ public class CourseLessonLearnMapper {
     		courseLessonLearn.setId(courseLessonLearnDTO.getId());
     		courseLessonLearn.setCourseId(courseLessonLearnDTO.getCourseId());
     		courseLessonLearn.setUserId(courseLessonLearnDTO.getUserId());
-    		courseLessonLearn.setDurationId(courseLessonLearnDTO.getDurationId());
+    		courseLessonLearn.setDuration(courseLessonLearnDTO.getDuration());
     		courseLessonLearn.setIsComplete(courseLessonLearnDTO.getIsComplete());
     		return courseLessonLearn;
     	}

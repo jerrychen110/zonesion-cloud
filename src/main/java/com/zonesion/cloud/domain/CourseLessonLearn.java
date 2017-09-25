@@ -31,8 +31,8 @@ public class CourseLessonLearn extends AbstractAuditingEntity implements Seriali
     private Long userId;
 
     @NotNull
-    @Column(name = "duration_id", nullable = false)
-    private Long durationId;
+    @Column(name = "duration", nullable = false)
+    private Long duration;
 
     @NotNull
     @Size(max = 1)
@@ -76,17 +76,17 @@ public class CourseLessonLearn extends AbstractAuditingEntity implements Seriali
         this.userId = userId;
     }
 
-    public Long getDurationId() {
-        return durationId;
+    public Long getDuration() {
+        return duration;
     }
 
-    public CourseLessonLearn durationId(Long durationId) {
-        this.durationId = durationId;
+    public CourseLessonLearn duration(Long duration) {
+        this.duration = duration;
         return this;
     }
 
-    public void setDurationId(Long durationId) {
-        this.durationId = durationId;
+    public void setDuration(Long duration) {
+        this.duration = duration;
     }
 
     public String getIsComplete() {
@@ -141,7 +141,7 @@ public class CourseLessonLearn extends AbstractAuditingEntity implements Seriali
             "id=" + getId() +
             ", courseId='" + getCourseId() + "'" +
             ", userId='" + getUserId() + "'" +
-            ", durationId='" + getDurationId() + "'" +
+            ", duration='" + getDuration() + "'" +
             ", isComplete='" + getIsComplete() + "'" +
             "}";
     }
