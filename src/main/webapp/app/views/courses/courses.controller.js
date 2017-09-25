@@ -15,6 +15,7 @@
         vm.isAuthenticated = Principal.isAuthenticated();
         vm.login = LoginService.open;
         vm.stateGo = stateGo;
+        vm.toLearn = toLearn;
 
         vm.getCourseLessons=getCourseLessons();
         vm.getCourseBase=getCourseBase();
@@ -84,11 +85,25 @@
 
               })
             }else{
-              $state.go(url);
+                CourseService.latestLearnLesson({
+                    id:$stateParams.id,
+                    userId:vm.account.id
+                },
+                function (result){
+                    $state.go('learn',{lessonId:result.lessonId});
+                },
+                function (error) {
+
+                })
             }
 
           }
 
+        }
+
+        function toLearn(lessonId){
+            $state.go('learn',{lessonId:lessonId});
+            console.log($state.go);
         }
     }
 })();

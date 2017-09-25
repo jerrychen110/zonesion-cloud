@@ -11,7 +11,7 @@
         $stateProvider
         .state('learn', {
             parent: 'courses',
-            url: '/learn/{id}',
+            url: '/learn/{lessonId}',
             data: {
                 authorities: []
             },
