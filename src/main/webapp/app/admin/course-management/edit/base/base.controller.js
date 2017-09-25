@@ -16,7 +16,7 @@
         vm.currentAccount = null;
         vm.languages = null;
         vm.save = save;
-        vm.course = entity;
+        vm.course = {};
         vm.majors = [];
         vm.selectedMajors = [];
         vm.localLang = {
@@ -31,7 +31,8 @@
         vm.getOrders = getOrders;
         vm.stateGo = stateGo;
         vm.publishCourse = publishCourse;
-        vm.getOrders();
+        vm.getCourseInfo = getCourseInfo;
+        vm.getCourseInfo();
 
 
         Principal.identity().then(function(account) {
@@ -46,8 +47,8 @@
             vm.isSaving = true;
             vm.course.tags=''
             // vm.course.tags = vm.selectedMajors.join(', ');
-            _.forEach(vm.selectedMajors,function(){
-
+            _.forEach(vm.selectedMajors,function(selectedMajor,index){
+              vm.course.tags += (index==0?'':',')+ selectedMajor.major;
             })
             Course.update(vm.course, onSaveSuccess, onSaveError);
         }
@@ -66,7 +67,14 @@
           CourseManagementService.getMajors(function(data){
             vm.majors = data;
             angular.forEach(vm.majors,function(major){
-              major.selected = false;
+              var findFlag=_.findIndex(vm.selectedMajors, function(selectedMajor) {
+                  return selectedMajor.major == major.major;
+                });
+                if(findFlag>=0){
+                  major.selected=true;
+                }else{
+                  major.selected = false;
+                }
             })
           },function(error){
 
@@ -77,6 +85,11 @@
         function getCourseInfo(){
           Course.get({id: $state.params.id},function(result){
               vm.course = result;
+              var selectedMajors = vm.course.tags.split(",");
+              _.forEach(selectedMajors,function(major){
+                vm.selectedMajors.push({major:major,selected:true});
+              })
+              vm.getOrders();
           },function(error) {
 
           })
