@@ -18,4 +18,6 @@ public interface CourseLessonRepository extends JpaRepository<CourseLesson,Long>
     
 	@Query(value="SELECT cl.*, ch.*, c.* FROM t_course_lesson cl INNER JOIN t_chapter ch ON cl.chapter_id = ch.id INNER JOIN t_course c ON c.id = ch.course_id WHERE c.id = ?1 order by cl.number,cl.seq",nativeQuery = true)
 	List<CourseLesson> findAllCourseLesson(Long id);
+	
+	List<CourseLesson> findAllByCourseIdOrderByCreatedDateAsc(Long courseId);
 }

@@ -403,6 +403,18 @@ public class CourseResource {
                 .body(result);
     }
     
+    @RequestMapping(value = "/courses/{id}/latest-learn-lesson", method = RequestMethod.GET)
+    @Timed
+    public ResponseEntity<?> getLatestLearnLesson(@PathVariable Long id, @RequestParam(required=true) Long userId) {
+    	log.debug("REST request to get latest lesson : {}", id);
+        if (courseService.findOne(id) == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "course not exists", "该课程不存在")).body(null);
+        }
+        Map<String, Object> returnMap = new HashMap<String, Object>();
+        returnMap.put("lessonId", courseService.getLatestLearnLesson(id, userId));
+    	return new ResponseEntity<>(returnMap, HttpStatus.OK);
+    }
+    
     @RequestMapping(value = "/courses/my/learning-courses", method = RequestMethod.GET)
     @Timed
     public ResponseEntity<List<MyCourseDTO>> getMyLearningCourses(@ApiParam Pageable pageable){

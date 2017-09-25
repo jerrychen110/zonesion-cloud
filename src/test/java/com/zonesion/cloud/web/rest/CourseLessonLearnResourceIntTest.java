@@ -45,8 +45,8 @@ public class CourseLessonLearnResourceIntTest {
     private static final Long DEFAULT_USER_ID = 1L;
     private static final Long UPDATED_USER_ID = 2L;
 
-    private static final Long DEFAULT_DURATION_ID = 1L;
-    private static final Long UPDATED_DURATION_ID = 2L;
+    private static final Long DEFAULT_DURATION = 1L;
+    private static final Long UPDATED_DURATION = 2L;
 
     private static final String DEFAULT_IS_COMPLETE = "A";
     private static final String UPDATED_IS_COMPLETE = "B";
@@ -93,7 +93,7 @@ public class CourseLessonLearnResourceIntTest {
         CourseLessonLearn courseLessonLearn = new CourseLessonLearn()
             .courseId(DEFAULT_COURSE_ID)
             .userId(DEFAULT_USER_ID)
-            .durationId(DEFAULT_DURATION_ID)
+            .duration(DEFAULT_DURATION)
             .isComplete(DEFAULT_IS_COMPLETE);
         // Add required entity
         CourseLesson courseLesson = CourseLessonResourceIntTest.createEntity(em);
@@ -125,7 +125,7 @@ public class CourseLessonLearnResourceIntTest {
         CourseLessonLearn testCourseLessonLearn = courseLessonLearnList.get(courseLessonLearnList.size() - 1);
         assertThat(testCourseLessonLearn.getCourseId()).isEqualTo(DEFAULT_COURSE_ID);
         assertThat(testCourseLessonLearn.getUserId()).isEqualTo(DEFAULT_USER_ID);
-        assertThat(testCourseLessonLearn.getDurationId()).isEqualTo(DEFAULT_DURATION_ID);
+        assertThat(testCourseLessonLearn.getDuration()).isEqualTo(DEFAULT_DURATION);
         assertThat(testCourseLessonLearn.getIsComplete()).isEqualTo(DEFAULT_IS_COMPLETE);
     }
 
@@ -189,7 +189,7 @@ public class CourseLessonLearnResourceIntTest {
     public void checkDurationIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = courseLessonLearnRepository.findAll().size();
         // set the field null
-        courseLessonLearn.setDurationId(null);
+        courseLessonLearn.setDuration(null);
 
         // Create the CourseLessonLearn, which fails.
 
@@ -233,7 +233,7 @@ public class CourseLessonLearnResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(courseLessonLearn.getId().intValue())))
             .andExpect(jsonPath("$.[*].courseId").value(hasItem(DEFAULT_COURSE_ID.intValue())))
             .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.intValue())))
-            .andExpect(jsonPath("$.[*].durationId").value(hasItem(DEFAULT_DURATION_ID.intValue())))
+            .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION.intValue())))
             .andExpect(jsonPath("$.[*].isComplete").value(hasItem(DEFAULT_IS_COMPLETE.toString())));
     }
 
@@ -250,7 +250,7 @@ public class CourseLessonLearnResourceIntTest {
             .andExpect(jsonPath("$.id").value(courseLessonLearn.getId().intValue()))
             .andExpect(jsonPath("$.courseId").value(DEFAULT_COURSE_ID.intValue()))
             .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID.intValue()))
-            .andExpect(jsonPath("$.durationId").value(DEFAULT_DURATION_ID.intValue()))
+            .andExpect(jsonPath("$.duration").value(DEFAULT_DURATION.intValue()))
             .andExpect(jsonPath("$.isComplete").value(DEFAULT_IS_COMPLETE.toString()));
     }
 
@@ -275,7 +275,7 @@ public class CourseLessonLearnResourceIntTest {
         updatedCourseLessonLearn
             .courseId(UPDATED_COURSE_ID)
             .userId(UPDATED_USER_ID)
-            .durationId(UPDATED_DURATION_ID)
+            .duration(UPDATED_DURATION)
             .isComplete(UPDATED_IS_COMPLETE);
 
         restCourseLessonLearnMockMvc.perform(put("/api/course-lesson-learns")
@@ -289,7 +289,7 @@ public class CourseLessonLearnResourceIntTest {
         CourseLessonLearn testCourseLessonLearn = courseLessonLearnList.get(courseLessonLearnList.size() - 1);
         assertThat(testCourseLessonLearn.getCourseId()).isEqualTo(UPDATED_COURSE_ID);
         assertThat(testCourseLessonLearn.getUserId()).isEqualTo(UPDATED_USER_ID);
-        assertThat(testCourseLessonLearn.getDurationId()).isEqualTo(UPDATED_DURATION_ID);
+        assertThat(testCourseLessonLearn.getDuration()).isEqualTo(UPDATED_DURATION);
         assertThat(testCourseLessonLearn.getIsComplete()).isEqualTo(UPDATED_IS_COMPLETE);
     }
 

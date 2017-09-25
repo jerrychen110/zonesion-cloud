@@ -46,17 +46,17 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonLearn.durationId" for="field_durationId">Duration Id</label>
-            <input type="number" class="form-control" name="durationId" id="field_durationId"
-                    ng-model="vm.courseLessonLearn.durationId"
+            <label class="control-label" data-translate="zonesionCloudApplicationApp.courseLessonLearn.duration" for="field_duration">Duration</label>
+            <input type="number" class="form-control" name="durationId" id="field_duration"
+                    ng-model="vm.courseLessonLearn.duration"
                     required/>
-            <div ng-show="editForm.durationId.$invalid">
+            <div ng-show="editForm.duration.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.durationId.$error.required" data-translate="entity.validation.required">
+                    ng-show="editForm.duration.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.durationId.$error.number" data-translate="entity.validation.number">
+                    ng-show="editForm.duration.$error.number" data-translate="entity.validation.number">
                     This field should be a number.
                 </p>
             </div>
