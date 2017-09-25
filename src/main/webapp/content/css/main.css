@@ -539,6 +539,12 @@ body {
   margin-left: 220px;
   margin-top: 20px; }
 
+.toolbar-open .toolbar-nav li {
+  outline: 0; }
+
+.lesson-dashboard .toolbar-nav-stacked {
+  margin-top: 30px; }
+
 body {
   background: #fafafa;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

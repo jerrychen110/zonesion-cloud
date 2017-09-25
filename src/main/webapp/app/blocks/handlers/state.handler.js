@@ -16,11 +16,13 @@
 
         function initialize() {
             $rootScope.VERSION = VERSION;
+            $rootScope.showFooter=true;
 
             var stateChangeStart = $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams, fromState) {
                 $rootScope.toState = toState;
                 $rootScope.toStateParams = toStateParams;
                 $rootScope.fromState = fromState;
+
 
                 // Redirect to a state with an external URL (http://stackoverflow.com/a/30221248/1098564)
                 if (toState.external) {
