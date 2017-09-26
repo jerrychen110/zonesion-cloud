@@ -29,7 +29,7 @@
 			<div ng-show='vm.activeTab==1' class="clearfix">
                 <ul class="course-wide-list" ng-repeat="userLearning in vm.userLearning">
                     <li class="course-item clearfix ">
-                        <a class="course-picture-link" href="/course/1">
+                        <a class="course-picture-link" ng-click="vm.toCourse(userLearning.id)">
                             <img class="course-picture" ng-src="{{userLearning.coverPicture}}" alt="{{userLearning.title}}">
                         </a>
                         <div class="course-body">
@@ -37,7 +37,7 @@
                             <div style="float: right;" class="text-muted mrm mls"></div>
 
                             <h4 class="course-title">
-                                <a href="/course/1">{{userLearning.title}}</a>
+                                <a ng-click="vm.toCourse(userLearning.id)">{{userLearning.title}}</a>
                             </h4>
 
                             <div class="course-about ellipsis">{{userLearning.introduction}}</div>
@@ -70,7 +70,7 @@
 			<div ng-show='vm.activeTab==2' class="clearfix">
                 <ul class="course-wide-list" ng-repeat="userLearning in vm.userLearning">
                     <li class="course-item clearfix ">
-                        <a class="course-picture-link" ng-href="course/{{userLearning.id}}">
+                        <a class="course-picture-link" ng-click="vm.toCourse(userLearning.id)">
                             <img class="course-picture" ng-src="{{userLearning.coverPicture}}" alt="{{userLearning.title}}">
                         </a>
                         <div class="course-body">
@@ -78,7 +78,7 @@
                             <div style="float: right;" class="text-muted mrm mls"></div>
 
                             <h4 class="course-title">
-                                <a ng-href="course/{{userLearning.id}}">{{userLearning.title}}</a>
+                                <a ng-click="vm.toCourse(userLearning.id)">{{userLearning.title}}</a>
                             </h4>
 
                             <div class="course-about ellipsis">{{userLearning.introduction}}</div>
