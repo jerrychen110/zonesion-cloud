@@ -88,13 +88,13 @@
 															<i class="es-icon es-icon-doing color-primary status-icon" ng-if="lesson.learnedStatus==1"></i>
 															<i class="es-icon es-icon-done1 status-icon" ng-if="lesson.learnedStatus==2"></i>
 															{{lesson.title}}
-															<span ng-if="lesson.courseLessonType==2" class="date" title="视频时长{{lesson.mediaLength}}">{{lesson.mediaLength}}</span>
-															<span ng-if="lesson.courseLessonType==3" class="date" title="音频时长{{lesson.mediaLength}}">{{lesson.mediaLength}}</span>
+															<span ng-if="lesson.courseLessonType==0" class="date" title="视频时长{{lesson.mediaLength}}">{{lesson.mediaLength}}</span>
+															<span ng-if="lesson.courseLessonType==1" class="date" title="音频时长{{lesson.mediaLength}}">{{lesson.mediaLength}}</span>
 															<span class="course-type">
-																<i ng-if="lesson.courseLessonType==2" class="es-icon es-icon-videoclass" data-toggle="tooltip" data-placement="top" title="视频课程"></i>
-																<i ng-if="lesson.courseLessonType==3" class="es-icon es-icon-audioclass" data-toggle="tooltip" data-placement="top" title="音频课程"></i>
-																<i ng-if="lesson.courseLessonType==0" class="es-icon es-icon-graphicclass" data-toggle="tooltip" data-placement="top" title="图文课程"></i>
-																<i ng-if="lesson.courseLessonType==1" class="es-icon es-icon-pptclass" data-toggle="tooltip" data-placement="top" title="PPT课程"></i>
+																<i ng-if="lesson.courseLessonType==0" class="es-icon es-icon-videoclass" data-toggle="tooltip" data-placement="top" title="视频课程"></i>
+																<i ng-if="lesson.courseLessonType==1" class="es-icon es-icon-audioclass" data-toggle="tooltip" data-placement="top" title="音频课程"></i>
+																<i ng-if="lesson.courseLessonType==2" class="es-icon es-icon-graphicclass" data-toggle="tooltip" data-placement="top" title="图文课程"></i>
+																<i ng-if="lesson.courseLessonType==3" class="es-icon es-icon-pptclass" data-toggle="tooltip" data-placement="top" title="PPT课程"></i>
 															</span>
 													</a></li>
 												</ul>

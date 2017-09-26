@@ -85,10 +85,12 @@
         function getCourseInfo(){
           Course.get({id: $state.params.id},function(result){
               vm.course = result;
-              var selectedMajors = vm.course.tags.split(",");
-              _.forEach(selectedMajors,function(major){
-                vm.selectedMajors.push({major:major,selected:true});
-              })
+              if(vm.course.tags!=null){
+            	  var selectedMajors = vm.course.tags.split(",");
+            	  _.forEach(selectedMajors,function(major){
+            		  vm.selectedMajors.push({major:major,selected:true});
+            	  })
+              }
               vm.getOrders();
           },function(error) {
 
