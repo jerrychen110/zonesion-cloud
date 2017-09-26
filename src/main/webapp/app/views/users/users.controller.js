@@ -17,6 +17,7 @@
         vm.pageSize = 2;
         vm.getCourseLearning = getCourseLearning;
         vm.getCourseFavorite = getCourseFavorite;
+        vm.toCourse = toCourse;
 
         getCourseAccount();
         getCourseLearning();
@@ -25,7 +26,7 @@
             UsersService.getCourseAccount(onSuccess, onError);
 
             function onSuccess(data, headers) {
-                console.log(data);
+                //console.log(data);
                 vm.userAccount = data;
             }
             function onError(error) {
@@ -42,7 +43,7 @@
             }, onSuccess, onError);
 
             function onSuccess(data, headers) {
-                //console.log(data);
+                console.log(data);
                 vm.blank = true;
                 vm.userLearning = data;
             }
@@ -65,6 +66,10 @@
             function onError(error) {
                 //AlertService.error(error.data.message);
             }
+        }
+
+        function toCourse(courseId){
+            $state.go('courses',{id:courseId});
         }
     }
 })();
