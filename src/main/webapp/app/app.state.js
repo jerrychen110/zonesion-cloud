@@ -20,11 +20,6 @@
                     templateUrl: 'app/layouts/sidenav/sidenav.html',
                     controller: 'SidenavController',
                     controllerAs: 'vm'
-                },
-                'footer@': {
-                    templateUrl: 'app/layouts/footer/footer.html',
-                    controller: 'footerController',
-                    controllerAs: 'vm'
                 }
             },
             resolve: {
