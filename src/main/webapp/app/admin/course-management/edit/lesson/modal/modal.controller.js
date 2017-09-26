@@ -172,8 +172,10 @@
           if(index==selectedIndex){
             typeInfo.checked = true;
             vm.selectTypeInfo = typeInfo;
-            acceptExtensions = _.find(LOAD_TYPES,{type:vm.selectTypeInfo.type}).extensions;
-            vm.acceptExtensions = acceptExtensions.join(', ');
+            if(vm.selectTypeInfo.type!='text'){
+            	acceptExtensions = _.find(LOAD_TYPES,{type:vm.selectTypeInfo.type}).extensions;
+            	vm.acceptExtensions = acceptExtensions.join(', ');
+            }
           }else{
             typeInfo.checked = false;
           }
