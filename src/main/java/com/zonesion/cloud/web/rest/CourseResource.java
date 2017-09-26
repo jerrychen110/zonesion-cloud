@@ -368,12 +368,6 @@ public class CourseResource {
                 .body(result);
     }
     
-    /**
-     * 课程发布
-     * @param id
-     * @return
-     * @throws URISyntaxException
-     */
     @PutMapping("/courses/{id}/publish")
     @Timed
     public ResponseEntity<Course> publishCourse(@PathVariable Long id) throws URISyntaxException {
@@ -409,12 +403,6 @@ public class CourseResource {
                 .body(result);
     }
     
-    /**
-     * 继续学习
-     * @param id
-     * @param userId
-     * @return
-     */
     @RequestMapping(value = "/courses/{id}/latest-learn-lesson", method = RequestMethod.GET)
     @Timed
     public ResponseEntity<?> getLatestLearnLesson(@PathVariable Long id, @RequestParam(required=true) Long userId) {
@@ -427,11 +415,6 @@ public class CourseResource {
     	return new ResponseEntity<>(returnMap, HttpStatus.OK);
     }
     
-    /**
-     * 我的主页-正在学的课程列表
-     * @param pageable
-     * @return
-     */
     @RequestMapping(value = "/courses/my/learning-courses", method = RequestMethod.GET)
     @Timed
     public ResponseEntity<List<MyCourseDTO>> getMyLearningCourses(@ApiParam Pageable pageable){
@@ -441,11 +424,6 @@ public class CourseResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
     
-    /**
-     * 我的主页-已收藏的课程列表
-     * @param pageable
-     * @return
-     */
     @RequestMapping(value = "/courses/my/favorite-courses", method = RequestMethod.GET)
     @Timed
     public ResponseEntity<List<MyCourseDTO>> getMyFavoriteCourses(@ApiParam Pageable pageable){

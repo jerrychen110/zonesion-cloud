@@ -33,7 +33,7 @@
                 }]
             }
         });
-        
+
         // [optional] To change the jcrop configuration,All jcrop settings are in: http://deepliquid.com/content/Jcrop_Manual.html#Setting_Options
         ngJcropConfigProvider.setJcropConfig({
             bgColor: 'transparent',

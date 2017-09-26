@@ -3,9 +3,7 @@ package com.zonesion.cloud.service;
 import com.zonesion.cloud.config.Constants;
 import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.CourseLesson;
-import com.zonesion.cloud.domain.CourseLessonLearn;
 import com.zonesion.cloud.domain.CourseLessonNote;
-import com.zonesion.cloud.repository.CourseLessonLearnRepository;
 import com.zonesion.cloud.repository.CourseLessonNoteRepository;
 import com.zonesion.cloud.repository.CourseLessonRepository;
 import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
@@ -51,9 +49,6 @@ public class CourseLessonService {
     
     @Inject
     private CourseLessonNoteRepository courseLessonNoteRepository;
-    
-    @Inject
-    private CourseLessonLearnRepository courseLessonLearnRepository;
     
     @Inject
     private JdbcTemplate jdbcTemplate;
@@ -124,23 +119,11 @@ public class CourseLessonService {
 		
 	}*/
 	
-	/**
-	 * 查询课时对应的附件列表
-	 * @param lessonId
-	 * @param pageable
-	 * @return
-	 */
 	@Transactional(readOnly = true)
 	public Page<CourseLessonAttachmentDTO> getLessonAttachementsByLessonId(long lessonId, Pageable pageable) {
 		return courseLessonAttachmentService.findAllByTargetTypeAndTargetId(Constants.ATTACHEMENT_TYPE_LESSON, lessonId, pageable);
 	}
 	
-	/**
-	 * 保存课时笔记
-	 * @param id
-	 * @param courseLessonNoteInDTO
-	 * @return
-	 */
 	public CourseLessonNote saveCourseLessonNote(Long id, CourseLessonNoteInDTO courseLessonNoteInDTO) {
 		CourseLessonNote courseLessonNote = new CourseLessonNote();
 		courseLessonNote.setCourseId(courseLessonNoteInDTO.getCourseId());
@@ -154,39 +137,9 @@ public class CourseLessonService {
 		return courseLessonNoteRepository.save(courseLessonNote);
 	}
 	
-	/**
-	 * 获取课时的最大number
-	 * @param courseId
-	 * @return
-	 */
 	public int getLessonMaxNumberByCourseId(Long courseId) {
 		StringBuilder sb = new StringBuilder();
     	sb.append("select max(number) from t_course_lesson where course_id=").append(courseId);
     	return jdbcTemplate.queryForObject(sb.toString(), Integer.class)!=null?jdbcTemplate.queryForObject(sb.toString(), Integer.class):0;
-	}
-	
-	/**
-	 * 完成课时学习
-	 * @param lessonId
-	 * @param courseId
-	 * @param userId
-	 * @return
-	 */
-	public CourseLessonLearn doLessonLearned(Long lessonId, Long courseId, Long userId) {
-		CourseLessonLearn returnCourseLessonLearn = null;
-		CourseLessonLearn findCourseLessonLearn = courseLessonLearnRepository.findOneByUserIdAndCourseLesson_id(userId, lessonId);
-		if(findCourseLessonLearn!=null) {
-			findCourseLessonLearn.setIsComplete("1");
-			returnCourseLessonLearn = courseLessonLearnRepository.save(findCourseLessonLearn);
-		}else {
-			CourseLessonLearn courseLessonLearn = new CourseLessonLearn();
-			courseLessonLearn.setCourseId(courseId);
-			courseLessonLearn.setUserId(userId);
-			courseLessonLearn.setCourseLesson(courseLessonRepository.findOne(lessonId));
-			courseLessonLearn.setIsComplete("1");
-			courseLessonLearn.setDuration(Long.valueOf(0));
-			returnCourseLessonLearn = courseLessonLearnRepository.save(courseLessonLearn);
-		}
-		return returnCourseLessonLearn;
 	}
 }
