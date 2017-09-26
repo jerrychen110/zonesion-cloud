@@ -300,12 +300,13 @@ public class CourseService {
 		courseBaseInfoDTO.setGoals(course.getGoals());
 		courseBaseInfoDTO.setTags(course.getTags());
 		courseBaseInfoDTO.setLearnedNum(courseMemberRepository.getLearnedNumByCourseId(id));
+		courseBaseInfoDTO.setLearnedUsers(userRepository.findAllLearnedUserByCourseId(id));
 		String learnedStatus = "0";
 		String isCollected = "0";
 		if(currentUserId>0) {
-			if(courseBaseInfoDTO.getLearnedNum()>0) {
+			int learned = courseMemberRepository.getLearnedNumByCourseIdAndUserId(id, currentUserId);
+			if(learned>0) {
 				learnedStatus = "1";
-				courseBaseInfoDTO.setLearnedUsers(userRepository.findAllLearnedUserByCourseId(id));
 			}
 			int collected = courseFavoriteRepository.getFavoriteNumByCourseIdAndUserId(id, currentUserId);
 			if(collected>0) {
