@@ -5,21 +5,42 @@
         .module('zonesionCloudApplicationApp')
         .controller('LearnController', LearnController);
 
-    LearnController.$inject = ['$scope', 'Principal', 'LoginService', '$state','Course','$rootScope'];
+    LearnController.$inject = ['$scope', 'Principal', 'LoginService', '$state','Course','$rootScope','$stateParams','CourseService','$log'];
 
-    function LearnController ($scope, Principal, LoginService, $state, Course,$rootScope) {
-
-        $(".swiper-container").luara({interval:3000,selected:"seleted",deriction:"left"});
-
+    function LearnController ($scope, Principal, LoginService, $state, Course,$rootScope,$stateParams,CourseService,$log) {
         var vm = this;
 
-        vm.account = $rootScope.accountInfo;
-        vm.isAuthenticated = Principal.isAuthenticated;
-        vm.login = LoginService.open;
-        vm.getCourse = getCourse;
-        $scope.$on('authenticationSuccess', function() {
-          console.log(  $rootScope.accountInfo);
-          vm.account =  $rootScope.accountInfo;
-        });
+        vm.getCourseLessons=getCourseLessons();
+        //vm.getCourseBase=getCourseBase();
+
+        function getCourseLessons () {
+            CourseService.getCourseLessons({
+                id: $stateParams.id
+            }, onSuccess, onError);
+
+            function onSuccess(data, headers) {
+                vm.courseInfo= data;
+                console.log(data);
+            }
+            function onError(error) {
+                //AlertService.error(error.data.message);
+            }
+        }
+
+        function getCourseBase () {
+            CourseService.getCourseBase({
+                id: $stateParams.id
+            }, onSuccess, onError);
+
+            function onSuccess(data, headers) {
+                vm.courseBase = data;
+                console.log(data);
+                $log.debug(data);
+            }
+            function onError(error) {
+                $log.error();
+                //AlertService.error(error.data.message);
+            }
+        }
     }
 })();
