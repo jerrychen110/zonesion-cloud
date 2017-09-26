@@ -29,5 +29,24 @@
                 }]
             }
         })
+        .state('learntest', {
+            url: '/learntest/:id',
+            data: {
+                authorities: []
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/views/learn/learntest.html',
+                    controller: 'LearnTestController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
+                    $translatePartialLoader.addPart('home');
+                    return $translate.refresh();
+                }]
+            }
+        })
     }
 })();

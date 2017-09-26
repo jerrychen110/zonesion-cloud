@@ -709,7 +709,7 @@
   display: block;
 }
 .lesson-dashboard .lesson-content-text {
-  overflow: hidden;
+  overflow: auto;
 }
 .lesson-dashboard .lesson-content-text .ps-scrollbar-x {
   display: none;

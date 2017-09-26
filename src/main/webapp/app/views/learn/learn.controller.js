@@ -10,6 +10,9 @@
     function LearnController ($scope, Principal, LoginService, $state, Course,$rootScope,$stateParams,CourseService,$log) {
         var vm = this;
 
+        vm.activeTab = 1;
+        vm.sideList = true;
+
         vm.getCourseLessons=getCourseLessons();
         //vm.getCourseBase=getCourseBase();
 
