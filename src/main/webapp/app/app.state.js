@@ -20,6 +20,11 @@
                     templateUrl: 'app/layouts/sidenav/sidenav.html',
                     controller: 'SidenavController',
                     controllerAs: 'vm'
+                },
+                'footer@': {
+                    templateUrl: 'app/layouts/footer/footer.html',
+                    controller: 'footerController',
+                    controllerAs: 'vm'
                 }
             },
             resolve: {
@@ -33,7 +38,7 @@
                 }]
             }
         });
-        
+
         // [optional] To change the jcrop configuration,All jcrop settings are in: http://deepliquid.com/content/Jcrop_Manual.html#Setting_Options
         ngJcropConfigProvider.setJcropConfig({
             bgColor: 'transparent',
