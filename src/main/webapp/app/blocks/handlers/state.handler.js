@@ -16,6 +16,7 @@
 
         function initialize() {
             $rootScope.VERSION = VERSION;
+            $rootScope.showFooter=true;
 
             var stateChangeStart = $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams, fromState) {
                 $rootScope.toState = toState;
