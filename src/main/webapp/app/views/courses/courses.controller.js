@@ -6,10 +6,10 @@
         .controller('CoursesController', CoursesController);
 
     CoursesController.$inject = ['$scope', '$rootScope', 'Principal', 'LoginService',
-    '$state','$stateParams', 'CourseService', 'UsersService','$uibModal','$log'];
+    '$state','$stateParams', 'CourseService', 'UsersService','$uibModal','$log', 'CommonFactory'];
 
     function CoursesController($scope, $rootScope, Principal, LoginService, $state, $stateParams,
-      CourseService, UsersService,$uibModal,$log) {
+      CourseService, UsersService,$uibModal,$log, CommonFactory) {
         var vm = this;
         vm.account = $rootScope.accountInfo;
         vm.isAuthenticated = Principal.isAuthenticated();
@@ -34,6 +34,13 @@
 
             function onSuccess(data, headers) {
                 vm.courseInfo= data;
+                angular.forEach(vm.courseInfo.chapters,function(chapter){
+                	angular.forEach(chapter.units,function(unit){
+                		angular.forEach(unit.lessons,function(lesson){
+                			lesson.mediaLength=CommonFactory.secondToTime(lesson.mediaLength);
+                		});
+                	});
+                });
             }
             function onError(error) {
                 //AlertService.error(error.data.message);
