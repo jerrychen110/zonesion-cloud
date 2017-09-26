@@ -14,4 +14,7 @@ public interface CourseMemberRepository extends JpaRepository<CourseMember, Long
 	
 	@Query(value="select count(distinct user_id) from t_course_member where course_id = ?1",nativeQuery = true)
 	int getLearnedNumByCourseId(long courseId);
+	
+	@Query(value="select count(distinct user_id) from t_course_member where course_id = ?1 and user_id = ?2",nativeQuery = true)
+	int getLearnedNumByCourseIdAndUserId(Long courseId, Long userId);
 }
