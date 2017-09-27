@@ -1,0 +1,90 @@
+<div class="lesson-dashboard" ng-class="{'lesson-dashboard-open':vm.showNavContainer}" id="lesson-dashboard" data-course-id="4" data-course-uri="/course/4" data-dashboard-uri="/course/4/learn" data-watch-limit="" data-starttime="" data-hide-media-lesson-learn-btn="" data-widget-cid="widget-0">
+    <div class="dashboard-content">
+                    <a class="btn btn-primary  nav-btn back-course-btn" href="/course/4"><span class="glyphicon glyphicon-chevron-left"></span> 返回课程</a>
+
+       <a class="btn btn-primary  nav-btn prev-lesson-btn" href="javascript:" data-role="prev-lesson" data-placement="right" title="" data-original-title="上一课时"><span class="glyphicon glyphicon-chevron-up" title="上一课时"></span></a>
+       <a class="btn btn-primary nav-btn next-lesson-btn" href="javascript:" data-role="next-lesson" data-placement="right" title="" data-original-title="下一课时"><span class="glyphicon glyphicon-chevron-down"></span></a>
+
+      <div class="dashboard-header">
+        <div class="pull-left title-group">
+          <span class="chapter-label">
+                          第<span data-role="chapter-number">1</span>章</span>
+                      <span class="divider">?</span>
+          <span class="chapter-label" style="display: none;">
+                          第<span data-role="unit-number"></span>节</span>
+                      <span class="divider" style="display: none;">?</span>
+          <span class="item-label">课时<span data-role="lesson-number">2</span></span>
+          <span class="item-title" data-role="lesson-title">网校基本信息设置</span>
+        </div>
+      </div>
+
+      <div class="dashboard-body">
+        <div class="lesson-content" id="lesson-video-content" video-container ng-if="">
+        </div>
+
+        <div class="lesson-content lesson-content-audio" id="lesson-audio-content" audio-container >
+        </div>
+        <div class="lesson-content" id="lesson-swf-content" data-role="lesson-content" style="display:none;"></div>
+
+        <div class="lesson-content lesson-content-document" id="lesson-document-content" ng-if="">
+          <div class="lesson-content-document-body" text-container>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-footer clearfix">
+        <div class="pull-right">
+          <button class="btn btn-primary finish-btn" data-role="finish-lesson" style=""><span class="glyphicon glyphicon-unchecked"></span> 学过了</button>
+        </div>
+      </div>
+    </div>
+
+    <div class=" toolbar-open" ng-class="{'toolbar':vm.showNavContainer}" id="lesson-dashboard-toolbar" data-widget-cid="widget-1">
+      <!-- toolnav -->
+      <div class="toolbar-nav">
+        <ul class="toolbar-nav-stacked mtl" id="lesson-toolbar-primary">
+          <li ng-repeat=" toolbarInfo in vm.toolbarInfos track by $index"
+              ng-class="{'active':toolbarInfo.active}"
+              ng-click="vm.seleteToolBar($index)"
+          >
+            <a ><span class="{{toolbarInfo.icon}}"> </span>{{toolbarInfo.name}}</a>
+          </li>
+        </ul>
+        <ul class="toolbar-nav-stacked" id="lesson-toolbar-secondary">
+          <li class="" ng-click="vm.closeContainer()">
+            <a href="javascript:"><span class="glyphicon glyphicon-chevron-right"></span></a>
+          </li>
+        </ul>
+      </div>
+      <!-- detail -->
+      <div class="toolbar-pane-container" ng-if="vm.showNavContainer">
+        <div data-pane="lesson" class="lesson-pane" data-widget-cid="widget-2" style="display: block;"><div class="course-item-list-in-toolbar-pane ps-container">
+          <ul class="period-list" id="course-item-list">
+            <li class="chapter clearfix">
+              <i class="es-icon es-icon-toc"></i>
+              <span class="title">第 1 章 ：  EduSoho系统操作帮助</span>
+              <span class="period-show"><i class="es-icon es-icon-remove"></i></span>
+            </li>
+            <li class="period lesson-item lesson-item-43" data-id="43" data-num="2" style="display: list-item;">
+              <a href="/course/4/learn#lesson/43">
+                <i class="es-icon es-icon-done1 color-primary status-icon"></i>  登录EduSoho系统
+                <!-- 紧跟标题 -->
+                <!-- 右边图标 -->
+                <span class="course-type">
+                  <i class="es-icon es-icon-graphicclass" data-toggle="tooltip" data-placement="top" title="" data-original-title="图文课程"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px; width: 359px; display: none;">
+            <div class="ps-scrollbar-x" style="left: 0px; width: 0px;">
+            </div>
+          </div>
+          <div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px; height: 574px; display: none;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

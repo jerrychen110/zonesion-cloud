@@ -40,3 +40,21 @@ input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focu
 table tr td:focus{
   outline: 0;
 }
+
+/*
+**屏蔽视频播放下载按钮
+*/
+
+video::-internal-media-controls-download-button {
+    display:none;
+}
+video::-webkit-media-controls-enclosure {
+    overflow:hidden;
+}
+video::-webkit-media-controls-panel {
+    width: calc(100% + 30px);
+}
+
+// audio::-internal-media-controls-download-button {display:none;}
+// audio::-webkit-media-controls {overflow: hidden !important}
+// audio::-webkit-media-controls-enclosure {width: calc(100% + 32px);}

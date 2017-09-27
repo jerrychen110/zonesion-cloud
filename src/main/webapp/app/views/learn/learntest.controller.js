@@ -5,9 +5,9 @@
         .module('zonesionCloudApplicationApp')
         .controller('LearnTestController', LearnTestController);
 
-    LearnTestController.$inject = ['$scope', 'Principal', 'LoginService', '$state','Course','$rootScope','LEFTTOOL'];
+    LearnTestController.$inject = ['$scope', 'Principal', 'LoginService', '$state','Course','$rootScope','LEFTTOOL','CourseService','$stateParams'];
 
-    function LearnTestController ($scope, Principal, LoginService, $state, Course,$rootScope,LEFTTOOL) {
+    function LearnTestController ($scope, Principal, LoginService, $state, Course,$rootScope,LEFTTOOL,CourseService,$stateParams) {
 
 
         var vm = this;
@@ -25,6 +25,22 @@
           vm.account =  $rootScope.accountInfo;
         });
 
+        vm.getCourseLessons=getCourseLessons;
+        vm.getCourseLessons();
+
+        function getCourseLessons () {
+            CourseService.getCourseLessons({
+                id: $stateParams.id
+            }, onSuccess, onError);
+
+            function onSuccess(data, headers) {
+                vm.courseInfo= data;
+                console.log(data);
+            }
+            function onError(error) {
+                //AlertService.error(error.data.message);
+            }
+        }
         //选择菜单
         function seleteToolBar(selectedIndex){
           var oldSelect = _.findIndex(vm.toolbarInfos,{active:true})

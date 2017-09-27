@@ -19,7 +19,7 @@ angular.module('zonesionCloudApplicationApp')
           }
           return header;
         },
-        secondToTime(seconds) {
+        secondToTime :function(seconds) {
         	var min = Math.floor(seconds / 60),
             second = seconds % 60,
             hour, newMin, time;
