@@ -22,4 +22,6 @@ public interface CourseLessonLearnRepository extends JpaRepository<CourseLessonL
 	
 	List<CourseLessonLearn> findAllByCourseIdAndUserIdOrderByCreatedDateDesc(long courseId, long userId);
 	
+    CourseLessonLearn findOneByUserIdAndCourseLesson_id(Long userId, Long lessonId);
+
 }

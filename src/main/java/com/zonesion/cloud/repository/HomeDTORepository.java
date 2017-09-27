@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.zonesion.cloud.service.dto.HomeDTO;
+import com.zonesion.cloud.service.util.ServiceConstants;
 import com.zonesion.cloud.web.rest.util.JdbcPaginationHelper;
 import com.zonesion.cloud.web.rest.util.Page;
 
@@ -65,13 +66,13 @@ public class HomeDTORepository {
 			queryStr = " WHERE c.title like '%"+query+"%' ";
 		}
 
-		if (("newest").equals(filter)) {
+		if (ServiceConstants.COURSE_QUERY_NEWEST.equals(filter)) {
 			filterSql = baseSql+queryStr+findNewestEndSql;
 			countSql = countCourseSql;
-		}else if (("hot").equals(filter)) {
+		}else if (ServiceConstants.COURSE_QUERY_HOT.equals(filter)) {
 			filterSql = baseSql+queryStr+findHotEndSql;
 			countSql = countCourseSql;
-		}else if (("recommended").equals(filter)) {
+		}else if (ServiceConstants.COURSE_QUERY_RECOMMENDED.equals(filter)) {
 			filterSql = baseSql+queryStr+" AND c.recommended='1' "+findRecommendEndSql;
 			countSql = countCourseSql+queryStr+" AND c.recommended='1'";
 		}else {
@@ -79,8 +80,7 @@ public class HomeDTORepository {
 			countSql = countCourseSql+queryStr;
 		}
 		JdbcPaginationHelper<HomeDTO> JdbcPaginationHelper = new JdbcPaginationHelper<HomeDTO>();
-		return JdbcPaginationHelper.fetchPage(jdbcTemplate, countSql, filterSql, args, pageNo, pageSize,
-				new HomeRowMapper());
+		return JdbcPaginationHelper.fetchPage(jdbcTemplate, countSql, filterSql, args, pageNo, pageSize, new HomeRowMapper());
 	}
 }
 

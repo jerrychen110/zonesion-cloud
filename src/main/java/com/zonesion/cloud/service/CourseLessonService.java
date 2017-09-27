@@ -1,9 +1,10 @@
 package com.zonesion.cloud.service;
 
 import com.zonesion.cloud.config.Constants;
-import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.CourseLesson;
+import com.zonesion.cloud.domain.CourseLessonLearn;
 import com.zonesion.cloud.domain.CourseLessonNote;
+import com.zonesion.cloud.repository.CourseLessonLearnRepository;
 import com.zonesion.cloud.repository.CourseLessonNoteRepository;
 import com.zonesion.cloud.repository.CourseLessonRepository;
 import com.zonesion.cloud.service.dto.CourseLessonAttachmentDTO;
@@ -12,18 +13,11 @@ import com.zonesion.cloud.web.rest.dto.in.CourseLessonNoteInDTO;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,6 +43,9 @@ public class CourseLessonService {
     
     @Inject
     private CourseLessonNoteRepository courseLessonNoteRepository;
+    
+    @Inject
+    private CourseLessonLearnRepository courseLessonLearnRepository;
     
     @Inject
     private JdbcTemplate jdbcTemplate;
@@ -104,26 +101,23 @@ public class CourseLessonService {
 		return courseLessonRepository.findAllCourseLesson(id);
 	}
     
-    /*public List<CourseLesson> findAllCourseLesson(Long id){
-		List<CourseLesson> courseLessonList = courseLessonRepository.findAll(new Specification<CourseLesson>() {
-
-			@Override
-			public Predicate toPredicate(Root<CourseLesson> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				// TODO Auto-generated method stub
-				Join<CourseLesson, Chapter> courseLessonJoin = root.join("courseLessons", JoinType.LEFT);
-                return cb.equal(courseLessonJoin.get("chapter_id"), id);
-			}
-			
-		});
-		return courseLessonList;
-		
-	}*/
-	
+    /**
+     * 获取课时附件列表
+     * @param id
+     * @param pageable
+     * @return
+     */
 	@Transactional(readOnly = true)
 	public Page<CourseLessonAttachmentDTO> getLessonAttachementsByLessonId(long lessonId, Pageable pageable) {
 		return courseLessonAttachmentService.findAllByTargetTypeAndTargetId(Constants.ATTACHEMENT_TYPE_LESSON, lessonId, pageable);
 	}
 	
+    /**
+     * 保存课时笔记
+     * @param id
+     * @param courseLessonNoteInDTO
+     * @return
+     */
 	public CourseLessonNote saveCourseLessonNote(Long id, CourseLessonNoteInDTO courseLessonNoteInDTO) {
 		CourseLessonNote courseLessonNote = new CourseLessonNote();
 		courseLessonNote.setCourseId(courseLessonNoteInDTO.getCourseId());
@@ -137,9 +131,40 @@ public class CourseLessonService {
 		return courseLessonNoteRepository.save(courseLessonNote);
 	}
 	
+    /**
+     * 获取课时的最大number
+     * @param courseId
+     * @return
+     */
 	public int getLessonMaxNumberByCourseId(Long courseId) {
 		StringBuilder sb = new StringBuilder();
     	sb.append("select max(number) from t_course_lesson where course_id=").append(courseId);
     	return jdbcTemplate.queryForObject(sb.toString(), Integer.class)!=null?jdbcTemplate.queryForObject(sb.toString(), Integer.class):0;
 	}
+	
+    /**
+     * 完成课时学习
+     * @param lessonId
+     * @param courseId
+     * @param userId
+     * @return
+     */
+    public CourseLessonLearn doLessonLearned(Long lessonId, Long courseId, Long userId) {
+        CourseLessonLearn returnCourseLessonLearn = null;
+        CourseLessonLearn findCourseLessonLearn = courseLessonLearnRepository.findOneByUserIdAndCourseLesson_id(userId, lessonId);
+        if(findCourseLessonLearn!=null) {
+            findCourseLessonLearn.setIsComplete("1");
+            returnCourseLessonLearn = courseLessonLearnRepository.save(findCourseLessonLearn);
+        }else {
+            CourseLessonLearn courseLessonLearn = new CourseLessonLearn();
+            courseLessonLearn.setCourseId(courseId);
+            courseLessonLearn.setUserId(userId);
+            courseLessonLearn.setCourseLesson(courseLessonRepository.findOne(lessonId));
+            courseLessonLearn.setIsComplete("1");
+            courseLessonLearn.setDuration(Long.valueOf(0));
+            returnCourseLessonLearn = courseLessonLearnRepository.save(courseLessonLearn);
+        }
+        return returnCourseLessonLearn;
+    }
+
 }

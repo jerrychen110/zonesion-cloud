@@ -14,6 +14,14 @@ public final class Constants {
     
     public static final String ATTACHEMENT_TYPE_LESSON = "lesson";
     
+    public static final String COURSE_QUERY_RECOMMENDED = "recommended";
+    
+    public static final String COURSE_QUERY_NEWEST = "newest";
+    
+    public static final String COURSE_QUERY_HOT = "hot";
+    
+    public static final String COURSE_QUERY_MAJOR = "major";
+    
     private Constants() {
     }
 }

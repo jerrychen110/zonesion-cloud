@@ -3,6 +3,7 @@ package com.zonesion.cloud.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.zonesion.cloud.service.HomeDTOService;
 import com.zonesion.cloud.service.dto.HomeDTO;
+import com.zonesion.cloud.service.util.ServiceConstants;
 import com.zonesion.cloud.web.rest.util.Page;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -24,11 +25,7 @@ import java.util.Optional;
 public class HomeDTOResource {
 
     private final Logger log = LoggerFactory.getLogger(HomeDTOResource.class);
-
-    private static final String COURSE_RECOMMENDED = "recommended";
-    private static final String COURSE_NEWEST = "newest";
-    private static final String COURSE_HOT = "hot";
-
+    
     @Inject
     private HomeDTOService homeDTOService;
     
@@ -42,12 +39,12 @@ public class HomeDTOResource {
     public ResponseEntity<List<HomeDTO>> getHomeCourseList(@RequestParam String courseQueryType) {
         log.debug("REST request to get a page of Courses");
         List<HomeDTO> course = new ArrayList<>();
-        if(COURSE_RECOMMENDED.equals(courseQueryType)) {
+        if(ServiceConstants.COURSE_QUERY_RECOMMENDED.equals(courseQueryType)) {
         	course = homeDTOService.findRecommendedCourse();
-        }else if(COURSE_NEWEST.equals(courseQueryType)) {
+        }else if(ServiceConstants.COURSE_QUERY_NEWEST.equals(courseQueryType)) {
         	course = homeDTOService.findNewestCourse();
         }
-        else if(COURSE_HOT.equals(courseQueryType)) {
+        else if(ServiceConstants.COURSE_QUERY_HOT.equals(courseQueryType)) {
         	course = homeDTOService.findNewestCourse();
         }else {
         	course = homeDTOService.findRecommendedCourse();

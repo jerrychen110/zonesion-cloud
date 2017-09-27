@@ -27,5 +27,14 @@ public final class ServiceConstants {
     
     public static final String COURSE_STATUS_PUBLISHED = "1";
     
+    public static final String COURSE_QUERY_RECOMMENDED = "recommended";
+    
+    public static final String COURSE_QUERY_NEWEST = "newest";
+    
+    public static final String COURSE_QUERY_HOT = "hot";
+    
+    public static final String COURSE_QUERY_MAJOR = "major";
+    
+    
 
 }
