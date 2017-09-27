@@ -5,17 +5,28 @@
         .module('zonesionCloudApplicationApp')
         .controller('LearnController', LearnController);
 
-    LearnController.$inject = ['$scope', 'Principal', 'LoginService', '$state','Course','$rootScope','$stateParams','CourseService','$log'];
+    LearnController.$inject = ['$scope', 'Principal', 'LoginService', '$state','Course','$rootScope','$stateParams','CourseService','$log','LEFTTOOL'];
 
-    function LearnController ($scope, Principal, LoginService, $state, Course,$rootScope,$stateParams,CourseService,$log) {
+    function LearnController ($scope, Principal, LoginService, $state, Course,$rootScope,$stateParams,CourseService,$log,LEFTTOOL) {
         var vm = this;
+        vm.showNavContainer = true;
+        vm.toolbarInfos = angular.copy(LEFTTOOL);
+        vm.selectedLessonId=$stateParams.lessonId;
 
+        vm.account = $rootScope.accountInfo;
+        vm.isAuthenticated = Principal.isAuthenticated;
         vm.activeTab = 1;
-        vm.sideList = true;
+        vm.closeContainer = closeContainer;
+        vm.seleteToolBar = seleteToolBar;
+        vm.selectedLesson = selectedLesson;
+        $scope.$on('authenticationSuccess', function() {
+          console.log(  $rootScope.accountInfo);
+          vm.account =  $rootScope.accountInfo;
+        });
 
         vm.getCourseLessons=getCourseLessons();
-        //vm.getCourseBase=getCourseBase();
 
+        // 课程信息
         function getCourseLessons () {
             CourseService.getCourseLessons({
                 id: $stateParams.id
@@ -23,27 +34,73 @@
 
             function onSuccess(data, headers) {
                 vm.courseInfo= data;
-                console.log(data);
+                //selected lesson  active
+                _.forEach(vm.courseInfo.chapters,function(course){
+                  _.forEach(course.units,function(unit){
+                    _.forEach(unit.lessons,function(lesson){
+                      if(lesson.id==vm.selectedLessonId){
+                        lesson.active=true;
+                        vm.lessonType = lesson.courseLessonType;
+                        vm.mediaUri = lesson.mediaUri;
+                        vm.contentInfo = lesson.content;
+                      }else{
+                        lesson.active=false;
+                      }
+                    })
+                  })
+                })
             }
             function onError(error) {
                 //AlertService.error(error.data.message);
             }
         }
 
-        function getCourseBase () {
-            CourseService.getCourseBase({
-                id: $stateParams.id
-            }, onSuccess, onError);
-
-            function onSuccess(data, headers) {
-                vm.courseBase = data;
-                console.log(data);
-                $log.debug(data);
-            }
-            function onError(error) {
-                $log.error();
-                //AlertService.error(error.data.message);
-            }
+        //选择菜单
+        function seleteToolBar(selectedIndex){
+          vm.activeTab = selectedIndex+1;
+          var oldSelect = _.findIndex(vm.toolbarInfos,{active:true})
+          if(oldSelect==selectedIndex){
+            vm.showNavContainer = !vm.showNavContainer;
+            return;
+          }else{
+            _.forEach(vm.toolbarInfos,function(tools,index){
+              if(selectedIndex==index){
+                tools.active=true;
+              }else{
+                tools.active=false;
+              }
+            })
+            vm.showNavContainer = true;
+          }
         }
+
+        //选择课程
+        function selectedLesson(lessonId,unitIndex,chapterIndex){
+          vm.selectedLessonId = lessonId;
+          $stateParams.lessonId = lessonId;
+          _.forEach(vm.courseInfo.chapters,function(course){
+            _.forEach(course.units,function(unit){
+              _.forEach(unit.lessons,function(lesson){
+                if(lesson.id==vm.selectedLessonId){
+                  lesson.active=true;
+                  vm.lessonType = lesson.courseLessonType;
+                  vm.mediaUri = lesson.mediaUri;
+                  vm.contentInfo = lesson.content;
+                }else{
+                  lesson.active=false;
+                }
+              })
+            })
+          })
+        }
+
+
+
+
+        // 关闭侧面菜单详情
+        function closeContainer(){
+          vm.showNavContainer = false;
+        }
+
     }
 })();

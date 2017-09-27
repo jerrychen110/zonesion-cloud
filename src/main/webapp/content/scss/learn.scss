@@ -12,6 +12,10 @@
   .dashboard-content{
     .dashboard-body{
       .lesson-content{
+        video{
+          width: 100%;
+          height: 100%;
+        }
         audio{
           width: 30%;
           height: 60px;
@@ -21,4 +25,7 @@
       }
     }
   }
+}
+.lesson-dashboard .lesson-content-text-body{
+  min-height: 100%;
 }

@@ -34,8 +34,8 @@
     <!--[if lt IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div ui-view="navbar" ng-cloak></div>
-    <div ui-view="sidenav" ng-cloak></div>
+    <div ui-view="navbar" ng-if="navFlag" ng-cloak></div>
+    <div ui-view="sidenav" ng-if="sidenavFlag" ng-cloak></div>
     <div class="es-wrap">
         <div class="well container" ui-view="content" ng-cloak>
             <!-- Angular views -->
@@ -107,7 +107,6 @@
     <script src="app/views/users/users.state.js"></script>
     <script src="app/views/users/users.service.js"></script>
     <script src="app/views/users/users.controller.js"></script>
-    <script src="app/views/learn/learnWin/learnWin.controller.js"></script>
     <script src="app/views/learn/learntest.controller.js"></script>
     <script src="app/views/learn/learn.state.js"></script>
     <script src="app/views/learn/learn.controller.js"></script>

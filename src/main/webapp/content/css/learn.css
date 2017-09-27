@@ -4,8 +4,15 @@
 .lesson-dashboard .toolbar-nav-stacked {
   margin-top: 30px; }
 
+.lesson-dashboard .dashboard-content .dashboard-body .lesson-content video {
+  width: 100%;
+  height: 100%; }
+
 .lesson-dashboard .dashboard-content .dashboard-body .lesson-content audio {
   width: 30%;
   height: 60px;
   margin-left: 35%;
   margin-top: 150px; }
+
+.lesson-dashboard .lesson-content-text-body {
+  min-height: 100%; }

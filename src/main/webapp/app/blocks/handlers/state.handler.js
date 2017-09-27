@@ -21,6 +21,13 @@
                 $rootScope.toState = toState;
                 $rootScope.toStateParams = toStateParams;
                 $rootScope.fromState = fromState;
+                if(toState.name=='learn'){
+                  $rootScope.navFlag = false;
+                  $rootScope.sidenavFlag = false;
+                }else{
+                  $rootScope.navFlag = true;
+                  $rootScope.sidenavFlag = true;
+                }
 
                 // Redirect to a state with an external URL (http://stackoverflow.com/a/30221248/1098564)
                 if (toState.external) {

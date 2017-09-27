@@ -11,7 +11,6 @@
 
 
         var vm = this;
-        $rootScope.showFooter=false;
         vm.showNavContainer = true;
         vm.toolbarInfos = angular.copy(LEFTTOOL);
 

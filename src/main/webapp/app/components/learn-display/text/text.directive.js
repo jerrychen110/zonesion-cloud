@@ -4,8 +4,8 @@
     angular
         .module('zonesionCloudApplicationApp')
         .directive('textContainer', textContainer);
-        textContainer.$inject = ['$templateRequest','$compile'];
-        function textContainer ($templateRequest,$compile) {
+        textContainer.$inject = ['$templateRequest','$compile','$sce'];
+        function textContainer ($templateRequest,$compile,$sce) {
             var directive = {
                 restrict: 'AE',
                 scope: {
@@ -24,6 +24,7 @@
                   element.html($compile(tmplHtml)(scope));
                 });
               }
+              scope.contentHtml = $sce.trustAsHtml(scope.content);
               initTemp();
             }
         }
