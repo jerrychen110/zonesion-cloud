@@ -1,0 +1,92 @@
+<div class="dashboard-content" ng-controller="learnWinController as vm">
+    <a class="btn btn-primary  nav-btn back-course-btn" href="/course/4">
+        <span class="glyphicon glyphicon-chevron-left"></span> 返回课程
+    </a>
+
+    <!--<a class="btn btn-primary  nav-btn prev-lesson-btn" href="javascript:" data-role="prev-lesson" data-placement="right" title="" data-original-title="上一课时">
+        <span class="glyphicon glyphicon-chevron-up" title="上一课时"></span>
+    </a>-->
+
+    <!--<a class="btn btn-primary nav-btn next-lesson-btn" href="javascript:" data-role="next-lesson" data-placement="right" title="" data-original-title="下一课时">
+        <span class="glyphicon glyphicon-chevron-down"></span>
+    </a>-->
+
+    <div class="dashboard-header">
+        <div class="pull-left title-group">
+            <span class="chapter-label">第<span data-role="chapter-number">1</span>章</span>
+            <span class="divider">»</span>
+            <span class="chapter-label" style="display: none;">第<span data-role="unit-number"></span>节</span>
+            <span class="divider" style="display: none;">»</span>
+            <span class="item-label">课时<span data-role="lesson-number">2</span></span>
+            <span class="item-title" data-role="lesson-title">网校基本信息设置</span>
+        </div>
+    </div>
+
+    <div class="dashboard-body">
+        <div class="lesson-content" id="lesson-video-content" data-role="lesson-content" style="display:none;" data-user-id="18" data-balloon-player="0"></div>
+        <div class="watermarkEmbedded"><input type="hidden" id="videoWatermarkEmbedded" value="0"></div>
+
+        <div class="lesson-content lesson-content-audio" id="lesson-audio-content" data-role="lesson-content" style="display:none;"></div>
+        <div class="lesson-content" id="lesson-swf-content" data-role="lesson-content" style="display:none;"></div>
+        <div class="lesson-content" id="lesson-iframe-content" data-role="lesson-content" style="display:none;"></div>
+        <div class="lesson-content lesson-content-text ps-container" id="lesson-text-content" data-role="lesson-content" style="">
+            <div class="lesson-content-text-body">
+
+                <p>运营网校，第一步该做什么呢？应该是要设定好网站名称、网站地址、网站logo 这些基本信息吧~</p>
+
+                <h4>&nbsp;</h4>
+
+                <h4><span style="font-size:18px"><strong>操作路径：【管理后台】→【系统】→【站点设置】</strong></span></h4>
+
+                <p><img alt="" src="/files/course/2015/05-25/094413d21efb003931.png?5.5.8"></p>
+
+                <p>&nbsp;</p>
+
+                <p><strong>1、网站名称</strong>：网校安装后，默认名称是EduSoho网络课堂，您可以根据自己的网校进行设定；&nbsp;&nbsp;</p>
+
+                <p><strong>2、网站副标题</strong>：网站副标题网站补充说明，可以是一句话描述，也可以是您公司的名称，是自定义的，会显示在浏览器窗口网站信息上。比如<a href="http://www.qiqiuyu.com/"><span style="color:rgb(255, 165, 0)">气球鱼学院</span></a>，打开首页，看到浏览器窗口顶端，把鼠标放到这之后，看到了“在线教育人交流学习的平台”这就是网站的副标题，如果它包含您网校的关键词，对SEO有帮助；</p>
+
+                <p><strong>3、网站域名</strong>：填写您的网站地址就可以了；</p>
+
+                <p><strong>4、网站LOGO</strong>：请上传png, gif, jpg格式的图片文件。LOGO图片建议不要超过50*250。需要注意的是，您如果上传了网站logo，那网校左上方就不会再显示网校名称，名称和LOGO不能同时显示，所以如果您想在这个地方即展示网校LOGO又展示网站名称，您可以将它们合并在一起制作成一张图片，LOGO+网站名称的形式，就像我们的气球鱼，是ES的LOGO加上了我们的学院名称；</p>
+
+                <p><strong>5、浏览器图标</strong>：浏览器图标必须是ico格式的图标文件，如果您已经有logo图，您可以百度下如何转换成ico格式，这个还是比较简单的，这类工具也很多。浏览器图标显示在窗口中以及在收藏网站的时候，收藏栏中也会显示此图标；</p>
+
+                <p><strong>6、SEO关键词与SEO描述信息</strong>：SEO全称Search Engine Optimization，即搜索引擎优化，可以获取流量，提高网站排名和曝光率，据调查显示，有87%的网民会利用<a href="http://baike.baidu.com/view/7178482.htm" target="_blank"><span style="color:rgb(255, 165, 0)">搜索引擎服务</span></a></p>
+
+                <p><strong>7、管理员邮箱地址</strong>：ES官方会向此邮箱发送产品更新动态以及活动信息；</p>
+
+                <p><strong>8、课程内容版权方</strong>：您可以填写网站名称或公司名称，这个信息会在前台页面的页脚显示；</p>
+
+                <p><strong>9、ICP备案号</strong>：全称为 Internet Content Provider，即向广大用户综合提供互联网信息业务和增值业务的电信运营商。其必须具备的证书为ICP证。简单地说，就是网站经营的许可证，经营性网站必须办理ICP证，否则就属于非法经营，ICP备案号也会在网站页脚显示；</p>
+
+                <p><strong>10、网站统计分析代码部署</strong>：使用统计工具，能够让您了解访客是如何找到并浏览你的网站，在网站上做了些什么，可以利用这些数据，改善网站使用体验，不断提升网站的投资回报率。如果您不了解统计工具，可以观看气球鱼学院的课程——<a href="http://www.qiqiuyu.com/course/391"><span style="color:rgb(255, 165, 0)">百度统计初级使用教程</span></a>。</p>
+            </div>
+        </div>
+
+        <div class="lesson-content lesson-content-document" id="lesson-document-content" data-role="lesson-content" style="display:none;">
+            <div class="lesson-content-document-body"></div>
+        </div>
+
+        <div class="lesson-content lesson-content-text" id="lesson-live-content" data-role="lesson-content" style="display:none;">
+            <div class="lesson-content-text-body"></div>
+        </div>
+        <div class="lesson-content lesson-content-text" id="lesson-unpublished-content" data-role="lesson-content" style="display:none;">
+            <div class="lesson-content-text-body">当前课时正在编辑中，暂时无法观看。</div>
+        </div>
+
+        <div class="lesson-content lesson-content-text" id="lesson-testpaper-content" data-role="lesson-content" style="display:none;">
+            <div class="lesson-content-text-body"></div>
+        </div>
+        <div class="lesson-content lesson-content-text" id="lesson-ppt-content" data-role="lesson-content" style="display:none;">
+            <div class="lesson-content-text-body"></div>
+        </div>
+
+    </div>
+
+    <div class="dashboard-footer clearfix">
+        <div class="pull-right">
+            <button class="btn btn-primary finish-btn" ng-click="vm.checkLeant()"><span class="glyphicon" ng-class="vm.checkClass" ></span> 学过了</button>
+        </div>
+    </div>
+</div>

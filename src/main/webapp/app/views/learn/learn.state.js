@@ -29,6 +29,13 @@
                 }]
             }
         })
+        .state("learn.learnWin", {
+            parent: 'learn',
+            url:"/learnWin",
+            data: {
+                authorities: []
+            }
+        })
         .state('learntest', {
             url: '/learntest/:id',
             data: {
