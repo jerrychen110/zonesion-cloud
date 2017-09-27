@@ -169,7 +169,6 @@ public class CourseLessonResource {
     	return new ResponseEntity<>(result, HttpStatus.OK);
     }
     
-    
     /**
      * 课时学习完成
      * @param id
@@ -185,6 +184,24 @@ public class CourseLessonResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "lesson not exists", "该课时不存在")).body(null);
         }
         CourseLessonLearn result = courseLessonService.doLessonLearned(id, courseId, userId);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+    
+    /**
+     * 插入学习记录
+     * @param id
+     * @param courseId
+     * @param userId
+     * @return
+     */
+    @RequestMapping(value = "/course-lessons/{id}/do-learn", method = RequestMethod.POST)
+    @Timed
+    public ResponseEntity<CourseLessonLearn> insertLessonLearn(@PathVariable Long id, @RequestParam(required=true) Long courseId, @RequestParam(required=true) Long userId) {
+        log.debug("REST request to get latest lesson : {}", id);
+        if (courseLessonService.findOne(id) == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "lesson not exists", "该课时不存在")).body(null);
+        }
+        CourseLessonLearn result = courseLessonService.insertLessonLearn(id, courseId, userId);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

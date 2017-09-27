@@ -166,5 +166,29 @@ public class CourseLessonService {
         }
         return returnCourseLessonLearn;
     }
+    
+    /**
+     * 插入学习记录
+     * @param lessonId
+     * @param courseId
+     * @param userId
+     * @return
+     */
+    public CourseLessonLearn insertLessonLearn(Long lessonId, Long courseId, Long userId) {
+    	CourseLessonLearn returnCourseLessonLearn = null;
+        CourseLessonLearn findCourseLessonLearn = courseLessonLearnRepository.findOneByUserIdAndCourseLesson_id(userId, lessonId);
+        if(findCourseLessonLearn==null) {
+        	CourseLessonLearn courseLessonLearn = new CourseLessonLearn();
+            courseLessonLearn.setCourseId(courseId);
+            courseLessonLearn.setUserId(userId);
+            courseLessonLearn.setCourseLesson(courseLessonRepository.findOne(lessonId));
+            courseLessonLearn.setIsComplete("1");
+            courseLessonLearn.setDuration(Long.valueOf(0));
+            returnCourseLessonLearn = courseLessonLearnRepository.save(courseLessonLearn);
+        }else {
+        	returnCourseLessonLearn = findCourseLessonLearn;
+        }
+        return returnCourseLessonLearn;
+    }
 
 }
