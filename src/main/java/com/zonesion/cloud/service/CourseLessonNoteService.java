@@ -82,10 +82,14 @@ public class CourseLessonNoteService {
         courseLessonNoteRepository.delete(id);
     }
     
-    public Page<CourseLessonNoteDTO> getCourseNotesByCourseId(Long id, Pageable pageable, Long courseLessonId) {
+    public Page<CourseLessonNoteDTO> getCourseNotesByCourseId(Long id, Pageable pageable, Long courseLessonId, Long userId) {
     	List<CourseLessonNoteDTO> courseNotes = new ArrayList<>();
     	if(courseLessonId!=null) {
-    		courseNotes = courseLessonNoteDTORepository.findCourseLessonNote(id, courseLessonId);
+    		if(userId!=null) {
+    			courseNotes = courseLessonNoteDTORepository.findCourseLessonNoteByUser(id, courseLessonId, userId);
+    		}else {
+    			courseNotes = courseLessonNoteDTORepository.findCourseLessonNote(id, courseLessonId);
+    		}
     	}else {
     		courseNotes = courseLessonNoteDTORepository.findCourseNote(id);
     	}

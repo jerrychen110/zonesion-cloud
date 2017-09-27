@@ -281,9 +281,9 @@ public class CourseResource {
      */
     @RequestMapping(value = "/courses/{id}/course-notes", method = RequestMethod.GET)
     @Timed
-    public ResponseEntity<List<CourseLessonNoteDTO>> getCourseNotesById(@PathVariable Long id, @ApiParam Pageable pageable, @RequestParam(required=false) Long courseLessonId){
+    public ResponseEntity<List<CourseLessonNoteDTO>> getCourseNotesById(@PathVariable Long id, @ApiParam Pageable pageable, @RequestParam(required=false) Long courseLessonId, @RequestParam(required=false) Long userId){
     	log.debug("query course base info : {}", id);
-    	Page<CourseLessonNoteDTO> page = courseService.getCourseNotesByCourseId(id, pageable, courseLessonId);
+    	Page<CourseLessonNoteDTO> page = courseService.getCourseNotesByCourseId(id, pageable, courseLessonId, userId);
     	HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/courses/{id}/course-notes");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

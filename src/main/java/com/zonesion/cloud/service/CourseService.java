@@ -352,8 +352,8 @@ public class CourseService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Page<CourseLessonNoteDTO> getCourseNotesByCourseId(Long id, Pageable pageable, Long courseLessonId){
-		return courseLessonNoteService.getCourseNotesByCourseId(id, pageable, courseLessonId);
+	public Page<CourseLessonNoteDTO> getCourseNotesByCourseId(Long id, Pageable pageable, Long courseLessonId, Long userId){
+		return courseLessonNoteService.getCourseNotesByCourseId(id, pageable, courseLessonId, userId);
 	}
 	
 	public Chapter saveChapter(Long id, ChapterInDTO chapterInDTO) {

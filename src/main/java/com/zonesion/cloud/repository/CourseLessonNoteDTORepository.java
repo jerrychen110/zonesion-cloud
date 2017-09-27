@@ -33,6 +33,11 @@ public class CourseLessonNoteDTORepository {
     public List<CourseLessonNoteDTO> findCourseLessonNote(Long id, Long courseLessonId) {
         return jdbcTemplate.query("select tcln.*,tu.avatar,tu.login from t_course_lesson_note tcln left join t_user tu on tcln.user_id=tu.id where tcln.course_id= ? and tcln.course_lesson_id=? order by tcln.created_date desc", new Object[]{id, courseLessonId}, new CourseLessonNoteRowMapper());
     }
+	
+	@Transactional
+    public List<CourseLessonNoteDTO> findCourseLessonNoteByUser(Long id, Long courseLessonId, Long userId) {
+        return jdbcTemplate.query("select tcln.*,tu.avatar,tu.login from t_course_lesson_note tcln left join t_user tu on tcln.user_id=tu.id where tcln.course_id= ? and tcln.course_lesson_id=? and tcln.user_id=? order by tcln.created_date desc", new Object[]{id, courseLessonId, userId}, new CourseLessonNoteRowMapper());
+    }
 
 }
 
