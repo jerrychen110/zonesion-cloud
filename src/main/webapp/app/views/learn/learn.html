@@ -24,15 +24,15 @@
         </div>
 
         <div class="toolbar-pane-container" ng-show="vm.sideList">
-            <div class="lesson-pane" ng-show='vm.activeTab==1'>
-                <div class="course-item-list-in-toolbar-pane ps-container">
 
+            <div ng-show='vm.activeTab==1'>
+                <div class="course-item-list-in-toolbar-pane ps-container">
                     <div class="piece-body" ng-repeat="chapter in vm.courseInfo.chapters track by $index">
                         <ul class="period-list" id="course-item-list">
                             <li class="chapter clearfix">
-                                <i class="es-icon es-icon-toc"></i> <span class="title">第{{chapter.seq}}章：{{chapter.title}}</span>
-												<span class="period-show"><i
-                                                    class="es-icon es-icon-remove"></i></span>
+                                <i class="es-icon es-icon-toc"></i>
+                                <span class="title">第{{chapter.seq}}章：{{chapter.title}}</span>
+								<span class="period-show"><i class="es-icon es-icon-remove"></i></span>
                             </li>
                             <li class="section" ng-repeat="unit in chapter.units track by $index">
                                 <span class="title"> 第{{unit.seq}}节：{{unit.title}} </span>
@@ -45,13 +45,14 @@
                                             {{lesson.title}}
                                             <span ng-if="lesson.courseLessonType==0" class="date" title="视频时长{{lesson.mediaLength}}">{{lesson.mediaLength}}</span>
                                             <span ng-if="lesson.courseLessonType==1" class="date" title="音频时长{{lesson.mediaLength}}">{{lesson.mediaLength}}</span>
-															<span class="course-type">
-																<i ng-if="lesson.courseLessonType==0" class="es-icon es-icon-videoclass" data-toggle="tooltip" data-placement="top" title="视频课程"></i>
-																<i ng-if="lesson.courseLessonType==1" class="es-icon es-icon-audioclass" data-toggle="tooltip" data-placement="top" title="音频课程"></i>
-																<i ng-if="lesson.courseLessonType==2" class="es-icon es-icon-graphicclass" data-toggle="tooltip" data-placement="top" title="图文课程"></i>
-																<i ng-if="lesson.courseLessonType==3" class="es-icon es-icon-pptclass" data-toggle="tooltip" data-placement="top" title="PPT课程"></i>
-															</span>
-                                        </a></li>
+                                            <span class="course-type">
+                                                <i ng-if="lesson.courseLessonType==0" class="es-icon es-icon-videoclass" data-toggle="tooltip" data-placement="top" title="视频课程"></i>
+                                                <i ng-if="lesson.courseLessonType==1" class="es-icon es-icon-audioclass" data-toggle="tooltip" data-placement="top" title="音频课程"></i>
+                                                <i ng-if="lesson.courseLessonType==2" class="es-icon es-icon-graphicclass" data-toggle="tooltip" data-placement="top" title="图文课程"></i>
+                                                <i ng-if="lesson.courseLessonType==3" class="es-icon es-icon-pptclass" data-toggle="tooltip" data-placement="top" title="PPT课程"></i>
+                                            </span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
 
@@ -66,11 +67,11 @@
                 </div>
             </div>
 
-            <div class="note-pane" ng-show='vm.activeTab==2'>
+            <div ng-show='vm.activeTab==2'>
                 <form id="lesson-note-plugin-form" method="post" action="/lessonplugin/note/save">
                     <div class="form-group note-content">
                         <div class="controls">
-                            <textarea name=about rows="10" cols="" ckeditor="editorOptions" class="form-control" aria-invalid="false" aria-multiline="true" style="visibility:hidden;display:none;" ng-model="vm.course.introduction"></textarea>
+                            <textarea ckeditor="editorOptions" class="form-control" aria-invalid="false" aria-multiline="true" style="visibility:hidden;display:none;" ng-model="vm.course.introduction"></textarea>
                         </div>
                     </div>
 
@@ -89,8 +90,8 @@
                 </form>
             </div>
 
-            <div class="note-pane" ng-show='vm.activeTab==2'>
-                资料
+            <div ng-show='vm.activeTab==3'>
+                <div ng-include="'app/views/learn/database/database.html'"></div>
             </div>
 
         </div>

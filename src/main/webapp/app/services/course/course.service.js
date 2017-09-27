@@ -29,6 +29,7 @@
             'getCourseReviews':{method:'GET',isArray:true,params: {id:'@id'},url:'/api/courses/:id/course-reviews'},
             'getCourseNotes':{method:'GET',isArray:true,params: {id:'@id'},url:'/api/courses/:id/course-notes'},
             'getCourseAttachements':{method:'GET',isArray:true,params: {id:'@id'},url:'/api/courses/:id/course-attachments'},
+            'getLessonAttachments':{method:'GET',isArray:true,params: {id:'@id'},url:'/api/course-lessons/:id/lesson-attachments'},
             'saveReview':{method:'POST',isArray:false,params: {id:'@id',content:'@content',
             privacy:'@privacy',rating:'@rating',title:'@title',userId:'@userId'},url:'api/courses/:id/course-reviews'},
             'joinCourse':{method:'POST',isArray:false,params: {id:'@id'},url:'api/courses/:id/join'},
