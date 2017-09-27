@@ -410,7 +410,7 @@ public class CourseResource {
     }
     
     /**
-     * 获取课程最新学习的课时
+     * 继续学习-获取课程最新学习的课时
      * @param id
      * @param userId
      * @return
