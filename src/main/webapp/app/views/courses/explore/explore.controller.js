@@ -14,15 +14,17 @@
         vm.totalCount = 0;
         vm.searchInfo = '';
         vm.filter = '';
+        vm.courseType = '';
         vm.loadExplore=loadExplore;
         vm.stateGo=stateGo;
         loadExplore();
 
-        function loadExplore () {
+        function loadExplore (type) {
+            vm.courseType = type;
         	CourseService.getCourseExplore({
         		page: vm.currentPage,
         		size: vm.pageSize,
-        		filter: null,
+        		filter: type,
             query: vm.query
             }, onSuccess, onError);
 
