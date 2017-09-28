@@ -3,6 +3,7 @@
         "home": {
             "title": "用户",
             "createLabel": "新增用户",
+            "importLabel": "导入用户",
             "createOrEditLabel": "新增或编辑用户"
         },
         "created": "{{ param }} 用户已创建",
