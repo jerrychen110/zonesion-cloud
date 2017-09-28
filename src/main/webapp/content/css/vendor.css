@@ -40,6 +40,11 @@ input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focu
 table tr td:focus {
   outline: 0; }
 
+ul li {
+  outline: 0; }
+  ul li i {
+    outline: 0; }
+
 /*
 **屏蔽视频播放下载按钮
 */

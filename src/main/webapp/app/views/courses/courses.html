@@ -7,28 +7,18 @@
 				</a>
 			</div>
 			<ul class="course-data clearfix">
-				<li id="unfavorite-btn" data-toggle="tooltip" data-placement="top"
-					title="取消收藏"
-					style="display: none;">
-					<a href="javascript:;" class="color-primary">
-						<p><i class="es-icon es-icon-bookmark"></i></p>
-				  </a>
-				</li>
-				<li id="favorite-btn" uib-tooltip="收藏课程" tooltip-placement="left" >
+				<li id="favorite-btn" uib-tooltip="收藏课程" tooltip-placement="left" ng-click="vm.favorite()">
 					<a href="javascript:;">
 						<p>
-							<i class="es-icon es-icon-bookmarkoutline"></i>
+							<i class="es-icon"
+							ng-class="{'es-icon-bookmark color-primary':vm.courseBase.isCollected=='1','es-icon-bookmarkoutline':vm.courseBase.isCollected!='1'}"></i>
 						</p>
 				  </a>
 				</li>
 			</ul>
 			<div class="course-header-info">
 				<div class="title clearfix">
-					<span><a href="/course/6">{{vm.courseBase.title}}</a></span> <span
-						class="es-qrcode top"> <i
-						class="es-icon es-icon-qrcode"></i> <span class="qrcode-popover">
-							<img ng-src="" alt=""> 扫二维码继续学习
-					</span>
+					<span><a >{{vm.courseBase.title}}</a></span>
 					<p class="goals">
 						<label for="">目标：</label><span >{{vm.courseBase.goals}}</span>
 					</p>

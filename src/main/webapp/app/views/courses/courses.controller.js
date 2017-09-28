@@ -15,6 +15,7 @@
         vm.isAuthenticated = Principal.isAuthenticated();
         vm.login = LoginService.open;
         vm.stateGo = stateGo;
+        vm.favorite = favorite;
 
         vm.getCourseLessons=getCourseLessons();
         vm.getCourseBase=getCourseBase();
@@ -110,6 +111,23 @@
 
           }
 
+        }
+
+        //收藏
+        function favorite() {
+          if(!vm.isAuthenticated){
+            vm.login();
+          }else{
+            CourseService.favoriteAction({id:$stateParams.id,userId:vm.account.id},function(result){
+              if(vm.courseBase.isCollected=='1'){
+                vm.courseBase.isCollected='0';
+              }else{
+                vm.courseBase.isCollected='1';
+              }
+            },function(error) {
+
+            })
+          }
         }
     }
 })();
