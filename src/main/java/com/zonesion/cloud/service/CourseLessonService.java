@@ -182,7 +182,7 @@ public class CourseLessonService {
             courseLessonLearn.setCourseId(courseId);
             courseLessonLearn.setUserId(userId);
             courseLessonLearn.setCourseLesson(courseLessonRepository.findOne(lessonId));
-            courseLessonLearn.setIsComplete("1");
+            courseLessonLearn.setIsComplete("0");
             courseLessonLearn.setDuration(Long.valueOf(0));
             returnCourseLessonLearn = courseLessonLearnRepository.save(courseLessonLearn);
         }else {
