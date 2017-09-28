@@ -3,6 +3,7 @@ package com.zonesion.cloud.service;
 import com.zonesion.cloud.config.Constants;
 import com.zonesion.cloud.domain.Chapter;
 import com.zonesion.cloud.domain.Course;
+import com.zonesion.cloud.domain.CourseFavorite;
 import com.zonesion.cloud.domain.CourseLesson;
 import com.zonesion.cloud.domain.CourseLessonLearn;
 import com.zonesion.cloud.domain.CourseMember;
@@ -409,6 +410,19 @@ public class CourseService {
 			findCourseMember = courseMemberRepository.save(courseMember);
 		}
 		return findCourseMember;
+	}
+	
+	public CourseFavorite courseFavorite(Long courseId, Long userId) {
+		CourseFavorite findCourseFavorite = courseFavoriteRepository.findOneByCourse_idAndUserId(courseId, userId);
+		if(findCourseFavorite!=null) {
+			courseFavoriteRepository.delete(findCourseFavorite);
+			return null;
+		}else {
+			CourseFavorite newCourseFavorite = new CourseFavorite();
+			newCourseFavorite.setCourse(courseRepository.findOne(courseId));
+			newCourseFavorite.setUserId(userId);
+			return courseFavoriteRepository.save(newCourseFavorite);
+		}
 	}
 	
 	public Long getLatestLearnLesson(Long courseId, Long userId) {

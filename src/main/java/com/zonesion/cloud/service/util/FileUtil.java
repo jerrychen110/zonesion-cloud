@@ -12,12 +12,13 @@ public final class FileUtil {
 	public static final String BASE_TEMP_DIR = "com.zonesion.cloud";
 	public static final String KEY_FILE_BASE_PATH = "target/local-storage";
 	public static final String LOCAL_PUBLIC_FOLDER_PATH = "public";
+	public static final String LOCAL_USER_AVATAR_FOLDER = "user-avatar";//用户头像
+	public static final String LOCAL_COURSE_COVER_PICTURE_FOLDER = "course-picture";//课程封面
+	public static final String LOCAL_UPLOAD_COURSE_ATTACHEMENT_FOLDER = "attachement/course";//课程附件资料
+	public static final String LOCAL_UPLOAD_LESSON_ATTACHEMENT_FOLDER = "attachement/lesson";//课时附件资料
 	public static final String LOCAL_PRIVATE_FOLDER_PATH = "private";
-	public static final String LOCAL_USER_AVATAR_FOLDER = "user-avatar";
 	public static final String LOCAL_UPLOAD_IMAGE_FOLDER = "upload-image";
 	public static final String LOCAL_UPLOAD_FILE_FOLDER = "upload-file";
-	public static final String LOCAL_UPLOAD_COURSE_COVER_PICTURE_FOLDER = "course/course-cover-picture";
-	public static final String LOCAL_UPLOAD_COURSE_ATTACHEMENT_FOLDER = "course/course-attachement";
 	
 	private FileUtil() {
 		super();

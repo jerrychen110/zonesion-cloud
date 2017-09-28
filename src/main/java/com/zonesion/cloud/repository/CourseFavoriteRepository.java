@@ -18,4 +18,6 @@ public interface CourseFavoriteRepository extends JpaRepository<CourseFavorite,L
 	@Query(value="select count(user_id) from t_course_favorite where course_id = ?1 and user_id= ?2",nativeQuery = true)
 	int getFavoriteNumByCourseIdAndUserId(long courseId, long userId);
 	
+	CourseFavorite findOneByCourse_idAndUserId(Long courseId, Long userId);
+	
 }
