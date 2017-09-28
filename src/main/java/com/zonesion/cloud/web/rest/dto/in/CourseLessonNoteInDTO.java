@@ -18,7 +18,7 @@ public class CourseLessonNoteInDTO {
 	@NotNull
 	private String content;
 	
-	private int length;
+	private Integer length;
 	
 	private String isPrivate;
 	
@@ -26,7 +26,7 @@ public class CourseLessonNoteInDTO {
 		
 	}
 
-	public CourseLessonNoteInDTO(Long id, Long courseId, Long courseLessonId, Long userId, String content, int length,
+	public CourseLessonNoteInDTO(Long id, Long courseId, Long courseLessonId, Long userId, String content, Integer length,
 			String isPrivate) {
 		super();
 		this.id = id;
@@ -78,11 +78,11 @@ public class CourseLessonNoteInDTO {
 		this.content = content;
 	}
 
-	public int getLength() {
+	public Integer getLength() {
 		return length;
 	}
 
-	public void setLength(int length) {
+	public void setLength(Integer length) {
 		this.length = length;
 	}
 

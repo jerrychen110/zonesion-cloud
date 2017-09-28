@@ -124,9 +124,9 @@ public class CourseLessonService {
 		courseLessonNote.setCourseLesson(courseLessonRepository.findOne(id));
 		courseLessonNote.setUserId(courseLessonNoteInDTO.getUserId());
 		courseLessonNote.setContent(courseLessonNoteInDTO.getContent());
-		courseLessonNote.setLength(courseLessonNoteInDTO.getLength());
+		courseLessonNote.setLength(courseLessonNoteInDTO.getLength()!=null?courseLessonNoteInDTO.getLength():0);
 		courseLessonNote.setLikeNum(0);
-		courseLessonNote.setIsPrivate(courseLessonNoteInDTO.getIsPrivate());
+		courseLessonNote.setIsPrivate(courseLessonNoteInDTO.getIsPrivate()!=null?courseLessonNoteInDTO.getIsPrivate():"0");
 		
 		return courseLessonNoteRepository.save(courseLessonNote);
 	}
@@ -182,7 +182,7 @@ public class CourseLessonService {
             courseLessonLearn.setCourseId(courseId);
             courseLessonLearn.setUserId(userId);
             courseLessonLearn.setCourseLesson(courseLessonRepository.findOne(lessonId));
-            courseLessonLearn.setIsComplete("1");
+            courseLessonLearn.setIsComplete("0");
             courseLessonLearn.setDuration(Long.valueOf(0));
             returnCourseLessonLearn = courseLessonLearnRepository.save(courseLessonLearn);
         }else {
