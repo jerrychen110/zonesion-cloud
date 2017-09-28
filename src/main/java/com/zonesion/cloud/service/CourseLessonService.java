@@ -124,9 +124,9 @@ public class CourseLessonService {
 		courseLessonNote.setCourseLesson(courseLessonRepository.findOne(id));
 		courseLessonNote.setUserId(courseLessonNoteInDTO.getUserId());
 		courseLessonNote.setContent(courseLessonNoteInDTO.getContent());
-		courseLessonNote.setLength(courseLessonNoteInDTO.getLength());
+		courseLessonNote.setLength(courseLessonNoteInDTO.getLength()!=null?courseLessonNoteInDTO.getLength():0);
 		courseLessonNote.setLikeNum(0);
-		courseLessonNote.setIsPrivate(courseLessonNoteInDTO.getIsPrivate());
+		courseLessonNote.setIsPrivate(courseLessonNoteInDTO.getIsPrivate()!=null?courseLessonNoteInDTO.getIsPrivate():"0");
 		
 		return courseLessonNoteRepository.save(courseLessonNote);
 	}
