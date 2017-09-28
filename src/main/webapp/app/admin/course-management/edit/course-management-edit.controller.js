@@ -62,7 +62,8 @@
             data:{
               file:$scope.coverPicturePicked,
               cropSelection:$scope.coverPictureSelection.join(','),
-              resizeTo:'120'
+              resizeToWidth:'480',
+              resizeToHeight:'270'
             }
           }).then(function success(res) {
             $log.debug('success',res);

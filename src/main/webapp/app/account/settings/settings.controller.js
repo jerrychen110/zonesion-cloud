@@ -85,7 +85,8 @@
               data:{
                 file:$scope.avatarPicked,
                 cropSelection:$scope.avatarSelection.join(','),
-                resizeTo:'120'
+                resizeToWidth:'120',
+                resizeToHeight:'120'
               }
             }).then(function success(res) {
               $log.debug('success',res);
