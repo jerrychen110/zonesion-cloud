@@ -25,16 +25,14 @@
         min-width: 100px;
         min-height: 100px;
         margin-right: 30px;
+        img{
+        }
       }
       .ng-jcrop-thumbnail-wrapper{
-        height: 140px!important;
-        height: 140px!important;
-        padding-top: 25px;
         display: inline-block;
+        position: absolute;
+        border-radius: 50%;
         img{
-          width: 90px!important;
-          height: 90px!important;
-          border-radius: 50%;
         }
       }
     }

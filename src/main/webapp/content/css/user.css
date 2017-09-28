@@ -15,14 +15,9 @@
     min-height: 100px;
     margin-right: 30px; }
   .user-setting .avatar-jcrop .ng-jcrop .ng-jcrop-thumbnail-wrapper {
-    height: 140px !important;
-    height: 140px !important;
-    padding-top: 25px;
-    display: inline-block; }
-    .user-setting .avatar-jcrop .ng-jcrop .ng-jcrop-thumbnail-wrapper img {
-      width: 90px !important;
-      height: 90px !important;
-      border-radius: 50%; }
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%; }
 
 .user-setting .avatar-buttons {
   margin-left: 220px;
