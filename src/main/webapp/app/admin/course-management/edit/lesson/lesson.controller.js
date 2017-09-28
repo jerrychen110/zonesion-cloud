@@ -73,9 +73,20 @@
           });
         }
 
-        function getCourseLesson(){
+        function getCourseLesson(deal){
           CourseService.getCourseLessons({id: $stateParams.id},function(result){
-            vm.courseLessons = result.chapters;
+              var lessonNum = 0;
+              vm.courseLessons = result.chapters;
+              _.forEach(vm.courseLessons,function(chapter,chapterIndex){
+                chapter.num = chapterIndex+1;
+                _.forEach(chapter.units,function(unit,unitIndex){
+                  unit.num = unitIndex+1;
+                  _.forEach(unit.lessons,function(lesson,lessonIndex){
+                    lessonNum+=1;
+                    lesson.num = lessonNum;
+                  })
+                })
+              })
           },function(error){
 
           });
