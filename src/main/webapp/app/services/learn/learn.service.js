@@ -21,7 +21,8 @@
                     return data;
                 }
             },
-            'doLearn':{method:'POST',isArray:false,params:{id:'@id',userId:'@userId',courseId:'@courseId'},url:'/api/course-lessons/:id/do-learn'}
+            'doLearn':{method:'POST',isArray:false,params:{id:'@id',userId:'@userId',courseId:'@courseId'},url:'/api/course-lessons/:id/do-learn'},
+            'overLearn':{method:'PUT',isArray:false,params:{id:'@id',userId:'@userId',courseId:'@courseId'},url:'/api//course-lessons/:id/learn-over'}
 
 
         });

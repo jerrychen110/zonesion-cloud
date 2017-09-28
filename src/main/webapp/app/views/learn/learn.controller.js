@@ -20,6 +20,7 @@
         vm.closeContainer = closeContainer;
         vm.seleteToolBar = seleteToolBar;
         vm.selectedLesson = selectedLesson;
+        vm.doneLearn = doneLearn;
         $scope.$on('authenticationSuccess', function() {
           console.log(  $rootScope.accountInfo);
           vm.account =  $rootScope.accountInfo;
@@ -101,6 +102,15 @@
 
             })
           }
+        }
+
+        //学习完该课时
+        function doneLearn() {
+          LearnService.overLearn({id:vm.selectedLessonId,courseId:parseInt(vm.courseId),userId:vm.account.id},function(result){
+            vm.courseInfo.chapters[chapterIndex].units[unitIndex].lessons[index].learnedStatus = 2;
+          },function(error){
+
+          })
         }
 
 

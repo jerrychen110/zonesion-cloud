@@ -1,6 +1,6 @@
 <div class="lesson-dashboard" ng-class="{'lesson-dashboard-open':vm.showNavContainer}" id="lesson-dashboard">
   <div class="dashboard-content">
-                  <a class="btn btn-primary  nav-btn back-course-btn" href="/course/4"><span class="glyphicon glyphicon-chevron-left"></span> 返回课程</a>
+                  <a class="btn btn-primary  nav-btn back-course-btn" href="#/courses/{{vm.courseId}}"><span class="glyphicon glyphicon-chevron-left"></span> 返回课程</a>
 
      <a class="btn btn-primary  nav-btn prev-lesson-btn" href="javascript:" data-role="prev-lesson" data-placement="right" title="" data-original-title="上一课时"><span class="glyphicon glyphicon-chevron-up" title="上一课时"></span></a>
      <a class="btn btn-primary nav-btn next-lesson-btn" href="javascript:" data-role="next-lesson" data-placement="right" title="" data-original-title="下一课时"><span class="glyphicon glyphicon-chevron-down"></span></a>
@@ -31,7 +31,8 @@
 
     <div class="dashboard-footer clearfix">
       <div class="pull-right">
-        <button class="btn btn-primary finish-btn" data-role="finish-lesson" style=""><span class="glyphicon glyphicon-unchecked"></span> 学完了</button>
+        <button class="btn btn-primary finish-btn" data-role="finish-lesson" ng-click="vm.doneLearn()">
+          <span class="glyphicon glyphicon-unchecked"></span> 学完了</button>
       </div>
     </div>
   </div>
