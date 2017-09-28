@@ -16,3 +16,6 @@ body {
 
 .outline-none {
   outline: none; }
+
+.btn {
+  border-radius: 4px; }

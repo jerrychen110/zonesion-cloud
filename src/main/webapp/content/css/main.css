@@ -17,6 +17,9 @@ body {
 .outline-none {
   outline: none; }
 
+.btn {
+  border-radius: 4px; }
+
 .navbar-header a {
   padding-left: 0px; }
   .navbar-header a img {

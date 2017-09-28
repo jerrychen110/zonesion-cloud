@@ -5,6 +5,15 @@
 				<i class="es-icon es-icon-viewcomfy"></i> 课程列表
 			</div>
 			<form class="form-inline inline-block pull-right">
+
+                <div class="btn-group course-sort" data-toggle="buttons">
+                    <label class="btn btn-default outline-none" ng-class="{'active':vm.courseType=='newest'}" ng-click="vm.loadExplore('newest')">
+                        <input type="radio" name="options" id="new"  autocomplete="off"> 最新
+                    </label>
+                    <label class="btn btn-default outline-none" ng-class="{'active':vm.courseType=='hot'}" ng-click="vm.loadExplore('hot')">
+                        <input type="radio" name="options" id="hot"  autocomplete="off"> 最热
+                    </label>
+                </div>
 				<div class="form-group">
 					<label class="sr-only" for="exampleInputAmount"></label>
 					<div class="input-group">
