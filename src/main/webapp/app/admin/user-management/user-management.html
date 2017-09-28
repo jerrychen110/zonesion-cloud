@@ -1,15 +1,20 @@
-<div id="content-container" class="container">
-    <h2 data-translate="userManagement.home.title">Users</h2>
-    <jhi-alert></jhi-alert>
-    <div class="row">
-      <div class="col-md-4">
-          <button class="btn btn-primary" ui-sref="user-management.new">
+<div class="es-banner">
+	<div class="container">
+		<div class="title inline-block" data-translate="userManagement.home.title">Users</div>
+      <div class="btn-group course-sort inline-block pull-right" data-toggle="buttons">
+          <label class="btn btn-default outline-none">
+              <span class="glyphicon glyphicon-flash"></span> <span data-translate="userManagement.home.importLabel">Import Users</span>
+          </label>
+          <label class="btn btn-default outline-none" ui-sref="user-management.new">
               <span class="glyphicon glyphicon-flash"></span> <span data-translate="userManagement.home.createLabel">Create a new User</span>
-          </button>
+          </label>
       </div>
-    </div>
+	</div>
+</div>
+<div id="content-container" class="container">
+    <jhi-alert></jhi-alert>
     <div class="table-responsive">
-        <table class="jh-table table table-striped">
+        <table class="jh-table table table-bordered">
             <thead>
             <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                 <th jh-sort-by="id"><span data-translate="global.field.id">ID</span><span class="glyphicon glyphicon-sort"></span></th>
