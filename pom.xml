@@ -96,6 +96,8 @@
         
         <imgscalr.version>4.2</imgscalr.version>
         <javax.inject.version>1</javax.inject.version>
+        <!-- POI properties -->
+        <poi.version>3.12</poi.version>
     </properties>
 
 
@@ -397,6 +399,32 @@
             <artifactId>javax.inject</artifactId>
             <version>${javax.inject.version}</version>
         </dependency>
+        <!-- poi to microsoft files-->
+        <dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>${poi.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi-scratchpad</artifactId>
+		    <version>${poi.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi-ooxml-schemas</artifactId>
+		    <version>${poi.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi-ooxml</artifactId>
+		    <version>${poi.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>fr.opensagres.xdocreport</groupId>
+		    <artifactId>org.apache.poi.xwpf.converter.xhtml</artifactId>
+		    <version>1.0.6</version>
+		</dependency>
     </dependencies>
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
