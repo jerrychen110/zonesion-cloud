@@ -24,9 +24,11 @@
                 if(toState.name=='learn'){
                   $rootScope.navFlag = false;
                   $rootScope.sidenavFlag = false;
+                  $rootScope.showFooter = false;
                 }else{
                   $rootScope.navFlag = true;
                   $rootScope.sidenavFlag = true;
+                  $rootScope.showFooter = true;
                 }
 
                 // Redirect to a state with an external URL (http://stackoverflow.com/a/30221248/1098564)

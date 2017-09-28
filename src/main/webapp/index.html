@@ -35,13 +35,13 @@
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <div ui-view="navbar" ng-show="navFlag" ng-cloak></div>
-    <div ui-view="sidenav" ng-if="sidenavFlag" ng-cloak></div>
+    <div ui-view="sidenav" ng-show="sidenavFlag" ng-cloak></div>
     <div class="es-wrap">
         <div class="well container" ui-view="content" ng-cloak>
             <!-- Angular views -->
         </div>
     </div>
-    <div class="footer" ng-if="$rootScope.showFooter" ng-cloak>
+    <div class="footer" ng-show="showFooter" ng-cloak>
         <p data-translate="footer">中智讯（武汉）科技有限公司</p>
     </div>
     <noscript>
