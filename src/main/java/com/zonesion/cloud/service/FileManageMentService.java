@@ -16,6 +16,7 @@ import java.util.UUID;
 
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
+import javax.xml.transform.TransformerException;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
@@ -33,10 +34,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.zonesion.cloud.config.ApplicationProperties;
+import com.zonesion.cloud.domain.User;
+import com.zonesion.cloud.repository.UserRepository;
 import com.zonesion.cloud.service.util.JcropSize;
 import com.zonesion.cloud.service.util.FileUtil;
 import com.zonesion.cloud.service.util.ServiceConstants;
 import com.zonesion.cloud.web.rest.dto.ResumableInfo;
+import com.zonesion.cloud.web.rest.util.ExcelImportUtil;
+import com.zonesion.cloud.web.rest.util.PPTUtil;
 import com.zonesion.cloud.web.rest.util.ResourceUtil;
 import com.zonesion.cloud.web.rest.util.ResumableInfoStorage;
 
@@ -52,6 +57,8 @@ public class FileManageMentService {
 	
 	private static final String DOT = ".";
 	
+	@Inject
+	private UserRepository userRepository;
 	@Inject
 	private ApplicationProperties applicationProperties;
 	
@@ -145,9 +152,15 @@ public class FileManageMentService {
 	public String saveDataFile(String fileName, String folder, String dataFileType) throws IOException {
 		log.debug("upload file!");
 		String destFileName = fileName.substring(fileName.lastIndexOf(File.separator) + 1);
+		String filename = destFileName.substring(0,destFileName.indexOf("."));
+		System.out.println("destFileName-------------------------------: "+destFileName);
 		FileObject vfsFile = null;
 		String destFilePath = Paths.get(FileUtil.LOCAL_PRIVATE_FOLDER_PATH, folder, destFileName).toString();
 		vfsFile = fileManager.resolveFile(destFilePath);
+		System.out.println("destFilePath+++++++++++++++++++++++++++++++++: "+destFilePath);
+		System.out.println("vfsFile+++++++++++++++++++++++++++++++++: "+vfsFile);
+		//String savePath = vfsFile.toString().substring(vfsFile.toString().indexOf("/")+3,vfsFile.toString().lastIndexOf("/")+1);
+		String filePath = vfsFile.toString().substring(vfsFile.toString().indexOf("/")+3);
 		File tempFile = new File(fileName);
 		FileInputStream fi = null;
 		OutputStream outputs = null;
@@ -159,6 +172,20 @@ public class FileManageMentService {
 			}
 			outputs = vfsFile.getContent().getOutputStream();
 			IOUtils.copyLarge(fi, outputs, new byte[FileUtil.PART_SIZE]);
+			try {
+				PPTUtil.pptToHtml(filePath);
+				if(destFileName.endsWith("ppt")){
+					destFilePath = destFilePath.substring(0,destFilePath.lastIndexOf("\\"))+"\\cache\\ppt\\"+filename+".html";
+				}
+				if(destFileName.endsWith("pptx")){
+					destFilePath = destFilePath.substring(0,destFilePath.lastIndexOf("\\"))+"\\cache\\pptx\\"+filename+".html";
+				}
+
+			} catch (TransformerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		} finally {
 			if (outputs != null) {
 				IOUtils.closeQuietly(outputs);
