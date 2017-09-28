@@ -156,9 +156,7 @@
       }
 
       function onSaveSuccess (result) {
-          // $scope.$emit('zonesionCloudApplicationApp:courseUpdate', result);
           $uibModalInstance.close(result);
-          // vm.isSaving = false;
       }
 
       function onSaveError () {

@@ -15,7 +15,7 @@
 			 	<li class="">
 					<div class="item-chapter">
 						<div class="mlm">
-									第 <span class="number">{{chapter.seq}}</span> 章：{{chapter.title}}
+									第 <span class="number">{{$index+1}}</span> 章：{{chapter.title}}
 						</div>
 						<div class="item-actions prs">
 							<div class="btn-group">
@@ -35,7 +35,7 @@
 						<li>
 							<div class="item-chapter item-chapter-unit">
 								<div class="unit-content mlm">
-									第 <span class="number">{{unit.seq}}</span> 节：{{unit.title}}
+									第 <span class="number">{{$index+1}}</span> 节：{{unit.title}}
 								</div>
 								<div class="item-actions prs">
 									<div class="btn-group">
@@ -56,7 +56,7 @@
 									<div class="item-lesson">
 										<div class="item-line"></div>
 										<div class="lesson-content mlm">
-											第 <span class="number">{{lesson.seq}}</span> 课时：{{lesson.title}}
+											第 <span class="number">{{lesson.num}}</span> 课时：{{lesson.title}}
 										</div>
 										<div class="item-actions">
 					    				<a class="btn btn-link"  ng-click="vm.openModal(2,1,unit.id,lesson.id,lesson)">
