@@ -15,6 +15,9 @@
 body {
   outline: none !important; }
 
+.well {
+  padding: 0; }
+
 .navbar ul li a {
   color: #333; }
 
