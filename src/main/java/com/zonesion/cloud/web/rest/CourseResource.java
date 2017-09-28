@@ -190,7 +190,7 @@ public class CourseResource {
 		Iterator<String> itr = request.getFileNames();
 		if (itr.hasNext()) {
 			MultipartFile mpf = request.getFile(itr.next());
-			coverPicture = fileManageMentService.saveJcropPicture(mpf, FileUtil.LOCAL_UPLOAD_COURSE_COVER_PICTURE_FOLDER+"/"+id, new JcropSize(Integer.parseInt(crops[0]),
+			coverPicture = fileManageMentService.saveJcropPicture(mpf, FileUtil.LOCAL_COURSE_COVER_PICTURE_FOLDER+"/"+id, new JcropSize(Integer.parseInt(crops[0]),
 					Integer.parseInt(crops[1]), Integer.parseInt(crops[4]), Integer.parseInt(crops[5]),
 					Integer.parseInt(resizeToWidth), Integer.parseInt(resizeToHeight)));
 		}
@@ -408,6 +408,16 @@ public class CourseResource {
     	return ResponseEntity.created(new URI("/api/courses/"+id+"/join/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
                 .body(result);
+    }
+    
+    @RequestMapping(value = "/courses/{id}/favorite", method = RequestMethod.PUT)
+    @Timed
+    public ResponseEntity<?> courseFavorite(@PathVariable Long id, @RequestParam(required=true) Long userId) {
+    	log.debug("REST request to favorite course : {}", id);
+        if (courseService.findOne(id) == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "course not exists", "该课程不存在")).body(null);
+        }
+        return new ResponseEntity<>(courseService.courseFavorite(id, userId), HttpStatus.OK);
     }
     
     /**
