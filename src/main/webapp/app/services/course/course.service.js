@@ -33,7 +33,8 @@
             'saveReview':{method:'POST',isArray:false,params: {id:'@id',content:'@content',
             privacy:'@privacy',rating:'@rating',title:'@title',userId:'@userId'},url:'api/courses/:id/course-reviews'},
             'joinCourse':{method:'POST',isArray:false,params: {id:'@id'},url:'api/courses/:id/join'},
-            'latestLearnLesson':{method:'GET',isArray:false,params: {id:'@id'},url:'api/courses/:id/latest-learn-lesson'}
+            'latestLearnLesson':{method:'GET',isArray:false,params: {id:'@id'},url:'/api/courses/:id/latest-learn-lesson'},
+            'saveLessonNote':{method:'POST',isArray:false,params: {id:'@id',courseId:'@courseId',courseLessonId:'@courseLessonId',userId:'@userId',content:'@content'},url:'/api/course-lessons/:id/lesson-note'}
         });
     }
 })();

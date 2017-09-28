@@ -185,13 +185,14 @@ public class CourseResource {
 		log.debug("Saving course cover picture : {}", id);
 		String coverPicture = null;
 		String[] crops = StringUtils.split(request.getParameter("cropSelection"), ",");// [x,y,x2,y2,w,h]
-		String resizeTo = request.getParameter("resizeTo");
+		String resizeToWidth = request.getParameter("resizeToWidth");
+		String resizeToHeight = request.getParameter("resizeToHeight");
 		Iterator<String> itr = request.getFileNames();
 		if (itr.hasNext()) {
 			MultipartFile mpf = request.getFile(itr.next());
 			coverPicture = fileManageMentService.saveJcropPicture(mpf, FileUtil.LOCAL_UPLOAD_COURSE_COVER_PICTURE_FOLDER+"/"+id, new JcropSize(Integer.parseInt(crops[0]),
 					Integer.parseInt(crops[1]), Integer.parseInt(crops[4]), Integer.parseInt(crops[5]),
-					Integer.parseInt(resizeTo), Integer.parseInt(resizeTo)));
+					Integer.parseInt(resizeToWidth), Integer.parseInt(resizeToHeight)));
 		}
 		
 		Course course = courseService.findOne(id);

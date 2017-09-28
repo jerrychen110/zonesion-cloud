@@ -216,13 +216,14 @@ public class UserResource {
 		User currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
 		String avatarUrl = null;
 		String[] crops = StringUtils.split(request.getParameter("cropSelection"), ",");// [x,y,x2,y2,w,h]
-		String resizeTo = request.getParameter("resizeTo");
+		String resizeToWidth = request.getParameter("resizeToWidth");
+		String resizeToHeight = request.getParameter("resizeToHeight");
 		Iterator<String> itr = request.getFileNames();
 		if (itr.hasNext()) {
 			MultipartFile mpf = request.getFile(itr.next());
 			avatarUrl = fileManageMentService.saveJcropPicture(mpf, FileUtil.LOCAL_USER_AVATAR_FOLDER+"/"+currentUser.getId(), new JcropSize(Integer.parseInt(crops[0]),
 					Integer.parseInt(crops[1]), Integer.parseInt(crops[4]), Integer.parseInt(crops[5]),
-					Integer.parseInt(resizeTo), Integer.parseInt(resizeTo)));
+					Integer.parseInt(resizeToWidth), Integer.parseInt(resizeToHeight)));
 
 		}
 		currentUser.setAvatar(avatarUrl);

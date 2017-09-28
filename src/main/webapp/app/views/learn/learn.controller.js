@@ -26,7 +26,9 @@
           vm.account =  $rootScope.accountInfo;
         });
 
-        vm.getCourseLessons=getCourseLessons();
+        vm.getCourseLessons = getCourseLessons();
+        vm.lessonNoteContent = '';
+        vm.saveLessonNote = saveLessonNote;
 
         // 课程信息
         function getCourseLessons () {
@@ -55,6 +57,30 @@
             function onError(error) {
                 //AlertService.error(error.data.message);
             }
+        }
+
+        //添加笔记
+        function saveLessonNote() {
+          if (vm.lessonNoteContent) {
+            CourseService.saveLessonNote({
+                id: vm.courseId,
+                courseId: $stateParams.id,
+                courseLessonId: $stateParams.lessonId,
+                userId: vm.account.id,
+                content: vm.lessonNoteContent
+            }, onSuccess, onError);
+            function onSuccess(data) {
+              // console.log(data);
+              if (data) {
+                console.log('笔记保存成功')
+              }
+            }
+            function onError(error) {
+              //AlertService.error(error.data.message);
+            }
+          }else{
+            console.log('笔记不能为空');
+          }
         }
 
         //选择菜单

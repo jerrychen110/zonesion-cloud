@@ -5,9 +5,9 @@
         .module('zonesionCloudApplicationApp')
         .config(stateConfig);
 
-    stateConfig.$inject = ['$stateProvider', 'ngJcropConfigProvider'];
+    stateConfig.$inject = ['$stateProvider'];
 
-    function stateConfig($stateProvider, ngJcropConfigProvider) {
+    function stateConfig($stateProvider) {
         $stateProvider.state('app', {
             abstract: true,
             views: {
@@ -32,23 +32,6 @@
                     $translatePartialLoader.addPart('global');
                 }]
             }
-        });
-
-        // [optional] To change the jcrop configuration,All jcrop settings are in: http://deepliquid.com/content/Jcrop_Manual.html#Setting_Options
-        ngJcropConfigProvider.setJcropConfig({
-            bgColor: 'transparent',
-            bgOpacity: 0.4,
-            aspectRatio: 1,
-            maxWidth:200,
-            maxHeight:200
-        });
-
-        // [optional] To change the css style in the preview image
-        ngJcropConfigProvider.setPreviewStyle({
-            'width': '100px',
-            'height': '100px',
-            'overflow': 'hidden',
-            'margin-left': '5px'
         });
     }
 })();
