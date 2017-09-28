@@ -34,13 +34,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.zonesion.cloud.config.ApplicationProperties;
-import com.zonesion.cloud.domain.User;
 import com.zonesion.cloud.repository.UserRepository;
 import com.zonesion.cloud.service.util.JcropSize;
 import com.zonesion.cloud.service.util.FileUtil;
 import com.zonesion.cloud.service.util.ServiceConstants;
 import com.zonesion.cloud.web.rest.dto.ResumableInfo;
-import com.zonesion.cloud.web.rest.util.ExcelImportUtil;
 import com.zonesion.cloud.web.rest.util.PPTUtil;
 import com.zonesion.cloud.web.rest.util.ResourceUtil;
 import com.zonesion.cloud.web.rest.util.ResumableInfoStorage;
