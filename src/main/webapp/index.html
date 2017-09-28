@@ -34,7 +34,7 @@
     <!--[if lt IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div ui-view="navbar" ng-if="navFlag" ng-cloak></div>
+    <div ui-view="navbar" ng-show="navFlag" ng-cloak></div>
     <div ui-view="sidenav" ng-if="sidenavFlag" ng-cloak></div>
     <div class="es-wrap">
         <div class="well container" ui-view="content" ng-cloak>
@@ -123,6 +123,7 @@
     <script src="app/services/user/user.service.js"></script>
     <script src="app/services/profiles/profile.service.js"></script>
     <script src="app/services/profiles/page-ribbon.directive.js"></script>
+    <script src="app/services/learn/learn.service.js"></script>
     <script src="app/services/course/course-management.service.js"></script>
     <script src="app/services/course/course.service.js"></script>
     <script src="app/services/auth/register.service.js"></script>

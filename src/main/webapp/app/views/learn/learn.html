@@ -65,10 +65,10 @@
                                 <span class="title"> 第{{unit.seq}}节：{{unit.title}} </span>
                                 <ul>
                                     <li class="period lesson-item lesson-item-63" ng-repeat="lesson in unit.lessons track by $index" ng-class="{'item-active':lesson.active}" >
-                                        <a ng-click="vm.selectedLesson(lesson.id,$parent.$index,$parent.$parent.$index)" target="_blank">
-                                            <i class="es-icon es-icon-undone color-primary status-icon" ng-if="lesson.learnedStatus==0"></i>
+                                        <a ng-click="vm.selectedLesson(lesson.id,$index,$parent.$index,$parent.$parent.$index)" target="_blank">
+                                            <i class="es-icon es-icon-undone  status-icon" ng-if="lesson.learnedStatus==0"></i>
                                             <i class="es-icon es-icon-doing color-primary status-icon" ng-if="lesson.learnedStatus==1"></i>
-                                            <i class="es-icon es-icon-done1 status-icon" ng-if="lesson.learnedStatus==2"></i>
+                                            <i class="es-icon es-icon-done1 status-icon color-primary" ng-if="lesson.learnedStatus==2"></i>
                                             {{lesson.title}}
                                             <span ng-if="lesson.courseLessonType==0" class="date" title="视频时长{{lesson.mediaLength}}">{{lesson.mediaLength}}</span>
                                             <span ng-if="lesson.courseLessonType==1" class="date" title="音频时长{{lesson.mediaLength}}">{{lesson.mediaLength}}</span>

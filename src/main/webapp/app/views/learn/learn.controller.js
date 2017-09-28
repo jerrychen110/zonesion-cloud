@@ -5,13 +5,14 @@
         .module('zonesionCloudApplicationApp')
         .controller('LearnController', LearnController);
 
-    LearnController.$inject = ['$scope', 'Principal', 'LoginService', '$state','Course','$rootScope','$stateParams','CourseService','$log','LEFTTOOL'];
+    LearnController.$inject = ['$scope', 'Principal', 'LoginService', '$state','Course','$rootScope','$stateParams','CourseService','$log','LEFTTOOL','LearnService'];
 
-    function LearnController ($scope, Principal, LoginService, $state, Course,$rootScope,$stateParams,CourseService,$log,LEFTTOOL) {
+    function LearnController ($scope, Principal, LoginService, $state, Course,$rootScope,$stateParams,CourseService,$log,LEFTTOOL,LearnService) {
         var vm = this;
         vm.showNavContainer = true;
         vm.toolbarInfos = angular.copy(LEFTTOOL);
         vm.selectedLessonId=$stateParams.lessonId;
+        vm.courseId=$stateParams.id;
 
         vm.account = $rootScope.accountInfo;
         vm.isAuthenticated = Principal.isAuthenticated;
@@ -29,7 +30,7 @@
         // 课程信息
         function getCourseLessons () {
             CourseService.getCourseLessons({
-                id: $stateParams.id
+                id: vm.courseId
             }, onSuccess, onError);
 
             function onSuccess(data, headers) {
@@ -75,9 +76,8 @@
         }
 
         //选择课程
-        function selectedLesson(lessonId,unitIndex,chapterIndex){
+        function selectedLesson(lessonId,index,unitIndex,chapterIndex){
           vm.selectedLessonId = lessonId;
-          $stateParams.lessonId = lessonId;
           _.forEach(vm.courseInfo.chapters,function(course){
             _.forEach(course.units,function(unit){
               _.forEach(unit.lessons,function(lesson){
@@ -92,9 +92,16 @@
               })
             })
           })
+          if(vm.courseInfo.chapters[chapterIndex].units[unitIndex].lessons[index].learnedStatus!='0'){
+            return;
+          }else{
+            LearnService.doLearn({id:lessonId,courseId:parseInt(vm.courseId),userId:vm.account.id},function(result){
+              vm.courseInfo.chapters[chapterIndex].units[unitIndex].lessons[index].learnedStatus = 1;
+            },function(error){
+
+            })
+          }
         }
-
-
 
 
         // 关闭侧面菜单详情
